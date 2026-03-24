@@ -35,7 +35,7 @@ const steps = [
   {
     num: "03",
     title: "Sequence",
-    description: "30x whole genome on Illumina NextSeq 2000.",
+    description: "30x whole genome on Element AVITI.",
     icon: (
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent">
         <path d="M16 8c0 4 8 8 8 12s-8 8-8 12 8 8 8 12" />
@@ -133,17 +133,15 @@ export default function HowItWorks() {
       const progress = progressRef.current;
       if (!outer || !inner || !progress) return;
 
-      const totalWidth = inner.scrollWidth;
-      const viewportWidth = window.innerWidth;
-
       gsap.to(inner, {
-        x: -(totalWidth - viewportWidth),
+        x: () => -(inner.scrollWidth - window.innerWidth),
         ease: "none",
         scrollTrigger: {
           trigger: outer,
           pin: true,
           scrub: 1,
           end: "+=300%",
+          invalidateOnRefresh: true,
           onUpdate: (self) => {
             gsap.set(progress, { scaleX: self.progress });
           },

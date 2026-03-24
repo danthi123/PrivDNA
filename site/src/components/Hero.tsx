@@ -1,9 +1,13 @@
 "use client";
 
 import { useRef } from "react";
+import dynamic from "next/dynamic";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import DNASceneLoader from "@/components/three/DNASceneLoader";
+
+const DNAScene = dynamic(() => import("@/components/three/DNAScene"), {
+  ssr: false,
+});
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -80,7 +84,7 @@ export default function Hero() {
     >
       {/* DNA Scene Background */}
       <div className="absolute inset-0 opacity-30 md:opacity-80 pointer-events-none md:pointer-events-auto">
-        <DNASceneLoader className="absolute right-0 top-0 w-full md:w-[65%] h-full" />
+        <DNAScene className="absolute right-0 top-0 w-full md:w-[65%] h-full" />
       </div>
 
       {/* Left content */}

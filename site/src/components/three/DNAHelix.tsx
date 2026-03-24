@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useEffect, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import type { Group, BufferAttribute } from "three";
 
@@ -9,14 +9,24 @@ import type { DragState } from "./DNAScene";
 interface DNAHelixProps {
   mouse: React.RefObject<{ x: number; y: number } | null>;
   dragState: React.RefObject<DragState>;
+  isVisible: React.RefObject<boolean>;
 }
 
 const BASE_SPEED = 0.003;
 const FRICTION = 0.95;
 
-export default function DNAHelix({ mouse, dragState }: DNAHelixProps) {
+export default function DNAHelix({ mouse, dragState, isVisible }: DNAHelixProps) {
   const groupRef = useRef<Group>(null);
   const particlesRef = useRef<BufferAttribute>(null);
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mql = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReducedMotion(mql.matches);
+    const handler = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
+    mql.addEventListener("change", handler);
+    return () => mql.removeEventListener("change", handler);
+  }, []);
 
   const { strand1, strand2, rungs, particles } = useMemo(() => {
     const turns = 4;
@@ -72,7 +82,7 @@ export default function DNAHelix({ mouse, dragState }: DNAHelixProps) {
   }, []);
 
   useFrame(() => {
-    if (!groupRef.current) return;
+    if (!groupRef.current || !isVisible.current || reducedMotion) return;
 
     // Velocity-based rotation with drag support
     const drag = dragState.current;
