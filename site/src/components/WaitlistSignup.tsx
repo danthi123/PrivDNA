@@ -141,7 +141,7 @@ export default function WaitlistSignup() {
 
         <p className="text-text-secondary text-sm mt-8">
           No spam. No data sharing. Unsubscribe anytime.{" "}
-          <a href="#" className="text-accent underline">
+          <a href="https://github.com/danthi123/PrivDNA" target="_blank" rel="noopener noreferrer" className="text-accent underline">
             View the source
           </a>
         </p>

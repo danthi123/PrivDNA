@@ -73,7 +73,9 @@ export default function OpenSource() {
         </p>
         <div>
           <a
-            href="#"
+            href="https://github.com/danthi123/PrivDNA"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-block border border-accent text-accent px-6 py-3 rounded-full hover:bg-accent hover:text-bg-primary transition-all duration-300"
           >
             View on GitHub &rarr;
