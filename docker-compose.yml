@@ -3,6 +3,9 @@ services:
     build:
       context: ./site
       dockerfile: Dockerfile
+      args:
+        - RYBBIT_SITE_ID=${RYBBIT_SITE_ID}
+        - RYBBIT_URL=${RYBBIT_URL}
     container_name: privdna-web
     restart: unless-stopped
     environment:
