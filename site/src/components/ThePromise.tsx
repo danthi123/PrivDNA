@@ -75,7 +75,7 @@ export default function ThePromise() {
             scrollTrigger: {
               trigger: el,
               start: "top 85%",
-              toggleActions: "play none none none",
+              once: true,
             },
           });
         });
