@@ -104,7 +104,7 @@ export default function Hero() {
         <button
           ref={ctaRef}
           onClick={scrollToWaitlist}
-          className="mt-8 bg-accent text-bg-primary font-semibold text-lg rounded-full px-8 py-4 hover:scale-105 transition-all duration-300 cursor-pointer"
+          className="mt-8 bg-accent text-bg-primary font-semibold text-lg rounded-full px-8 py-4 hover:scale-105 transition-transform duration-300 cursor-pointer"
         >
           Join the Waitlist
         </button>
