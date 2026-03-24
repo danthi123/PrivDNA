@@ -11,7 +11,7 @@ const steps = [
   {
     num: "01",
     title: "Walk In",
-    description: "Visit our NYC storefront. No mail-order kits.",
+    description: "Visit our NYC storefront.\nNo mail-order kits.",
     icon: (
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent">
         <rect x="8" y="12" width="32" height="28" rx="2" />
@@ -49,7 +49,7 @@ const steps = [
   {
     num: "04",
     title: "Process",
-    description: "Air-gapped servers. Open source pipeline.",
+    description: "Air-gapped servers.\nOpen source pipeline.",
     icon: (
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent">
         <rect x="10" y="8" width="28" height="12" rx="2" />
@@ -63,7 +63,7 @@ const steps = [
   {
     num: "05",
     title: "Deliver",
-    description: "Encrypted USB drive. FIPS 140-3 certified.",
+    description: "Encrypted USB drive.\nFIPS 140-3 certified.",
     icon: (
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent">
         <rect x="12" y="16" width="24" height="20" rx="3" />
@@ -76,7 +76,7 @@ const steps = [
   {
     num: "06",
     title: "Destroy",
-    description: "Witnessed data destruction. Certificate provided.",
+    description: "Witnessed data destruction.\nCertificate provided.",
     icon: (
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent">
         <path d="M14 14h20l-2 26H16L14 14z" />
@@ -141,7 +141,7 @@ export default function HowItWorks() {
               <h3 className="text-text-primary font-bold text-xl md:text-2xl mb-2">
                 {step.title}
               </h3>
-              <p className="text-text-secondary text-sm md:text-base max-w-xs">
+              <p className="text-text-secondary text-sm md:text-base max-w-sm whitespace-pre-line">
                 {step.description}
               </p>
             </div>
