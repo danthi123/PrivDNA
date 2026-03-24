@@ -9,7 +9,9 @@ export default function Footer() {
         <div className="flex gap-4">
           {/* GitHub */}
           <a
-            href="#"
+            href="https://github.com/danthi123/PrivDNA"
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label="GitHub"
             className="p-2 text-text-secondary hover:text-accent transition-colors"
           >
@@ -25,7 +27,9 @@ export default function Footer() {
 
           {/* X/Twitter */}
           <a
-            href="#"
+            href="https://x.com/PrivDNA"
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label="X"
             className="p-2 text-text-secondary hover:text-accent transition-colors"
           >
@@ -41,7 +45,7 @@ export default function Footer() {
 
           {/* Email */}
           <a
-            href="#"
+            href="mailto:contact@privdna.com"
             aria-label="Email"
             className="p-2 text-text-secondary hover:text-accent transition-colors"
           >
