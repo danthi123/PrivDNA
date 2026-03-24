@@ -1,4 +1,8 @@
 .env
+.env.local
+.env*.local
+site/.env.local
+site/.env*.local
 .claude/
 .playwright-mcp/
 audit-report-*.md

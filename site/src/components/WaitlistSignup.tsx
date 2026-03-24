@@ -1,11 +1,8 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap } from "@/lib/gsap";
 import { useGSAP } from "@gsap/react";
-
-gsap.registerPlugin(ScrollTrigger);
 
 type Status = "idle" | "loading" | "success" | "error" | "duplicate";
 

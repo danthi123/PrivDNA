@@ -2,7 +2,7 @@
 
 import { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
-import * as THREE from "three";
+import type { Group, BufferAttribute } from "three";
 
 import type { DragState } from "./DNAScene";
 
@@ -15,8 +15,8 @@ const BASE_SPEED = 0.003;
 const FRICTION = 0.95;
 
 export default function DNAHelix({ mouse, dragState }: DNAHelixProps) {
-  const groupRef = useRef<THREE.Group>(null);
-  const particlesRef = useRef<THREE.BufferAttribute>(null);
+  const groupRef = useRef<Group>(null);
+  const particlesRef = useRef<BufferAttribute>(null);
 
   const { strand1, strand2, rungs, particles } = useMemo(() => {
     const turns = 4;

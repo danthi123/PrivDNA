@@ -18,22 +18,31 @@ export default function Navigation() {
   const navItemsRef = useRef<HTMLAnchorElement[]>([]);
   const lastScrollY = useRef(0);
 
-  // Track scroll direction to show/hide nav bar
+  // Track scroll direction to show/hide nav bar (rAF-throttled)
   useEffect(() => {
+    let rafId: number | null = null;
+
     const onScroll = () => {
-      const currentY = window.scrollY;
-      if (currentY < 100) {
-        setVisible(true);
-      } else if (currentY < lastScrollY.current) {
-        setVisible(true); // scrolling up
-      } else {
-        setVisible(false); // scrolling down
-      }
-      lastScrollY.current = currentY;
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        rafId = null;
+        const currentY = window.scrollY;
+        if (currentY < 100) {
+          setVisible(true);
+        } else if (currentY < lastScrollY.current) {
+          setVisible(true); // scrolling up
+        } else {
+          setVisible(false); // scrolling down
+        }
+        lastScrollY.current = currentY;
+      });
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   const openMenu = useCallback(() => {

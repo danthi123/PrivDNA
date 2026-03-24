@@ -20,25 +20,19 @@ export default function CustomCursor() {
     dot.style.opacity = "1";
     ring.style.opacity = "0.5";
 
+    // quickTo pre-allocates the tween — no GC pressure on mousemove
+    const dotX = gsap.quickTo(dot, "x", { duration: 0.1, ease: "power2.out" });
+    const dotY = gsap.quickTo(dot, "y", { duration: 0.1, ease: "power2.out" });
+    const ringX = gsap.quickTo(ring, "x", { duration: 0.3, ease: "power2.out" });
+    const ringY = gsap.quickTo(ring, "y", { duration: 0.3, ease: "power2.out" });
+
     const onMouseMove = (e: MouseEvent) => {
       mouse.current.x = e.clientX;
       mouse.current.y = e.clientY;
-
-      gsap.to(dot, {
-        x: e.clientX,
-        y: e.clientY,
-        duration: 0.1,
-        ease: "power2.out",
-        overwrite: "auto",
-      });
-
-      gsap.to(ring, {
-        x: e.clientX,
-        y: e.clientY,
-        duration: 0.3,
-        ease: "power2.out",
-        overwrite: "auto",
-      });
+      dotX(e.clientX);
+      dotY(e.clientY);
+      ringX(e.clientX);
+      ringY(e.clientY);
     };
 
     const onEnterInteractive = () => {
