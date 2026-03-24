@@ -4,7 +4,7 @@
 
 ---
 
-**Prepared by:** PrivDNA, Inc.
+**Prepared by:** PrivDNA
 **Domain:** [PrivDNA.com](https://privdna.com)
 **Location:** New York City, New York
 **Date:** March 2026
@@ -18,7 +18,7 @@
 
 ## LEGAL DISCLAIMER
 
-This document is provided for informational purposes only and does not constitute an offer to sell or a solicitation of an offer to buy any securities. Any investment in PrivDNA, Inc. involves significant risk, including the possible loss of principal. Prospective investors should conduct their own due diligence and consult with legal, financial, and tax advisors before making any investment decision. Forward-looking statements contained herein are based on current expectations and assumptions and are subject to risks and uncertainties that could cause actual results to differ materially.
+This document is provided for informational purposes only and does not constitute an offer to sell or a solicitation of an offer to buy any securities. Any investment in PrivDNA involves significant risk, including the possible loss of principal. Prospective investors should conduct their own due diligence and consult with legal, financial, and tax advisors before making any investment decision. Forward-looking statements contained herein are based on current expectations and assumptions and are subject to risks and uncertainties that could cause actual results to differ materially.
 
 ---
 
@@ -1171,5 +1171,5 @@ For investors seeking earlier liquidity, PrivDNA's brand, open-source community,
 
 **END OF DOCUMENT**
 
-*PrivDNA, Inc. | PrivDNA.com | New York, New York*
+*PrivDNA | PrivDNA.com | New York, New York*
 *Confidential -- For Intended Recipients Only*

@@ -850,5 +850,5 @@ For customers who prefer a lower-cost option or need smaller capacity (VCF-only 
 
 **END OF TECHNICAL MANIFEST**
 
-*PrivDNA, Inc. | Version 1.0 | March 2026*
+*PrivDNA | Version 1.0 | March 2026*
 *This document contains proprietary technical specifications. Distribution restricted to authorized personnel and investors under NDA.*
