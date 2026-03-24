@@ -79,15 +79,21 @@ export default function PrivacyPolicy() {
             open-source, cookieless analytics platform. It collects:
           </p>
           <ul className="list-disc pl-6 mt-2 space-y-1">
-            <li>Page views (which pages are visited)</li>
-            <li>Referrer (where you came from)</li>
-            <li>Browser and device type (aggregated, not individually identifying)</li>
-            <li>Country (derived from IP at the edge, not stored individually)</li>
+            <li>Page views and navigation paths</li>
+            <li>Referrer and UTM parameters (where you came from)</li>
+            <li>Browser, device type, operating system, and screen size</li>
+            <li>Language preference</li>
+            <li>Geographic location (city-level, derived from IP at the edge)</li>
+            <li>Session duration and engagement metrics</li>
+            <li>Custom events (e.g., waitlist signup — event name only, no email or PII)</li>
+            <li>Page performance metrics (Core Web Vitals)</li>
           </ul>
           <p className="mt-2">
             Rybbit does not use cookies, does not fingerprint browsers, and does
-            not track individual users across sessions. No personal data is
-            collected or stored by our analytics.
+            not assign persistent identifiers. Every visitor is anonymous by
+            default — there is no way to link analytics data back to a specific
+            individual. IP addresses are used transiently for geolocation but
+            are not stored in our analytics database.
           </p>
 
           <h3 className="text-text-primary font-medium mt-6 mb-2">
