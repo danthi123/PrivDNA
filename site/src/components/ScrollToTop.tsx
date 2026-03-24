@@ -1,9 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import { useLenis } from "lenis/react";
 
 export default function ScrollToTop() {
   const [visible, setVisible] = useState(false);
+  const lenis = useLenis();
 
   useEffect(() => {
     const onScroll = () => {
@@ -14,9 +16,13 @@ export default function ScrollToTop() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  const scrollToTop = useCallback(() => {
+    if (lenis) {
+      lenis.scrollTo(0, { duration: 1.2 });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [lenis]);
 
   return (
     <button
