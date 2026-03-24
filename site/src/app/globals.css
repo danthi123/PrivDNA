@@ -13,7 +13,7 @@
   --font-mono: var(--font-geist-mono);
 }
 
-/* Lenis smooth scroll */
+/* Lenis smooth scroll — desktop only */
 html.lenis, html.lenis body {
   height: auto;
 }
@@ -34,7 +34,6 @@ html.lenis, html.lenis body {
 body {
   background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
-  overflow-x: hidden;
 }
 
 /* Selection color */
@@ -50,31 +49,22 @@ html {
   text-rendering: optimizeLegibility;
 }
 
-/* Split text animation helpers */
-.split-line {
-  overflow: hidden;
-  display: inline-block;
-}
+/* Scrollbar styling — desktop only */
+@media (pointer: fine) {
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
 
-.split-char {
-  display: inline-block;
-  will-change: transform, opacity;
-}
+  ::-webkit-scrollbar-track {
+    background: var(--color-bg-primary);
+  }
 
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 6px;
-}
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-text-secondary);
+    border-radius: 3px;
+  }
 
-::-webkit-scrollbar-track {
-  background: var(--color-bg-primary);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--color-text-secondary);
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-accent);
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent);
+  }
 }
