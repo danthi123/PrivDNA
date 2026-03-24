@@ -139,7 +139,7 @@ export default function Hero() {
         <span className="text-xs text-text-secondary tracking-widest uppercase">
           Scroll
         </span>
-        <div className="w-[1px] h-8 bg-text-secondary/50 animate-pulse" />
+        <div className="w-[1px] h-8 bg-text-secondary/50 md:animate-pulse" />
       </div>
     </section>
   );
