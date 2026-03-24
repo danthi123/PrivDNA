@@ -18,8 +18,11 @@ export default function Navigation() {
   const navItemsRef = useRef<HTMLAnchorElement[]>([]);
   const lastScrollY = useRef(0);
 
-  // Track scroll direction to show/hide nav bar (rAF-throttled)
+  // Track scroll direction to show/hide nav bar — desktop only
   useEffect(() => {
+    // Skip on touch devices — fixed element transitions cause scroll jank on iOS
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+
     let rafId: number | null = null;
 
     const onScroll = () => {
