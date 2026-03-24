@@ -10,6 +10,7 @@ services:
     restart: unless-stopped
     environment:
       - DATABASE_KEY=${DATABASE_KEY}
+      - EMAIL_ENCRYPTION_KEY=${EMAIL_ENCRYPTION_KEY}
       - RYBBIT_SITE_ID=${RYBBIT_SITE_ID}
       - RYBBIT_URL=${RYBBIT_URL}
       - SMTP_HOST=${SMTP_HOST}
@@ -19,7 +20,6 @@ services:
       - SMTP_FROM=${SMTP_FROM}
       - SMTP_SECURE=${SMTP_SECURE}
       - SMTP_REJECT_UNAUTHORIZED=${SMTP_REJECT_UNAUTHORIZED}
-      - UNSUBSCRIBE_SECRET=${UNSUBSCRIBE_SECRET}
       - BASE_URL=${BASE_URL}
     volumes:
       - ${DATA_DIR}/web:/app/data

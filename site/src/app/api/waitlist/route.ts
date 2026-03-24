@@ -42,16 +42,19 @@ export async function POST(request: NextRequest) {
     // 5. Normalize
     const normalized = email.toLowerCase().trim();
 
-    // 6. Hash
+    // 6. Hash (HMAC-SHA256, keyed — not dictionary-attackable)
     const emailHash = hashEmail(normalized);
 
-    // 7. Encrypt
-    const { encrypted, iv } = encryptEmail(normalized);
+    // 7. Encrypt (AES-256-GCM with auth tag)
+    const { encrypted, iv, authTag } = encryptEmail(normalized);
 
-    // 8. Store
-    const result = addToWaitlist(emailHash, encrypted, iv);
+    // 8. Generate random unsubscribe token (stored in DB for O(1) lookup)
+    const unsubscribeToken = generateUnsubscribeToken();
 
-    // 9. Duplicate
+    // 9. Store
+    const result = addToWaitlist(emailHash, encrypted, iv, authTag, unsubscribeToken);
+
+    // 10. Duplicate
     if (result.duplicate) {
       return NextResponse.json(
         { message: "You're already on the list!", alreadyExists: true },
@@ -59,24 +62,23 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 10. Send confirmation email (fire and forget)
+    // 11. Send confirmation email (fire and forget)
     if (isMailerConfigured()) {
       const baseUrl = process.env.BASE_URL || "https://privdna.com";
-      const token = generateUnsubscribeToken(emailHash);
-      const unsubscribeUrl = `${baseUrl}/api/waitlist/unsubscribe/${token}`;
+      const unsubscribeUrl = `${baseUrl}/api/waitlist/unsubscribe/${unsubscribeToken}`;
       const { html, text } = buildConfirmationEmail(unsubscribeUrl);
       sendEmail(normalized, "You're on the list — PrivDNA", html, text, unsubscribeUrl).catch(
         (err) => console.error("Failed to send confirmation email:", err)
       );
     }
 
-    // 11. Success
+    // 12. Success
     return NextResponse.json(
       { message: "You're on the list!", success: true },
       { status: 201 }
     );
   } catch (error) {
-    // 12. Error
+    // 13. Error
     console.error("Waitlist POST error:", error);
     return NextResponse.json(
       { error: "Something went wrong. Please try again." },
@@ -88,7 +90,9 @@ export async function POST(request: NextRequest) {
 export async function GET() {
   try {
     const count = getWaitlistCount();
-    return NextResponse.json({ count });
+    return NextResponse.json({ count }, {
+      headers: { "Cache-Control": "public, max-age=3600" },
+    });
   } catch (error) {
     console.error("Waitlist GET error:", error);
     return NextResponse.json({ count: 0 });
