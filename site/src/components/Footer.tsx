@@ -3,7 +3,13 @@ export default function Footer() {
     <footer className="px-6 py-8 border-t border-bg-elevated">
       <div className="flex flex-col md:flex-row items-center justify-between gap-4">
         {/* Left */}
-        <p className="text-text-secondary text-sm">&copy; 2026 PrivDNA</p>
+        <div className="flex items-center gap-3 text-text-secondary text-sm">
+          <span>&copy; 2026 PrivDNA</span>
+          <span className="hidden md:inline">|</span>
+          <a href="/privacy" className="hover:text-accent transition-colors">
+            Privacy Policy
+          </a>
+        </div>
 
         {/* Center — Social icons */}
         <div className="flex gap-4">
