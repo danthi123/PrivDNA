@@ -43,13 +43,13 @@
 
 | # | Item | Model / Part Number | Qty | Unit Cost | Total |
 |---|------|-------------------|-----|-----------|-------|
-| 10 | CPU | AMD EPYC 9654 96C/192T (100-000000789) | 2 | $10,000 | $20,000 |
+| 10 | CPU | AMD EPYC 9654 96C/192T (100-000000789) | 2 | $12,500 | $25,000 |
 | 11 | Server Chassis | Supermicro AS-2125HS-TNR (2U, 24x NVMe, dual SP5) | 1 | $5,000 | $5,000 |
 | 12 | RAM | Samsung 64GB DDR5-4800 ECC RDIMM (M321R8GA0BB0-CQK) | 16 | $300 | $4,800 |
 | 13 | NVMe Storage | Samsung PM9A3 7.68TB U.2 (MZQL27T6HBLA-00A07) | 24 | $4,899 | $117,576 |
 | 14 | GPU | NVIDIA A100 80GB PCIe (A100-PCIE-80GB) | 1 | $13,000 | $13,000 |
 | 15 | TPM Module | Supermicro TPM 2.0 Infineon (AOM-TPM-9670V) | 1 | $50 | $50 |
-| | | | | **Subtotal** | **$160,426** |
+| | | | | **Subtotal** | **$165,426** |
 
 ## 1.3 Network and Security
 
@@ -95,7 +95,7 @@
 | Network and Security | $2,879 |
 | Power and Cooling | $9,950 |
 | Delivery Media (initial) | $11,540 |
-| **GRAND TOTAL** | **$563,495** |
+| **GRAND TOTAL** | **$568,495** |
 
 ---
 
@@ -331,7 +331,7 @@ Apptainer (formerly Singularity, now a Linux Foundation project) is the standard
 
 | Component | Version | License |
 |-----------|---------|---------|
-| Nextflow | 24.10.x | Apache 2.0 |
+| Nextflow | 24.10.4 | Apache 2.0 |
 | nf-core/sarek (WGS pipeline) | 3.8.1 | MIT |
 | Java Runtime (for Nextflow) | OpenJDK 17 | GPL v2 + CPE |
 

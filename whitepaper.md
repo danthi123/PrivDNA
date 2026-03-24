@@ -65,7 +65,7 @@ This confluence creates a market opening for a fundamentally different model -- 
 
 | Metric | Value |
 |--------|-------|
-| Total startup capital required | $986,300 |
+| Total startup capital required | $986,000 |
 | Price per genome | $3,500 |
 | Variable cost per genome | $2,340 (with volume discounts) |
 | Gross margin per genome | $1,160 |
@@ -295,7 +295,7 @@ The NextSeq 2000 is the optimal platform for PrivDNA's volume tier. It balances 
 | Fragment analysis | Agilent TapeStation 4150 | Library size distribution QC | $16,000 |
 | Thermal cycler | Bio-Rad T100 | PCR amplification during library prep | $3,500 |
 | Centrifuge | Eppendorf 5810R | Plate spinning, sample pelleting | $6,000 |
-| Pipettes | Eppendorf Research Plus (set) | Manual liquid handling | $3,500 |
+| Pipettes (single-channel set + multichannel) | Eppendorf Research Plus | Manual liquid handling | $3,200 |
 | Vortex mixer | Various | Sample mixing | $500 |
 | Microcentrifuge | Eppendorf 5424R | Tube spinning | $3,500 |
 
@@ -754,9 +754,9 @@ As the partner network matures, PrivDNA may explore a **marketplace model** wher
 | Bio-Rad T100 Thermal Cycler | $3,500 |
 | Eppendorf 5810R Centrifuge | $6,000 |
 | Eppendorf 5424R Microcentrifuge | $3,500 |
-| Pipettes (Eppendorf Research Plus set) | $3,500 |
+| Pipettes (Eppendorf Research Plus set) | $3,200 |
 | Vortex mixer and miscellaneous small equipment | $2,500 |
-| **Subtotal: Lab Equipment** | **$374,000** |
+| **Subtotal: Lab Equipment** | **$373,700** |
 
 *\*NextSeq 2000 list price is $335,000. Certified refurbished units are available in the $75,000-$150,000 range from authorized resellers. PrivDNA will evaluate both new and refurbished options during procurement, potentially reducing CAPEX by $150,000-$250,000. Financial projections use the list price as a conservative baseline.*
 
@@ -830,14 +830,14 @@ As the partner network matures, PrivDNA may explore a **marketplace model** wher
 
 | Category | Cost |
 |----------|------|
-| Lab Equipment | $374,000 |
+| Lab Equipment | $373,700 |
 | Compute Infrastructure | $176,300 |
 | Facility | $156,000 |
 | Software Development | $110,000 |
 | Regulatory/Legal | $35,000 |
 | Marketing | $50,000 |
 | Reserves | $85,000 |
-| **TOTAL STARTUP CAPITAL** | **$986,300** |
+| **TOTAL STARTUP CAPITAL** | **$986,000** |
 
 ## 10.2 Operating Expenses (OPEX) -- Annual
 
@@ -964,11 +964,11 @@ Based on Year 1-2 projected losses:
 
 | Period | Net Loss | Cumulative Cash Need |
 |--------|----------|---------------------|
-| Startup CAPEX | ($986,300) | ($986,300) |
+| Startup CAPEX | ($986,000) | ($986,000) |
 | Year 1 operations | ($554,400) | ($1,540,700) |
 | Year 2 operations | ($193,200) | ($1,733,900) |
 
-**Total funding required through profitability: ~$1.35 million** (startup capital of $986,300 plus ~$365,000 in operational runway to cover Year 1-2 losses, partially offset by Year 1-2 revenue).
+**Total funding required through profitability: ~$1.35 million** (startup capital of $986,000 plus ~$365,000 in operational runway to cover Year 1-2 losses, partially offset by Year 1-2 revenue).
 
 ---
 
