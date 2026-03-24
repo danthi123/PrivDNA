@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { useIsMobile } from "@/lib/useIsMobile";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,7 +12,7 @@ const pillars = [
   {
     title: "Physical Transparency",
     description:
-      "Watch your genome being sequenced through a glass wall. Every step visible. Nothing hidden.",
+      "Watch your genome being sequenced through a glass wall.\nEvery step visible.\nNothing hidden.",
     icon: (
       <svg
         width="64"
@@ -55,7 +56,7 @@ const pillars = [
   {
     title: "Zero Retention",
     description:
-      "Your data is created, handed to you, and destroyed.\nNo copies. No cloud. No exceptions.",
+      "Your data is created, handed to you, and destroyed.\nNo copies.\nNo cloud.\nNo exceptions.",
     icon: (
       <svg
         width="64"
@@ -79,46 +80,82 @@ const pillars = [
 export default function ThePromise() {
   const containerRef = useRef<HTMLDivElement>(null);
   const pillarRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const isMobile = useIsMobile();
 
   useGSAP(
     () => {
       const container = containerRef.current;
       if (!container) return;
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: container,
-          pin: true,
-          scrub: 1,
-          end: "+=300%",
-        },
-      });
+      if (isMobile) {
+        // Mobile: simple staggered fade-in per pillar
+        pillarRefs.current.forEach((el) => {
+          if (!el) return;
+          gsap.from(el, {
+            y: 40,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: el,
+              start: "top 85%",
+              toggleActions: "play none none none",
+            },
+          });
+        });
+      } else {
+        // Desktop: pinned horizontal slide
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: container,
+            pin: true,
+            scrub: 1,
+            end: "+=300%",
+          },
+        });
 
-      // Pillar 1 is visible initially, slides out at ~0.33
-      // Pillar 2 slides in at ~0.33, slides out at ~0.66
-      // Pillar 3 slides in at ~0.66
+        const p0 = pillarRefs.current[0];
+        const p1 = pillarRefs.current[1];
+        const p2 = pillarRefs.current[2];
 
-      const p0 = pillarRefs.current[0];
-      const p1 = pillarRefs.current[1];
-      const p2 = pillarRefs.current[2];
+        if (!p0 || !p1 || !p2) return;
 
-      if (!p0 || !p1 || !p2) return;
+        gsap.set(p1, { xPercent: 100 });
+        gsap.set(p2, { xPercent: 100 });
 
-      // Initial states
-      gsap.set(p1, { xPercent: 100 });
-      gsap.set(p2, { xPercent: 100 });
-
-      // Transition 1: p0 slides left, p1 slides in
-      tl.to(p0, { xPercent: -100, duration: 0.3 }, 0.15);
-      tl.to(p1, { xPercent: 0, duration: 0.3 }, 0.15);
-
-      // Transition 2: p1 slides left, p2 slides in
-      tl.to(p1, { xPercent: -100, duration: 0.3 }, 0.55);
-      tl.to(p2, { xPercent: 0, duration: 0.3 }, 0.55);
+        tl.to(p0, { xPercent: -100, duration: 0.3 }, 0.15);
+        tl.to(p1, { xPercent: 0, duration: 0.3 }, 0.15);
+        tl.to(p1, { xPercent: -100, duration: 0.3 }, 0.55);
+        tl.to(p2, { xPercent: 0, duration: 0.3 }, 0.55);
+      }
     },
-    { scope: containerRef }
+    { scope: containerRef, dependencies: [isMobile] }
   );
 
+  if (isMobile) {
+    // Mobile: vertical stack
+    return (
+      <section id="promise" aria-label="The Promise" ref={containerRef}>
+        {pillars.map((pillar, i) => (
+          <div
+            key={pillar.title}
+            ref={(el) => { pillarRefs.current[i] = el; }}
+            className="min-h-[60vh] flex flex-col items-center justify-center px-6 text-center"
+          >
+            <div className="mb-6">{pillar.icon}</div>
+            <h3 className="text-accent text-2xl font-bold mb-4">
+              {pillar.title}
+            </h3>
+            <p className="text-text-secondary text-lg max-w-lg whitespace-pre-line">
+              {pillar.description}
+            </p>
+          </div>
+        ))}
+      </section>
+    );
+  }
+
+  // Desktop: pinned horizontal slide
   return (
     <section id="promise" aria-label="The Promise">
       <div
@@ -128,9 +165,7 @@ export default function ThePromise() {
         {pillars.map((pillar, i) => (
           <div
             key={pillar.title}
-            ref={(el) => {
-              pillarRefs.current[i] = el;
-            }}
+            ref={(el) => { pillarRefs.current[i] = el; }}
             className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center"
           >
             <div className="mb-6">{pillar.icon}</div>
