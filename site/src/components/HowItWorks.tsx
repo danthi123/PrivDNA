@@ -1,10 +1,9 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { useIsMobile } from "@/lib/useIsMobile";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -96,12 +95,22 @@ export default function HowItWorks() {
   const innerRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
   const mobileCardRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const isMobile = useIsMobile();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mql = window.matchMedia("(max-width: 767px)");
+    setIsMobile(mql.matches);
+    const handler = (e: MediaQueryListEvent) => {
+      setIsMobile(e.matches);
+      ScrollTrigger.refresh();
+    };
+    mql.addEventListener("change", handler);
+    return () => mql.removeEventListener("change", handler);
+  }, []);
 
   useGSAP(
     () => {
       if (isMobile) {
-        // Mobile: fade-in each card on scroll
         mobileCardRefs.current.forEach((el) => {
           if (!el) return;
           gsap.from(el, {
@@ -119,7 +128,6 @@ export default function HowItWorks() {
         return;
       }
 
-      // Desktop: horizontal scroll with pin
       const outer = outerRef.current;
       const inner = innerRef.current;
       const progress = progressRef.current;
@@ -142,73 +150,46 @@ export default function HowItWorks() {
         },
       });
     },
-    { scope: outerRef, dependencies: [isMobile] }
+    { dependencies: [isMobile] }
   );
 
-  if (isMobile) {
-    // Mobile: vertical grid of cards
-    return (
-      <section id="how-it-works" aria-label="How It Works" ref={outerRef}>
-        <div className="px-6 py-16">
-          <div className="grid grid-cols-2 gap-6">
-            {steps.map((step, i) => (
-              <div
-                key={step.num}
-                ref={(el) => { mobileCardRefs.current[i] = el; }}
-                className="flex flex-col items-center text-center py-8"
-              >
-                <span className="text-text-secondary text-xs mb-3 tracking-widest">
-                  {step.num}
-                </span>
-                <div className="mb-3">{step.icon}</div>
-                <h3 className="text-text-primary font-bold text-base mb-1">
-                  {step.title}
-                </h3>
-                <p className="text-text-secondary text-xs whitespace-pre-line">
-                  {step.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  // Desktop: horizontal scroll with pin
   return (
     <section id="how-it-works" aria-label="How It Works">
-      <div ref={outerRef} className="h-screen overflow-hidden relative">
-        <div
-          ref={innerRef}
-          className="flex flex-nowrap items-center h-full"
-        >
+      {/* Desktop: horizontal scroll with pin */}
+      <div ref={outerRef} className="hidden md:block h-screen overflow-hidden relative">
+        <div ref={innerRef} className="flex flex-nowrap items-center h-full">
           {steps.map((step) => (
             <div
               key={step.num}
               className="flex-shrink-0 w-[50vw] lg:w-[33vw] flex flex-col items-center justify-center px-8 text-center"
             >
-              <span className="text-text-secondary text-sm mb-4 tracking-widest">
-                {step.num}
-              </span>
+              <span className="text-text-secondary text-sm mb-4 tracking-widest">{step.num}</span>
               <div className="mb-4">{step.icon}</div>
-              <h3 className="text-text-primary font-bold text-xl md:text-2xl mb-2">
-                {step.title}
-              </h3>
-              <p className="text-text-secondary text-sm md:text-base max-w-sm whitespace-pre-line">
-                {step.description}
-              </p>
+              <h3 className="text-text-primary font-bold text-xl md:text-2xl mb-2">{step.title}</h3>
+              <p className="text-text-secondary text-sm md:text-base max-w-sm whitespace-pre-line">{step.description}</p>
             </div>
           ))}
         </div>
-
-        {/* Progress line */}
         <div className="absolute bottom-8 left-8 right-8 h-[2px] bg-bg-elevated">
-          <div
-            ref={progressRef}
-            className="h-full bg-accent origin-left"
-            style={{ transform: "scaleX(0)" }}
-          />
+          <div ref={progressRef} className="h-full bg-accent origin-left" style={{ transform: "scaleX(0)" }} />
+        </div>
+      </div>
+
+      {/* Mobile: 2-column grid */}
+      <div className="md:hidden px-6 py-16">
+        <div className="grid grid-cols-2 gap-6">
+          {steps.map((step, i) => (
+            <div
+              key={step.num}
+              ref={(el) => { mobileCardRefs.current[i] = el; }}
+              className="flex flex-col items-center text-center py-6"
+            >
+              <span className="text-text-secondary text-xs mb-3 tracking-widest">{step.num}</span>
+              <div className="mb-3">{step.icon}</div>
+              <h3 className="text-text-primary font-bold text-base mb-1">{step.title}</h3>
+              <p className="text-text-secondary text-xs whitespace-pre-line">{step.description}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
