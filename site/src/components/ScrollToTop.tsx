@@ -9,7 +9,10 @@ export default function ScrollToTop() {
 
   useEffect(() => {
     const onScroll = () => {
-      setVisible(window.scrollY > window.innerHeight);
+      const scrollY = window.scrollY;
+      const pastFirstScreen = scrollY > window.innerHeight;
+      const nearBottom = scrollY + window.innerHeight >= document.documentElement.scrollHeight - 100;
+      setVisible(pastFirstScreen && !nearBottom);
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
