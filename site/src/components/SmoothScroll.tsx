@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { ReactLenis, type LenisRef } from "lenis/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -8,16 +8,18 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<LenisRef>(null);
-  const [isTouch, setIsTouch] = useState(false);
 
   useEffect(() => {
-    // Disable Lenis on touch devices — native scroll is better on mobile
-    setIsTouch(window.matchMedia("(pointer: coarse)").matches);
-  }, []);
+    // On touch devices, stop Lenis and let native scroll handle everything
+    const isTouch = window.matchMedia("(pointer: coarse)").matches;
 
-  useEffect(() => {
-    if (isTouch) return;
+    if (isTouch) {
+      // Destroy Lenis instance so it doesn't intercept touch events
+      lenisRef.current?.lenis?.destroy();
+      return;
+    }
 
+    // Desktop: drive Lenis via GSAP ticker for smooth scroll
     const update = (time: number) => {
       lenisRef.current?.lenis?.raf(time * 1000);
     };
@@ -35,14 +37,8 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
         lenis.off("scroll", ScrollTrigger.update);
       }
     };
-  }, [isTouch]);
+  }, []);
 
-  // Touch devices: render children with native scroll
-  if (isTouch) {
-    return <>{children}</>;
-  }
-
-  // Desktop: Lenis smooth scroll
   return (
     <ReactLenis root ref={lenisRef} options={{ autoRaf: false }}>
       {children}
