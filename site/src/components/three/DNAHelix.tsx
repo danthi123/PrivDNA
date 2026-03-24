@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo, useEffect, useState } from "react";
+import { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
 import type { Group, BufferAttribute } from "three";
 
@@ -14,24 +14,16 @@ interface DNAHelixProps {
 const BASE_SPEED = 0.003;
 const FRICTION = 0.95;
 
-// Tall helix spanning the full page scroll
-const HELIX_HEIGHT = 40;
-const HELIX_TURNS = 20;
-const POINTS_PER_TURN = 60;
-const PARTICLE_COUNT = 500;
-
 export default function DNAHelix({ mouse, dragState }: DNAHelixProps) {
   const groupRef = useRef<Group>(null);
   const particlesRef = useRef<BufferAttribute>(null);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-
-  useEffect(() => {
-    setPrefersReducedMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
-  }, []);
 
   const { strand1, strand2, rungs, particles } = useMemo(() => {
-    const totalPoints = HELIX_TURNS * POINTS_PER_TURN;
+    const turns = 4;
+    const pointsPerTurn = 60;
+    const totalPoints = turns * pointsPerTurn;
     const radius = 1.2;
+    const height = 8;
 
     const strand1Arr = new Float32Array(totalPoints * 3);
     const strand2Arr = new Float32Array(totalPoints * 3);
@@ -39,8 +31,8 @@ export default function DNAHelix({ mouse, dragState }: DNAHelixProps) {
 
     for (let i = 0; i < totalPoints; i++) {
       const t = i / (totalPoints - 1);
-      const angle = t * 2 * Math.PI * HELIX_TURNS;
-      const y = -HELIX_HEIGHT / 2 + t * HELIX_HEIGHT;
+      const angle = t * 2 * Math.PI * turns;
+      const y = -height / 2 + t * height;
 
       // Strand 1
       const x1 = Math.cos(angle) * radius;
@@ -62,12 +54,13 @@ export default function DNAHelix({ mouse, dragState }: DNAHelixProps) {
       }
     }
 
-    // Floating particles spread across the full height
-    const particleArr = new Float32Array(PARTICLE_COUNT * 3);
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
-      particleArr[i * 3] = (Math.random() - 0.5) * 8;
-      particleArr[i * 3 + 1] = (Math.random() - 0.5) * HELIX_HEIGHT * 1.2;
-      particleArr[i * 3 + 2] = (Math.random() - 0.5) * 8;
+    // Floating particles
+    const particleCount = 200;
+    const particleArr = new Float32Array(particleCount * 3);
+    for (let i = 0; i < particleCount; i++) {
+      particleArr[i * 3] = (Math.random() - 0.5) * 6;
+      particleArr[i * 3 + 1] = (Math.random() - 0.5) * height * 1.5;
+      particleArr[i * 3 + 2] = (Math.random() - 0.5) * 6;
     }
 
     return {
@@ -81,34 +74,29 @@ export default function DNAHelix({ mouse, dragState }: DNAHelixProps) {
   useFrame(() => {
     if (!groupRef.current) return;
 
-    // Reduced motion: slow gentle rotation only, skip tilt and particle drift
-    const speedMultiplier = prefersReducedMotion ? 0.3 : 1;
-
     // Velocity-based rotation with drag support
     const drag = dragState.current;
     if (drag.isDragging) {
-      groupRef.current.rotation.y += drag.velocity * speedMultiplier;
+      groupRef.current.rotation.y += drag.velocity;
     } else {
       // Lerp velocity toward base speed (flywheel decay)
       drag.velocity = drag.velocity * FRICTION + BASE_SPEED * (1 - FRICTION);
-      groupRef.current.rotation.y += drag.velocity * speedMultiplier;
+      groupRef.current.rotation.y += drag.velocity;
     }
 
-    // Mouse-reactive tilt (skip in reduced motion)
-    if (!prefersReducedMotion) {
-      const mx = mouse.current?.x ?? 0;
-      const my = mouse.current?.y ?? 0;
-      groupRef.current.rotation.x += (my * 0.08 - groupRef.current.rotation.x) * 0.02;
-      groupRef.current.rotation.z += (mx * -0.05 - groupRef.current.rotation.z) * 0.02;
-    }
+    // Mouse-reactive tilt
+    const mx = mouse.current?.x ?? 0;
+    const my = mouse.current?.y ?? 0;
+    groupRef.current.rotation.x += (my * 0.08 - groupRef.current.rotation.x) * 0.02;
+    groupRef.current.rotation.z += (mx * -0.05 - groupRef.current.rotation.z) * 0.02;
 
     // Drift particles upward
     if (particlesRef.current) {
       const arr = particlesRef.current.array as Float32Array;
-      const halfH = (HELIX_HEIGHT * 1.2) / 2;
-      const driftSpeed = prefersReducedMotion ? 0.001 : 0.003;
+      const height = 8;
+      const halfH = (height * 1.5) / 2;
       for (let i = 0; i < arr.length / 3; i++) {
-        arr[i * 3 + 1] += driftSpeed;
+        arr[i * 3 + 1] += 0.003;
         if (arr[i * 3 + 1] > halfH) {
           arr[i * 3 + 1] = -halfH;
         }
@@ -172,5 +160,3 @@ export default function DNAHelix({ mouse, dragState }: DNAHelixProps) {
     </group>
   );
 }
-
-export { HELIX_HEIGHT };
