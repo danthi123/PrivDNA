@@ -94,12 +94,17 @@ export default function Hero() {
           <span className="whitespace-nowrap text-accent">No copies.</span>
         </h1>
 
-        <div className="mt-6 flex flex-col md:flex-row md:items-end gap-6 md:gap-8">
+        <p
+          ref={subtextRef}
+          className="mt-6 text-text-secondary text-[clamp(1rem,1.5vw,1.5rem)] whitespace-pre-line"
+        >
+          {"Air-gapped whole genome sequencing."}
+        </p>
+        <div className="mt-2 flex flex-col md:flex-row md:items-center gap-4 md:gap-4">
           <p
-            ref={subtextRef}
-            className="text-text-secondary text-[clamp(1rem,1.5vw,1.5rem)] max-w-lg whitespace-pre-line"
+            className="text-text-secondary text-[clamp(1rem,1.5vw,1.5rem)] whitespace-pre-line"
           >
-            {"Air-gapped whole genome sequencing.\nOpen source.\nZero retention."}
+            {"Open source.\nZero retention."}
           </p>
 
           <button
