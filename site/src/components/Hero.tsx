@@ -94,20 +94,22 @@ export default function Hero() {
           <span className="whitespace-nowrap text-accent">No copies.</span>
         </h1>
 
-        <p
-          ref={subtextRef}
-          className="mt-6 text-text-secondary text-[clamp(1rem,1.5vw,1.5rem)] max-w-lg whitespace-pre-line"
-        >
-          {"Air-gapped whole genome sequencing.\nOpen source.\nZero retention."}
-        </p>
+        <div className="mt-6 flex flex-col md:flex-row md:items-end gap-6 md:gap-8">
+          <p
+            ref={subtextRef}
+            className="text-text-secondary text-[clamp(1rem,1.5vw,1.5rem)] max-w-lg whitespace-pre-line"
+          >
+            {"Air-gapped whole genome sequencing.\nOpen source.\nZero retention."}
+          </p>
 
-        <button
-          ref={ctaRef}
-          onClick={scrollToWaitlist}
-          className="mt-8 bg-accent text-bg-primary font-semibold text-lg rounded-full px-8 py-4 hover:scale-105 transition-transform duration-300 cursor-pointer"
-        >
-          Join the Waitlist
-        </button>
+          <button
+            ref={ctaRef}
+            onClick={scrollToWaitlist}
+            className="bg-accent text-bg-primary font-semibold text-lg rounded-full px-8 py-4 hover:scale-105 transition-transform duration-300 cursor-pointer whitespace-nowrap shrink-0"
+          >
+            Join the Waitlist
+          </button>
+        </div>
       </div>
 
       {/* Scroll indicator */}
