@@ -867,8 +867,8 @@ As the partner network matures, PrivDNA may explore a **marketplace model** wher
 | Encrypted USB drive (Kingston IronKey D500S 512 GB) | $390 |
 | Collection kit and extraction reagents | $25 |
 | Miscellaneous consumables (tips, tubes) | $10 |
-| Failure buffer (5% re-run allowance) | $107 |
-| **Total Variable Cost Per Genome** | **$2,632** |
+| Failure buffer (~5% re-run allowance on consumables excl. USB) | $106 |
+| **Total Variable Cost Per Genome** | **$2,631** |
 
 **Note on encrypted USB cost:** The IronKey D500S at $390 per unit is a significant per-genome cost. This is a deliberate choice: FIPS 140-3 Level 3 certification, PIN-based access (immune to keyloggers), and brute-force self-destruct are tangible, brandable privacy features that justify the price point to privacy-conscious customers. Alternative options (Apricorn Aegis 3NX at ~$179 for 128 GB) could reduce this cost but with lower certification levels.
 
@@ -891,7 +891,7 @@ As the partner network matures, PrivDNA may explore a **marketplace model** wher
 | Metric | Value |
 |--------|-------|
 | Revenue per genome | $3,500 |
-| Variable cost per genome | $2,632 |
+| Variable cost per genome | $2,631 |
 | Gross margin per genome | $868 |
 | Annual fixed costs | $728,000 |
 | Break-even volume | 839 genomes/year (70/month) |
@@ -933,7 +933,7 @@ Early analysis considered a $1,950 price point to position closer to existing WG
 - **Month 30-32 (mid-Year 3):** Monthly operations reach profitability
 - **Year 4-5:** Profits are constrained by single-instrument capacity (~750 genomes/year). A second instrument (per Phase 2, Section 12.2) would approximately double capacity and significantly accelerate cumulative break-even.
 
-**Note:** Year 1 variable costs use list consumable prices ($2,632/genome). Years 2-5 assume 15% volume discounts ($2,340/genome). Fixed costs escalate ~3% annually.
+**Note:** Year 1 variable costs use list consumable prices ($2,631/genome). Years 2-5 assume 15% volume discounts ($2,340/genome). Fixed costs escalate ~3% annually.
 
 ## 10.6 Sensitivity Analysis
 
@@ -951,12 +951,12 @@ Early analysis considered a $1,950 price point to position closer to existing WG
 
 | Genomes/Month | Annual Revenue | Annual Net |
 |---------------|---------------|------------|
-| 30 | $1,260,000 | ($295,200) |
-| 40 | $1,680,000 | ($170,400) |
-| 50 | $2,100,000 | ($45,600) |
+| 30 | $1,260,000 | ($310,400) |
+| 40 | $1,680,000 | ($171,200) |
+| 50 | $2,100,000 | ($32,000) |
 | 53 | $2,226,000 | ~$0 (break-even) |
-| 60 | $2,520,000 | $79,200 |
-| 65 | $2,730,000 | $137,400 |
+| 60 | $2,520,000 | $107,200 |
+| 65 | $2,730,000 | $176,800 |
 
 ## 10.7 Cash Flow Requirement
 
