@@ -1,4 +1,4 @@
-import { createCipheriv, createDecipheriv, createHash, randomBytes } from "crypto";
+import { createCipheriv, createDecipheriv, createHash, createHmac, randomBytes, timingSafeEqual } from "crypto";
 
 function getKey(): Buffer {
   const key = process.env.DATABASE_KEY;
@@ -29,4 +29,36 @@ export function hashEmail(email: string): string {
   return createHash("sha256")
     .update(email.toLowerCase().trim())
     .digest("hex");
+}
+
+function getUnsubscribeSecret(): string {
+  const secret = process.env.UNSUBSCRIBE_SECRET;
+  if (!secret) {
+    throw new Error("UNSUBSCRIBE_SECRET environment variable is not set");
+  }
+  return secret;
+}
+
+export function generateUnsubscribeToken(emailHash: string): string {
+  return createHmac("sha256", getUnsubscribeSecret())
+    .update(emailHash)
+    .digest("hex");
+}
+
+export function verifyUnsubscribeToken(token: string, emailHash: string): boolean {
+  const expected = generateUnsubscribeToken(emailHash);
+  try {
+    return timingSafeEqual(Buffer.from(token, "hex"), Buffer.from(expected, "hex"));
+  } catch {
+    return false;
+  }
+}
+
+export function findEmailHashByToken(token: string, emailHashes: string[]): string | null {
+  for (const hash of emailHashes) {
+    if (verifyUnsubscribeToken(token, hash)) {
+      return hash;
+    }
+  }
+  return null;
 }

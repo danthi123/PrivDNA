@@ -9,6 +9,15 @@ services:
       - DATABASE_KEY=${DATABASE_KEY}
       - RYBBIT_SITE_ID=${RYBBIT_SITE_ID}
       - RYBBIT_URL=http://rybbit-server:3002
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_PORT=${SMTP_PORT}
+      - SMTP_USER=${SMTP_USER}
+      - SMTP_PASS=${SMTP_PASS}
+      - SMTP_FROM=${SMTP_FROM}
+      - SMTP_SECURE=${SMTP_SECURE}
+      - SMTP_REJECT_UNAUTHORIZED=${SMTP_REJECT_UNAUTHORIZED}
+      - UNSUBSCRIBE_SECRET=${UNSUBSCRIBE_SECRET}
+      - BASE_URL=${BASE_URL}
     volumes:
       - ${DATA_DIR}/web:/app/data
     networks:

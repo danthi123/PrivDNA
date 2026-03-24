@@ -31,6 +31,13 @@ function getDb(): InstanceType<typeof Database> {
     );
   `);
 
+  // Migration: add unsubscribed_at column if missing
+  const columns = db.pragma("table_info(waitlist)") as Array<{ name: string }>;
+  const hasUnsubscribedAt = columns.some((col) => col.name === "unsubscribed_at");
+  if (!hasUnsubscribedAt) {
+    db.exec("ALTER TABLE waitlist ADD COLUMN unsubscribed_at TEXT DEFAULT NULL");
+  }
+
   return db;
 }
 
@@ -62,6 +69,44 @@ export function addToWaitlist(
 
 export function getWaitlistCount(): number {
   const database = getDb();
-  const row = database.prepare("SELECT COUNT(*) as count FROM waitlist").get() as { count: number };
+  const row = database
+    .prepare("SELECT COUNT(*) as count FROM waitlist WHERE unsubscribed_at IS NULL")
+    .get() as { count: number };
   return row.count;
+}
+
+export interface WaitlistSubscriber {
+  id: number;
+  email_hash: string;
+  email_encrypted: string;
+  email_iv: string;
+}
+
+export function getAllActiveSubscribers(): WaitlistSubscriber[] {
+  const database = getDb();
+  return database
+    .prepare(
+      "SELECT id, email_hash, email_encrypted, email_iv FROM waitlist WHERE unsubscribed_at IS NULL"
+    )
+    .all() as WaitlistSubscriber[];
+}
+
+export function markUnsubscribed(emailHash: string): boolean {
+  const database = getDb();
+  const result = database
+    .prepare(
+      "UPDATE waitlist SET unsubscribed_at = ? WHERE email_hash = ? AND unsubscribed_at IS NULL"
+    )
+    .run(new Date().toISOString(), emailHash);
+  return result.changes > 0;
+}
+
+export function isSubscribed(emailHash: string): boolean {
+  const database = getDb();
+  const row = database
+    .prepare(
+      "SELECT COUNT(*) as count FROM waitlist WHERE email_hash = ? AND unsubscribed_at IS NULL"
+    )
+    .get(emailHash) as { count: number };
+  return row.count > 0;
 }
