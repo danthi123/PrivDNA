@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import DNASceneLoader from "@/components/three/DNASceneLoader";
@@ -11,11 +11,6 @@ export default function Hero() {
   const subtextRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLButtonElement>(null);
   const scrollIndicatorRef = useRef<HTMLDivElement>(null);
-  const [isTouch, setIsTouch] = useState(false);
-
-  useEffect(() => {
-    setIsTouch(window.matchMedia("(pointer: coarse)").matches);
-  }, []);
 
   useGSAP(
     () => {
@@ -89,20 +84,10 @@ export default function Hero() {
       aria-label="Hero"
       className="relative h-screen flex items-center overflow-hidden"
     >
-      {/* Background: WebGL on desktop, static gradient on mobile */}
-      {isTouch ? (
-        <div
-          className="absolute inset-0 opacity-20 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse at 70% 40%, rgba(0, 232, 200, 0.15) 0%, transparent 60%), radial-gradient(ellipse at 50% 80%, rgba(0, 232, 200, 0.08) 0%, transparent 50%)",
-          }}
-        />
-      ) : (
-        <div className="absolute inset-0 opacity-80 pointer-events-auto">
-          <DNASceneLoader className="absolute right-0 top-0 w-[65%] h-full" />
-        </div>
-      )}
+      {/* DNA Scene Background */}
+      <div className="absolute inset-0 opacity-30 md:opacity-80 pointer-events-none md:pointer-events-auto">
+        <DNASceneLoader className="absolute right-0 top-0 w-full md:w-[65%] h-full" />
+      </div>
 
       {/* Left content */}
       <div className="relative z-10 max-w-3xl px-6 md:px-16 lg:px-24">
@@ -139,7 +124,7 @@ export default function Hero() {
         <span className="text-xs text-text-secondary tracking-widest uppercase">
           Scroll
         </span>
-        <div className="w-[1px] h-8 bg-text-secondary/50 md:animate-pulse" />
+        <div className="w-[1px] h-8 bg-text-secondary/50 animate-pulse" />
       </div>
     </section>
   );

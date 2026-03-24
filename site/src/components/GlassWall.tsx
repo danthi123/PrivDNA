@@ -23,7 +23,9 @@ export default function GlassWall() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 70%",
-          once: true,
+          end: "top 30%",
+          scrub: false,
+          toggleActions: "play none none reverse",
         },
       });
     },

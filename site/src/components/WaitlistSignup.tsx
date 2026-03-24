@@ -28,7 +28,7 @@ export default function WaitlistSignup() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 70%",
-          once: true,
+          toggleActions: "play none none reverse",
         },
       });
     },
