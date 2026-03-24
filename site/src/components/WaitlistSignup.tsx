@@ -3,8 +3,9 @@
 import { useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
 import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 type Status = "idle" | "loading" | "success" | "error" | "duplicate";
 
@@ -111,23 +112,22 @@ export default function WaitlistSignup() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="your@email.com"
                 required
-                aria-describedby="waitlist-privacy"
-                className="bg-bg-surface border border-bg-surface focus:border-accent outline-none rounded-full px-6 py-4 text-lg text-text-primary placeholder:text-text-secondary w-full max-w-md focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary"
+                className="bg-bg-surface border border-bg-surface focus:border-accent outline-none rounded-full px-6 py-4 text-lg text-text-primary placeholder:text-text-secondary w-full max-w-md"
               />
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="w-full sm:w-auto bg-accent text-bg-primary font-semibold text-lg rounded-full px-8 py-4 hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:hover:scale-100 cursor-pointer whitespace-nowrap focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary"
+                className="w-full sm:w-auto bg-accent text-bg-primary font-semibold text-lg rounded-full px-8 py-4 hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:hover:scale-100 cursor-pointer whitespace-nowrap"
               >
                 {status === "loading" ? "Joining..." : "Join the Waitlist"}
               </button>
             </form>
             {status === "error" && errorMessage && (
-              <p className="text-danger mt-4 text-sm" role="alert">{errorMessage}</p>
+              <p className="text-danger mt-4 text-sm">{errorMessage}</p>
             )}
           </>
         ) : (
-          <div className="animate-fade-in" role="status" aria-live="polite">
+          <div className="animate-fade-in">
             <h3 className="text-2xl font-bold mb-2">
               {status === "duplicate"
                 ? "You're already on the list!"
@@ -139,7 +139,7 @@ export default function WaitlistSignup() {
           </div>
         )}
 
-        <p id="waitlist-privacy" className="text-text-secondary text-sm mt-8">
+        <p className="text-text-secondary text-sm mt-8">
           No spam. No data sharing. Unsubscribe anytime.{" "}
           <a href="https://github.com/danthi123/PrivDNA" target="_blank" rel="noopener noreferrer" className="text-accent underline">
             View the source

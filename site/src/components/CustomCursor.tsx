@@ -20,19 +20,25 @@ export default function CustomCursor() {
     dot.style.opacity = "1";
     ring.style.opacity = "0.5";
 
-    // quickTo pre-allocates the tween — no GC pressure on mousemove
-    const dotX = gsap.quickTo(dot, "x", { duration: 0.1, ease: "power2.out" });
-    const dotY = gsap.quickTo(dot, "y", { duration: 0.1, ease: "power2.out" });
-    const ringX = gsap.quickTo(ring, "x", { duration: 0.3, ease: "power2.out" });
-    const ringY = gsap.quickTo(ring, "y", { duration: 0.3, ease: "power2.out" });
-
     const onMouseMove = (e: MouseEvent) => {
       mouse.current.x = e.clientX;
       mouse.current.y = e.clientY;
-      dotX(e.clientX);
-      dotY(e.clientY);
-      ringX(e.clientX);
-      ringY(e.clientY);
+
+      gsap.to(dot, {
+        x: e.clientX,
+        y: e.clientY,
+        duration: 0.1,
+        ease: "power2.out",
+        overwrite: "auto",
+      });
+
+      gsap.to(ring, {
+        x: e.clientX,
+        y: e.clientY,
+        duration: 0.3,
+        ease: "power2.out",
+        overwrite: "auto",
+      });
     };
 
     const onEnterInteractive = () => {
@@ -79,7 +85,7 @@ export default function CustomCursor() {
   }, []);
 
   return (
-    <div aria-hidden="true">
+    <>
       <div
         ref={dotRef}
         className="fixed top-0 left-0 w-2 h-2 bg-accent rounded-full mix-blend-difference pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2"
@@ -90,6 +96,6 @@ export default function CustomCursor() {
         className="fixed top-0 left-0 w-8 h-8 border border-accent rounded-full pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2"
         style={{ opacity: 0 }}
       />
-    </div>
+    </>
   );
 }
