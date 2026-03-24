@@ -33,19 +33,19 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/icon-512.png",
-        width: 512,
-        height: 512,
-        alt: "PrivDNA — DNA shield logo",
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "PrivDNA — Your genome. Your hands. No copies.",
       },
     ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "PrivDNA — Your Genome. Your Hands. No Copies.",
     description:
       "Air-gapped whole genome sequencing. Open source pipeline. Zero data retention.",
-    images: ["/icon-512.png"],
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
