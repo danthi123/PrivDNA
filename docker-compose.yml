@@ -10,7 +10,7 @@ services:
       - RYBBIT_SITE_ID=${RYBBIT_SITE_ID}
       - RYBBIT_URL=http://rybbit-server:3002
     volumes:
-      - privdna-data:/app/data
+      - ${DATA_DIR}/web:/app/data
     networks:
       - privdna-internal
 
@@ -39,7 +39,7 @@ services:
       - POSTGRES_PASSWORD=${RYBBIT_DB_PASSWORD}
       - POSTGRES_DB=rybbit
     volumes:
-      - rybbit-postgres-data:/var/lib/postgresql/data
+      - ${DATA_DIR}/rybbit/postgres:/var/lib/postgresql/data
     networks:
       - privdna-internal
 
@@ -48,7 +48,7 @@ services:
     container_name: rybbit-clickhouse
     restart: unless-stopped
     volumes:
-      - rybbit-clickhouse-data:/var/lib/clickhouse
+      - ${DATA_DIR}/rybbit/clickhouse:/var/lib/clickhouse
     networks:
       - privdna-internal
     ulimits:
@@ -68,11 +68,6 @@ services:
     depends_on:
       - privdna-web
       - rybbit-server
-
-volumes:
-  privdna-data:
-  rybbit-postgres-data:
-  rybbit-clickhouse-data:
 
 networks:
   privdna-internal:
