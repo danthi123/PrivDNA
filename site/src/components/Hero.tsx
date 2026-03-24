@@ -55,8 +55,8 @@ export default function Hero() {
 
       gsap.fromTo(
         ctaRef.current,
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, ease: "power2.out", delay: 1.1 }
+        { opacity: 0 },
+        { opacity: 1, duration: 0.8, ease: "power2.out", delay: 1.1 }
       );
 
       gsap.fromTo(
