@@ -28,8 +28,15 @@ services:
     container_name: rybbit-backend
     restart: unless-stopped
     environment:
-      - DATABASE_URL=postgresql://rybbit:${RYBBIT_DB_PASSWORD}@rybbit-postgres:5432/rybbit
-      - CLICKHOUSE_HOST=http://rybbit-clickhouse:8123
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=rybbit
+      - POSTGRES_USER=rybbit
+      - POSTGRES_PASSWORD=${RYBBIT_DB_PASSWORD}
+      - CLICKHOUSE_HOST=http://clickhouse:8123
+      - CLICKHOUSE_DB=analytics
+      - CLICKHOUSE_USER=default
+      - CLICKHOUSE_PASSWORD=${RYBBIT_CLICKHOUSE_PASSWORD}
       - BETTER_AUTH_SECRET=${RYBBIT_AUTH_SECRET}
       - BASE_URL=https://analytics.privdna.com
       - DISABLE_SIGNUP=true
@@ -44,7 +51,8 @@ services:
     container_name: rybbit-client
     restart: unless-stopped
     environment:
-      - BACKEND_URL=http://rybbit-backend:3001
+      - NEXT_PUBLIC_BACKEND_URL=https://analytics.privdna.com
+      - NEXT_PUBLIC_DISABLE_SIGNUP=true
       - BASE_URL=https://analytics.privdna.com
     depends_on:
       - rybbit-backend
@@ -62,16 +70,24 @@ services:
     volumes:
       - ${DATA_DIR}/rybbit/postgres:/var/lib/postgresql/data
     networks:
-      - privdna-internal
+      privdna-internal:
+        aliases:
+          - postgres
 
   rybbit-clickhouse:
     image: clickhouse/clickhouse-server:latest
     container_name: rybbit-clickhouse
     restart: unless-stopped
+    environment:
+      - CLICKHOUSE_DB=analytics
+      - CLICKHOUSE_USER=default
+      - CLICKHOUSE_PASSWORD=${RYBBIT_CLICKHOUSE_PASSWORD}
     volumes:
       - ${DATA_DIR}/rybbit/clickhouse:/var/lib/clickhouse
     networks:
-      - privdna-internal
+      privdna-internal:
+        aliases:
+          - clickhouse
     ulimits:
       nofile:
         soft: 262144
