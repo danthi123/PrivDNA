@@ -40,36 +40,30 @@ export default function Hero() {
           delay: 0.3,
         });
       } else {
-        gsap.from(headline, {
-          y: 60,
-          opacity: 0,
-          duration: 1,
-          ease: "power2.out",
-          delay: 0.3,
-        });
+        gsap.fromTo(
+          headline,
+          { y: 60, opacity: 0 },
+          { y: 0, opacity: 1, duration: 1, ease: "power2.out", delay: 0.3 }
+        );
       }
 
-      gsap.from(subtextRef.current, {
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power2.out",
-        delay: 0.8,
-      });
+      gsap.fromTo(
+        subtextRef.current,
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, ease: "power2.out", delay: 0.8 }
+      );
 
-      gsap.from(ctaRef.current, {
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power2.out",
-        delay: 1.1,
-      });
+      gsap.fromTo(
+        ctaRef.current,
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, ease: "power2.out", delay: 1.1 }
+      );
 
-      gsap.from(scrollIndicatorRef.current, {
-        opacity: 0,
-        duration: 0.8,
-        delay: 1.5,
-      });
+      gsap.fromTo(
+        scrollIndicatorRef.current,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.8, delay: 1.5 }
+      );
     },
     { scope: sectionRef }
   );
