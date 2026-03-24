@@ -75,7 +75,7 @@ export default function OpenSource() {
             href="https://github.com/danthi123/PrivDNA"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block border border-accent text-accent px-6 py-3 rounded-full hover:bg-accent hover:text-bg-primary transition-all duration-300"
+            className="inline-block border border-accent text-accent px-6 py-3 rounded-full hover:bg-accent hover:text-bg-primary transition-all duration-300 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary"
           >
             View on GitHub &rarr;
           </a>
@@ -83,9 +83,9 @@ export default function OpenSource() {
       </div>
 
       {/* Right column — Terminal */}
-      <div className="bg-bg-surface rounded-2xl p-6 font-mono text-xs md:text-sm overflow-x-auto">
+      <div className="bg-bg-surface rounded-2xl p-6 font-mono text-xs md:text-sm overflow-x-auto" role="img" aria-label="Terminal output showing verified open source pipeline tools">
         {/* Terminal header dots */}
-        <div className="flex gap-2 mb-4">
+        <div className="flex gap-2 mb-4" aria-hidden="true">
           <div className="w-3 h-3 rounded-full" style={{ background: "#ff5f56" }} />
           <div className="w-3 h-3 rounded-full" style={{ background: "#ffbd2e" }} />
           <div className="w-3 h-3 rounded-full" style={{ background: "#27c93f" }} />

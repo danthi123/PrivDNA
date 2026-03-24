@@ -110,6 +110,7 @@ export default function Navigation() {
     <>
       {/* Fixed nav bar */}
       <nav
+        aria-label="Site header"
         className={`fixed top-0 left-0 right-0 z-[100] flex items-center justify-between px-6 py-4 transition-transform duration-300 ${
           visible ? "translate-y-0" : "-translate-y-full"
         }`}

@@ -31,7 +31,7 @@ export default function Home() {
   return (
     <main>
       {/* Fixed DNA helix background — full viewport, behind everything */}
-      <div className="fixed inset-0 z-0 opacity-20 md:opacity-40 pointer-events-none md:pointer-events-auto">
+      <div className="fixed inset-0 z-0 opacity-20 md:opacity-40 pointer-events-none md:pointer-events-auto" aria-hidden="true">
         <DNASceneLoader className="w-full h-full" scrollProgress={scrollProgress} />
       </div>
 
