@@ -39,14 +39,24 @@ PrivDNA/
 │   ├── src/
 │   │   ├── app/
 │   │   │   ├── page.tsx       # Single-page scroll composition
+│   │   │   ├── robots.ts      # SEO robots.txt generation
+│   │   │   ├── sitemap.ts     # SEO sitemap.xml generation
 │   │   │   └── api/
 │   │   │       └── waitlist/
-│   │   │           └── route.ts   # Encrypted waitlist signup endpoint
+│   │   │           ├── route.ts               # Encrypted signup + confirmation email
+│   │   │           └── unsubscribe/[token]/
+│   │   │               └── route.ts           # HMAC-verified unsubscribe flow
 │   │   ├── components/        # All section components (Hero, TheProblem, etc.)
+│   │   │   └── three/         # 3D DNA helix with drag-to-spin interaction
 │   │   └── lib/
 │   │       ├── db.ts          # SQLCipher encrypted database connection
-│   │       ├── crypto.ts      # AES-256 email encryption/decryption
+│   │       ├── crypto.ts      # AES-256 encryption + HMAC unsubscribe tokens
+│   │       ├── mailer.ts      # Nodemailer SMTP transport (Proton Mail)
+│   │       ├── emailTemplate.ts # Dark-themed HTML/text email templates
 │   │       └── rateLimit.ts   # In-memory rate limiter
+│   ├── public/
+│   │   └── .well-known/
+│   │       └── security.txt   # RFC 9116 security contact
 │   ├── Dockerfile             # Multi-stage production build
 │   ├── .env.example           # Dev environment template
 │   └── LICENSE                # MIT
@@ -97,10 +107,13 @@ The waitlist signup is intentionally over-engineered for a mailing list because 
 
 1. **Encryption at rest** -- Every email is AES-256 encrypted via SQLCipher before being written to disk. The database file is unreadable without the encryption key.
 2. **Hash-based deduplication** -- Emails are SHA-256 hashed for duplicate checking. We never decrypt existing records to check if you've already signed up.
-3. **No cookies** -- Zero cookies set. No tracking pixels. No third-party scripts.
-4. **Rate limiting** -- In-memory per-IP rate limiting on the signup endpoint.
-5. **No exposed ports** -- The entire stack runs behind a Cloudflare Tunnel. The server has no open ports.
-6. **Secrets management** -- Database encryption keys loaded from environment variables, never committed to the repository.
+3. **Confirmation emails** -- On signup, a confirmation email is sent via self-hosted Proton Mail SMTP. No third-party email services.
+4. **HMAC unsubscribe tokens** -- Unsubscribe links use HMAC-SHA256 tokens derived from the email hash. No tokens stored in the database. Timing-safe comparison prevents enumeration attacks.
+5. **Soft-delete unsubscribe** -- Unsubscribed emails are marked with a timestamp rather than deleted, for CAN-SPAM compliance. They are excluded from all active queries.
+6. **No cookies** -- Zero cookies set. No tracking pixels. No third-party scripts.
+7. **Rate limiting** -- In-memory per-IP rate limiting on the signup endpoint.
+8. **No exposed ports** -- The entire stack runs behind a Cloudflare Tunnel. The server has no open ports.
+9. **Secrets management** -- All keys (database encryption, SMTP credentials, unsubscribe HMAC secret) loaded from environment variables, never committed to the repository.
 
 ## Local Development
 
