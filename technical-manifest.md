@@ -35,7 +35,9 @@
 | 7 | Pipettes (single-channel) | Eppendorf Research Plus (0.5-10, 10-100, 100-1000 uL) | 1 set | $1,700 | $1,700 |
 | 8 | Pipette (multichannel) | Eppendorf Research Plus 8-channel | 1 | $1,500 | $1,500 |
 | 9 | Vortex Mixer | Scientific Industries Vortex-Genie 2 | 1 | $500 | $500 |
-| | | | | **Subtotal** | **$371,700** |
+| 9a | Laboratory Freezer (-20C) | For reagent storage | 1 | $5,000 | $5,000 |
+| 9b | Laboratory Refrigerator (2-8C) | For buffer cartridges | 1 | $2,000 | $2,000 |
+| | | | | **Subtotal** | **$378,700** |
 
 ## 1.2 Compute Infrastructure
 
@@ -60,17 +62,20 @@
 | 20 | USB Port Blockers | SmartKeeper USB-C Port Blocker (10-pack + key) | 1 | $25 | $25 |
 | 21 | Tamper-Evident Seals | Numbered serialized bolt seals (50-pack) | 1 | $50 | $50 |
 | 22 | Tamper-Evident Tape | Void-if-removed security tape (2 rolls) | 1 | $30 | $30 |
-| | | | | **Subtotal** | **$1,579** |
+| 22a | Transfer Workstation | Thin client or hardened mini PC (e.g., Intel NUC or similar). Ubuntu Server minimal install, single USB-A port unblocked, all others physically blocked, no network interfaces enabled except VLAN 20. | 1 | $500 | $500 |
+| 22b | KVM Switch + Monitor | For server initial setup | 1 | $300 | $300 |
+| 22c | Quarantine Workstation | For USB scanning before air-gap transfer | 1 | $500 | $500 |
+| | | | | **Subtotal** | **$2,879** |
 
 ## 1.4 Power and Cooling
 
 | # | Item | Model / Part Number | Qty | Unit Cost | Total |
 |---|------|-------------------|-----|-----------|-------|
-| 23 | UPS | Eaton 9PX 3000VA/3000W (9PX3000RT) | 1 | $3,500 | $3,500 |
+| 23 | UPS | Eaton 9PX 3000VA/2700W (9PX3000RT) | 1 | $3,500 | $3,500 |
 | 24 | Extended Battery | Eaton 9PXEBM72RT2U | 1 | $1,500 | $1,500 |
 | 25 | Server Rack | Eaton SmartRack 42U (SR42UB) | 1 | $1,800 | $1,800 |
 | 26 | Room Cooling | Mini-split AC (12,000-15,000 BTU) | 1 | $2,500 | $2,500 |
-| 27 | Environmental Monitor | APC NetBotz 250 (temp, humidity, intrusion) | 1 | $650 | $650 |
+| 27 | Environmental Monitor | APC NetBotz Rack Monitor 250A (NBRK0250A) (temp, humidity, intrusion) | 1 | $650 | $650 |
 | | | | | **Subtotal** | **$9,950** |
 
 ## 1.5 Customer Delivery Media (Initial Inventory)
@@ -85,12 +90,12 @@
 
 | Category | Total |
 |----------|-------|
-| Sequencing Equipment | $371,700 |
+| Sequencing Equipment | $378,700 |
 | Compute Infrastructure | $160,426 |
-| Network and Security | $1,579 |
+| Network and Security | $2,879 |
 | Power and Cooling | $9,950 |
 | Delivery Media (initial) | $11,540 |
-| **GRAND TOTAL** | **$555,195** |
+| **GRAND TOTAL** | **$563,495** |
 
 ---
 
@@ -130,7 +135,7 @@
 |  +--------------------------------------------------------------+ |
 |                                                                    |
 |  TPM 2.0 (Infineon SLB9670) - Secure Boot, measured boot         |
-|  Redundant PSUs (2x 2000W+)                                      |
+|  Redundant PSUs (2x 1600W Titanium)                               |
 +------------------------------------------------------------------+
 ```
 
@@ -144,8 +149,8 @@
   +-- /data/processing/   Active pipeline working directory
   +-- /data/delivery/     Staged files for USB transfer
   +-- /data/qc/           QC reports and logs
-  +-- /reference/         GRCh38 + BWA-MEM2 index + GATK resources (~60 GB)
-  +-- /software/          Singularity images + Nextflow + tools (~40 GB)
+  +-- /reference/         GRCh38 + BWA-MEM2 index + GATK resources (~50 GB)
+  +-- /software/          Apptainer images + Nextflow + tools (~40 GB)
   +-- /logs/              Pipeline execution logs and audit trail
 ```
 
@@ -161,8 +166,9 @@ mdadm --create /dev/md0 --level=10 --raid-devices=24 \
   /dev/nvme16n1 /dev/nvme17n1 /dev/nvme18n1 /dev/nvme19n1 \
   /dev/nvme20n1 /dev/nvme21n1 /dev/nvme22n1 /dev/nvme23n1
 
-# Format with XFS (optimized for large files)
-mkfs.xfs -f /dev/md0
+# Format with XFS (optimized for large files, stripe-aligned for RAID-10)
+# su=512k (stripe unit = chunk size), sw=12 (stripe width = 12 data drives in RAID-10 with 24 disks)
+mkfs.xfs -f -d su=512k,sw=12 /dev/md0
 
 # Mount
 mount /dev/md0 /data
@@ -170,26 +176,30 @@ mount /dev/md0 /data
 
 **Fault tolerance:** RAID-10 tolerates the loss of one drive per mirrored pair (up to 12 simultaneous failures if each occurs in a different pair). In practice, 1-2 drive failures are handled transparently with hot-swap replacement.
 
+> **Note:** mdadm RAID-10 uses near-layout (n2) by default. Fault tolerance depends on which specific drives fail relative to the mirror pairs. If both drives in the same mirror pair fail, the array is lost. With 24 drives in 12 pairs, the probability of data loss from a second random drive failure is 1/23 (~4.3%).
+
 ## 2.4 Power Budget
 
 | Component | Typical (W) | Peak (W) |
 |-----------|------------|----------|
 | 2x AMD EPYC 9654 (360W TDP each) | 500 | 720 |
-| 24x Samsung PM9A3 NVMe (8W each) | 120 | 192 |
+| 24x Samsung PM9A3 NVMe (13.5W peak each) | 120 | 324 |
 | 16x 64GB DDR5 RDIMM (~5W each) | 60 | 80 |
 | NVIDIA A100 80GB PCIe (300W TDP) | 150 | 300 |
 | Motherboard, fans, miscellaneous | 100 | 150 |
-| **Server subtotal** | **930** | **1,442** |
-| Illumina NextSeq 2000 | 400 | 800 |
+| **Server subtotal** | **930** | **1,574** |
+| Illumina NextSeq 2000 | 400 | 750 |
 | Network equipment | 30 | 50 |
-| UPS overhead (~10%) | 136 | 229 |
-| **Total system** | **1,496** | **2,521** |
+| UPS overhead (~10%) | 136 | 237 |
+| **Total system** | **1,496** | **2,611** |
 
 **Annual electricity cost:** ~1,500W avg x 8,760 hrs x $0.22/kWh (NYC commercial rate) = ~$2,887/year
 
-**UPS runtime at peak load (2,521W):**
-- Base unit (Eaton 9PX 3000VA): ~7.5 minutes
-- With extended battery module: ~18-22 minutes
+**UPS runtime at peak load (2,611W):**
+- Base unit (Eaton 9PX 3000VA/2700W): ~6 minutes
+- With extended battery module: ~15-18 minutes
+
+> **Note:** Peak load of 2,611W is within the 2,700W capacity of the Eaton 9PX 3000VA, but leaves only ~89W of headroom. If additional equipment is added, consider upgrading to the Eaton 9PX 5000VA model.
 
 ---
 
@@ -225,11 +235,19 @@ mount /dev/md0 /data
 |               | NO WAN CONFIG  |                                   |
 |               | NO GATEWAY     |                                   |
 |               +----------------+                                   |
+|  Provides VLAN enforcement and inter-VLAN ACL control between      |
+|  VLAN 10 (sequencer/compute) and VLAN 20 (transfer workstation),   |
+|  ensuring the data export path is unidirectional.                  |
+|                                                                    |
++------------------------------------------------------------------+
+|                                                                    |
+|                     VLAN 20: 10.0.20.0/24                          |
+|                     (Transfer / Data Export)                        |
 |                                                                    |
 |  +------------------+                                              |
 |  | Transfer         |  USB-only data export station                |
 |  | Workstation      |  (all other USB ports blocked)               |
-|  | 10.0.10.30       |                                              |
+|  | 10.0.20.30       |                                              |
 |  +------------------+                                              |
 |                                                                    |
 +------------------------------------------------------------------+
@@ -281,7 +299,7 @@ All data ingress/egress follows this controlled process:
 6. Transfer workstation local copy is cryptographically erased
 
 **Data IN (software updates, reference data):**
-1. Updates are prepared on a separate, internet-connected staging machine (NOT in the lab)
+1. Updates are prepared on a separate, internet-connected staging machine (NOT in the lab). The staging machine should be a dedicated, hardened workstation (not a personal laptop) with current OS patches, and should be scanned for malware before each transfer
 2. Files are copied to a dedicated "update USB drive" (separate from customer drives)
 3. Files are checksummed (SHA-256) on the staging machine
 4. Update USB is scanned on a quarantine workstation before insertion into the air-gapped network
@@ -305,16 +323,16 @@ Ubuntu Server LTS provides a stable, well-supported base with 10-year security u
 
 | Component | Version | License |
 |-----------|---------|---------|
-| Singularity (Apptainer) | 1.3.x | BSD 3-Clause |
+| Apptainer (Linux Foundation) | 1.3.x | BSD 3-Clause |
 
-Singularity/Apptainer is the standard containerization platform for HPC and bioinformatics. Unlike Docker, it runs as unprivileged user processes, does not require a daemon, and integrates cleanly with HPC job schedulers. All pipeline tools are packaged as Singularity .sif images, built on an internet-connected staging machine and transferred to the air-gapped server.
+Apptainer (formerly Singularity, now a Linux Foundation project) is the standard containerization platform for HPC and bioinformatics. Unlike Docker, it runs as unprivileged user processes, does not require a daemon, and integrates cleanly with HPC job schedulers. All pipeline tools are packaged as Apptainer .sif images, built on an internet-connected staging machine and transferred to the air-gapped server.
 
 ## 4.3 Pipeline Orchestration
 
 | Component | Version | License |
 |-----------|---------|---------|
-| Nextflow | 24.x | Apache 2.0 |
-| nf-core/sarek (WGS pipeline) | 3.x | MIT |
+| Nextflow | 24.10.x | Apache 2.0 |
+| nf-core/sarek (WGS pipeline) | 3.8.1 | MIT |
 | Java Runtime (for Nextflow) | OpenJDK 17 | GPL v2 + CPE |
 
 nf-core/sarek is a production-validated, community-maintained WGS/WES analysis pipeline with contributions from dozens of institutions. It implements the GATK Best Practices workflow with full configurability.
@@ -322,7 +340,7 @@ nf-core/sarek is a production-validated, community-maintained WGS/WES analysis p
 **Air-gapped deployment:**
 ```bash
 # On internet-connected staging machine:
-nf-core download sarek --revision 3.x --outdir ./sarek-offline \
+nf-core download sarek --revision 3.8.1 --outdir ./sarek-offline \
   --container singularity --compress none
 
 # Transfer ./sarek-offline/ to air-gapped server via update USB
@@ -340,6 +358,8 @@ nextflow run ./sarek-offline/workflow/ \
 | Tool | Version | License | Role |
 |------|---------|---------|------|
 | BCL Convert | 4.4.6 | Illumina proprietary (free) | BCL to FASTQ conversion and demultiplexing |
+
+> **BCL Convert packaging note:** Illumina distributes BCL Convert as RPM packages only (CentOS/Oracle Linux). For Ubuntu deployment, the binary can be extracted from the RPM using `alien` or direct extraction (`rpm2cpio bcl-convert-*.rpm | cpio -idmv`), which is a common community practice but not officially supported by Illumina. Alternatively, the OS selection could be changed to Oracle Linux 8 for full BCL Convert support.
 | BWA-MEM2 | 2.2.1 | MIT | Short-read alignment to GRCh38 reference |
 | GATK | 4.6.1.0 | BSD 3-Clause / Apache 2.0 | Variant calling (HaplotypeCaller), BQSR, deduplication |
 | samtools | 1.23.1 | MIT/BSD | BAM sorting, indexing, statistics |
@@ -347,9 +367,10 @@ nextflow run ./sarek-offline/workflow/ \
 | htslib | 1.23.1 | MIT/BSD | C library for BAM/CRAM/VCF I/O |
 | FastQC | 0.12.1 | GPL v3 | Per-sample FASTQ quality control |
 | MultiQC | 1.33 | GPL v3 | Aggregate QC report generation |
-| NVIDIA Clara Parabricks | 4.x | Proprietary (free for research) | GPU-accelerated alignment and variant calling |
+| NVIDIA Clara Parabricks | 4.x | Proprietary (free to use in production; paid enterprise support available via NVIDIA AI Enterprise subscription) | GPU-accelerated alignment and variant calling |
+| VerifyBamID2 | 2.0.1 | MIT | Sample contamination detection |
 
-**License note:** BCL Convert and Clara Parabricks are proprietary but free to use. All other tools in the critical path (BWA-MEM2, GATK, samtools, bcftools) are fully open source. If Parabricks licensing becomes restrictive, the CPU-only pipeline (BWA-MEM2 + GATK) is fully functional with longer processing times (8-16 hours vs. 45 minutes).
+**License note:** BCL Convert is proprietary but free to use. Clara Parabricks is free to use in production (paid enterprise support is available via NVIDIA AI Enterprise subscription). All other tools in the critical path (BWA-MEM2, GATK, samtools, bcftools) are fully open source. If Parabricks licensing becomes restrictive, the CPU-only pipeline (BWA-MEM2 + GATK) is fully functional with longer processing times (8-16 hours vs. 45 minutes).
 
 ## 4.5 Reference Data
 
@@ -362,7 +383,8 @@ nextflow run ./sarek-offline/workflow/ \
 | 1000 Genomes high-confidence SNPs | GRCh38 | ~2 GB | Broad Institute |
 | Mills and 1000G gold-standard indels | GRCh38 | ~2 GB | Broad Institute |
 | Axiom Exome Plus genotypes | GRCh38 | ~3 GB | Broad Institute |
-| **Total reference data** | | **~50-60 GB** | |
+| *GATK resource bundle subtotal* | | *~15-20 GB* | |
+| **Total reference data** | | **~50 GB** | |
 
 All reference data is downloaded once on the staging machine, checksummed, transferred to the air-gapped server, and re-verified. Reference data does not change between customer runs.
 
@@ -419,23 +441,28 @@ SAMPLE INTAKE
     v
 [Stage 3: BWA-MEM2 v2.2.1]
   FASTQ -> Aligned BAM (to GRCh38)
-  Time: 2-4 hrs CPU | ~10 min GPU
+  Time: 2-4 hrs CPU | ~10 min GPU (via pbrun fq2bam)
     |
     v
 [Stage 4: samtools sort v1.23.1]
   Coordinate-sort BAM
-  Time: 30-60 min CPU | ~5 min GPU
+  Time: 30-60 min CPU
     |
     v
 [Stage 5: GATK MarkDuplicates v4.6.1.0]
   Flag/remove PCR duplicates
-  Time: 30-60 min
+  Time: 30-60 min CPU
     |
     v
 [Stage 6: GATK BaseRecalibrator + ApplyBQSR]
   Base quality score recalibration
   Known sites: dbSNP, Mills, known indels
-  Time: 1-2 hrs CPU | ~5 min GPU
+  Time: 1-2 hrs CPU
+
+  NOTE (GPU path): In the GPU-accelerated path, Stages 3-6 (alignment,
+  sorting, deduplication, and BQSR) are replaced by a single
+  `pbrun fq2bam` call in Parabricks (~15 min total on A100).
+  These stages are not individually GPU-accelerated.
     |
     v
 [Stage 7: GATK HaplotypeCaller]
@@ -449,8 +476,9 @@ SAMPLE INTAKE
   Time: 30-60 min
     |
     v
-[Stage 9: GATK VQSR / Hard Filters]
-  Variant quality score recalibration
+[Stage 9: GATK Hard Filtering]
+  GATK hard filtering (recommended single-sample thresholds)
+  NOTE: VQSR requires 30+ samples and is not suitable for single-sample WGS.
   Time: 15-30 min
     |
     v
@@ -611,7 +639,7 @@ When NVMe drives reach end of service life (SMART warnings, warranty expiration,
 | Rack locking | Keyed front, rear, and side panels (included with SR42UB) |
 | Tamper-evident seals | Numbered bolt seals on all rack door latches; logged in security register |
 | Intrusion detection | Chassis intrusion switch (Supermicro motherboard feature); alerts to local monitoring |
-| Environmental monitoring | APC NetBotz 250: temperature, humidity, door-open alerts |
+| Environmental monitoring | APC NetBotz Rack Monitor 250A (NBRK0250A): temperature, humidity, door-open alerts |
 | Cable security | All cables routed through rack cable management; zip-tied and sealed at endpoints |
 
 ## 7.4 BIOS/Firmware Security
@@ -625,6 +653,14 @@ When NVMe drives reach end of service life (SMART warnings, warranty expiration,
 | Remote management (IPMI/BMC) | Disabled; network interface physically disconnected |
 | USB controller | Enabled only for keyboard/mouse; mass storage class disabled in OS |
 
+## 7.5 Contingency Procedures
+
+**(a) Server failure during active run:** If the compute server fails during an active sequencing or analysis run, the customer's biological sample is retained for re-sequencing on replacement hardware. No customer data is lost permanently since no data has been delivered yet.
+
+**(b) Cold backup:** The `/reference/` and `/software/` directories should be maintained as a cold backup on the staging machine. This enables rapid reconstitution of the air-gapped server in the event of catastrophic hardware failure.
+
+**(c) Hardware resilience:** RAID-10 protects against individual drive failures (one per mirror pair) with transparent hot-swap replacement. The UPS protects against brief power outages and provides time for graceful shutdown during extended outages.
+
 ---
 
 # 8. ENCRYPTED DELIVERY MEDIA
@@ -633,7 +669,7 @@ When NVMe drives reach end of service life (SMART warnings, warranty expiration,
 
 | Specification | Value |
 |--------------|-------|
-| Certification | FIPS 140-3 Level 3 (pending; currently certified to FIPS 140-3 L3) |
+| Certification | FIPS 140-3 Level 3 (Certificate #5029, July 2025) |
 | Encryption | XTS-AES 256-bit (hardware) |
 | Authentication | Onboard alphanumeric keypad (PIN entry, OS-independent) |
 | Brute force protection | Crypto-erase after configurable failed PIN attempts |
@@ -696,10 +732,14 @@ For customers who prefer a lower-cost option or need smaller capacity (VCF-only 
 |-----------|-----------|-------|
 | Temperature | 18-27 C (64-80 F) | ASHRAE A1 recommended range |
 | Humidity | 20-80% RH (non-condensing) | ASHRAE A1 recommended range |
-| Cooling | Dedicated mini-split AC or in-row cooling; 12,000-15,000 BTU | Must dissipate ~3 kW continuous heat load |
+| Cooling | Dedicated mini-split AC or in-row cooling; 12,000-15,000 BTU | Must dissipate ~3 kW continuous heat load. Total room heat load should account for all equipment (server + sequencer + UPS + lighting + staff), not just the server, and may require the upper end of this range or higher. |
 | Power | Dedicated 30A circuit; clean power via UPS | Isolates from building electrical noise |
 | Fire suppression | Clean agent (FM-200 or Novec 1230) recommended | Protects equipment without water damage |
 | Raised floor | Optional but recommended | Enables under-floor cable management and cooling |
+
+### 9.2.1 Time Synchronization
+
+In an air-gapped environment, system time will drift. A GPS-disciplined NTP server or periodic manual time synchronization from a trusted source is recommended to maintain accurate timestamps for Certificates of Destruction and audit logs.
 
 ## 9.3 Customer Area Environment
 
@@ -718,18 +758,21 @@ For customers who prefer a lower-cost option or need smaller capacity (VCF-only 
 
 ```
 [ ] Download and verify Ubuntu Server 24.04 LTS ISO
-[ ] Download Singularity/Apptainer .deb packages and dependencies
+[ ] Download Apptainer 1.3.x .deb packages and dependencies
 [ ] Download Nextflow binary and Java Runtime
-[ ] Run: nf-core download sarek --container singularity
+[ ] Run: nf-core download sarek --revision 3.8.1 --container singularity
 [ ] Download all reference data:
     [ ] GRCh38 reference FASTA + .fai + .dict
     [ ] BWA-MEM2 index (pre-built or build locally)
     [ ] GATK resource bundle (dbSNP, HapMap, 1000G, Mills)
-[ ] Download BCL Convert 4.4.6 .rpm/.deb
+[ ] Download BCL Convert 4.4.6 RPM
+    [ ] For Ubuntu: extract binaries from RPM (rpm2cpio + cpio or alien)
 [ ] Download NVIDIA Clara Parabricks installer
 [ ] Download NVIDIA driver for A100 (data center driver branch)
 [ ] Download samtools, bcftools, htslib source tarballs
 [ ] Download FastQC, MultiQC packages
+[ ] Download VerifyBamID2 binary or source
+[ ] Download nvme-cli package
 [ ] Generate SHA-256 checksums for ALL downloaded files
 [ ] Copy everything to a dedicated "deployment USB drive"
 [ ] Verify total size: ~80-100 GB
@@ -750,6 +793,9 @@ For customers who prefer a lower-cost option or need smaller capacity (VCF-only 
 [ ] Connect server to Cisco switch via Cat6A
 [ ] Verify no other cables connected to switch
 [ ] Power on; enter BIOS
+[ ] Update all firmware (server BIOS/BMC, NVMe drive firmware, GPU firmware)
+    to latest versions while internet is available
+[ ] Document all firmware versions in a commissioning log
 ```
 
 ## 10.3 BIOS Configuration
@@ -765,6 +811,9 @@ For customers who prefer a lower-cost option or need smaller capacity (VCF-only 
 [ ] Disable IPMI/BMC network interface
 [ ] Enable chassis intrusion detection
 [ ] Enable SED encryption on all NVMe drives (if not factory-enabled)
+    [ ] Use sedutil-cli to configure TCG Opal passwords on each drive
+    [ ] Verify encryption is active on all drives (sedutil-cli --query)
+    [ ] Confirm encryption is enabled BEFORE any customer data is written
 [ ] Save and exit
 ```
 
@@ -793,7 +842,7 @@ For customers who prefer a lower-cost option or need smaller capacity (VCF-only 
 ```
 [ ] Insert deployment USB drive
 [ ] Verify all SHA-256 checksums against staging machine manifest
-[ ] Install Singularity/Apptainer from .deb
+[ ] Install Apptainer from .deb
 [ ] Install Java Runtime (OpenJDK 17)
 [ ] Install Nextflow binary to /usr/local/bin/
 [ ] Copy nf-core/sarek offline bundle to /software/
@@ -805,6 +854,8 @@ For customers who prefer a lower-cost option or need smaller capacity (VCF-only 
 [ ] Install BCL Convert
 [ ] Install samtools, bcftools, htslib from source
 [ ] Install FastQC, MultiQC
+[ ] Install VerifyBamID2
+[ ] Install nvme-cli (required for nvme sanitize command in data destruction protocol)
 [ ] Remove deployment USB drive
 [ ] Block USB mass storage: echo "blacklist usb-storage" >> /etc/modprobe.d/blacklist.conf
 [ ] Reboot and verify all services
@@ -841,7 +892,13 @@ For customers who prefer a lower-cost option or need smaller capacity (VCF-only 
 [ ] Verify CCTV coverage of all zones
 [ ] Test access control (keycard + biometric) for all doors
 [ ] Verify APC NetBotz environmental alerts
+[ ] Install physical port blocker on IPMI/BMC LAN port on server rear panel
 [ ] Run penetration test of local network (verify no egress possible)
+[ ] Verify air-gap with specific commands:
+    [ ] ip route show  (verify no default gateway)
+    [ ] ping 8.8.8.8  (confirm no internet connectivity)
+    [ ] nslookup google.com  (confirm no DNS resolution)
+    [ ] iptables -L -n  (verify firewall rules block all egress)
 [ ] Document all configurations in secure operations manual
 [ ] Store operations manual in locked safe on-premise
 ```

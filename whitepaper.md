@@ -49,7 +49,7 @@ PrivDNA is a first-of-its-kind privacy-sovereign whole genome sequencing (WGS) s
 
 ### Why Now
 
-The consumer genomics industry is in crisis. In March 2025, 23andMe filed for Chapter 11 bankruptcy and sold 15 million customers' genetic data to a third party for $305 million through a legal structure that bypassed re-consent requirements. A Nebula Genomics class-action lawsuit alleges the "privacy-first" company shared genetic data with Meta, Google, and Microsoft via embedded tracking tools. Consumer trust in genetic testing services has collapsed at the exact moment when whole genome sequencing costs have fallen below $250 per genome at the laboratory level.
+The consumer genomics industry is in crisis. In March 2025, 23andMe filed for Chapter 11 bankruptcy and its approximately 15 million customers' genetic data was acquired by a third party for $305 million through a legal structure that bypassed re-consent requirements. A Nebula Genomics class-action lawsuit alleges the now-defunct "privacy-first" company shared genetic data with Meta, Google, and Microsoft via embedded tracking tools (ProPhase Labs, Nebula's parent, filed Chapter 11 for its lab subsidiaries in September 2025). Consumer trust in genetic testing services has collapsed at the exact moment when whole genome sequencing costs have fallen below $250 per genome at the laboratory level.
 
 This confluence creates a market opening for a fundamentally different model -- one built on physical transparency, cryptographic verifiability, and zero data retention.
 
@@ -65,18 +65,18 @@ This confluence creates a market opening for a fundamentally different model -- 
 
 | Metric | Value |
 |--------|-------|
-| Total startup capital required | $981,300 |
+| Total startup capital required | $986,300 |
 | Price per genome | $3,500 |
 | Variable cost per genome | $2,340 (with volume discounts) |
 | Gross margin per genome | $1,160 |
-| Monthly break-even volume | 50 genomes |
-| Projected Year 1 net | ($521,000) loss (ramp-up year) |
-| Projected Year 3 net | $99,200 profit |
-| Projected Year 5 net | $496,000 profit |
+| Monthly break-even volume | 53 genomes |
+| Projected Year 1 net | ($554,400) loss (ramp-up year) |
+| Projected Year 3 net | $62,200 profit |
+| Projected Year 5 net | $50,000 profit (single-instrument capacity) |
 
 ### Investment Ask
 
-We are seeking **$1.25 million in seed funding** to cover startup capital, 12 months of operational runway, and the open-source pipeline development sprint. This funds the NYC flagship through cash-flow positive operations.
+We are seeking **$1.35 million in seed funding** to cover startup capital, 12 months of operational runway, and the open-source pipeline development sprint. This funds the NYC flagship through cash-flow positive operations.
 
 ---
 
@@ -94,15 +94,16 @@ The trajectory of 23andMe illustrates the structural vulnerability of the centra
 
 **Timeline of Collapse:**
 
-- **2021:** 23andMe goes public via SPAC at a $6 billion valuation. The company holds the genetic data of over 12 million customers.
+- **2021:** 23andMe goes public via SPAC merger with VG Acquisition Corp. at a $3.5 billion deal valuation; shares briefly trade at an implied $6 billion market capitalization following listing. The company holds the genetic data of over 12 million customers (growing to approximately 15 million by the time of bankruptcy).
 - **April-September 2023:** A credential-stuffing attack compromises approximately 6.9 million customer profiles, including ethnicity estimates, geographic locations, and family tree connections. The company is criticized for not requiring multi-factor authentication.
 - **September 2024:** All independent board members resign.
 - **November 2024:** The company lays off over 200 employees (~40% of its workforce).
 - **March 2025:** 23andMe files for Chapter 11 bankruptcy in the Eastern District of Missouri. CEO Anne Wojcicki resigns.
 - **March 2025:** A bankruptcy judge rules that 23andMe may sell customer genetic and ancestry data to bidders.
-- **July 2025:** TTAM Research Institute (a nonprofit founded by Wojcicki) acquires all 23andMe assets for $305 million. The court approves an "equity toggle" structure where data is placed in a subsidiary and then the subsidiary's equity is sold -- a mechanism the court ruled did not constitute a third-party "transfer" requiring explicit re-consent under state privacy statutes.
+- **May 2025:** Regeneron initially wins the bankruptcy auction at $256 million.
+- **July 2025:** In a reopened bidding process, TTAM Research Institute (a nonprofit founded by Wojcicki) prevails with a $305 million bid, acquiring all 23andMe assets. The court approves an "equity toggle" structure where data is placed in a subsidiary and then the subsidiary's equity is sold -- a mechanism the court ruled did not constitute a third-party "transfer" requiring explicit re-consent under state privacy statutes.
 
-The $6 billion-to-$305 million collapse is significant not only as a financial event but as a structural demonstration: when a company holds centralized genetic data, that data becomes an asset in liquidation proceedings, subject to sale without meaningful individual consent.
+The collapse from a peak implied market capitalization of $6 billion to a $305 million asset sale is significant not only as a financial event but as a structural demonstration: when a company holds centralized genetic data, that data becomes an asset in liquidation proceedings, subject to sale without meaningful individual consent.
 
 Multiple state attorneys general urged consumers to delete their data before the sale closed. The incident prompted a 2025 article in *Science* examining the systemic fragility of consumer genetic privacy.
 
@@ -112,7 +113,7 @@ Multiple state attorneys general urged consumers to delete their data before the
 
 - 23andMe's $300 million partnership with GlaxoSmithKline (2018) granted the pharmaceutical company access to aggregated genetic data for drug target discovery.
 - Ancestry was acquired by Blackstone in 2020 for $4.7 billion. Industry analysts noted the implied per-customer value of approximately $250 per exome, suggesting the database itself was a primary asset.
-- Nebula Genomics, despite marketing itself as "privacy-first" with blockchain-based data ownership, faces a 2024 class-action lawsuit (Portillo v. Nebula Genomics) alleging the company shared genetic information with Meta, Google, and Microsoft through embedded web tracking tools (Facebook Pixel, Google Analytics, Microsoft Clarity). A federal court denied Nebula's motion to dismiss in late 2025.
+- Nebula Genomics (defunct 2025 -- ProPhase Labs filed Chapter 11 for its lab subsidiaries in September 2025), despite marketing itself as "privacy-first" with blockchain-based data ownership, faces a 2024 class-action lawsuit (Portillo v. Nebula Genomics) alleging the company shared genetic information with Meta, Google, and Microsoft through embedded web tracking tools (Facebook Pixel, Google Analytics, Microsoft Clarity). A federal court denied Nebula's motion to dismiss in late 2025.
 
 The pattern is consistent: companies that hold centralized genetic databases face irresistible economic pressure to monetize that data, regardless of initial privacy commitments.
 
@@ -168,6 +169,8 @@ Each customer receives a FIPS 140-3 Level 3 certified encrypted USB drive (Kings
 | Pipeline manifest | JSON + SHA-256 | <1 MB | Exact software versions, parameters, and checksums for reproducibility |
 | Certificate of Destruction | PDF | <1 MB | Documented proof of on-premise data erasure |
 
+**Default deliverables:** BAM + VCF + gVCF are delivered by default. FASTQ files are not included in the standard delivery to conserve USB drive space, but can be regenerated from the BAM file if needed (using `samtools fastq`). Customers who specifically require FASTQ files may request them at the time of order.
+
 Total delivery size: approximately 100-120 GB per genome.
 
 ## 3.3 What PrivDNA Does Not Do
@@ -190,6 +193,8 @@ All custom software developed for PrivDNA's operations is published as open sour
 - **Data destruction verification tooling**: MIT License
 
 This commitment serves dual purposes. First, it provides cryptographic assurance to customers -- they can verify that the code processing their DNA does exactly and only what it claims to do. Second, it builds community trust and positions PrivDNA as a public good contributor to the genomics ecosystem, a significant brand differentiator.
+
+Publishing our pipeline eliminates the code itself as a competitive moat, deliberately. Our moat is physical infrastructure, brand trust, regulatory certifications, and the NYC location -- assets that cannot be cloned from a GitHub repository. A competitor can fork the pipeline; they cannot fork a CLIA/CLEP-certified glass-walled laboratory with an established customer base and referral network.
 
 ---
 
@@ -214,12 +219,12 @@ PrivDNA's initial SAM is defined by:
 
 ## 4.3 Serviceable Obtainable Market
 
-Given PrivDNA's single-location capacity (~1,200 genomes/year at full utilization) and realistic market penetration for a new brand:
+Given PrivDNA's single-location capacity (~750 genomes/year at full utilization with realistic maintenance) and realistic market penetration for a new brand:
 
 - **Year 1 target:** 200 genomes (0.1-0.2% of addressable)
-- **Year 2 target:** 500 genomes (0.3-0.5% of addressable)
-- **Year 3 target:** 800 genomes (0.4-0.8% of addressable)
-- **Year 5 target:** 1,200 genomes (at equipment capacity)
+- **Year 2 target:** 480 genomes (0.3-0.5% of addressable)
+- **Year 3 target:** 720 genomes (0.4-0.8% of addressable)
+- **Year 5 target:** 750 genomes (at single-instrument capacity)
 
 ## 4.4 Competitive Landscape
 
@@ -229,28 +234,28 @@ Given PrivDNA's single-location capacity (~1,200 genomes/year at full utilizatio
 23andMe and Ancestry dominate this tier with SNP microarray tests at $99-$229. These tests examine 600,000-700,000 specific genetic markers -- less than 0.02% of the genome. They serve casual ancestry curiosity and basic trait analysis.
 
 **Tier 2: Whole Genome Sequencing (Full Resolution)**
-WGS reads the complete 3.2 billion base pairs of the human genome. This tier is served by Nebula Genomics ($249-$299), Sequencing.com ($399), Nucleus Genomics ($499), and Dante Labs ($499-$700). All operate via mail-order.
+WGS reads the complete 3.2 billion base pairs of the human genome. This tier is served by Sequencing.com ($399), Nucleus Genomics ($499), and Dante Labs ($499-$700). Nebula Genomics ($249-$299) was a notable participant but is now defunct (2025) -- its parent company ProPhase Labs filed Chapter 11 for its laboratory subsidiaries in September 2025. All remaining competitors operate via mail-order.
 
 ### Competitive Comparison Matrix
 
-| Feature | 23andMe | Ancestry | Nebula | Nucleus | Dante Labs | **PrivDNA** |
-|---------|---------|----------|--------|---------|------------|-------------|
+| Feature | 23andMe | Ancestry | Nebula (defunct 2025) | Nucleus | Dante Labs | **PrivDNA** |
+|---------|---------|----------|----------------------|---------|------------|-------------|
 | Data type | SNP array | SNP array | 30x WGS | 30x WGS | 30x WGS | **30x WGS** |
-| Price | $99-$229 | $99-$119 | $249-$299 | $499 | $499-$700 | **$1,950** |
+| Price | $99-$229 | $99-$119 | $249-$299 | $499 | $499-$700 | **$3,500** |
 | Physical storefront | No | No | No | No | No | **Yes** |
 | Glass-walled lab | No | No | No | No | No | **Yes** |
 | Air-gapped processing | No | No | No | No | No | **Yes** |
 | Open source pipeline | No | No | Partial | No | No | **Yes** |
-| Data retention | Indefinite | User-controlled | Unclear | 60-day sample | 10 years | **Zero** |
+| Data retention | Indefinite | User-controlled | N/A | 60-day sample | 10 years | **Zero** |
 | Witnessed destruction | No | No | No | No | No | **Yes** |
 | Live technical representative | No | No | No | No | No | **Yes** |
 | FIPS 140-3 encrypted delivery | No | No | No | No | No | **Yes** |
 
 ### The Whitespace
 
-**No existing competitor offers a physical, in-person genomics experience.** The entire DTC genomics market operates via mail-order saliva kits. There is no "retail DNA testing storefront" in operation from any established player.
+**No existing competitor offers a physical, in-person genomics experience.** The entire DTC genomics market operates via mail-order saliva kits. There is no "retail DNA testing storefront" in operation from any established player. This is distinct from WGS offered as a component of concierge medicine or executive health programs, where sequencing is typically outsourced to external labs and data is retained in the clinical record.
 
-PrivDNA occupies a category of one: a premium, physically transparent, cryptographically verifiable, zero-retention genomics service. The $1,950 price point is justified not by the sequencing itself (commodity) but by the infrastructure, trust architecture, and experience surrounding it.
+PrivDNA occupies a category of one: a premium, physically transparent, cryptographically verifiable, zero-retention genomics service. The $3,500 price point is justified not by the sequencing itself (commodity) but by the infrastructure, trust architecture, and experience surrounding it.
 
 ## 4.5 The Privacy Premium
 
@@ -274,13 +279,13 @@ The top three policies that increase consumer willingness to share genetic data 
 |--------------|-------|
 | Chemistry | XLEAP-SBS |
 | Flow cell (primary) | P3 300-cycle (2x150 bp) |
-| Output per P3 run | ~360 Gb (sufficient for ~3 genomes at 30x) |
+| Output per P3 run | ~330 Gb (sufficient for ~3 genomes at 30x) |
 | Quality | >90% bases above Q30 |
 | Run time (2x150 bp P3) | ~29-35 hours |
-| Dimensions | 60 x 65 x 60 cm |
+| Dimensions | 60 x 65 x 66 cm |
 | Integrated compute | DRAGEN Bio-IT FPGA (on-instrument basecalling) |
 
-The NextSeq 2000 is the optimal platform for PrivDNA's volume tier (50-100 genomes/month). It balances throughput, footprint, and cost-per-genome without the capital intensity of the NovaSeq X series ($985,000+). At 3 genomes per P3 run and ~35-hour run cycles, a single NextSeq 2000 can process approximately 75-90 genomes per month with standard maintenance schedules.
+The NextSeq 2000 is the optimal platform for PrivDNA's volume tier. It balances throughput, footprint, and cost-per-genome without the capital intensity of the NovaSeq X series ($985,000+). At 3 genomes per P3 run, ~35-hour run cycles, and realistic maintenance and library prep schedules, a single NextSeq 2000 can process approximately 4-5 runs per week, yielding 12-15 genomes per week or 50-65 genomes per month.
 
 ### Supporting Laboratory Equipment
 
@@ -324,6 +329,15 @@ The air gap is enforced at multiple layers:
 3. **BIOS-level:** USB boot and PXE boot are disabled. BIOS is password-protected. Secure Boot is enabled.
 4. **Port control:** Physical USB port blockers (SmartKeeper) on all unused ports. A single controlled transfer workstation handles data export to encrypted USB drives.
 
+### NextSeq 2000 Sequencer Isolation
+
+The Illumina NextSeq 2000 is configured for fully local operation:
+
+- **BaseSpace Sequence Hub integration disabled:** The instrument's cloud upload functionality is turned off at the instrument control software level. No run data is transmitted to Illumina's BaseSpace cloud platform.
+- **Local output only:** Sequencer output is configured to write exclusively to a local SMB/NFS share on the isolated VLAN. The compute server mounts this share as the sole data destination.
+- **Firewall enforcement:** All outbound traffic from the sequencer's IP address is blocked at the Netgate firewall. No DNS resolution, no NTP synchronization to external servers, and no HTTPS connections to Illumina endpoints are permitted.
+- **Illumina field service confirmation:** Prior to deployment, Illumina field service engineering will confirm that the NextSeq 2000 operates in local-output-only mode without requiring internet check-ins for continued operation. Instrument software updates are applied offline via USB media during scheduled maintenance windows.
+
 ## 5.3 Open Source Bioinformatics Pipeline
 
 The pipeline processes raw sequencer output into analysis-ready genomic data using exclusively open-source tools:
@@ -351,9 +365,14 @@ Stage 5: Variant Calling
   Analysis-ready BAM -> GATK HaplotypeCaller (-ERC GVCF mode)
   -> Per-sample gVCF
 
-Stage 6: Genotyping & Filtering
+Stage 6: Genotyping & Hard Filtering
   gVCF -> GATK GenotypeGVCFs -> Raw VCF
-  -> GATK VariantRecalibrator + ApplyVQSR -> Filtered VCF
+  -> GATK VariantFiltration (hard filters per GATK best practices) -> Filtered VCF
+  Note: VQSR (Variant Quality Score Recalibration) requires cohorts of ~30+
+  samples to build a reliable statistical model and is not suitable for
+  single-sample workflows. Hard filtering with GATK recommended thresholds
+  (QD, FS, MQ, MQRankSum, ReadPosRankSum, SOR) is the standard approach
+  for single-sample WGS. The nf-core/sarek pipeline handles this correctly.
 
 Stage 7: Quality Aggregation
   All outputs -> MultiQC v1.33 -> Aggregate HTML quality report
@@ -521,12 +540,13 @@ The lab director for a high-complexity CLIA lab must hold either:
 
 ### HIPAA
 
-PrivDNA will operate as a **HIPAA-covered entity**. While the "raw data only" model does not include medical interpretation, the determination of covered entity status under 45 CFR 160.103 depends on whether the entity conducts standard electronic transactions (claims, eligibility inquiries, etc.) -- not on whether it interprets results.
+PrivDNA's cash-pay, no-insurance-billing model may place it outside HIPAA's mandatory scope. Covered entity status under 45 CFR 160.103 depends on whether the entity conducts standard electronic transactions (claims, eligibility inquiries, etc.) -- not on whether it processes health-related data. Because PrivDNA does not bill insurance, does not submit claims, and does not conduct any HIPAA-defined standard transactions, it may not meet the formal covered entity threshold.
 
-Even as a cash-pay service that never bills insurance, PrivDNA will implement full HIPAA compliance as a matter of policy and brand integrity:
-- Privacy Rule: policies for PHI use, disclosure, and patient rights
-- Security Rule: administrative, physical, and technical safeguards
-- Breach Notification Rule: procedures for breach detection and notification
+**Regardless of formal classification, PrivDNA will voluntarily implement HIPAA-equivalent controls as a matter of policy and brand integrity.** PrivDNA holds itself to a higher standard than the regulatory minimum:
+
+- Privacy Rule equivalent: policies for PHI use, disclosure, and patient rights
+- Security Rule equivalent: administrative, physical, and technical safeguards
+- Breach Notification Rule equivalent: procedures for breach detection and notification
 
 PrivDNA's air-gapped, zero-retention model **exceeds** HIPAA requirements by design. HIPAA requires data protection for as long as data is held. PrivDNA eliminates the holding period entirely.
 
@@ -589,6 +609,10 @@ PrivDNA's "raw data only" model significantly reduces medical liability exposure
 - **Referral insulation:** Partner genetic counselors operate independently under their own licenses and malpractice coverage. PrivDNA's referral relationship does not create joint liability.
 - **Insurance:** Professional liability premiums for a non-interpreting sequencing lab are substantially lower than for a clinical diagnostics laboratory.
 
+### GINA Limitations Advisory
+
+The Genetic Information Nondiscrimination Act (GINA) prohibits discrimination by health insurers and employers based on genetic information. However, **GINA does not cover life insurance, disability insurance, or long-term care insurance.** Customers are advised to consult with an attorney before undergoing WGS if they have pending applications for these types of insurance. PrivDNA includes this advisory in its pre-sequencing consent documentation.
+
 ---
 
 # VIII. OPERATIONAL PLAYBOOK
@@ -597,13 +621,15 @@ PrivDNA's "raw data only" model significantly reduces medical liability exposure
 
 | Role | FTE | Annual Compensation | Notes |
 |------|-----|-------------------|-------|
-| Laboratory Director | 0.25 (contract) | $50,000 | Required for CLIA/CLEP. Can serve up to 5 labs. |
+| Laboratory Director | 0.25 (contract) | $65,000 | Required for CLIA/CLEP. NYC market rate for board-certified lab director at 0.25 FTE. Can serve up to 5 labs. |
 | Molecular Laboratory Technician | 1.0 | $95,000 | Operates sequencer, performs sample prep and QC |
 | Bioinformatics Engineer | 1.0 | $145,000 | Maintains air-gapped pipeline, handles data processing, manages open-source repos |
 | Genomic Concierge (Technical Rep) | 1.0 | $100,000 | Customer-facing: explains process, manages handoff, answers questions |
-| **Total payroll** | **3.25** | **$390,000** | Excludes benefits loading (~20-25%) |
+| **Total payroll** | **3.25** | **$405,000** | Excludes benefits loading (~20-25%) |
 
-**With benefits loading (~22%):** Total annual payroll cost: ~$475,000
+**With benefits loading (~22%):** Total annual payroll cost: ~$494,000
+
+**Customer consent and withdrawal:** Customers may withdraw consent and request sample destruction at any time before delivery of final results. In such cases, all biological samples and any in-process data are destroyed under the standard NIST SP 800-88 protocol, and the customer receives a Certificate of Destruction. No charge applies if withdrawal occurs before sequencing begins; a partial fee may apply after sequencing has commenced.
 
 ### Hiring Sequence
 
@@ -624,7 +650,7 @@ A single NextSeq 2000 with P3 flow cells operates on a **batch cycle**:
 4. **Day 4-5:** QC review, data transfer to encrypted USB, customer notification
 5. **Day 5:** Customer pickup, witnessed destruction, certificate generation
 
-At steady state, with overlapping batches (new library prep begins while current run is active), throughput reaches 2-3 runs per week or approximately 6-9 genomes per week (25-38 per month).
+At steady state, with overlapping batches (new library prep begins while current run is active), throughput reaches 4-5 runs per week or approximately 12-15 genomes per week (50-65 per month).
 
 ### Equipment Maintenance
 
@@ -665,7 +691,7 @@ At steady state, with overlapping batches (new library prep begins while current
 | Power failure | UPS alarm | UPS provides 15-30 min runtime; graceful shutdown if extended | Minimal (runs resume) |
 | Sample contamination | VerifyBamID or unexpected variants | Re-collect sample from customer | Full restart; no charge for re-run |
 
-**Mistake buffer:** $30,000 reserved in startup capital for reagent waste and re-runs during the first 90 days of operations as the team calibrates processes.
+**Operational contingency reserve:** $30,000 reserved in startup capital for reagent waste and re-runs during the first 90 days of operations as the team calibrates processes.
 
 ---
 
@@ -692,7 +718,7 @@ PrivDNA maintains a pre-vetted directory of independent genetic counselors, clin
 
 ### Revenue Model
 
-PrivDNA does not charge partners for referrals and does not receive referral fees from partners. This preserves the independence of the referral relationship and avoids potential regulatory complications (Anti-Kickback Statute considerations).
+PrivDNA does not charge partners for referrals and does not receive referral fees from partners. This preserves the independence of the referral relationship and avoids potential regulatory complications under the federal Anti-Kickback Statute (AKS) and applicable New York State anti-kickback and fee-splitting statutes (NY Education Law Section 6509-a; NY Public Health Law Section 238-a). Because PrivDNA does not bill any federal health care program (Medicare, Medicaid, TRICARE, etc.), the federal AKS may not apply directly, but PrivDNA structures its referral relationships to comply regardless. Referral partners are responsible for their own AKS compliance with respect to their practices.
 
 Instead, the referral network creates value through:
 
@@ -722,7 +748,7 @@ As the partner network matures, PrivDNA may explore a **marketplace model** wher
 
 | Item | Cost |
 |------|------|
-| Illumina NextSeq 2000 | $335,000 |
+| Illumina NextSeq 2000 | $335,000* |
 | Thermo Fisher Qubit 4 | $4,000 |
 | Agilent TapeStation 4150 | $16,000 |
 | Bio-Rad T100 Thermal Cycler | $3,500 |
@@ -732,11 +758,13 @@ As the partner network matures, PrivDNA may explore a **marketplace model** wher
 | Vortex mixer and miscellaneous small equipment | $2,500 |
 | **Subtotal: Lab Equipment** | **$374,000** |
 
+*\*NextSeq 2000 list price is $335,000. Certified refurbished units are available in the $75,000-$150,000 range from authorized resellers. PrivDNA will evaluate both new and refurbished options during procurement, potentially reducing CAPEX by $150,000-$250,000. Financial projections use the list price as a conservative baseline.*
+
 ### Air-Gapped Compute Infrastructure
 
 | Item | Cost |
 |------|------|
-| 2x AMD EPYC 9654 CPUs | $20,000 |
+| 2x AMD EPYC 9654 CPUs | $25,000 |
 | Supermicro AS-2125HS-TNR chassis | $5,000 |
 | 1 TB DDR5 ECC RAM (16x 64 GB Samsung) | $4,800 |
 | 24x Samsung PM9A3 7.68 TB NVMe (92 TB usable RAID-10) | $117,576 |
@@ -750,7 +778,7 @@ As the partner network matures, PrivDNA may explore a **marketplace model** wher
 | Room cooling (mini-split) | $2,500 |
 | TPM 2.0 module | $50 |
 | Physical security (seals, port blockers) | $150 |
-| **Subtotal: Compute Infrastructure** | **$171,300** |
+| **Subtotal: Compute Infrastructure** | **$176,300** |
 
 ### Facility and Buildout
 
@@ -794,7 +822,7 @@ As the partner network matures, PrivDNA may explore a **marketplace model** wher
 
 | Item | Cost |
 |------|------|
-| Mistake/calibration buffer (first 90 days) | $30,000 |
+| Operational contingency reserve (first 90 days) | $30,000 |
 | Initial consumables inventory (~25 genomes) | $55,000 |
 | **Subtotal: Reserves** | **$85,000** |
 
@@ -803,13 +831,13 @@ As the partner network matures, PrivDNA may explore a **marketplace model** wher
 | Category | Cost |
 |----------|------|
 | Lab Equipment | $374,000 |
-| Compute Infrastructure | $171,300 |
+| Compute Infrastructure | $176,300 |
 | Facility | $156,000 |
 | Software Development | $110,000 |
 | Regulatory/Legal | $35,000 |
 | Marketing | $50,000 |
 | Reserves | $85,000 |
-| **TOTAL STARTUP CAPITAL** | **$981,300** |
+| **TOTAL STARTUP CAPITAL** | **$986,300** |
 
 ## 10.2 Operating Expenses (OPEX) -- Annual
 
@@ -817,15 +845,17 @@ As the partner network matures, PrivDNA may explore a **marketplace model** wher
 
 | Item | Annual Cost |
 |------|------------|
-| Payroll (fully loaded) | $475,000 |
+| Payroll (fully loaded) | $494,000 |
 | Rent (Manhattan, ~1,200 sq ft at ~$100/sq ft) | $120,000 |
-| Insurance (GL, PL, cyber, property, WC) | $25,000 |
+| Insurance (GL, PL, cyber, property, WC) | $40,000 |
 | Utilities (including server power at ~$1,600/yr) | $12,000 |
 | Ongoing marketing | $36,000 |
 | CLIA/CLEP/CAP renewals | $3,000 |
 | Legal and accounting | $15,000 |
 | IT and security maintenance | $8,000 |
-| **Total Annual Fixed Costs** | **$694,000** |
+| **Total Annual Fixed Costs** | **$728,000** |
+
+**Note on insurance:** The $40,000 annual insurance budget covers professional liability, cyber liability (essential for a genomic data handler), general liability, workers' compensation, and property coverage appropriate for a CLIA high-complexity laboratory handling sensitive biological specimens and genomic data.
 
 ### Variable Costs Per Genome
 
@@ -844,49 +874,33 @@ As the partner network matures, PrivDNA may explore a **marketplace model** wher
 
 ## 10.3 Unit Economics
 
-| Metric | Value |
-|--------|-------|
-| Revenue per genome | $1,950 |
-| Variable cost per genome | $2,632 |
-| **Gross margin per genome** | **($682)** |
-
-**The unit economics are negative at list consumable prices.** This is the critical challenge identified through deep research that differs from the Gemini estimates.
-
-### Addressing the Unit Economics
-
-There are several paths to positive unit economics:
-
-**1. Price increase to $3,500**
-
-| Metric | Value |
-|--------|-------|
-| Revenue per genome | $3,500 |
-| Variable cost per genome | $2,632 |
-| Gross margin per genome | $868 |
-| Annual fixed costs | $694,000 |
-| Break-even volume | 800 genomes/year (67/month) |
-
-**2. Volume discounts on reagents (15-20% Illumina volume pricing) + lower-cost USB ($179)**
-
-| Metric | Value |
-|--------|-------|
-| Revenue per genome | $2,500 |
-| Variable cost per genome (adjusted) | $1,950 |
-| Gross margin per genome | $550 |
-| Annual fixed costs | $694,000 |
-| Break-even volume | 1,262 genomes/year (105/month) -- exceeds single NextSeq 2000 capacity |
-
-**3. Recommended: Premium price ($3,500) + moderate volume discounts**
+### Primary Model: $3,500/genome + Volume Discounts
 
 | Metric | Value |
 |--------|-------|
 | Revenue per genome | $3,500 |
 | Variable cost per genome (with 15% reagent discount) | $2,340 |
 | Gross margin per genome | $1,160 |
-| Annual fixed costs | $694,000 |
-| Break-even volume | 598 genomes/year (50/month) |
+| Annual fixed costs | $728,000 |
+| Break-even volume | 628 genomes/year (53/month) |
 
-**Recommendation:** Price at **$3,500 per genome**. The target customer is a high-net-worth NYC individual who values privacy and transparency above all else. At this price point, the service is positioned as a luxury privacy experience -- analogous to private banking or concierge medicine -- not as a commodity sequencing service competing with $249 Nebula tests.
+**Pricing rationale:** The target customer is a high-net-worth NYC individual who values privacy and transparency above all else. At $3,500, the service is positioned as a luxury privacy experience -- analogous to private banking or concierge medicine -- not as a commodity sequencing service competing with $249 mail-order tests. This is distinct from WGS offered as a component of concierge medicine or executive health programs, where sequencing is typically outsourced to external labs and data is retained in the clinical record.
+
+### Without Volume Discounts ($3,500/genome, list prices)
+
+| Metric | Value |
+|--------|-------|
+| Revenue per genome | $3,500 |
+| Variable cost per genome | $2,632 |
+| Gross margin per genome | $868 |
+| Annual fixed costs | $728,000 |
+| Break-even volume | 839 genomes/year (70/month) |
+
+**Note:** At list consumable prices, unit economics remain positive at $3,500 but with thinner margins. The sensitivity analysis (Section 10.6) models results at various price points.
+
+### Why $1,950 Was Rejected
+
+Early analysis considered a $1,950 price point to position closer to existing WGS services. At list consumable prices, this produces a **negative gross margin of ($682) per genome**, making the business unviable at any volume. Even with aggressive volume discounts, a sub-$2,500 price point requires throughput exceeding single-instrument capacity to reach break-even. The $3,500 price point was selected as the minimum viable premium that supports sustainable operations.
 
 ## 10.4 Break-Even Analysis (at $3,500/genome, with volume discounts)
 
@@ -895,27 +909,31 @@ There are several paths to positive unit economics:
 | Revenue per genome | $3,500 |
 | Variable cost per genome | $2,340 |
 | Gross margin per genome | $1,160 |
-| Monthly fixed costs | $57,833 |
-| **Monthly break-even** | **50 genomes** |
-| **Annual break-even** | **598 genomes** |
+| Monthly fixed costs | $60,667 |
+| **Monthly break-even** | **53 genomes** |
+| **Annual break-even** | **628 genomes** |
 
 ## 10.5 Five-Year Profit and Loss Projection
 
 *Assumes $3,500/genome pricing, 15% reagent volume discounts beginning Year 2*
 
+**Note on volume discounts:** The 15% volume discount is assumed beginning Year 2 based on projected purchasing volume of approximately 160 P3 flow cells per year. This requires negotiation with Illumina and is not guaranteed for a startup with no prior purchasing history. The sensitivity analysis (Section 10.6) shows results at various price points to account for this uncertainty. Year 1 projections use list consumable prices.
+
 | | Year 1 | Year 2 | Year 3 | Year 4 | Year 5 |
 |---|--------|--------|--------|--------|--------|
-| **Genomes processed** | 200 | 480 | 720 | 960 | 1,100 |
-| **Revenue** | $700,000 | $1,680,000 | $2,520,000 | $3,360,000 | $3,850,000 |
-| Variable costs | $527,000 | $1,123,200 | $1,684,800 | $2,246,400 | $2,574,000 |
-| **Gross profit** | $173,000 | $556,800 | $835,200 | $1,113,600 | $1,276,000 |
-| Fixed costs | $694,000 | $715,000 | $736,000 | $758,000 | $780,000 |
-| **Net income (loss)** | **($521,000)** | **($158,200)** | **$99,200** | **$355,600** | **$496,000** |
-| Cumulative P&L | ($521,000) | ($679,200) | ($580,000) | ($224,400) | $271,600 |
+| **Genomes processed** | 200 | 480 | 720 | 750 | 750 |
+| **Revenue** | $700,000 | $1,680,000 | $2,520,000 | $2,625,000 | $2,625,000 |
+| Variable costs | $526,400 | $1,123,200 | $1,684,800 | $1,755,000 | $1,755,000 |
+| **Gross profit** | $173,600 | $556,800 | $835,200 | $870,000 | $870,000 |
+| Fixed costs | $728,000 | $750,000 | $773,000 | $796,000 | $820,000 |
+| **Net income (loss)** | **($554,400)** | **($193,200)** | **$62,200** | **$74,000** | **$50,000** |
+| Cumulative P&L | ($554,400) | ($747,600) | ($685,400) | ($611,400) | ($561,400) |
 
 **Key milestones:**
-- **Month 28-30 (mid-Year 3):** Monthly operations reach profitability
-- **Month 52-54 (mid-Year 5):** Cumulative losses fully recovered; business is cash-flow positive on a cumulative basis
+- **Month 30-32 (mid-Year 3):** Monthly operations reach profitability
+- **Year 4-5:** Profits are constrained by single-instrument capacity (~750 genomes/year). A second instrument (per Phase 2, Section 12.2) would approximately double capacity and significantly accelerate cumulative break-even.
+
+**Note:** Year 1 variable costs use list consumable prices ($2,632/genome). Years 2-5 assume 15% volume discounts ($2,340/genome). Fixed costs escalate ~3% annually.
 
 ## 10.6 Sensitivity Analysis
 
@@ -923,21 +941,22 @@ There are several paths to positive unit economics:
 
 | Price Point | Gross Margin | Annual Break-Even | Year 3 Net |
 |-------------|-------------|-------------------|------------|
-| $2,500 | $160 | 4,338 genomes (impossible on 1 machine) | N/A |
-| $3,000 | $660 | 1,051 genomes | ($39,640) |
-| $3,500 | $1,160 | 598 genomes | $99,200 |
-| $4,000 | $1,660 | 418 genomes | $359,200 |
-| $4,500 | $2,160 | 321 genomes | $719,200 |
+| $2,500 | $160 | 4,550 genomes (impossible on 1 machine) | N/A |
+| $3,000 | $660 | 1,103 genomes (exceeds single-instrument capacity) | ($297,800) |
+| $3,500 | $1,160 | 628 genomes | $62,200 |
+| $4,000 | $1,660 | 439 genomes | $422,200 |
+| $4,500 | $2,160 | 337 genomes | $782,200 |
 
 ### Volume Sensitivity (at $3,500/genome)
 
 | Genomes/Month | Annual Revenue | Annual Net |
 |---------------|---------------|------------|
-| 30 | $1,260,000 | ($261,200) |
-| 40 | $1,680,000 | ($136,400) |
-| 50 | $2,100,000 | ($11,600) |
-| 60 | $2,520,000 | $113,200 |
-| 75 | $3,150,000 | $300,400 |
+| 30 | $1,260,000 | ($295,200) |
+| 40 | $1,680,000 | ($170,400) |
+| 50 | $2,100,000 | ($45,600) |
+| 53 | $2,226,000 | ~$0 (break-even) |
+| 60 | $2,520,000 | $79,200 |
+| 65 | $2,730,000 | $137,400 |
 
 ## 10.7 Cash Flow Requirement
 
@@ -945,11 +964,11 @@ Based on Year 1-2 projected losses:
 
 | Period | Net Loss | Cumulative Cash Need |
 |--------|----------|---------------------|
-| Startup CAPEX | ($981,300) | ($981,300) |
-| Year 1 operations | ($521,000) | ($1,502,300) |
-| Year 2 operations | ($158,200) | ($1,660,500) |
+| Startup CAPEX | ($986,300) | ($986,300) |
+| Year 1 operations | ($554,400) | ($1,540,700) |
+| Year 2 operations | ($193,200) | ($1,733,900) |
 
-**Total funding required through profitability: ~$1.25 million** (startup capital of $981,300 plus ~$270,000 in operational runway to cover Year 1-2 losses, partially offset by Year 1-2 revenue).
+**Total funding required through profitability: ~$1.35 million** (startup capital of $986,300 plus ~$365,000 in operational runway to cover Year 1-2 losses, partially offset by Year 1-2 revenue).
 
 ---
 
@@ -971,7 +990,7 @@ Based on Year 1-2 projected losses:
 |------|------------|--------|------------|
 | CLEP application delays (>12 months) | Medium | High (delays launch) | Begin application 12+ months before planned launch; engage experienced regulatory consultant |
 | CLEP LDT validation requirements exceed expectations | Medium | Medium | Budget additional validation runs; consult J Mol Diagn 2025 guide for NGS CLEP approval |
-| FDA regulation of LDTs | Low-Medium | High (potential industry-wide disruption) | Monitor FDA rulemaking; maintain compliance with current CLIA/CLEP standards; LDT regulation has been deferred multiple times |
+| FDA regulation of LDTs | Low | High (potential industry-wide disruption) | The FDA's 2024 LDT final rule was struck down by federal court in March 2025 and formally vacated by FDA in September 2025. The immediate regulatory threat has been resolved. However, Congressional action could create a new framework in the future. PrivDNA maintains compliance with current CLIA/CLEP standards and monitors legislative developments. |
 | Changes to HIPAA genetic data provisions | Low | Medium | Maintain compliance exceeding current requirements; zero-retention model is inherently future-proof |
 
 ## 11.3 Market Risks
@@ -990,6 +1009,7 @@ Based on Year 1-2 projected losses:
 | Key person dependency (Bioinformatics Engineer) | High | High | Document all processes; open-source pipeline means community can support; cross-train lab technician on basic pipeline operations |
 | Sample contamination during library prep | Medium | Low-Medium | Standard pre-PCR/post-PCR separation; contamination checks in pipeline (VerifyBamID); re-collection at no charge |
 | Physical security breach | Low | High | 24/7 CCTV; access control; tamper-evident seals; environmental monitoring; insurance coverage |
+| Data breach during 3-5 day processing window | Low | High (genomic data exists on server during processing) | Air-gapped network eliminates remote attack vectors; physical access controls (keycard, biometric); SED encryption on all NVMe drives (data at rest is always encrypted); 24/7 CCTV monitoring of server room; processing window minimized via GPU acceleration (~45 min vs. 8-16 hrs); data destroyed immediately upon delivery |
 
 ---
 
@@ -1022,7 +1042,7 @@ Based on Year 1-2 projected losses:
 1. **San Francisco / Bay Area** -- tech-savvy, privacy-conscious, high-income population
 2. **Los Angeles** -- wellness culture, entertainment industry demand for privacy
 3. **Miami** -- growing tech/finance hub, international clientele
-4. **Cranford, NJ** -- lower-cost satellite serving NYC overflow and NJ market
+4. **Chicago** -- financial services hub, growing privacy awareness, strong executive health market
 
 Each new location replicates the NYC model with identical equipment, pipeline, and experience design. The open-source pipeline and standardized SOPs enable rapid replication.
 
@@ -1040,30 +1060,30 @@ Each new location replicates the NYC model with identical equipment, pipeline, a
 
 ## 13.1 Total Raise
 
-**PrivDNA is seeking $1.25 million in seed funding.**
+**PrivDNA is seeking $1.35 million in seed funding.**
 
 ## 13.2 Use of Funds
 
 | Allocation | Amount | % of Raise |
 |------------|--------|------------|
-| Sequencing and lab equipment | $374,000 | 29.9% |
-| Air-gapped compute infrastructure | $171,300 | 13.7% |
-| Facility buildout (deposit, glass wall, MEP) | $156,000 | 12.5% |
-| Open-source software development | $110,000 | 8.8% |
-| Regulatory and legal | $35,000 | 2.8% |
-| Marketing and launch | $50,000 | 4.0% |
-| Reserves (consumables + mistake buffer) | $85,000 | 6.8% |
-| **Operational runway (12 months)** | **$268,700** | **21.5%** |
-| **Total** | **$1,250,000** | **100%** |
+| Sequencing and lab equipment | $374,000 | 27.7% |
+| Air-gapped compute infrastructure | $176,300 | 13.1% |
+| Facility buildout (deposit, glass wall, MEP) | $156,000 | 11.6% |
+| Open-source software development | $110,000 | 8.1% |
+| Regulatory and legal | $35,000 | 2.6% |
+| Marketing and launch | $50,000 | 3.7% |
+| Reserves (consumables + contingency) | $85,000 | 6.3% |
+| **Operational runway (12 months)** | **$363,700** | **26.9%** |
+| **Total** | **$1,350,000** | **100%** |
 
 ## 13.3 Milestones Tied to Funding
 
 | Milestone | Timeline | Funding Tranche |
 |-----------|----------|----------------|
-| Entity formation, lease execution, equipment orders | Month 0-2 | $400,000 |
-| Lab buildout, CLIA/CLEP applications, pipeline development | Month 2-6 | $350,000 |
-| Equipment installation, validation runs, staff hiring | Month 6-10 | $300,000 |
-| Launch, initial marketing push, first customer | Month 10-12 | $200,000 |
+| Entity formation, lease execution, equipment orders | Month 0-2 | $425,000 |
+| Lab buildout, CLIA/CLEP applications, pipeline development | Month 2-6 | $375,000 |
+| Equipment installation, validation runs, staff hiring | Month 6-10 | $325,000 |
+| Launch, initial marketing push, first customer | Month 10-12 | $225,000 |
 
 ## 13.4 Return Projections
 
@@ -1071,12 +1091,12 @@ Based on the five-year financial model (Section X):
 
 | Metric | Value |
 |--------|-------|
-| Total investment | $1,250,000 |
-| Cumulative net income through Year 5 | $271,600 |
-| Projected Year 5 annual net income | $496,000 |
-| Projected Year 5 revenue | $3,850,000 |
-| Cash-flow positive (monthly) | Month ~28-30 |
-| Cumulative break-even | Month ~52-54 |
+| Total investment | $1,350,000 |
+| Cumulative net income through Year 5 (single instrument) | ($561,400) |
+| Projected Year 5 annual net income | $50,000 (capacity-constrained) |
+| Projected Year 5 revenue | $2,625,000 |
+| Cash-flow positive (monthly) | Month ~30-32 |
+| Note | Second instrument (Phase 2) significantly improves Year 4-5 economics |
 
 For investors seeking earlier liquidity, PrivDNA's brand, open-source community, established regulatory certifications, and proven model create acquisition value well beyond the sum of financial returns. A multi-location PrivDNA with demonstrated demand and a privacy-sovereign brand in a post-23andMe market is a strategic acquisition target for health systems, concierge medicine platforms, and privacy-focused technology companies.
 
