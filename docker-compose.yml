@@ -1,0 +1,79 @@
+services:
+  privdna-web:
+    build:
+      context: ./site
+      dockerfile: Dockerfile
+    container_name: privdna-web
+    restart: unless-stopped
+    environment:
+      - DATABASE_KEY=${DATABASE_KEY}
+      - RYBBIT_SITE_ID=${RYBBIT_SITE_ID}
+      - RYBBIT_URL=http://rybbit-server:3002
+    volumes:
+      - privdna-data:/app/data
+    networks:
+      - privdna-internal
+
+  rybbit-server:
+    image: ghcr.io/rybbit-io/rybbit:latest
+    container_name: rybbit-server
+    restart: unless-stopped
+    environment:
+      - DATABASE_URL=postgresql://rybbit:${RYBBIT_DB_PASSWORD}@rybbit-postgres:5432/rybbit
+      - CLICKHOUSE_HOST=http://rybbit-clickhouse:8123
+      - BETTER_AUTH_SECRET=${RYBBIT_AUTH_SECRET}
+      - BASE_URL=https://analytics.privdna.com
+      - DISABLE_SIGNUP=true
+    depends_on:
+      - rybbit-postgres
+      - rybbit-clickhouse
+    networks:
+      - privdna-internal
+
+  rybbit-postgres:
+    image: postgres:16-alpine
+    container_name: rybbit-postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=rybbit
+      - POSTGRES_PASSWORD=${RYBBIT_DB_PASSWORD}
+      - POSTGRES_DB=rybbit
+    volumes:
+      - rybbit-postgres-data:/var/lib/postgresql/data
+    networks:
+      - privdna-internal
+
+  rybbit-clickhouse:
+    image: clickhouse/clickhouse-server:latest
+    container_name: rybbit-clickhouse
+    restart: unless-stopped
+    volumes:
+      - rybbit-clickhouse-data:/var/lib/clickhouse
+    networks:
+      - privdna-internal
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflared
+    restart: unless-stopped
+    command: tunnel run
+    environment:
+      - TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}
+    networks:
+      - privdna-internal
+    depends_on:
+      - privdna-web
+      - rybbit-server
+
+volumes:
+  privdna-data:
+  rybbit-postgres-data:
+  rybbit-clickhouse-data:
+
+networks:
+  privdna-internal:
+    driver: bridge

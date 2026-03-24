@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PrivDNA
 
-## Getting Started
+**Your genome. Your hands. No copies.**
 
-First, run the development server:
+PrivDNA is a privacy-sovereign whole genome sequencing service. This is the open source codebase for [privdna.com](https://privdna.com) — our marketing site and waitlist signup system.
+
+## Why Open Source?
+
+If we're asking you to trust us with your DNA, you should be able to verify exactly how we handle your data. This codebase is fully auditable. There are no hidden telemetry endpoints, no cloud sync, no data exfiltration. Verify it yourself.
+
+## Tech Stack
+
+- **Framework:** Next.js 16 (App Router)
+- **3D:** Three.js + React Three Fiber
+- **Animation:** GSAP (ScrollTrigger + SplitText) + Lenis
+- **Styling:** Tailwind CSS 4
+- **Database:** SQLCipher (AES-256 encrypted SQLite)
+- **Analytics:** Rybbit (self-hosted, cookieless, no PII)
+- **Deployment:** Docker Compose + Cloudflare Tunnel
+
+## Security
+
+- All waitlist emails are **encrypted at rest** with AES-256 via SQLCipher
+- Email addresses are **hashed** (SHA-256) for deduplication without decrypting
+- **No cookies** are set. No third-party tracking scripts.
+- The entire application runs behind a **Cloudflare Tunnel** — no ports exposed to the public internet
+- Database encryption keys are loaded from environment variables, never committed to the repository
+
+## Local Development
 
 ```bash
+# Clone the repository
+git clone https://github.com/privdna/privdna.com.git
+cd privdna.com/site
+
+# Install dependencies
+npm install
+
+# Set up environment
+cp .env.example .env.local
+# Edit .env.local and set DATABASE_KEY (generate with: openssl rand -hex 32)
+
+# Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Production Deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+# From project root
+cp .env.example .env
+# Fill in all values in .env
 
-## Learn More
+docker compose up -d
+```
 
-To learn more about Next.js, take a look at the following resources:
+This starts the Next.js site, Rybbit analytics, and Cloudflare Tunnel. Configure your Cloudflare Tunnel to route `privdna.com` to the `privdna-web` container and `analytics.privdna.com` to `rybbit-server`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contributing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+We welcome contributions. Please open an issue before submitting a pull request for significant changes.
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[MIT](LICENSE)
