@@ -13,6 +13,7 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -70,7 +71,7 @@ export default function RootLayout({
           <Script
             src={`${rybbitUrl}/api/script.js`}
             data-site-id={rybbitSiteId}
-            strategy="beforeInteractive"
+            strategy="afterInteractive"
           />
         )}
       </head>

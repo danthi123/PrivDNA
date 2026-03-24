@@ -27,7 +27,7 @@ services:
       - privdna-internal
 
   rybbit-backend:
-    image: ghcr.io/rybbit-io/rybbit-backend:latest
+    image: ghcr.io/rybbit-io/rybbit-backend@sha256:8c821c4b77f0aa4c99bf9c923394972e5194ddfdfd056f0779b02f131f21e832
     container_name: rybbit-backend
     restart: unless-stopped
     environment:
@@ -50,7 +50,7 @@ services:
       - privdna-internal
 
   rybbit-client:
-    image: ghcr.io/rybbit-io/rybbit-client:latest
+    image: ghcr.io/rybbit-io/rybbit-client@sha256:1c632d01080d91f257019dc8d3fdf9d318b0ef6aa08e78118aa0a451c8ae5249
     container_name: rybbit-client
     restart: unless-stopped
     environment:
@@ -78,7 +78,7 @@ services:
           - postgres
 
   rybbit-clickhouse:
-    image: clickhouse/clickhouse-server:latest
+    image: clickhouse/clickhouse-server@sha256:8f18d3c681eb07d5f28ac3fd6e1cc4789cb1cb4f9823d52ba8026df49960184b
     container_name: rybbit-clickhouse
     restart: unless-stopped
     environment:
@@ -97,7 +97,7 @@ services:
         hard: 262144
 
   cloudflared:
-    image: cloudflare/cloudflared:latest
+    image: cloudflare/cloudflared@sha256:6b599ca3e974349ead3286d178da61d291961182ec3fe9c505e1dd02c8ac31b0
     container_name: cloudflared
     restart: unless-stopped
     command: tunnel run

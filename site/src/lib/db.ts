@@ -11,6 +11,11 @@ function getDb(): InstanceType<typeof Database> {
   if (!key) {
     throw new Error("DATABASE_KEY environment variable is not set");
   }
+  if (!/^[0-9a-f]{64}$/i.test(key)) {
+    throw new Error(
+      "DATABASE_KEY must be exactly 64 hex characters (256 bits). Generate with: openssl rand -hex 32"
+    );
+  }
 
   const dbDir = path.join(process.cwd(), "data");
   mkdirSync(dbDir, { recursive: true });
