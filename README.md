@@ -22,7 +22,7 @@ If we're asking you to trust us with your DNA, you should be able to verify exac
 
 - The **bioinformatics pipeline** (Nextflow/nf-core sarek + GATK + BWA-MEM2) that processes genomes is specified with exact versions and licenses in the [Technical Manifest](technical-manifest.md)
 - The **website and waitlist system** in `site/` is the actual code running at privdna.com
-- The **waitlist signup API** encrypts your email with AES-256 via SQLCipher before it touches disk. Emails are SHA-256 hashed for deduplication so we never need to decrypt existing records to check for duplicates.
+- The **waitlist signup API** encrypts your email with AES-256-GCM (authenticated encryption) before it touches disk. The entire database is additionally encrypted via SQLCipher. Emails are HMAC-SHA256 hashed (keyed, not dictionary-attackable) for deduplication so we never need to decrypt existing records to check for duplicates.
 - There are **no hidden telemetry endpoints, no cloud sync calls, and no third-party tracking scripts**. Analytics are handled by self-hosted [Rybbit](https://github.com/rybbit-io/rybbit) (cookieless, no PII).
 
 Verify it yourself. That's the point.
@@ -35,28 +35,33 @@ PrivDNA/
 ├── technical-manifest.md      # Hardware BOM, server architecture, pipeline specs
 ├── docker-compose.yml         # Production deployment (site + Rybbit + Cloudflare Tunnel)
 ├── .env.example               # Environment variable template (no secrets)
+├── brand/                     # Logo, social headers, storefront concept (source files)
 ├── site/                      # Website and waitlist application
 │   ├── src/
 │   │   ├── app/
 │   │   │   ├── page.tsx       # Single-page scroll composition
+│   │   │   ├── layout.tsx     # Root layout, fonts, metadata, analytics
 │   │   │   ├── robots.ts      # SEO robots.txt generation
 │   │   │   ├── sitemap.ts     # SEO sitemap.xml generation
 │   │   │   └── api/
 │   │   │       └── waitlist/
 │   │   │           ├── route.ts               # Encrypted signup + confirmation email
 │   │   │           └── unsubscribe/[token]/
-│   │   │               └── route.ts           # HMAC-verified unsubscribe flow
+│   │   │               └── route.ts           # Token-verified unsubscribe flow
 │   │   ├── components/        # All section components (Hero, TheProblem, etc.)
-│   │   │   └── three/         # 3D DNA helix with drag-to-spin interaction
+│   │   │   ├── three/         # 3D DNA helix with drag-to-spin interaction
+│   │   │   ├── ScrollToTop.tsx # Floating scroll-to-top button
+│   │   │   └── ...
 │   │   └── lib/
-│   │       ├── db.ts          # SQLCipher encrypted database connection
-│   │       ├── crypto.ts      # AES-256 encryption + HMAC unsubscribe tokens
-│   │       ├── mailer.ts      # Nodemailer SMTP transport (Proton Mail)
+│   │       ├── db.ts          # SQLCipher encrypted database + schema
+│   │       ├── crypto.ts      # AES-256-GCM encryption + HMAC-SHA256 hashing
+│   │       ├── mailer.ts      # Nodemailer SMTP transport
 │   │       ├── emailTemplate.ts # Dark-themed HTML/text email templates
 │   │       └── rateLimit.ts   # In-memory rate limiter
 │   ├── public/
-│   │   └── .well-known/
-│   │       └── security.txt   # RFC 9116 security contact
+│   │   ├── storefront-concept.webp  # AI-generated lab concept render
+│   │   ├── apple-touch-icon.png     # Touch icon
+│   │   └── icon-512.png            # OG/social image
 │   ├── Dockerfile             # Multi-stage production build
 │   ├── .env.example           # Dev environment template
 │   └── LICENSE                # MIT
@@ -94,10 +99,12 @@ Complete hardware and software specification:
 | Layer | Technology |
 |-------|-----------|
 | Framework | Next.js (App Router) |
-| 3D | Three.js (custom DNA double helix with particle system) |
+| 3D | Three.js / React Three Fiber (custom DNA double helix with particle system) |
 | Animation | GSAP (ScrollTrigger) + Lenis smooth scroll |
 | Styling | Tailwind CSS |
 | Database | SQLCipher (AES-256 encrypted SQLite) |
+| Email encryption | AES-256-GCM (authenticated, per-record, separate key from DB) |
+| Email hashing | HMAC-SHA256 (keyed, not dictionary-attackable) |
 | Analytics | Rybbit (self-hosted, cookieless, no PII) |
 | Deployment | Docker Compose + Cloudflare Tunnel |
 
@@ -105,15 +112,16 @@ Complete hardware and software specification:
 
 The waitlist signup is intentionally over-engineered for a mailing list because it's a statement about how we handle data:
 
-1. **Encryption at rest** -- Every email is AES-256 encrypted via SQLCipher before being written to disk. The database file is unreadable without the encryption key.
-2. **Hash-based deduplication** -- Emails are SHA-256 hashed for duplicate checking. We never decrypt existing records to check if you've already signed up.
+1. **Two-layer encryption at rest** -- Every email is AES-256-GCM encrypted (with authentication tag) using a dedicated `EMAIL_ENCRYPTION_KEY` before being written to disk. The database itself is additionally encrypted via SQLCipher using a separate `DATABASE_KEY`. Compromise of either key alone is insufficient to decrypt stored emails.
+2. **Keyed hash deduplication** -- Emails are HMAC-SHA256 hashed using a secret key for duplicate checking. Unlike plain SHA-256, keyed hashes are not vulnerable to offline dictionary attacks if the hash column is ever exposed.
 3. **Confirmation emails** -- On signup, a confirmation email is sent via self-hosted Proton Mail SMTP. No third-party email services.
-4. **HMAC unsubscribe tokens** -- Unsubscribe links use HMAC-SHA256 tokens derived from the email hash. No tokens stored in the database. Timing-safe comparison prevents enumeration attacks.
+4. **Random unsubscribe tokens** -- Each subscriber receives a cryptographically random 32-byte token stored in an indexed database column. Unsubscribe lookups are O(1) via index, not O(N) HMAC iteration. Tokens are validated against format (64 hex chars) before any database query.
 5. **Soft-delete unsubscribe** -- Unsubscribed emails are marked with a timestamp rather than deleted, for CAN-SPAM compliance. They are excluded from all active queries.
 6. **No cookies** -- Zero cookies set. No tracking pixels. No third-party scripts.
-7. **Rate limiting** -- In-memory per-IP rate limiting on the signup endpoint.
+7. **Rate limiting** -- In-memory per-IP rate limiting on both signup and unsubscribe endpoints.
 8. **No exposed ports** -- The entire stack runs behind a Cloudflare Tunnel. The server has no open ports.
-9. **Secrets management** -- All keys (database encryption, SMTP credentials, unsubscribe HMAC secret) loaded from environment variables, never committed to the repository.
+9. **Secrets management** -- All keys (database encryption, email encryption, SMTP credentials) loaded from environment variables, never committed to the repository. Keys are validated at startup to ensure sufficient entropy.
+10. **Security headers** -- Content-Security-Policy, X-Frame-Options (DENY), Referrer-Policy, Permissions-Policy served on all responses. `X-Powered-By` header suppressed.
 
 ## Local Development
 
@@ -124,7 +132,9 @@ cd PrivDNA/site
 npm install
 
 cp .env.example .env.local
-# Edit .env.local -- set DATABASE_KEY (generate with: openssl rand -hex 32)
+# Edit .env.local -- set both keys (generate each with: openssl rand -hex 32)
+#   DATABASE_KEY=<64 hex chars>
+#   EMAIL_ENCRYPTION_KEY=<64 hex chars — must be different from DATABASE_KEY>
 
 npm run dev
 ```
@@ -146,8 +156,8 @@ docker compose up -d
 
 This starts:
 - **privdna-web** -- The Next.js site and waitlist API
-- **rybbit-server** -- Self-hosted analytics (with Postgres + ClickHouse backends)
-- **cloudflared** -- Cloudflare Tunnel (routes privdna.com and analytics.privdna.com)
+- **rybbit-backend** + **rybbit-client** -- Self-hosted analytics (with Postgres + ClickHouse backends)
+- **cloudflared** -- Cloudflare Tunnel (routes your domains to the containers)
 
 All persistent data is stored via bind mounts under the `DATA_DIR` path configured in `.env`:
 
@@ -155,13 +165,29 @@ All persistent data is stored via bind mounts under the `DATA_DIR` path configur
 $DATA_DIR/
 ├── web/              # SQLCipher waitlist database
 ├── rybbit/
-│   ├── postgres/     # Rybbit analytics metadata
+│   ├── postgres/     # Rybbit user/config data
 │   └── clickhouse/   # Rybbit analytics events
 ```
 
 Configure your Cloudflare Tunnel to route:
-- `privdna.com` &rarr; `privdna-web:3000`
-- `analytics.privdna.com` &rarr; `rybbit-server:3002`
+- `yourdomain.com` &rarr; `privdna-web:3000`
+- `analytics.yourdomain.com` &rarr; `rybbit-client:3002`
+
+## Cloudflare Configuration
+
+The following Cloudflare features are enabled for defense-in-depth:
+
+- **HSTS** -- Max-age 12 months, includeSubDomains, preload
+- **Block AI bots** -- Blocks known AI training crawlers
+- **AI Labyrinth** -- Traps scrapers ignoring robots.txt
+- **Bot Fight Mode** -- JS-based bot detection
+- **0-RTT** -- Faster TLS resumption for returning visitors
+- **Speed Brain** -- Speculative prefetch
+- **Early Hints** -- 103 responses for preloading
+- **Real User Monitoring** -- Core Web Vitals from real visitors
+- **DNSSEC** -- Enabled
+- **security.txt** -- Served by Cloudflare edge (not from the application)
+- **WAF rule** -- `X-Robots-Tag: noindex, nofollow, noarchive` on the analytics subdomain
 
 ## Current Status
 
