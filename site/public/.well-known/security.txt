@@ -1,0 +1,8 @@
+# PrivDNA Security Policy
+# https://securitytxt.org/
+
+Contact: mailto:security@privdna.com
+Preferred-Languages: en
+Canonical: https://privdna.com/.well-known/security.txt
+Policy: https://github.com/danthi123/PrivDNA/security/policy
+Expires: 2027-03-24T00:00:00.000Z
