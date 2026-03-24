@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useEffect, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import type { Group, BufferAttribute } from "three";
 
@@ -23,6 +23,11 @@ const PARTICLE_COUNT = 500;
 export default function DNAHelix({ mouse, dragState }: DNAHelixProps) {
   const groupRef = useRef<Group>(null);
   const particlesRef = useRef<BufferAttribute>(null);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    setPrefersReducedMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  }, []);
 
   const { strand1, strand2, rungs, particles } = useMemo(() => {
     const totalPoints = HELIX_TURNS * POINTS_PER_TURN;
@@ -75,6 +80,9 @@ export default function DNAHelix({ mouse, dragState }: DNAHelixProps) {
 
   useFrame(() => {
     if (!groupRef.current) return;
+
+    // Skip animation when user prefers reduced motion
+    if (prefersReducedMotion) return;
 
     // Velocity-based rotation with drag support
     const drag = dragState.current;
