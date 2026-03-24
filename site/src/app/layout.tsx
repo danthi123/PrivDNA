@@ -52,6 +52,15 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable}`}
     >
+      <head>
+        {rybbitSiteId && (
+          <Script
+            src={`${rybbitUrl}/api/script.js`}
+            data-site-id={rybbitSiteId}
+            strategy="beforeInteractive"
+          />
+        )}
+      </head>
       <body className="font-sans">
         <SmoothScroll>
           <a href="#waitlist" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[200] focus:bg-accent focus:text-bg-primary focus:px-4 focus:py-2 focus:rounded-full">
@@ -60,13 +69,6 @@ export default function RootLayout({
           <CustomCursor />
           {children}
         </SmoothScroll>
-        {rybbitSiteId && (
-          <Script
-            src={`${rybbitUrl}/api/script.js`}
-            data-site-id={rybbitSiteId}
-            strategy="afterInteractive"
-          />
-        )}
       </body>
     </html>
   );
