@@ -81,31 +81,34 @@ export default function DNAHelix({ mouse, dragState }: DNAHelixProps) {
   useFrame(() => {
     if (!groupRef.current) return;
 
-    // Skip animation when user prefers reduced motion
-    if (prefersReducedMotion) return;
+    // Reduced motion: slow gentle rotation only, skip tilt and particle drift
+    const speedMultiplier = prefersReducedMotion ? 0.3 : 1;
 
     // Velocity-based rotation with drag support
     const drag = dragState.current;
     if (drag.isDragging) {
-      groupRef.current.rotation.y += drag.velocity;
+      groupRef.current.rotation.y += drag.velocity * speedMultiplier;
     } else {
       // Lerp velocity toward base speed (flywheel decay)
       drag.velocity = drag.velocity * FRICTION + BASE_SPEED * (1 - FRICTION);
-      groupRef.current.rotation.y += drag.velocity;
+      groupRef.current.rotation.y += drag.velocity * speedMultiplier;
     }
 
-    // Mouse-reactive tilt
-    const mx = mouse.current?.x ?? 0;
-    const my = mouse.current?.y ?? 0;
-    groupRef.current.rotation.x += (my * 0.08 - groupRef.current.rotation.x) * 0.02;
-    groupRef.current.rotation.z += (mx * -0.05 - groupRef.current.rotation.z) * 0.02;
+    // Mouse-reactive tilt (skip in reduced motion)
+    if (!prefersReducedMotion) {
+      const mx = mouse.current?.x ?? 0;
+      const my = mouse.current?.y ?? 0;
+      groupRef.current.rotation.x += (my * 0.08 - groupRef.current.rotation.x) * 0.02;
+      groupRef.current.rotation.z += (mx * -0.05 - groupRef.current.rotation.z) * 0.02;
+    }
 
     // Drift particles upward
     if (particlesRef.current) {
       const arr = particlesRef.current.array as Float32Array;
       const halfH = (HELIX_HEIGHT * 1.2) / 2;
+      const driftSpeed = prefersReducedMotion ? 0.001 : 0.003;
       for (let i = 0; i < arr.length / 3; i++) {
-        arr[i * 3 + 1] += 0.003;
+        arr[i * 3 + 1] += driftSpeed;
         if (arr[i * 3 + 1] > halfH) {
           arr[i * 3 + 1] = -halfH;
         }

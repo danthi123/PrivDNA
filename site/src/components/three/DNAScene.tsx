@@ -32,7 +32,7 @@ function ScrollCamera({
     const targetY = topY + (bottomY - topY) * progress;
     // Smooth lerp so camera movement feels fluid
     camera.position.y += (targetY - camera.position.y) * 0.1;
-    // Always look straight ahead at the same height (no perspective tilt)
+    // Look straight ahead at the helix at the same Y height
     camera.lookAt(0, camera.position.y, 0);
   });
 
