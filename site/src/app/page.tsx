@@ -35,18 +35,16 @@ export default function Home() {
         <DNASceneLoader className="w-full h-full" scrollProgress={scrollProgress} />
       </div>
 
-      {/* Scrollable content above the helix */}
-      <div className="relative z-10">
-        <Navigation />
-        <Hero />
-        <TheProblem />
-        <ThePromise />
-        <HowItWorks />
-        <GlassWall />
-        <OpenSource />
-        <WaitlistSignup />
-        <Footer />
-      </div>
+      {/* Scrollable content — no wrapper div to avoid breaking ScrollTrigger pin */}
+      <Navigation />
+      <Hero />
+      <TheProblem />
+      <ThePromise />
+      <HowItWorks />
+      <GlassWall />
+      <OpenSource />
+      <WaitlistSignup />
+      <Footer />
     </main>
   );
 }
