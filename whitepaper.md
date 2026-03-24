@@ -65,7 +65,7 @@ This confluence creates a market opening for a fundamentally different model -- 
 
 | Metric | Value |
 |--------|-------|
-| Total startup capital required | $839,000 |
+| Total startup capital required | $848,000 |
 | Price per genome | $3,500 |
 | Variable cost per genome | $1,016 |
 | Gross margin per genome | $2,484 (71.0%) |
@@ -281,7 +281,7 @@ The top three policies that increase consumer willingness to share genetic data 
 |--------------|-------|
 | Chemistry | Avidity sequencing (rolling circle amplification + sequencing-by-binding) |
 | Flow cell | Cloudbreak 300-cycle kit (2x150 bp) |
-| Output per run | ~300 Gb (sufficient for ~3 genomes at 30x) |
+| Output per run | ~300 GB (sufficient for ~3 genomes at 30x) |
 | Quality | >85% bases above Q30 |
 | Run time (2x150 bp) | ~48 hours |
 | Instrument price | $289,000 |
@@ -402,7 +402,7 @@ For air-gapped deployment, all dependencies are pre-staged as Singularity contai
 
 | Stage | Tool | Wall Time (CPU) | Wall Time (GPU-accelerated) |
 |-------|------|-----------------|---------------------------|
-| Basecalling & demux | bases2fastq | 30-90 min | N/A |
+| Basecalling & demux | bases2fastq | 30-60 min | N/A |
 | QC | FastQC | 10-20 min | N/A |
 | Alignment | BWA-MEM2 | 2-4 hours | ~15-20 min (Parabricks/L40S) |
 | Sort + dedup | samtools + GATK | 1-2 hours | ~8-10 min (Parabricks/L40S) |
@@ -414,7 +414,7 @@ For air-gapped deployment, all dependencies are pre-staged as Singularity contai
 
 | Stage | Size | Retention |
 |-------|------|-----------|
-| Raw sequencer output (shared per run) | 200-400 GB per run | Deleted after FASTQ generation |
+| Raw sequencer output (shared per run) | 200-300 GB per run | Deleted after FASTQ generation |
 | FASTQ (compressed) | 60-90 GB | Deleted after BAM validation |
 | Analysis-ready BAM + index | 80-100 GB | Delivered to customer, then destroyed |
 | gVCF | 5-10 GB | Delivered to customer, then destroyed |
@@ -835,7 +835,8 @@ As the partner network matures, PrivDNA may explore a **marketplace model** wher
 |------|------|
 | Operational contingency reserve (first 90 days) | $30,000 |
 | Initial consumables inventory (~25 genomes at ~$1,016/genome) | $26,000 |
-| **Subtotal: Reserves** | **$56,000** |
+| Initial encrypted USB drive inventory (25x IronKey bulk) | $8,775 |
+| **Subtotal: Reserves** | **$64,775** |
 
 ### TOTAL CAPEX
 
@@ -847,8 +848,8 @@ As the partner network matures, PrivDNA may explore a **marketplace model** wher
 | Software Development | $110,000 |
 | Regulatory/Legal | $35,000 |
 | Marketing | $50,000 |
-| Reserves | $56,000 |
-| **TOTAL STARTUP CAPITAL** | **$838,916 (~$839,000)** |
+| Reserves | $64,775 |
+| **TOTAL STARTUP CAPITAL** | **$847,691 (~$848,000)** |
 
 ## 10.2 Operating Expenses (OPEX) -- Annual
 
@@ -859,7 +860,7 @@ As the partner network matures, PrivDNA may explore a **marketplace model** wher
 | Payroll (fully loaded, including benefits) | $559,000 |
 | Rent (Manhattan, ~1,200 sq ft at ~$100/sq ft) | $120,000 |
 | Insurance (GL, PL, cyber, property, WC) | $40,000 |
-| Utilities (including server power at ~$1,600/yr) | $12,000 |
+| Utilities (including server power at ~$2,900/yr) | $12,000 |
 | Marketing (fractional CMO at $5K/month) | $60,000 |
 | CLIA/CLEP/CAP renewals | $3,000 |
 | Legal and accounting | $40,000 |
@@ -966,11 +967,11 @@ Based on Year 1 projected losses (the business reaches monthly profitability in 
 
 | Period | Amount | Cumulative |
 |--------|--------|------------|
-| Startup CAPEX | ($839,000) | ($839,000) |
-| Year 1 operations | ($367,200) | ($1,206,200) |
+| Startup CAPEX | ($848,000) | ($848,000) |
+| Year 1 operations | ($367,200) | ($1,215,200) |
 | **Total through profitability** | | **~$1.25M** |
 
-**Total funding required through profitability: ~$1.25 million** (startup capital of $839,000 plus ~$411,000 in operational runway to cover Year 1 losses, partially offset by Year 1 revenue). The business reaches monthly profitability in Month 15-16 and cumulative break-even in Month 25-26.
+**Total funding required through profitability: ~$1.25 million** (startup capital of $848,000 plus ~$402,000 in operational runway to cover Year 1 losses, partially offset by Year 1 revenue). The business reaches monthly profitability in Month 15-16 and cumulative break-even in Month 25-26.
 
 ---
 
@@ -1084,8 +1085,8 @@ Each new location replicates the NYC model with identical equipment, pipeline, a
 | Software development | $110,000 | 8.8% |
 | Regulatory and legal | $35,000 | 2.8% |
 | Marketing and launch | $50,000 | 4.0% |
-| Reserves (consumables + contingency) | $56,000 | 4.5% |
-| **Operational runway (12 months)** | **$411,084** | **32.9%** |
+| Reserves (consumables + contingency + USB inventory) | $64,775 | 5.2% |
+| **Operational runway (12 months)** | **$402,309** | **32.2%** |
 | **Total** | **$1,250,000** | **100%** |
 
 ## 13.3 Milestones Tied to Funding
