@@ -3,8 +3,9 @@
 import { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
 import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function TheProblem() {
   const desktopRef = useRef<HTMLDivElement>(null);
@@ -133,14 +134,12 @@ export default function TheProblem() {
           ref={slide1Ref}
           className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center"
         >
-          <div aria-live="polite" aria-atomic="true">
-            <span
-              ref={counterRef}
-              className="text-accent text-[clamp(3rem,10vw,10rem)] font-bold tabular-nums"
-            >
-              0
-            </span>
-          </div>
+          <span
+            ref={counterRef}
+            className="text-accent text-[clamp(3rem,10vw,10rem)] font-bold tabular-nums"
+          >
+            0
+          </span>
           <p className="text-text-secondary text-lg md:text-xl mt-4 max-w-md">
             genomes sold in bankruptcy court. March 2025.
           </p>
@@ -175,14 +174,12 @@ export default function TheProblem() {
       {/* Mobile: vertical stack */}
       <div ref={mobileRef} className="md:hidden">
         <div ref={mSlide1Ref} className="min-h-[60vh] flex flex-col items-center justify-center px-6 text-center">
-          <div aria-live="polite" aria-atomic="true">
-            <span
-              ref={mCounterRef}
-              className="text-accent text-[clamp(3rem,10vw,10rem)] font-bold tabular-nums"
-            >
-              0
-            </span>
-          </div>
+          <span
+            ref={mCounterRef}
+            className="text-accent text-[clamp(3rem,10vw,10rem)] font-bold tabular-nums"
+          >
+            0
+          </span>
           <p className="text-text-secondary text-lg mt-4 max-w-md">
             genomes sold in bankruptcy court. March 2025.
           </p>

@@ -3,8 +3,9 @@
 import { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
 import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const steps = [
   {
@@ -12,7 +13,7 @@ const steps = [
     title: "Walk In",
     description: "Visit our NYC storefront.\nNo mail-order kits.",
     icon: (
-      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent" aria-hidden="true">
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent">
         <rect x="8" y="12" width="32" height="28" rx="2" />
         <path d="M20 40V28h8v12" />
         <path d="M8 12L24 4l16 8" />
@@ -24,7 +25,7 @@ const steps = [
     title: "Sample",
     description: "Saliva collection in under 10 minutes.",
     icon: (
-      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent" aria-hidden="true">
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent">
         <path d="M18 8h12v4l4 20a4 4 0 01-4 4H18a4 4 0 01-4-4l4-20V8z" />
         <line x1="18" y1="8" x2="30" y2="8" />
         <path d="M18 28h12" strokeDasharray="3 3" />
@@ -36,7 +37,7 @@ const steps = [
     title: "Sequence",
     description: "30x whole genome on Illumina NextSeq 2000.",
     icon: (
-      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent" aria-hidden="true">
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent">
         <path d="M16 8c0 4 8 8 8 12s-8 8-8 12 8 8 8 12" />
         <path d="M32 8c0 4-8 8-8 12s8 8 8 12-8 8-8 12" />
         <line x1="16" y1="14" x2="32" y2="14" />
@@ -50,7 +51,7 @@ const steps = [
     title: "Process",
     description: "Air-gapped servers.\nOpen source pipeline.",
     icon: (
-      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent" aria-hidden="true">
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent">
         <rect x="10" y="8" width="28" height="12" rx="2" />
         <rect x="10" y="28" width="28" height="12" rx="2" />
         <line x1="24" y1="20" x2="24" y2="28" />
@@ -64,7 +65,7 @@ const steps = [
     title: "Deliver",
     description: "Encrypted USB drive.\nFIPS 140-3 certified.",
     icon: (
-      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent" aria-hidden="true">
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent">
         <rect x="12" y="16" width="24" height="20" rx="3" />
         <path d="M18 16v-4a6 6 0 0112 0v4" />
         <circle cx="24" cy="28" r="3" />
@@ -77,7 +78,7 @@ const steps = [
     title: "Destroy",
     description: "Witnessed data destruction.\nCertificate provided.",
     icon: (
-      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent" aria-hidden="true">
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent">
         <path d="M14 14h20l-2 26H16L14 14z" />
         <line x1="10" y1="14" x2="38" y2="14" />
         <path d="M20 14V10h8v4" />
@@ -154,7 +155,6 @@ export default function HowItWorks() {
 
   return (
     <section id="how-it-works" aria-label="How It Works">
-      <h2 className="sr-only">How It Works</h2>
       {/* Desktop: horizontal scroll with pin */}
       <div ref={outerRef} className="hidden md:block h-screen overflow-hidden relative">
         <div ref={innerRef} className="flex flex-nowrap items-center h-full">

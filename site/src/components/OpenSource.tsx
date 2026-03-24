@@ -3,8 +3,9 @@
 import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
 import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const terminalLines = [
   { text: "$ privdna pipeline --verify", delay: 0 },
@@ -75,7 +76,7 @@ export default function OpenSource() {
             href="https://github.com/danthi123/PrivDNA"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block border border-accent text-accent px-6 py-3 rounded-full hover:bg-accent hover:text-bg-primary transition-all duration-300 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary"
+            className="inline-block border border-accent text-accent px-6 py-3 rounded-full hover:bg-accent hover:text-bg-primary transition-all duration-300"
           >
             View on GitHub &rarr;
           </a>
@@ -83,9 +84,9 @@ export default function OpenSource() {
       </div>
 
       {/* Right column — Terminal */}
-      <div className="bg-bg-surface rounded-2xl p-6 font-mono text-xs md:text-sm overflow-x-auto" role="img" aria-label="Terminal output showing verified open source pipeline tools">
+      <div className="bg-bg-surface rounded-2xl p-6 font-mono text-xs md:text-sm overflow-x-auto">
         {/* Terminal header dots */}
-        <div className="flex gap-2 mb-4" aria-hidden="true">
+        <div className="flex gap-2 mb-4">
           <div className="w-3 h-3 rounded-full" style={{ background: "#ff5f56" }} />
           <div className="w-3 h-3 rounded-full" style={{ background: "#ffbd2e" }} />
           <div className="w-3 h-3 rounded-full" style={{ background: "#27c93f" }} />

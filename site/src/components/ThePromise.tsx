@@ -3,8 +3,9 @@
 import { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
 import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const pillars = [
   {
@@ -12,7 +13,7 @@ const pillars = [
     description:
       "Watch your genome being sequenced through a glass wall.\nEvery step visible.\nNothing hidden.",
     icon: (
-      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent" aria-hidden="true">
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent">
         <ellipse cx="32" cy="32" rx="28" ry="16" />
         <circle cx="32" cy="32" r="8" />
         <circle cx="32" cy="32" r="3" fill="currentColor" />
@@ -24,7 +25,7 @@ const pillars = [
     description:
       "Our entire pipeline is open source on GitHub.\nAudit the code that touches your DNA.",
     icon: (
-      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent" aria-hidden="true">
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent">
         <polyline points="20,16 8,32 20,48" />
         <polyline points="44,16 56,32 44,48" />
         <line x1="36" y1="12" x2="28" y2="52" />
@@ -36,7 +37,7 @@ const pillars = [
     description:
       "Your data is created, handed to you, and destroyed.\nNo copies.\nNo cloud.\nNo exceptions.",
     icon: (
-      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent" aria-hidden="true">
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent">
         <path d="M12 16 L32 4 L52 16 L52 40 L32 52 L12 40 Z" />
         <line x1="22" y1="22" x2="42" y2="42" />
         <line x1="42" y1="22" x2="22" y2="42" />
@@ -111,7 +112,6 @@ export default function ThePromise() {
 
   return (
     <section id="promise" aria-label="The Promise">
-      <h2 className="sr-only">The Promise</h2>
       {/* Desktop: pinned horizontal slide */}
       <div ref={desktopRef} className="hidden md:block h-screen relative overflow-hidden">
         {pillars.map((pillar, i) => (

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback, KeyboardEvent as ReactKeyboardEvent } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { gsap } from "gsap";
 
 const NAV_ITEMS = [
@@ -18,31 +18,22 @@ export default function Navigation() {
   const navItemsRef = useRef<HTMLAnchorElement[]>([]);
   const lastScrollY = useRef(0);
 
-  // Track scroll direction to show/hide nav bar (rAF-throttled)
+  // Track scroll direction to show/hide nav bar
   useEffect(() => {
-    let rafId: number | null = null;
-
     const onScroll = () => {
-      if (rafId) return;
-      rafId = requestAnimationFrame(() => {
-        rafId = null;
-        const currentY = window.scrollY;
-        if (currentY < 100) {
-          setVisible(true);
-        } else if (currentY < lastScrollY.current) {
-          setVisible(true); // scrolling up
-        } else {
-          setVisible(false); // scrolling down
-        }
-        lastScrollY.current = currentY;
-      });
+      const currentY = window.scrollY;
+      if (currentY < 100) {
+        setVisible(true);
+      } else if (currentY < lastScrollY.current) {
+        setVisible(true); // scrolling up
+      } else {
+        setVisible(false); // scrolling down
+      }
+      lastScrollY.current = currentY;
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      if (rafId) cancelAnimationFrame(rafId);
-    };
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const openMenu = useCallback(() => {
@@ -94,23 +85,10 @@ export default function Navigation() {
     [closeMenu]
   );
 
-  // Close menu on Escape key
-  useEffect(() => {
-    if (!isOpen) return;
-    const onKeyDown = (e: globalThis.KeyboardEvent) => {
-      if (e.key === "Escape") {
-        closeMenu();
-      }
-    };
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [isOpen, closeMenu]);
-
   return (
     <>
       {/* Fixed nav bar */}
       <nav
-        aria-label="Site header"
         className={`fixed top-0 left-0 right-0 z-[100] flex items-center justify-between px-6 py-4 transition-transform duration-300 ${
           visible ? "translate-y-0" : "-translate-y-full"
         }`}
@@ -126,8 +104,6 @@ export default function Navigation() {
           onClick={() => (isOpen ? closeMenu() : openMenu())}
           className="relative z-[110] flex flex-col justify-center items-center w-10 h-10 gap-[6px]"
           aria-label={isOpen ? "Close menu" : "Open menu"}
-          aria-expanded={isOpen}
-          aria-controls="nav-overlay"
         >
           <span
             className={`block w-6 h-[2px] bg-text-primary transition-all duration-300 origin-center ${
@@ -150,13 +126,9 @@ export default function Navigation() {
       {/* Full-screen overlay */}
       <div
         ref={overlayRef}
-        id="nav-overlay"
-        role="dialog"
-        aria-label="Site navigation"
-        aria-hidden={!isOpen}
         className="fixed inset-0 z-[105] bg-bg-primary/95 backdrop-blur-md flex items-center justify-center invisible opacity-0"
       >
-        <nav aria-label="Main navigation" className="flex flex-col items-center gap-6">
+        <nav className="flex flex-col items-center gap-6">
           {NAV_ITEMS.map((item, i) => (
             <a
               key={item.href}
