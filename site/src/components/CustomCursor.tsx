@@ -74,13 +74,27 @@ export default function CustomCursor() {
       }
     };
 
+    const onMouseDown = () => {
+      gsap.to(dot, { scale: 2.5, opacity: 0.8, duration: 0.15, ease: "power2.out" });
+      gsap.to(ring, { scale: 0.6, opacity: 1, borderWidth: 2, duration: 0.15, ease: "power2.out" });
+    };
+
+    const onMouseUp = () => {
+      gsap.to(dot, { scale: 1, opacity: 1, duration: 0.3, ease: "elastic.out(1, 0.4)" });
+      gsap.to(ring, { scale: 1, opacity: 0.5, borderWidth: 1, duration: 0.3, ease: "elastic.out(1, 0.4)" });
+    };
+
     document.addEventListener("mouseover", onMouseOver);
     document.addEventListener("mouseout", onMouseOut);
+    window.addEventListener("mousedown", onMouseDown);
+    window.addEventListener("mouseup", onMouseUp);
 
     return () => {
       window.removeEventListener("mousemove", onMouseMove);
       document.removeEventListener("mouseover", onMouseOver);
       document.removeEventListener("mouseout", onMouseOut);
+      window.removeEventListener("mousedown", onMouseDown);
+      window.removeEventListener("mouseup", onMouseUp);
     };
   }, []);
 
