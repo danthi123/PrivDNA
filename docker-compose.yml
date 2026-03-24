@@ -11,7 +11,7 @@ services:
     environment:
       - DATABASE_KEY=${DATABASE_KEY}
       - RYBBIT_SITE_ID=${RYBBIT_SITE_ID}
-      - RYBBIT_URL=https://analytics.privdna.com
+      - RYBBIT_URL=${RYBBIT_URL}
       - SMTP_HOST=${SMTP_HOST}
       - SMTP_PORT=${SMTP_PORT}
       - SMTP_USER=${SMTP_USER}
@@ -41,7 +41,7 @@ services:
       - CLICKHOUSE_USER=default
       - CLICKHOUSE_PASSWORD=${RYBBIT_CLICKHOUSE_PASSWORD}
       - BETTER_AUTH_SECRET=${RYBBIT_AUTH_SECRET}
-      - BASE_URL=https://analytics.privdna.com
+      - BASE_URL=${RYBBIT_URL}
       - DISABLE_SIGNUP=true
     depends_on:
       - rybbit-postgres
@@ -54,9 +54,9 @@ services:
     container_name: rybbit-client
     restart: unless-stopped
     environment:
-      - NEXT_PUBLIC_BACKEND_URL=https://analytics.privdna.com
+      - NEXT_PUBLIC_BACKEND_URL=${RYBBIT_URL}
       - NEXT_PUBLIC_DISABLE_SIGNUP=true
-      - BASE_URL=https://analytics.privdna.com
+      - BASE_URL=${RYBBIT_URL}
     depends_on:
       - rybbit-backend
     networks:
