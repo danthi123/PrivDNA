@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { hashEmail, encryptEmail } from "@/lib/crypto";
+import { hashEmail, encryptEmail, generateUnsubscribeToken } from "@/lib/crypto";
 import { addToWaitlist, getWaitlistCount } from "@/lib/db";
 import { checkRateLimit } from "@/lib/rateLimit";
+import { sendEmail, isMailerConfigured } from "@/lib/mailer";
+import { buildConfirmationEmail } from "@/lib/emailTemplate";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -57,13 +59,24 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 10. Success
+    // 10. Send confirmation email (fire and forget)
+    if (isMailerConfigured()) {
+      const baseUrl = process.env.BASE_URL || "https://privdna.com";
+      const token = generateUnsubscribeToken(emailHash);
+      const unsubscribeUrl = `${baseUrl}/api/waitlist/unsubscribe/${token}`;
+      const { html, text } = buildConfirmationEmail(unsubscribeUrl);
+      sendEmail(normalized, "You're on the list — PrivDNA", html, text, unsubscribeUrl).catch(
+        (err) => console.error("Failed to send confirmation email:", err)
+      );
+    }
+
+    // 11. Success
     return NextResponse.json(
       { message: "You're on the list!", success: true },
       { status: 201 }
     );
   } catch (error) {
-    // 11. Error
+    // 12. Error
     console.error("Waitlist POST error:", error);
     return NextResponse.json(
       { error: "Something went wrong. Please try again." },

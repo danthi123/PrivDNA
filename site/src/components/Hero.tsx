@@ -85,7 +85,7 @@ export default function Hero() {
       className="relative h-screen flex items-center overflow-hidden"
     >
       {/* DNA Scene Background */}
-      <div className="absolute inset-0 opacity-30 md:opacity-80 pointer-events-none">
+      <div className="absolute inset-0 opacity-30 md:opacity-80 pointer-events-none md:pointer-events-auto">
         <DNASceneLoader className="absolute right-0 top-0 w-full md:w-[65%] h-full" />
       </div>
 

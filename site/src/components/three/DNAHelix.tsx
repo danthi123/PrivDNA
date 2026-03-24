@@ -4,11 +4,17 @@ import { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
+import type { DragState } from "./DNAScene";
+
 interface DNAHelixProps {
   mouse: React.RefObject<{ x: number; y: number } | null>;
+  dragState: React.RefObject<DragState>;
 }
 
-export default function DNAHelix({ mouse }: DNAHelixProps) {
+const BASE_SPEED = 0.003;
+const FRICTION = 0.95;
+
+export default function DNAHelix({ mouse, dragState }: DNAHelixProps) {
   const groupRef = useRef<THREE.Group>(null);
   const particlesRef = useRef<THREE.BufferAttribute>(null);
 
@@ -68,8 +74,15 @@ export default function DNAHelix({ mouse }: DNAHelixProps) {
   useFrame(() => {
     if (!groupRef.current) return;
 
-    // Slow rotation
-    groupRef.current.rotation.y += 0.003;
+    // Velocity-based rotation with drag support
+    const drag = dragState.current;
+    if (drag.isDragging) {
+      groupRef.current.rotation.y += drag.velocity;
+    } else {
+      // Lerp velocity toward base speed (flywheel decay)
+      drag.velocity = drag.velocity * FRICTION + BASE_SPEED * (1 - FRICTION);
+      groupRef.current.rotation.y += drag.velocity;
+    }
 
     // Mouse-reactive tilt
     const mx = mouse.current?.x ?? 0;
