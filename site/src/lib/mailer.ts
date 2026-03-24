@@ -22,7 +22,8 @@ function getTransporter(): Transporter {
     secure,
     auth: { user, pass },
     tls: {
-      // Proton Mail Bridge uses self-signed certs
+      // Set SMTP_REJECT_UNAUTHORIZED=false ONLY for localhost Proton Mail Bridge
+      // with self-signed certs. In production with smtp.protonmail.ch, keep true.
       rejectUnauthorized: process.env.SMTP_REJECT_UNAUTHORIZED !== "false",
     },
   });
@@ -48,14 +49,20 @@ export async function sendEmail(
     headers["List-Unsubscribe-Post"] = "List-Unsubscribe=One-Click";
   }
 
-  await getTransporter().sendMail({
-    from,
-    to,
-    subject,
-    html,
-    text,
-    headers,
-  });
+  try {
+    await getTransporter().sendMail({
+      from,
+      to,
+      subject,
+      html,
+      text,
+      headers,
+    });
+  } catch (err) {
+    // Reset transporter on auth/connection errors so next attempt creates a fresh connection
+    transporter = null;
+    throw err;
+  }
 }
 
 export function isMailerConfigured(): boolean {

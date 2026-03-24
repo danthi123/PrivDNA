@@ -18,6 +18,20 @@ export default function DNAScene({ className }: DNASceneProps) {
   const mouse = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
   const dragState = useRef<DragState>({ isDragging: false, lastX: 0, velocity: 0.003 });
   const [cursor, setCursor] = useState<"grab" | "grabbing">("grab");
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isVisible = useRef(true);
+
+  // Pause rendering when off-screen (PI-6)
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { isVisible.current = entry.isIntersecting; },
+      { threshold: 0 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -52,11 +66,12 @@ export default function DNAScene({ className }: DNASceneProps) {
   }, []);
 
   return (
-    <div className={className}>
+    <div ref={containerRef} className={className}>
       <Canvas
         camera={{ position: [0, 0, 6], fov: 50 }}
         gl={{ antialias: true, alpha: true }}
         dpr={[1, 1.5]}
+        frameloop="always"
         style={{ background: "transparent", cursor }}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
@@ -64,7 +79,7 @@ export default function DNAScene({ className }: DNASceneProps) {
         onPointerLeave={onPointerUp}
       >
         <ambientLight intensity={0.5} />
-        <DNAHelix mouse={mouse} dragState={dragState} />
+        <DNAHelix mouse={mouse} dragState={dragState} isVisible={isVisible} />
       </Canvas>
     </div>
   );

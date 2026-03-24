@@ -7,3 +7,4 @@ site/.env*.local
 .playwright-mcp/
 audit-report-*.md
 *-review-*.md
+*-report-*.md

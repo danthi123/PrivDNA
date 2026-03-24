@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { hashEmail, encryptEmail, generateUnsubscribeToken } from "@/lib/crypto";
-import { addToWaitlist, getWaitlistCount } from "@/lib/db";
+import { addToWaitlist } from "@/lib/db";
 import { checkRateLimit } from "@/lib/rateLimit";
 import { sendEmail, isMailerConfigured } from "@/lib/mailer";
 import { buildConfirmationEmail } from "@/lib/emailTemplate";
@@ -87,14 +87,5 @@ export async function POST(request: NextRequest) {
   }
 }
 
-export async function GET() {
-  try {
-    const count = getWaitlistCount();
-    return NextResponse.json({ count }, {
-      headers: { "Cache-Control": "public, max-age=3600" },
-    });
-  } catch (error) {
-    console.error("Waitlist GET error:", error);
-    return NextResponse.json({ count: 0 });
-  }
-}
+// GET endpoint intentionally removed — subscriber count is not public.
+// Use the admin API or direct database queries for internal metrics.
