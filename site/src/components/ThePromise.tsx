@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -50,22 +50,38 @@ export default function ThePromise() {
   const desktopRef = useRef<HTMLDivElement>(null);
   const desktopPillarRefs = useRef<(HTMLDivElement | null)[]>([]);
   const mobilePillarRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const [isMobile, setIsMobile] = useState(false);
+  useGSAP(() => {
+    ScrollTrigger.matchMedia({
+      // Desktop: pinned horizontal slide carousel
+      "(min-width: 768px)": function () {
+        const container = desktopRef.current;
+        if (!container) return;
 
-  useEffect(() => {
-    const mql = window.matchMedia("(max-width: 767px)");
-    setIsMobile(mql.matches);
-    const handler = (e: MediaQueryListEvent) => {
-      setIsMobile(e.matches);
-      ScrollTrigger.refresh();
-    };
-    mql.addEventListener("change", handler);
-    return () => mql.removeEventListener("change", handler);
-  }, []);
+        const p0 = desktopPillarRefs.current[0];
+        const p1 = desktopPillarRefs.current[1];
+        const p2 = desktopPillarRefs.current[2];
+        if (!p0 || !p1 || !p2) return;
 
-  useGSAP(
-    () => {
-      if (isMobile) {
+        gsap.set(p1, { xPercent: 100 });
+        gsap.set(p2, { xPercent: 100 });
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: container,
+            pin: true,
+            scrub: 1,
+            end: "+=300%",
+          },
+        });
+
+        tl.to(p0, { xPercent: -100, duration: 0.3 }, 0.15);
+        tl.to(p1, { xPercent: 0, duration: 0.3 }, 0.15);
+        tl.to(p1, { xPercent: -100, duration: 0.3 }, 0.55);
+        tl.to(p2, { xPercent: 0, duration: 0.3 }, 0.55);
+      },
+
+      // Mobile: vertical stack with fade-in
+      "(max-width: 767px)": function () {
         mobilePillarRefs.current.forEach((el) => {
           if (!el) return;
           gsap.from(el, {
@@ -80,35 +96,9 @@ export default function ThePromise() {
             },
           });
         });
-      } else {
-        const container = desktopRef.current;
-        if (!container) return;
-
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: container,
-            pin: true,
-            scrub: 1,
-            end: "+=300%",
-          },
-        });
-
-        const p0 = desktopPillarRefs.current[0];
-        const p1 = desktopPillarRefs.current[1];
-        const p2 = desktopPillarRefs.current[2];
-        if (!p0 || !p1 || !p2) return;
-
-        gsap.set(p1, { xPercent: 100 });
-        gsap.set(p2, { xPercent: 100 });
-
-        tl.to(p0, { xPercent: -100, duration: 0.3 }, 0.15);
-        tl.to(p1, { xPercent: 0, duration: 0.3 }, 0.15);
-        tl.to(p1, { xPercent: -100, duration: 0.3 }, 0.55);
-        tl.to(p2, { xPercent: 0, duration: 0.3 }, 0.55);
-      }
-    },
-    { dependencies: [isMobile] }
-  );
+      },
+    });
+  });
 
   return (
     <section id="promise" aria-label="The Promise">
