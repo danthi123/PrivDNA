@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const TheProblem = dynamic(() => import("@/components/TheProblem"), { ssr: false });
 const ThePromise = dynamic(() => import("@/components/ThePromise"), { ssr: false });
@@ -24,6 +25,7 @@ export default function Home() {
       <OpenSource />
       <WaitlistSignup />
       <Footer />
+      <ScrollToTop />
     </main>
   );
 }
