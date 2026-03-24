@@ -4,6 +4,7 @@ import { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
+ScrollTrigger.config({ ignoreMobileResize: true });
 import { useGSAP } from "@gsap/react";
 
 export default function TheProblem() {
@@ -52,7 +53,7 @@ export default function TheProblem() {
             scrollTrigger: {
               trigger: el,
               start: "top 80%",
-              toggleActions: "play none none none",
+              once: true,
             },
           });
         });
