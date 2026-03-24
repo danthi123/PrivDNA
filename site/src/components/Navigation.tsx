@@ -18,11 +18,8 @@ export default function Navigation() {
   const navItemsRef = useRef<HTMLAnchorElement[]>([]);
   const lastScrollY = useRef(0);
 
-  // Track scroll direction to show/hide nav bar — desktop only
+  // Track scroll direction to show/hide nav bar (rAF-throttled)
   useEffect(() => {
-    // Skip on touch devices — fixed element transitions cause scroll jank on iOS
-    if (window.matchMedia("(pointer: coarse)").matches) return;
-
     let rafId: number | null = null;
 
     const onScroll = () => {
@@ -101,8 +98,8 @@ export default function Navigation() {
     <>
       {/* Fixed nav bar */}
       <nav
-        className={`fixed top-0 left-0 right-0 z-[100] flex items-center justify-between px-6 py-4 md:transition-transform md:duration-300 ${
-          visible ? "translate-y-0" : "md:-translate-y-full"
+        className={`fixed top-0 left-0 right-0 z-[100] flex items-center justify-between px-6 py-4 transition-transform duration-300 ${
+          visible ? "translate-y-0" : "-translate-y-full"
         }`}
       >
         {/* Logo */}
@@ -138,7 +135,7 @@ export default function Navigation() {
       {/* Full-screen overlay */}
       <div
         ref={overlayRef}
-        className="fixed inset-0 z-[105] bg-bg-primary/95 md:backdrop-blur-md flex items-center justify-center invisible opacity-0"
+        className="fixed inset-0 z-[105] bg-bg-primary/95 backdrop-blur-md flex items-center justify-center invisible opacity-0"
       >
         <nav className="flex flex-col items-center gap-6">
           {NAV_ITEMS.map((item, i) => (
