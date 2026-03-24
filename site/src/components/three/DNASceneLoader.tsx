@@ -8,8 +8,9 @@ const DNAScene = dynamic(() => import("./DNAScene"), {
 
 interface DNASceneLoaderProps {
   className?: string;
+  scrollProgress?: React.RefObject<number>;
 }
 
-export default function DNASceneLoader({ className }: DNASceneLoaderProps) {
-  return <DNAScene className={className} />;
+export default function DNASceneLoader({ className, scrollProgress }: DNASceneLoaderProps) {
+  return <DNAScene className={className} scrollProgress={scrollProgress} />;
 }

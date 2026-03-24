@@ -14,16 +14,19 @@ interface DNAHelixProps {
 const BASE_SPEED = 0.003;
 const FRICTION = 0.95;
 
+// Tall helix spanning the full page scroll
+const HELIX_HEIGHT = 40;
+const HELIX_TURNS = 20;
+const POINTS_PER_TURN = 60;
+const PARTICLE_COUNT = 500;
+
 export default function DNAHelix({ mouse, dragState }: DNAHelixProps) {
   const groupRef = useRef<Group>(null);
   const particlesRef = useRef<BufferAttribute>(null);
 
   const { strand1, strand2, rungs, particles } = useMemo(() => {
-    const turns = 4;
-    const pointsPerTurn = 60;
-    const totalPoints = turns * pointsPerTurn;
+    const totalPoints = HELIX_TURNS * POINTS_PER_TURN;
     const radius = 1.2;
-    const height = 8;
 
     const strand1Arr = new Float32Array(totalPoints * 3);
     const strand2Arr = new Float32Array(totalPoints * 3);
@@ -31,8 +34,8 @@ export default function DNAHelix({ mouse, dragState }: DNAHelixProps) {
 
     for (let i = 0; i < totalPoints; i++) {
       const t = i / (totalPoints - 1);
-      const angle = t * 2 * Math.PI * turns;
-      const y = -height / 2 + t * height;
+      const angle = t * 2 * Math.PI * HELIX_TURNS;
+      const y = -HELIX_HEIGHT / 2 + t * HELIX_HEIGHT;
 
       // Strand 1
       const x1 = Math.cos(angle) * radius;
@@ -54,13 +57,12 @@ export default function DNAHelix({ mouse, dragState }: DNAHelixProps) {
       }
     }
 
-    // Floating particles
-    const particleCount = 200;
-    const particleArr = new Float32Array(particleCount * 3);
-    for (let i = 0; i < particleCount; i++) {
-      particleArr[i * 3] = (Math.random() - 0.5) * 6;
-      particleArr[i * 3 + 1] = (Math.random() - 0.5) * height * 1.5;
-      particleArr[i * 3 + 2] = (Math.random() - 0.5) * 6;
+    // Floating particles spread across the full height
+    const particleArr = new Float32Array(PARTICLE_COUNT * 3);
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      particleArr[i * 3] = (Math.random() - 0.5) * 8;
+      particleArr[i * 3 + 1] = (Math.random() - 0.5) * HELIX_HEIGHT * 1.2;
+      particleArr[i * 3 + 2] = (Math.random() - 0.5) * 8;
     }
 
     return {
@@ -93,8 +95,7 @@ export default function DNAHelix({ mouse, dragState }: DNAHelixProps) {
     // Drift particles upward
     if (particlesRef.current) {
       const arr = particlesRef.current.array as Float32Array;
-      const height = 8;
-      const halfH = (height * 1.5) / 2;
+      const halfH = (HELIX_HEIGHT * 1.2) / 2;
       for (let i = 0; i < arr.length / 3; i++) {
         arr[i * 3 + 1] += 0.003;
         if (arr[i * 3 + 1] > halfH) {
@@ -160,3 +161,5 @@ export default function DNAHelix({ mouse, dragState }: DNAHelixProps) {
     </group>
   );
 }
+
+export { HELIX_HEIGHT };

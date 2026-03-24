@@ -3,7 +3,6 @@
 import { useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import DNASceneLoader from "@/components/three/DNASceneLoader";
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -84,11 +83,6 @@ export default function Hero() {
       aria-label="Hero"
       className="relative h-screen flex items-center overflow-hidden"
     >
-      {/* DNA Scene Background */}
-      <div className="absolute inset-0 opacity-30 md:opacity-80 pointer-events-none md:pointer-events-auto">
-        <DNASceneLoader className="absolute right-0 top-0 w-full md:w-[65%] h-full" />
-      </div>
-
       {/* Left content */}
       <div className="relative z-10 max-w-3xl px-6 md:px-16 lg:px-24">
         <h1
@@ -110,7 +104,7 @@ export default function Hero() {
         <button
           ref={ctaRef}
           onClick={scrollToWaitlist}
-          className="mt-8 bg-accent text-bg-primary font-semibold text-lg rounded-full px-8 py-4 hover:scale-105 transition-all duration-300 cursor-pointer"
+          className="mt-8 bg-accent text-bg-primary font-semibold text-lg rounded-full px-8 py-4 hover:scale-105 transition-all duration-300 cursor-pointer focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary"
         >
           Join the Waitlist
         </button>
