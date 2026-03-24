@@ -54,6 +54,11 @@ export default function WaitlistSignup() {
 
       if (res.status === 201) {
         setStatus("success");
+        // Track conversion for Rybbit funnel
+        try {
+          const w = window as unknown as { rybbit?: { event: (name: string) => void } };
+          w.rybbit?.event("waitlist_signup");
+        } catch { /* analytics should never break signup */ }
       } else if (res.status === 200 && data.alreadyExists) {
         setStatus("duplicate");
       } else if (res.status === 429) {
