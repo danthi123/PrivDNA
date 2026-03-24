@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { useIsMobile } from "@/lib/useIsMobile";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -94,9 +95,31 @@ export default function HowItWorks() {
   const outerRef = useRef<HTMLDivElement>(null);
   const innerRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
+  const mobileCardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const isMobile = useIsMobile();
 
   useGSAP(
     () => {
+      if (isMobile) {
+        // Mobile: fade-in each card on scroll
+        mobileCardRefs.current.forEach((el) => {
+          if (!el) return;
+          gsap.from(el, {
+            y: 30,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: el,
+              start: "top 85%",
+              toggleActions: "play none none none",
+            },
+          });
+        });
+        return;
+      }
+
+      // Desktop: horizontal scroll with pin
       const outer = outerRef.current;
       const inner = innerRef.current;
       const progress = progressRef.current;
@@ -119,9 +142,40 @@ export default function HowItWorks() {
         },
       });
     },
-    { scope: outerRef }
+    { scope: outerRef, dependencies: [isMobile] }
   );
 
+  if (isMobile) {
+    // Mobile: vertical grid of cards
+    return (
+      <section id="how-it-works" aria-label="How It Works" ref={outerRef}>
+        <div className="px-6 py-16">
+          <div className="grid grid-cols-2 gap-6">
+            {steps.map((step, i) => (
+              <div
+                key={step.num}
+                ref={(el) => { mobileCardRefs.current[i] = el; }}
+                className="flex flex-col items-center text-center py-8"
+              >
+                <span className="text-text-secondary text-xs mb-3 tracking-widest">
+                  {step.num}
+                </span>
+                <div className="mb-3">{step.icon}</div>
+                <h3 className="text-text-primary font-bold text-base mb-1">
+                  {step.title}
+                </h3>
+                <p className="text-text-secondary text-xs whitespace-pre-line">
+                  {step.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Desktop: horizontal scroll with pin
   return (
     <section id="how-it-works" aria-label="How It Works">
       <div ref={outerRef} className="h-screen overflow-hidden relative">
@@ -132,7 +186,7 @@ export default function HowItWorks() {
           {steps.map((step) => (
             <div
               key={step.num}
-              className="flex-shrink-0 w-[80vw] md:w-[50vw] lg:w-[33vw] flex flex-col items-center justify-center px-8 text-center"
+              className="flex-shrink-0 w-[50vw] lg:w-[33vw] flex flex-col items-center justify-center px-8 text-center"
             >
               <span className="text-text-secondary text-sm mb-4 tracking-widest">
                 {step.num}

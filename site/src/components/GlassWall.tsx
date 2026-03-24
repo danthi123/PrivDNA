@@ -37,7 +37,7 @@ export default function GlassWall() {
     <section
       ref={sectionRef}
       aria-label="The Glass Wall"
-      className="h-screen relative overflow-hidden"
+      className="h-[60vh] md:h-screen relative overflow-hidden flex items-end"
       style={{
         background: `
           radial-gradient(ellipse at 60% 50%, rgba(0, 232, 200, 0.08) 0%, transparent 70%),
@@ -46,7 +46,7 @@ export default function GlassWall() {
         `,
       }}
     >
-      <div ref={contentRef} className="absolute bottom-8 left-8">
+      <div ref={contentRef} className="p-6 md:p-8">
         <p className="text-text-primary font-bold text-lg">Manhattan, NYC</p>
         <p className="text-text-secondary text-sm tracking-widest uppercase">
           Opening 2027
