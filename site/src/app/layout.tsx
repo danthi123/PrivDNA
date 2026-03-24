@@ -54,6 +54,9 @@ export default function RootLayout({
     >
       <body className="font-sans">
         <SmoothScroll>
+          <a href="#waitlist" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[200] focus:bg-accent focus:text-bg-primary focus:px-4 focus:py-2 focus:rounded-full">
+            Skip to waitlist
+          </a>
           <CustomCursor />
           {children}
         </SmoothScroll>

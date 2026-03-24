@@ -60,6 +60,7 @@ export default function OpenSource() {
     <section
       ref={sectionRef}
       id="open-source"
+      aria-label="Open Source"
       className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 px-6 md:px-16 lg:px-24 py-24"
     >
       {/* Left column */}
@@ -83,7 +84,7 @@ export default function OpenSource() {
       </div>
 
       {/* Right column — Terminal */}
-      <div className="bg-bg-surface rounded-2xl p-6 font-mono text-sm md:text-base">
+      <div className="bg-bg-surface rounded-2xl p-6 font-mono text-xs md:text-sm overflow-x-auto">
         {/* Terminal header dots */}
         <div className="flex gap-2 mb-4">
           <div className="w-3 h-3 rounded-full" style={{ background: "#ff5f56" }} />

@@ -120,7 +120,7 @@ export default function ThePromise() {
   );
 
   return (
-    <section id="promise">
+    <section id="promise" aria-label="The Promise">
       <div
         ref={containerRef}
         className="h-screen relative overflow-hidden"

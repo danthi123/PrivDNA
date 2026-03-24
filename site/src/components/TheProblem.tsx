@@ -64,7 +64,7 @@ export default function TheProblem() {
   );
 
   return (
-    <section id="problem">
+    <section id="problem" aria-label="The Problem">
       <div
         ref={containerRef}
         className="h-screen flex items-center justify-center relative"

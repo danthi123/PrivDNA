@@ -78,6 +78,7 @@ export default function WaitlistSignup() {
     <section
       ref={sectionRef}
       id="waitlist"
+      aria-label="Join the Waitlist"
       className="h-screen flex items-center justify-center text-center px-6"
     >
       <div className="max-w-2xl w-full">
@@ -99,7 +100,9 @@ export default function WaitlistSignup() {
               onSubmit={handleSubmit}
               className="flex flex-col sm:flex-row items-center gap-3 justify-center"
             >
+              <label htmlFor="waitlist-email" className="sr-only">Email address</label>
               <input
+                id="waitlist-email"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -110,7 +113,7 @@ export default function WaitlistSignup() {
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="bg-accent text-bg-primary font-semibold text-lg rounded-full px-8 py-4 hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:hover:scale-100 cursor-pointer whitespace-nowrap"
+                className="w-full sm:w-auto bg-accent text-bg-primary font-semibold text-lg rounded-full px-8 py-4 hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:hover:scale-100 cursor-pointer whitespace-nowrap"
               >
                 {status === "loading" ? "Joining..." : "Join the Waitlist"}
               </button>

@@ -11,7 +11,7 @@ export default function Footer() {
           <a
             href="#"
             aria-label="GitHub"
-            className="text-text-secondary hover:text-accent transition-colors"
+            className="p-2 text-text-secondary hover:text-accent transition-colors"
           >
             <svg
               width="20"
@@ -27,7 +27,7 @@ export default function Footer() {
           <a
             href="#"
             aria-label="X"
-            className="text-text-secondary hover:text-accent transition-colors"
+            className="p-2 text-text-secondary hover:text-accent transition-colors"
           >
             <svg
               width="20"
@@ -43,7 +43,7 @@ export default function Footer() {
           <a
             href="#"
             aria-label="Email"
-            className="text-text-secondary hover:text-accent transition-colors"
+            className="p-2 text-text-secondary hover:text-accent transition-colors"
           >
             <svg
               width="20"

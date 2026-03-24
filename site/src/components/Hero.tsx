@@ -81,11 +81,12 @@ export default function Hero() {
   return (
     <section
       ref={sectionRef}
+      aria-label="Hero"
       className="relative h-screen flex items-center overflow-hidden"
     >
       {/* DNA Scene Background */}
-      <div className="absolute inset-0 pointer-events-none">
-        <DNASceneLoader className="absolute right-0 top-0 w-[65%] h-full opacity-80" />
+      <div className="absolute inset-0 opacity-30 md:opacity-80 pointer-events-none">
+        <DNASceneLoader className="absolute right-0 top-0 w-full md:w-[65%] h-full" />
       </div>
 
       {/* Left content */}

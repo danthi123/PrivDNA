@@ -112,7 +112,7 @@ export default function HowItWorks() {
           trigger: outer,
           pin: true,
           scrub: 1,
-          end: "+=400%",
+          end: "+=300%",
           onUpdate: (self) => {
             gsap.set(progress, { scaleX: self.progress });
           },
@@ -123,7 +123,7 @@ export default function HowItWorks() {
   );
 
   return (
-    <section id="how-it-works">
+    <section id="how-it-works" aria-label="How It Works">
       <div ref={outerRef} className="h-screen overflow-hidden relative">
         <div
           ref={innerRef}

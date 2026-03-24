@@ -36,6 +36,7 @@ export default function GlassWall() {
   return (
     <section
       ref={sectionRef}
+      aria-label="The Glass Wall"
       className="h-screen relative overflow-hidden"
       style={{
         background: `

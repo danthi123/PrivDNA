@@ -1,11 +1,15 @@
+"use client";
+
+import dynamic from "next/dynamic";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
-import TheProblem from "@/components/TheProblem";
-import ThePromise from "@/components/ThePromise";
-import HowItWorks from "@/components/HowItWorks";
-import GlassWall from "@/components/GlassWall";
-import OpenSource from "@/components/OpenSource";
-import WaitlistSignup from "@/components/WaitlistSignup";
+
+const TheProblem = dynamic(() => import("@/components/TheProblem"), { ssr: false });
+const ThePromise = dynamic(() => import("@/components/ThePromise"), { ssr: false });
+const HowItWorks = dynamic(() => import("@/components/HowItWorks"), { ssr: false });
+const GlassWall = dynamic(() => import("@/components/GlassWall"), { ssr: false });
+const OpenSource = dynamic(() => import("@/components/OpenSource"), { ssr: false });
+const WaitlistSignup = dynamic(() => import("@/components/WaitlistSignup"), { ssr: false });
 import Footer from "@/components/Footer";
 
 export default function Home() {
