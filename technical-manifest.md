@@ -91,7 +91,7 @@
 | Category | Total |
 |----------|-------|
 | Sequencing Equipment | $378,700 |
-| Compute Infrastructure | $160,426 |
+| Compute Infrastructure | $165,426 |
 | Network and Security | $2,879 |
 | Power and Cooling | $9,950 |
 | Delivery Media (initial) | $11,540 |

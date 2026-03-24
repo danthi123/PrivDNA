@@ -43,7 +43,7 @@ This document is provided for informational purposes only and does not constitut
 
 # I. EXECUTIVE SUMMARY
 
-PrivDNA is a first-of-its-kind privacy-sovereign whole genome sequencing (WGS) service operating from a physical storefront in New York City. We sequence customers' complete genomes at clinical-grade accuracy (>99.9% Q30), process all data on air-gapped servers that never touch the internet, deliver results on FIPS 140-3 certified encrypted hardware, and destroy all on-premise copies under NIST SP 800-88 Rev. 2 standards -- witnessed by the customer through a glass-walled laboratory.
+PrivDNA is a first-of-its-kind privacy-sovereign whole genome sequencing (WGS) service operating from a physical storefront in New York City. We sequence customers' complete genomes at clinical-grade accuracy (>90% of bases above Q30), process all data on air-gapped servers that never touch the internet, deliver results on FIPS 140-3 certified encrypted hardware, and destroy all on-premise copies under NIST SP 800-88 Rev. 2 standards -- witnessed by the customer through a glass-walled laboratory.
 
 **The core promise: your DNA data is created in front of you, handed to you, and erased. No copies. No cloud. No exceptions.**
 
@@ -65,7 +65,7 @@ This confluence creates a market opening for a fundamentally different model -- 
 
 | Metric | Value |
 |--------|-------|
-| Total startup capital required | $986,000 |
+| Total startup capital required | $997,000 |
 | Price per genome | $3,500 |
 | Variable cost per genome | $2,340 (with volume discounts) |
 | Gross margin per genome | $1,160 |
@@ -112,7 +112,7 @@ Multiple state attorneys general urged consumers to delete their data before the
 23andMe was not an anomaly. The centralized genetics business model is built on data monetization:
 
 - 23andMe's $300 million partnership with GlaxoSmithKline (2018) granted the pharmaceutical company access to aggregated genetic data for drug target discovery.
-- Ancestry was acquired by Blackstone in 2020 for $4.7 billion. Industry analysts noted the implied per-customer value of approximately $250 per exome, suggesting the database itself was a primary asset.
+- Ancestry was acquired by Blackstone in 2020 for $4.7 billion. Industry analysts noted the implied per-customer value of approximately $250 per DNA record, suggesting the database itself was a primary asset.
 - Nebula Genomics (defunct 2025 -- ProPhase Labs filed Chapter 11 for its lab subsidiaries in September 2025), despite marketing itself as "privacy-first" with blockchain-based data ownership, faces a 2024 class-action lawsuit (Portillo v. Nebula Genomics) alleging the company shared genetic information with Meta, Google, and Microsoft through embedded web tracking tools (Facebook Pixel, Google Analytics, Microsoft Clarity). A federal court denied Nebula's motion to dismiss in late 2025.
 
 The pattern is consistent: companies that hold centralized genetic databases face irresistible economic pressure to monetize that data, regardless of initial privacy commitments.
@@ -755,8 +755,10 @@ As the partner network matures, PrivDNA may explore a **marketplace model** wher
 | Eppendorf 5810R Centrifuge | $6,000 |
 | Eppendorf 5424R Microcentrifuge | $3,500 |
 | Pipettes (Eppendorf Research Plus set) | $3,200 |
-| Vortex mixer and miscellaneous small equipment | $2,500 |
-| **Subtotal: Lab Equipment** | **$373,700** |
+| Vortex mixer | $500 |
+| Laboratory freezer (-20°C, reagent storage) | $5,000 |
+| Laboratory refrigerator (2-8°C, buffer storage) | $2,000 |
+| **Subtotal: Lab Equipment** | **$378,700** |
 
 *\*NextSeq 2000 list price is $335,000. Certified refurbished units are available in the $75,000-$150,000 range from authorized resellers. PrivDNA will evaluate both new and refurbished options during procurement, potentially reducing CAPEX by $150,000-$250,000. Financial projections use the list price as a conservative baseline.*
 
@@ -784,11 +786,11 @@ As the partner network matures, PrivDNA may explore a **marketplace model** wher
 
 | Item | Cost |
 |------|------|
-| Security deposit (4 months at ~$8,500/mo) | $34,000 |
+| Security deposit (4 months at ~$10,000/mo) | $40,000 |
 | Glass wall construction and installation | $22,000 |
 | Lab-specific MEP buildout (HVAC, plumbing, electrical) | $85,000 |
 | Furniture, signage, and reception buildout | $15,000 |
-| **Subtotal: Facility** | **$156,000** |
+| **Subtotal: Facility** | **$162,000** |
 
 ### Software Development (Open Source Pipeline)
 
@@ -830,14 +832,14 @@ As the partner network matures, PrivDNA may explore a **marketplace model** wher
 
 | Category | Cost |
 |----------|------|
-| Lab Equipment | $373,700 |
+| Lab Equipment | $378,700 |
 | Compute Infrastructure | $176,300 |
-| Facility | $156,000 |
+| Facility | $162,000 |
 | Software Development | $110,000 |
 | Regulatory/Legal | $35,000 |
 | Marketing | $50,000 |
 | Reserves | $85,000 |
-| **TOTAL STARTUP CAPITAL** | **$986,000** |
+| **TOTAL STARTUP CAPITAL** | **$997,000** |
 
 ## 10.2 Operating Expenses (OPEX) -- Annual
 
@@ -964,11 +966,11 @@ Based on Year 1-2 projected losses:
 
 | Period | Net Loss | Cumulative Cash Need |
 |--------|----------|---------------------|
-| Startup CAPEX | ($986,000) | ($986,000) |
-| Year 1 operations | ($554,400) | ($1,540,700) |
-| Year 2 operations | ($193,200) | ($1,733,900) |
+| Startup CAPEX | ($997,000) | ($997,000) |
+| Year 1 operations | ($554,400) | ($1,551,400) |
+| Year 2 operations | ($193,200) | ($1,744,600) |
 
-**Total funding required through profitability: ~$1.35 million** (startup capital of $986,000 plus ~$365,000 in operational runway to cover Year 1-2 losses, partially offset by Year 1-2 revenue).
+**Total funding required through profitability: ~$1.35 million** (startup capital of $997,000 plus ~$353,000 in operational runway to cover Year 1-2 losses, partially offset by Year 1-2 revenue).
 
 ---
 
@@ -1066,14 +1068,14 @@ Each new location replicates the NYC model with identical equipment, pipeline, a
 
 | Allocation | Amount | % of Raise |
 |------------|--------|------------|
-| Sequencing and lab equipment | $374,000 | 27.7% |
+| Sequencing and lab equipment | $378,700 | 28.1% |
 | Air-gapped compute infrastructure | $176,300 | 13.1% |
-| Facility buildout (deposit, glass wall, MEP) | $156,000 | 11.6% |
+| Facility buildout (deposit, glass wall, MEP) | $162,000 | 12.0% |
 | Open-source software development | $110,000 | 8.1% |
 | Regulatory and legal | $35,000 | 2.6% |
 | Marketing and launch | $50,000 | 3.7% |
 | Reserves (consumables + contingency) | $85,000 | 6.3% |
-| **Operational runway (12 months)** | **$363,700** | **26.9%** |
+| **Operational runway (12 months)** | **$353,000** | **26.1%** |
 | **Total** | **$1,350,000** | **100%** |
 
 ## 13.3 Milestones Tied to Funding
