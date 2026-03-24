@@ -23,7 +23,8 @@ function getDb(): InstanceType<typeof Database> {
   const dbPath = path.join(dbDir, "newsletter.db");
   db = new Database(dbPath);
 
-  db.pragma(`key='${key}'`);
+  // Use hex key format to avoid SQL injection via PRAGMA interpolation
+  db.pragma(`key="x'${key}'"`);
 
   db.exec(`
     CREATE TABLE IF NOT EXISTS waitlist (
@@ -31,17 +32,25 @@ function getDb(): InstanceType<typeof Database> {
       email_hash TEXT UNIQUE NOT NULL,
       email_encrypted TEXT NOT NULL,
       email_iv TEXT NOT NULL,
+      email_auth_tag TEXT NOT NULL DEFAULT '',
+      unsubscribe_token TEXT UNIQUE NOT NULL,
       created_at TEXT NOT NULL,
-      source TEXT DEFAULT 'website'
+      source TEXT DEFAULT 'website',
+      unsubscribed_at TEXT DEFAULT NULL
     );
   `);
 
-  // Migration: add unsubscribed_at column if missing
-  const columns = db.pragma("table_info(waitlist)") as Array<{ name: string }>;
-  const hasUnsubscribedAt = columns.some((col) => col.name === "unsubscribed_at");
-  if (!hasUnsubscribedAt) {
-    db.exec("ALTER TABLE waitlist ADD COLUMN unsubscribed_at TEXT DEFAULT NULL");
-  }
+  // Index for fast unsubscribe token lookup (O(1) instead of O(N))
+  db.exec(`
+    CREATE INDEX IF NOT EXISTS idx_waitlist_unsub_token
+    ON waitlist(unsubscribe_token) WHERE unsubscribed_at IS NULL;
+  `);
+
+  // Partial index for active subscriber count queries
+  db.exec(`
+    CREATE INDEX IF NOT EXISTS idx_waitlist_active
+    ON waitlist(unsubscribed_at) WHERE unsubscribed_at IS NULL;
+  `);
 
   return db;
 }
@@ -50,16 +59,26 @@ export function addToWaitlist(
   emailHash: string,
   emailEncrypted: string,
   emailIv: string,
+  emailAuthTag: string,
+  unsubscribeToken: string,
   source: string = "website"
 ): { success: boolean; duplicate: boolean } {
   const database = getDb();
 
   try {
     const stmt = database.prepare(
-      `INSERT INTO waitlist (email_hash, email_encrypted, email_iv, created_at, source)
-       VALUES (?, ?, ?, ?, ?)`
+      `INSERT INTO waitlist (email_hash, email_encrypted, email_iv, email_auth_tag, unsubscribe_token, created_at, source)
+       VALUES (?, ?, ?, ?, ?, ?, ?)`
     );
-    stmt.run(emailHash, emailEncrypted, emailIv, new Date().toISOString(), source);
+    stmt.run(
+      emailHash,
+      emailEncrypted,
+      emailIv,
+      emailAuthTag,
+      unsubscribeToken,
+      new Date().toISOString(),
+      source
+    );
     return { success: true, duplicate: false };
   } catch (error: unknown) {
     if (
@@ -75,7 +94,9 @@ export function addToWaitlist(
 export function getWaitlistCount(): number {
   const database = getDb();
   const row = database
-    .prepare("SELECT COUNT(*) as count FROM waitlist WHERE unsubscribed_at IS NULL")
+    .prepare(
+      "SELECT COUNT(*) as count FROM waitlist WHERE unsubscribed_at IS NULL"
+    )
     .get() as { count: number };
   return row.count;
 }
@@ -85,15 +106,21 @@ export interface WaitlistSubscriber {
   email_hash: string;
   email_encrypted: string;
   email_iv: string;
+  email_auth_tag: string;
+  unsubscribe_token: string;
 }
 
-export function getAllActiveSubscribers(): WaitlistSubscriber[] {
+// Find a subscriber by their unsubscribe token — O(1) indexed lookup
+export function findByUnsubscribeToken(
+  token: string
+): WaitlistSubscriber | null {
   const database = getDb();
-  return database
+  const row = database
     .prepare(
-      "SELECT id, email_hash, email_encrypted, email_iv FROM waitlist WHERE unsubscribed_at IS NULL"
+      "SELECT id, email_hash, email_encrypted, email_iv, email_auth_tag, unsubscribe_token FROM waitlist WHERE unsubscribe_token = ? AND unsubscribed_at IS NULL"
     )
-    .all() as WaitlistSubscriber[];
+    .get(token) as WaitlistSubscriber | undefined;
+  return row ?? null;
 }
 
 export function markUnsubscribed(emailHash: string): boolean {

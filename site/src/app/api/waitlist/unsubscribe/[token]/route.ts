@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { findEmailHashByToken, decryptEmail } from "@/lib/crypto";
-import { getAllActiveSubscribers, markUnsubscribed } from "@/lib/db";
+import { decryptEmail } from "@/lib/crypto";
+import { findByUnsubscribeToken, markUnsubscribed } from "@/lib/db";
+import { checkRateLimit } from "@/lib/rateLimit";
 import { sendEmail, isMailerConfigured } from "@/lib/mailer";
 import { buildUnsubscribeConfirmationEmail } from "@/lib/emailTemplate";
 
@@ -83,20 +84,41 @@ function htmlPage(title: string, body: string): NextResponse {
   );
 }
 
-function resolveToken(token: string): string | null {
-  const subscribers = getAllActiveSubscribers();
-  const hashes = subscribers.map((s) => s.email_hash);
-  return findEmailHashByToken(token, hashes);
-}
-
 export async function GET(
-  _request: NextRequest,
+  request: NextRequest,
   { params }: { params: Promise<{ token: string }> }
 ) {
   const { token } = await params;
-  const emailHash = resolveToken(token);
 
-  if (!emailHash) {
+  // Rate limit unsubscribe page views
+  const ip =
+    request.headers.get("cf-connecting-ip") ||
+    request.headers.get("x-forwarded-for")?.split(",")[0].trim() ||
+    "unknown";
+  const { allowed } = checkRateLimit(ip);
+  if (!allowed) {
+    return htmlPage(
+      "Too Many Requests",
+      `<h1>Too many requests.</h1>
+       <p>Please try again later.</p>
+       <a href="https://privdna.com" class="back-link">Back to PrivDNA</a>`
+    );
+  }
+
+  // Validate token format (64 hex chars)
+  if (!/^[0-9a-f]{64}$/i.test(token)) {
+    return htmlPage(
+      "Invalid Link",
+      `<h1>Invalid link.</h1>
+       <p>This unsubscribe link is not valid.</p>
+       <a href="https://privdna.com" class="back-link">Back to PrivDNA</a>`
+    );
+  }
+
+  // O(1) indexed lookup
+  const subscriber = findByUnsubscribeToken(token);
+
+  if (!subscriber) {
     return htmlPage(
       "Invalid Link",
       `<h1>Invalid or expired link.</h1>
@@ -117,16 +139,40 @@ export async function GET(
 }
 
 export async function POST(
-  _request: NextRequest,
+  request: NextRequest,
   { params }: { params: Promise<{ token: string }> }
 ) {
   const { token } = await params;
 
-  const subscribers = getAllActiveSubscribers();
-  const hashes = subscribers.map((s) => s.email_hash);
-  const emailHash = findEmailHashByToken(token, hashes);
+  // Rate limit
+  const ip =
+    request.headers.get("cf-connecting-ip") ||
+    request.headers.get("x-forwarded-for")?.split(",")[0].trim() ||
+    "unknown";
+  const { allowed } = checkRateLimit(ip);
+  if (!allowed) {
+    return htmlPage(
+      "Too Many Requests",
+      `<h1>Too many requests.</h1>
+       <p>Please try again later.</p>
+       <a href="https://privdna.com" class="back-link">Back to PrivDNA</a>`
+    );
+  }
 
-  if (!emailHash) {
+  // Validate token format
+  if (!/^[0-9a-f]{64}$/i.test(token)) {
+    return htmlPage(
+      "Invalid Link",
+      `<h1>Invalid link.</h1>
+       <p>This unsubscribe link is not valid.</p>
+       <a href="https://privdna.com" class="back-link">Back to PrivDNA</a>`
+    );
+  }
+
+  // O(1) indexed lookup
+  const subscriber = findByUnsubscribeToken(token);
+
+  if (!subscriber) {
     return htmlPage(
       "Invalid Link",
       `<h1>Invalid or expired link.</h1>
@@ -135,7 +181,7 @@ export async function POST(
     );
   }
 
-  const updated = markUnsubscribed(emailHash);
+  const updated = markUnsubscribed(subscriber.email_hash);
 
   if (!updated) {
     return htmlPage(
@@ -148,17 +194,18 @@ export async function POST(
 
   // Send unsubscribe confirmation email (fire and forget)
   if (isMailerConfigured()) {
-    const subscriber = subscribers.find((s) => s.email_hash === emailHash);
-    if (subscriber) {
-      try {
-        const email = decryptEmail(subscriber.email_encrypted, subscriber.email_iv);
-        const { html, text } = buildUnsubscribeConfirmationEmail();
-        sendEmail(email, "You've been unsubscribed — PrivDNA", html, text).catch((err) =>
-          console.error("Failed to send unsubscribe confirmation:", err)
-        );
-      } catch (err) {
-        console.error("Failed to decrypt email for unsubscribe confirmation:", err);
-      }
+    try {
+      const email = decryptEmail(
+        subscriber.email_encrypted,
+        subscriber.email_iv,
+        subscriber.email_auth_tag
+      );
+      const { html, text } = buildUnsubscribeConfirmationEmail();
+      sendEmail(email, "You've been unsubscribed — PrivDNA", html, text).catch(
+        (err) => console.error("Failed to send unsubscribe confirmation:", err)
+      );
+    } catch (err) {
+      console.error("Failed to decrypt email for unsubscribe confirmation:", err);
     }
   }
 
