@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -37,16 +38,24 @@ export default function GlassWall() {
     <section
       ref={sectionRef}
       aria-label="The Glass Wall"
-      className="h-[60vh] md:h-screen relative overflow-hidden flex items-end"
-      style={{
-        background: `
-          radial-gradient(ellipse at 60% 50%, rgba(0, 232, 200, 0.08) 0%, transparent 70%),
-          radial-gradient(ellipse at 30% 60%, rgba(120, 80, 200, 0.05) 0%, transparent 60%),
-          var(--color-bg-elevated)
-        `,
-      }}
+      className="relative overflow-hidden"
     >
-      <div ref={contentRef} className="p-6 md:p-8">
+      {/* Storefront concept image */}
+      <div className="relative w-full aspect-video md:h-screen md:aspect-auto">
+        <Image
+          src="/storefront-concept.webp"
+          alt="PrivDNA storefront concept — a glass-walled genomics lab in Manhattan with a reception area, lab technician, and server rack visible through the partition"
+          fill
+          className="object-cover"
+          sizes="100vw"
+          priority={false}
+        />
+        {/* Dark gradient overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-bg-primary/90 via-bg-primary/30 to-transparent" />
+      </div>
+
+      {/* Text overlay */}
+      <div ref={contentRef} className="absolute bottom-0 left-0 p-6 md:p-8">
         <p className="text-text-primary font-bold text-lg">Manhattan, NYC</p>
         <p className="text-text-secondary text-sm tracking-widest uppercase">
           Opening 2027
