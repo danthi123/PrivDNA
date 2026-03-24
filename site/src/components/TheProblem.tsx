@@ -1,32 +1,50 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { useIsMobile } from "@/lib/useIsMobile";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function TheProblem() {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const desktopRef = useRef<HTMLDivElement>(null);
   const slide1Ref = useRef<HTMLDivElement>(null);
   const slide2Ref = useRef<HTMLDivElement>(null);
   const slide3Ref = useRef<HTMLDivElement>(null);
   const counterRef = useRef<HTMLSpanElement>(null);
-  const isMobile = useIsMobile();
+  const mobileRef = useRef<HTMLDivElement>(null);
+  const mSlide1Ref = useRef<HTMLDivElement>(null);
+  const mSlide2Ref = useRef<HTMLDivElement>(null);
+  const mSlide3Ref = useRef<HTMLDivElement>(null);
+  const mCounterRef = useRef<HTMLSpanElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mql = window.matchMedia("(max-width: 767px)");
+    setIsMobile(mql.matches);
+    const handler = (e: MediaQueryListEvent) => {
+      setIsMobile(e.matches);
+      ScrollTrigger.refresh();
+    };
+    mql.addEventListener("change", handler);
+    return () => mql.removeEventListener("change", handler);
+  }, []);
 
   useGSAP(
     () => {
-      const container = containerRef.current;
-      const slide1 = slide1Ref.current;
-      const slide2 = slide2Ref.current;
-      const slide3 = slide3Ref.current;
-      if (!container || !slide1 || !slide2 || !slide3) return;
+      // Kill existing triggers before recreating
+      ScrollTrigger.getAll().forEach((t) => {
+        if (t.vars.trigger === desktopRef.current || t.vars.trigger === mobileRef.current) {
+          t.kill();
+        }
+      });
 
       if (isMobile) {
-        // Mobile: simple fade-in per block, no pinning
-        [slide1, slide2, slide3].forEach((el) => {
+        // Mobile: simple fade-in per block
+        [mSlide1Ref, mSlide2Ref, mSlide3Ref].forEach((ref) => {
+          const el = ref.current;
+          if (!el) return;
           gsap.from(el, {
             y: 40,
             opacity: 0,
@@ -39,8 +57,35 @@ export default function TheProblem() {
             },
           });
         });
+
+        // Counter
+        const counter = mCounterRef.current;
+        if (counter) {
+          ScrollTrigger.create({
+            trigger: mSlide1Ref.current,
+            start: "top 80%",
+            once: true,
+            onEnter: () => {
+              const obj = { val: 0 };
+              gsap.to(obj, {
+                val: 15000000,
+                duration: 2.5,
+                ease: "power2.out",
+                onUpdate: () => {
+                  counter.innerText = Math.round(obj.val).toLocaleString();
+                },
+              });
+            },
+          });
+        }
       } else {
-        // Desktop: pinned timeline with crossfade
+        // Desktop: pinned timeline
+        const container = desktopRef.current;
+        const slide1 = slide1Ref.current;
+        const slide2 = slide2Ref.current;
+        const slide3 = slide3Ref.current;
+        if (!container || !slide1 || !slide2 || !slide3) return;
+
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: container,
@@ -54,77 +99,36 @@ export default function TheProblem() {
         tl.fromTo(slide2, { opacity: 0 }, { opacity: 1, duration: 0.15 }, 0.25);
         tl.to(slide2, { opacity: 0, duration: 0.15 }, 0.55);
         tl.fromTo(slide3, { opacity: 0 }, { opacity: 1, duration: 0.2 }, 0.6);
-      }
 
-      // Counter animation — triggers once
-      ScrollTrigger.create({
-        trigger: slide1,
-        start: "top 80%",
-        once: true,
-        onEnter: () => {
-          const counter = counterRef.current;
-          if (!counter) return;
-          const obj = { val: 0 };
-          gsap.to(obj, {
-            val: 15000000,
-            duration: 2.5,
-            ease: "power2.out",
-            onUpdate: () => {
-              counter.innerText = Math.round(obj.val).toLocaleString();
-            },
-          });
-        },
-      });
+        ScrollTrigger.create({
+          trigger: container,
+          start: "top center",
+          once: true,
+          onEnter: () => {
+            const counter = counterRef.current;
+            if (!counter) return;
+            const obj = { val: 0 };
+            gsap.to(obj, {
+              val: 15000000,
+              duration: 2.5,
+              ease: "power2.out",
+              onUpdate: () => {
+                counter.innerText = Math.round(obj.val).toLocaleString();
+              },
+            });
+          },
+        });
+      }
     },
-    { scope: containerRef, dependencies: [isMobile] }
+    { dependencies: [isMobile] }
   );
 
-  if (isMobile) {
-    // Mobile: vertical stack, no absolute positioning
-    return (
-      <section id="problem" aria-label="The Problem" ref={containerRef}>
-        <div ref={slide1Ref} className="min-h-[60vh] flex flex-col items-center justify-center px-6 text-center">
-          <span
-            ref={counterRef}
-            className="text-accent text-[clamp(3rem,10vw,10rem)] font-bold tabular-nums"
-          >
-            0
-          </span>
-          <p className="text-text-secondary text-lg mt-4 max-w-md">
-            genomes sold in bankruptcy court. March 2025.
-          </p>
-        </div>
-
-        <div ref={slide2Ref} className="min-h-[50vh] flex flex-col items-center justify-center px-6 text-center gap-6">
-          <p className="text-lg text-text-primary max-w-2xl">
-            23andMe sold your data for{" "}
-            <span className="text-accent">$20 per genome</span>.
-          </p>
-          <p className="text-lg text-text-primary max-w-2xl">
-            Nebula shared it with{" "}
-            <span className="text-accent">Meta, Google, and Microsoft</span>.
-          </p>
-          <p className="text-lg text-text-primary max-w-2xl">
-            Ancestry valued each customer at{" "}
-            <span className="text-accent">$250</span>.
-          </p>
-        </div>
-
-        <div ref={slide3Ref} className="min-h-[50vh] flex items-center justify-center px-6 text-center">
-          <h2 className="text-[clamp(2.5rem,8vw,8rem)] font-bold">
-            Who owns <span className="text-accent">your DNA</span>?
-          </h2>
-        </div>
-      </section>
-    );
-  }
-
-  // Desktop: pinned crossfade layout
   return (
     <section id="problem" aria-label="The Problem">
+      {/* Desktop: pinned crossfade */}
       <div
-        ref={containerRef}
-        className="h-screen flex items-center justify-center relative"
+        ref={desktopRef}
+        className="hidden md:flex h-screen items-center justify-center relative"
       >
         <div
           ref={slide1Ref}
@@ -140,7 +144,6 @@ export default function TheProblem() {
             genomes sold in bankruptcy court. March 2025.
           </p>
         </div>
-
         <div
           ref={slide2Ref}
           className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center gap-6 opacity-0"
@@ -158,12 +161,45 @@ export default function TheProblem() {
             <span className="text-accent">$250</span>.
           </p>
         </div>
-
         <div
           ref={slide3Ref}
           className="absolute inset-0 flex items-center justify-center px-6 text-center opacity-0"
         >
           <h2 className="text-[clamp(2.5rem,8vw,8rem)] font-bold">
+            Who owns <span className="text-accent">your DNA</span>?
+          </h2>
+        </div>
+      </div>
+
+      {/* Mobile: vertical stack */}
+      <div ref={mobileRef} className="md:hidden">
+        <div ref={mSlide1Ref} className="min-h-[60vh] flex flex-col items-center justify-center px-6 text-center">
+          <span
+            ref={mCounterRef}
+            className="text-accent text-[clamp(3rem,10vw,10rem)] font-bold tabular-nums"
+          >
+            0
+          </span>
+          <p className="text-text-secondary text-lg mt-4 max-w-md">
+            genomes sold in bankruptcy court. March 2025.
+          </p>
+        </div>
+        <div ref={mSlide2Ref} className="min-h-[50vh] flex flex-col items-center justify-center px-6 text-center gap-6">
+          <p className="text-lg text-text-primary max-w-2xl">
+            23andMe sold your data for{" "}
+            <span className="text-accent">$20 per genome</span>.
+          </p>
+          <p className="text-lg text-text-primary max-w-2xl">
+            Nebula shared it with{" "}
+            <span className="text-accent">Meta, Google, and Microsoft</span>.
+          </p>
+          <p className="text-lg text-text-primary max-w-2xl">
+            Ancestry valued each customer at{" "}
+            <span className="text-accent">$250</span>.
+          </p>
+        </div>
+        <div ref={mSlide3Ref} className="min-h-[50vh] flex items-center justify-center px-6 text-center">
+          <h2 className="text-[clamp(2.5rem,8vw,5rem)] font-bold">
             Who owns <span className="text-accent">your DNA</span>?
           </h2>
         </div>
