@@ -26,7 +26,7 @@
 
 | # | Item | Model / Part Number | Qty | Unit Cost | Total |
 |---|------|-------------------|-----|-----------|-------|
-| 1 | Sequencer | Illumina NextSeq 2000 | 1 | $335,000 | $335,000 |
+| 1 | Sequencer | Element Biosciences AVITI | 1 | $289,000 | $289,000 |
 | 2 | Fluorometer | Thermo Fisher Qubit 4 (Q33226) | 1 | $4,000 | $4,000 |
 | 3 | Fragment Analyzer | Agilent TapeStation 4150 (G2992AA) | 1 | $16,000 | $16,000 |
 | 4 | Thermal Cycler | Bio-Rad T100 (1861096) | 1 | $3,500 | $3,500 |
@@ -37,7 +37,7 @@
 | 9 | Vortex Mixer | Scientific Industries Vortex-Genie 2 | 1 | $500 | $500 |
 | 9a | Laboratory Freezer (-20C) | For reagent storage | 1 | $5,000 | $5,000 |
 | 9b | Laboratory Refrigerator (2-8C) | For buffer cartridges | 1 | $2,000 | $2,000 |
-| | | | | **Subtotal** | **$378,700** |
+| | | | | **Subtotal** | **$332,700** |
 
 ## 1.2 Compute Infrastructure
 
@@ -46,10 +46,10 @@
 | 10 | CPU | AMD EPYC 9654 96C/192T (100-000000789) | 2 | $12,500 | $25,000 |
 | 11 | Server Chassis | Supermicro AS-2125HS-TNR (2U, 24x NVMe, dual SP5) | 1 | $5,000 | $5,000 |
 | 12 | RAM | Samsung 64GB DDR5-4800 ECC RDIMM (M321R8GA0BB0-CQK) | 16 | $300 | $4,800 |
-| 13 | NVMe Storage | Samsung PM9A3 7.68TB U.2 (MZQL27T6HBLA-00A07) | 24 | $4,899 | $117,576 |
-| 14 | GPU | NVIDIA A100 80GB PCIe (A100-PCIE-80GB) | 1 | $13,000 | $13,000 |
+| 13 | NVMe Storage | Samsung PM9A3 7.68TB U.2 (MZQL27T6HBLA-00A07) | 8 | $4,899 | $39,192 |
+| 14 | GPU | NVIDIA L40S 48GB PCIe | 1 | $7,500 | $7,500 |
 | 15 | TPM Module | Supermicro TPM 2.0 Infineon (AOM-TPM-9670V) | 1 | $50 | $50 |
-| | | | | **Subtotal** | **$165,426** |
+| | | | | **Subtotal** | **$81,542** |
 
 ## 1.3 Network and Security
 
@@ -90,12 +90,12 @@
 
 | Category | Total |
 |----------|-------|
-| Sequencing Equipment | $378,700 |
-| Compute Infrastructure | $165,426 |
+| Sequencing Equipment | $332,700 |
+| Compute Infrastructure | $81,542 |
 | Network and Security | $2,879 |
 | Power and Cooling | $9,950 |
 | Delivery Media (initial) | $11,540 |
-| **GRAND TOTAL** | **$568,495** |
+| **GRAND TOTAL** | **$438,611** |
 
 ---
 
@@ -119,19 +119,21 @@
 |  (16 of 24 DIMM slots populated; 8 slots reserved for expansion)  |
 |                                                                    |
 |  +--------------------------------------------------------------+ |
-|  | NVMe Storage Array: 24x Samsung PM9A3 7.68TB U.2             | |
+|  | NVMe Storage Array: 8x Samsung PM9A3 7.68TB U.2              | |
 |  | Configuration: RAID-10 (Linux mdadm software RAID)           | |
-|  | Raw capacity: 184.3 TB                                       | |
-|  | Usable capacity: 92.16 TB                                    | |
+|  | Raw capacity: 61.44 TB                                       | |
+|  | Usable capacity: ~30.72 TB (~30 TB)                          | |
 |  | Sequential read: 6,900 MB/s per drive                        | |
 |  | Sequential write: 4,100 MB/s per drive                       | |
 |  | All drives are SEDs with AES-256 encryption enabled           | |
+|  | ~3x peak requirement (10 TB for 15-20 concurrent genomes)    | |
 |  +--------------------------------------------------------------+ |
 |                                                                    |
 |  +--------------------------------------------------------------+ |
-|  | GPU: NVIDIA A100 80GB PCIe                                   | |
-|  | 80 GB HBM2e | 2 TB/s bandwidth | 300W TDP                   | |
+|  | GPU: NVIDIA L40S 48GB PCIe                                   | |
+|  | 48 GB GDDR6 | 864 GB/s bandwidth | 250W TDP                 | |
 |  | Used for: Clara Parabricks genomics acceleration              | |
+|  | NVIDIA-recommended GPU for Parabricks WGS workloads          | |
 |  +--------------------------------------------------------------+ |
 |                                                                    |
 |  TPM 2.0 (Infineon SLB9670) - Secure Boot, measured boot         |
@@ -142,9 +144,9 @@
 ## 2.2 Storage Layout
 
 ```
-/dev/md0  (RAID-10, 92 TB usable)
+/dev/md0  (RAID-10, ~30 TB usable)
   |
-  +-- /data/bcl/          Raw BCL files from sequencer (temporary)
+  +-- /data/raw/          Raw run data from Element AVITI (temporary)
   +-- /data/fastq/        Demultiplexed FASTQ files (temporary)
   +-- /data/processing/   Active pipeline working directory
   +-- /data/delivery/     Staged files for USB transfer
@@ -157,49 +159,45 @@
 ## 2.3 RAID Configuration
 
 ```bash
-# RAID-10 creation (24 drives, 12 mirrored pairs)
-mdadm --create /dev/md0 --level=10 --raid-devices=24 \
+# RAID-10 creation (8 drives, 4 mirrored pairs)
+mdadm --create /dev/md0 --level=10 --raid-devices=8 \
   /dev/nvme0n1 /dev/nvme1n1 /dev/nvme2n1 /dev/nvme3n1 \
-  /dev/nvme4n1 /dev/nvme5n1 /dev/nvme6n1 /dev/nvme7n1 \
-  /dev/nvme8n1 /dev/nvme9n1 /dev/nvme10n1 /dev/nvme11n1 \
-  /dev/nvme12n1 /dev/nvme13n1 /dev/nvme14n1 /dev/nvme15n1 \
-  /dev/nvme16n1 /dev/nvme17n1 /dev/nvme18n1 /dev/nvme19n1 \
-  /dev/nvme20n1 /dev/nvme21n1 /dev/nvme22n1 /dev/nvme23n1
+  /dev/nvme4n1 /dev/nvme5n1 /dev/nvme6n1 /dev/nvme7n1
 
 # Format with XFS (optimized for large files, stripe-aligned for RAID-10)
-# su=512k (stripe unit = chunk size), sw=12 (stripe width = 12 data drives in RAID-10 with 24 disks)
-mkfs.xfs -f -d su=512k,sw=12 /dev/md0
+# su=512k (stripe unit = chunk size), sw=4 (stripe width = 4 data drives in RAID-10 with 8 disks)
+mkfs.xfs -f -d su=512k,sw=4 /dev/md0
 
 # Mount
 mount /dev/md0 /data
 ```
 
-**Fault tolerance:** RAID-10 tolerates the loss of one drive per mirrored pair (up to 12 simultaneous failures if each occurs in a different pair). In practice, 1-2 drive failures are handled transparently with hot-swap replacement.
+**Fault tolerance:** RAID-10 tolerates the loss of one drive per mirrored pair (up to 4 simultaneous failures if each occurs in a different pair). In practice, 1-2 drive failures are handled transparently with hot-swap replacement.
 
-> **Note:** mdadm RAID-10 uses near-layout (n2) by default. Fault tolerance depends on which specific drives fail relative to the mirror pairs. If both drives in the same mirror pair fail, the array is lost. With 24 drives in 12 pairs, the probability of data loss from a second random drive failure is 1/23 (~4.3%).
+> **Note:** mdadm RAID-10 uses near-layout (n2) by default. Fault tolerance depends on which specific drives fail relative to the mirror pairs. If both drives in the same mirror pair fail, the array is lost. With 8 drives in 4 pairs, the probability of data loss from a second random drive failure is 1/7 (~14.3%). Given the modest storage requirements (~10 TB peak), the ~3x headroom is more than sufficient and a failed drive should be replaced promptly.
 
 ## 2.4 Power Budget
 
 | Component | Typical (W) | Peak (W) |
 |-----------|------------|----------|
 | 2x AMD EPYC 9654 (360W TDP each) | 500 | 720 |
-| 24x Samsung PM9A3 NVMe (13.5W peak each) | 120 | 324 |
+| 8x Samsung PM9A3 NVMe (13.5W peak each) | 40 | 108 |
 | 16x 64GB DDR5 RDIMM (~5W each) | 60 | 80 |
-| NVIDIA A100 80GB PCIe (300W TDP) | 150 | 300 |
+| NVIDIA L40S 48GB PCIe (250W TDP) | 125 | 250 |
 | Motherboard, fans, miscellaneous | 100 | 150 |
-| **Server subtotal** | **930** | **1,574** |
-| Illumina NextSeq 2000 | 400 | 750 |
+| **Server subtotal** | **825** | **1,308** |
+| Element Biosciences AVITI | 500 | 800 |
 | Network equipment | 30 | 50 |
-| UPS overhead (~10%) | 136 | 237 |
-| **Total system** | **1,496** | **2,611** |
+| UPS overhead (~10%) | 136 | 216 |
+| **Total system** | **1,491** | **2,374** |
 
-**Annual electricity cost:** ~1,500W avg x 8,760 hrs x $0.22/kWh (NYC commercial rate) = ~$2,887/year
+**Annual electricity cost:** ~1,491W avg x 8,760 hrs x $0.22/kWh (NYC commercial rate) = ~$2,873/year
 
-**UPS runtime at peak load (2,611W):**
-- Base unit (Eaton 9PX 3000VA/2700W): ~6 minutes
-- With extended battery module: ~15-18 minutes
+**UPS runtime at peak load (2,374W):**
+- Base unit (Eaton 9PX 3000VA/2700W): ~8 minutes
+- With extended battery module: ~18-22 minutes
 
-> **Note:** Peak load of 2,611W is within the 2,700W capacity of the Eaton 9PX 3000VA, but leaves only ~89W of headroom. If additional equipment is added, consider upgrading to the Eaton 9PX 5000VA model.
+> **Note:** Peak load of 2,374W is within the 2,700W capacity of the Eaton 9PX 3000VA, leaving ~326W of headroom. This provides comfortable margin for additional peripherals or future expansion.
 
 ---
 
@@ -216,8 +214,8 @@ mount /dev/md0 /data
 |                     VLAN 10: 10.0.10.0/24                         |
 |                                                                    |
 |  +------------------+          +------------------+                |
-|  | Illumina         |          | Compute Server   |               |
-|  | NextSeq 2000     |          | (Supermicro)     |               |
+|  | Element AVITI    |          | Compute Server   |               |
+|  | Sequencer        |          | (Supermicro)     |               |
 |  | 10.0.10.10       | <------> | 10.0.10.20       |               |
 |  +------------------+   GbE    +------------------+                |
 |          |                              |                          |
@@ -357,9 +355,7 @@ nextflow run ./sarek-offline/workflow/ \
 
 | Tool | Version | License | Role |
 |------|---------|---------|------|
-| BCL Convert | 4.4.6 | Illumina proprietary (free) | BCL to FASTQ conversion and demultiplexing |
-
-> **BCL Convert packaging note:** Illumina distributes BCL Convert as RPM packages only (CentOS/Oracle Linux). For Ubuntu deployment, the binary can be extracted from the RPM using `alien` or direct extraction (`rpm2cpio bcl-convert-*.rpm | cpio -idmv`), which is a common community practice but not officially supported by Illumina. Alternatively, the OS selection could be changed to Oracle Linux 8 for full BCL Convert support.
+| bases2fastq | latest | Element Biosciences (free) | Raw data to FASTQ conversion and demultiplexing |
 | BWA-MEM2 | 2.2.1 | MIT | Short-read alignment to GRCh38 reference |
 | GATK | 4.6.1.0 | BSD 3-Clause / Apache 2.0 | Variant calling (HaplotypeCaller), BQSR, deduplication |
 | samtools | 1.23.1 | MIT/BSD | BAM sorting, indexing, statistics |
@@ -370,7 +366,7 @@ nextflow run ./sarek-offline/workflow/ \
 | NVIDIA Clara Parabricks | 4.x | Proprietary (free to use in production; paid enterprise support available via NVIDIA AI Enterprise subscription) | GPU-accelerated alignment and variant calling |
 | VerifyBamID2 | 2.0.1 | MIT | Sample contamination detection |
 
-**License note:** BCL Convert is proprietary but free to use. Clara Parabricks is free to use in production (paid enterprise support is available via NVIDIA AI Enterprise subscription). All other tools in the critical path (BWA-MEM2, GATK, samtools, bcftools) are fully open source. If Parabricks licensing becomes restrictive, the CPU-only pipeline (BWA-MEM2 + GATK) is fully functional with longer processing times (8-16 hours vs. 45 minutes).
+**License note:** bases2fastq is free to use (provided by Element Biosciences). Clara Parabricks is free to use in production (paid enterprise support is available via NVIDIA AI Enterprise subscription). All other tools in the critical path (BWA-MEM2, GATK, samtools, bcftools) are fully open source. If Parabricks licensing becomes restrictive, the CPU-only pipeline (BWA-MEM2 + GATK) is fully functional with longer processing times (8-16 hours vs. ~60-90 minutes).
 
 ## 4.5 Reference Data
 
@@ -409,7 +405,7 @@ SAMPLE INTAKE
     |-- FAIL --> Re-extract or re-collect
     |
     v  PASS
-[Library Preparation: Illumina DNA Prep]
+[Library Preparation: NEBNext Ultra II FS DNA Library Prep Kit (NEB)]
     |
     v
 [QC: Library Qubit + TapeStation]
@@ -417,21 +413,21 @@ SAMPLE INTAKE
     |-- FAIL --> Re-prep library
     |
     v  PASS
-[Pool Libraries (up to 3 per P3 flow cell)]
+[Pool Libraries (up to 3 per Cloudbreak flow cell)]
     |
     v
-[Load Flow Cell on NextSeq 2000]
+[Load Flow Cell on Element AVITI]
     |
     v
-[SEQUENCING RUN: ~29-35 hours]
+[SEQUENCING RUN: ~48 hours (2x150bp)]
     |
     v
 === DATA ENTERS AIR-GAPPED SERVER ===
     |
     v
-[Stage 1: BCL Convert v4.4.6]
-  BCL -> FASTQ (demux + adapter trim)
-  Time: 30-90 min
+[Stage 1: bases2fastq (Element Biosciences)]
+  Element AVITI raw output -> FASTQ (R1, R2 per sample)
+  Time: 30-60 min
     |
     v
 [Stage 2: FastQC v0.12.1]
@@ -461,7 +457,7 @@ SAMPLE INTAKE
 
   NOTE (GPU path): In the GPU-accelerated path, Stages 3-6 (alignment,
   sorting, deduplication, and BQSR) are replaced by a single
-  `pbrun fq2bam` call in Parabricks (~15 min total on A100).
+  `pbrun fq2bam` call in Parabricks (~15 min total on L40S).
   These stages are not individually GPU-accelerated.
     |
     v
@@ -519,20 +515,34 @@ SAMPLE INTAKE
 | Path | Total Time (30x genome) |
 |------|------------------------|
 | CPU-only (BWA-MEM2 + GATK, 128 threads) | 8-16 hours |
-| GPU-accelerated (Parabricks, A100 80GB) | 30-45 minutes |
-| **Typical (GPU primary, CPU fallback)** | **45 minutes** |
+| GPU-accelerated (Parabricks, L40S 48GB) | ~60-90 minutes |
+| **Typical (GPU primary, CPU fallback)** | **~60-90 minutes** |
+
+**Detailed processing time by stage (GPU path):**
+
+| Stage | Tool | Wall Time (CPU) | Wall Time (GPU) |
+|-------|------|----------------|----------------|
+| Basecalling/demux | bases2fastq | 30-60 min | N/A |
+| QC | FastQC | 10-20 min | N/A |
+| Alignment | BWA-MEM2 | 2-4 hours | ~15 min (Parabricks/L40S) |
+| Sort + dedup | pbrun fq2bam (GPU path) | 1-2 hours | included above |
+| BQSR | GATK | 1-2 hours | included above |
+| Variant calling | HaplotypeCaller | 3-6 hours | ~15 min (Parabricks/L40S) |
+| Genotyping + filtering | GATK | 45-90 min | 15-30 min |
+| QC aggregation | MultiQC | 2-5 min | N/A |
+| **Total** | | **8-16 hours** | **~60-90 min** |
 
 ## 5.3 Storage Lifecycle Per Genome
 
 | Phase | Files | Size | Duration |
 |-------|-------|------|----------|
-| Sequencing | BCL (shared per run) | 200-400 GB/run | Duration of run + conversion |
+| Sequencing | Element raw data (shared per run) | 200-300 GB/run | Duration of run + conversion |
 | Demultiplexing | FASTQ (compressed) | 60-90 GB | Until BAM validated |
 | Alignment + processing | Intermediate BAMs | 100-120 GB | Pipeline duration only |
 | Deliverables staging | BAM + VCF + gVCF + QC | 100-120 GB | Until USB transfer complete |
 | **Post-delivery** | **Nothing** | **0 GB** | **Permanent** |
 
-**Peak concurrent storage:** Processing 3 genomes simultaneously (one full P3 run) requires ~1.5-2 TB of working storage. With 92 TB usable, the server can handle 15-20 concurrent genomes with room to spare.
+**Peak concurrent storage:** Processing 3 genomes simultaneously (one full Cloudbreak flow cell run) requires ~1.5-2 TB of working storage. With ~30 TB usable, the server can handle 15-20 concurrent genomes (~10 TB peak) with ~3x headroom.
 
 ---
 
@@ -717,8 +727,8 @@ For customers who prefer a lower-cost option or need smaller capacity (VCF-only 
 
 | Parameter | Requirement | Notes |
 |-----------|-----------|-------|
-| Temperature | 19-25 C (66-77 F) | Illumina NextSeq 2000 operating range |
-| Humidity | 20-80% RH (non-condensing) | Illumina specification |
+| Temperature | 18-28 C (64-82 F) | Element Biosciences AVITI operating range |
+| Humidity | 20-80% RH (non-condensing) | Element Biosciences specification |
 | Ventilation | Dedicated HVAC zone; no air recirculation from lab | Prevents contamination |
 | Air pressure | Neutral or slight negative relative to customer area | Prevents contamination escape |
 | Lighting | Standard fluorescent/LED | No special requirements |
@@ -732,7 +742,7 @@ For customers who prefer a lower-cost option or need smaller capacity (VCF-only 
 |-----------|-----------|-------|
 | Temperature | 18-27 C (64-80 F) | ASHRAE A1 recommended range |
 | Humidity | 20-80% RH (non-condensing) | ASHRAE A1 recommended range |
-| Cooling | Dedicated mini-split AC or in-row cooling; 12,000-15,000 BTU | Must dissipate ~3 kW continuous heat load. Total room heat load should account for all equipment (server + sequencer + UPS + lighting + staff), not just the server, and may require the upper end of this range or higher. |
+| Cooling | Dedicated mini-split AC or in-row cooling; 12,000-15,000 BTU | Must dissipate ~2.5 kW continuous heat load. Total room heat load should account for all equipment (server + sequencer + UPS + lighting + staff), not just the server, and may require the upper end of this range or higher. |
 | Power | Dedicated 30A circuit; clean power via UPS | Isolates from building electrical noise |
 | Fire suppression | Clean agent (FM-200 or Novec 1230) recommended | Protects equipment without water damage |
 | Raised floor | Optional but recommended | Enables under-floor cable management and cooling |
@@ -765,10 +775,9 @@ In an air-gapped environment, system time will drift. A GPS-disciplined NTP serv
     [ ] GRCh38 reference FASTA + .fai + .dict
     [ ] BWA-MEM2 index (pre-built or build locally)
     [ ] GATK resource bundle (dbSNP, HapMap, 1000G, Mills)
-[ ] Download BCL Convert 4.4.6 RPM
-    [ ] For Ubuntu: extract binaries from RPM (rpm2cpio + cpio or alien)
+[ ] Download bases2fastq (Element Biosciences, free)
 [ ] Download NVIDIA Clara Parabricks installer
-[ ] Download NVIDIA driver for A100 (data center driver branch)
+[ ] Download NVIDIA driver for L40S (data center driver branch)
 [ ] Download samtools, bcftools, htslib source tarballs
 [ ] Download FastQC, MultiQC packages
 [ ] Download VerifyBamID2 binary or source
@@ -784,8 +793,8 @@ In an air-gapped environment, system time will drift. A GPS-disciplined NTP serv
 [ ] Unpack and rack Supermicro AS-2125HS-TNR in Eaton SmartRack
 [ ] Install 2x AMD EPYC 9654 CPUs
 [ ] Install 16x 64GB DDR5 RDIMM (slots per motherboard manual)
-[ ] Install 24x Samsung PM9A3 7.68TB NVMe in hot-swap bays
-[ ] Install NVIDIA A100 80GB PCIe GPU
+[ ] Install 8x Samsung PM9A3 7.68TB NVMe in hot-swap bays
+[ ] Install NVIDIA L40S 48GB PCIe GPU
 [ ] Install TPM 2.0 module
 [ ] Connect redundant PSUs to UPS
 [ ] Connect UPS to dedicated power circuit
@@ -831,7 +840,7 @@ In an air-gapped environment, system time will drift. A GPS-disciplined NTP serv
 [ ] Create RAID-10 array with mdadm
 [ ] Format and mount /data (XFS)
 [ ] Create directory structure:
-    /data/{bcl,fastq,processing,delivery,qc}
+    /data/{raw,fastq,processing,delivery,qc}
     /reference/
     /software/
     /logs/
@@ -848,10 +857,10 @@ In an air-gapped environment, system time will drift. A GPS-disciplined NTP serv
 [ ] Copy nf-core/sarek offline bundle to /software/
 [ ] Install NVIDIA driver (run .run installer)
 [ ] Install Clara Parabricks
-[ ] Verify GPU: nvidia-smi shows A100 80GB
+[ ] Verify GPU: nvidia-smi shows L40S 48GB
 [ ] Copy reference data to /reference/
 [ ] Verify reference data checksums
-[ ] Install BCL Convert
+[ ] Install bases2fastq
 [ ] Install samtools, bcftools, htslib from source
 [ ] Install FastQC, MultiQC
 [ ] Install VerifyBamID2

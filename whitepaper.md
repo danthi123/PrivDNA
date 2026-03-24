@@ -43,7 +43,7 @@ This document is provided for informational purposes only and does not constitut
 
 # I. EXECUTIVE SUMMARY
 
-PrivDNA is a first-of-its-kind privacy-sovereign whole genome sequencing (WGS) service operating from a physical storefront in New York City. We sequence customers' complete genomes at clinical-grade accuracy (>90% of bases above Q30), process all data on air-gapped servers that never touch the internet, deliver results on FIPS 140-3 certified encrypted hardware, and destroy all on-premise copies under NIST SP 800-88 Rev. 2 standards -- witnessed by the customer through a glass-walled laboratory.
+PrivDNA is a first-of-its-kind privacy-sovereign whole genome sequencing (WGS) service operating from a physical storefront in New York City. We sequence customers' complete genomes at clinical-grade accuracy (>85% of bases above Q30), process all data on air-gapped servers that never touch the internet, deliver results on FIPS 140-3 certified encrypted hardware, and destroy all on-premise copies under NIST SP 800-88 Rev. 2 standards -- witnessed by the customer through a glass-walled laboratory.
 
 **The core promise: your DNA data is created in front of you, handed to you, and erased. No copies. No cloud. No exceptions.**
 
@@ -65,18 +65,18 @@ This confluence creates a market opening for a fundamentally different model -- 
 
 | Metric | Value |
 |--------|-------|
-| Total startup capital required | $997,000 |
+| Total startup capital required | $839,000 |
 | Price per genome | $3,500 |
-| Variable cost per genome | $2,340 (with volume discounts) |
-| Gross margin per genome | $1,160 |
-| Monthly break-even volume | 53 genomes |
-| Projected Year 1 net | ($554,400) loss (ramp-up year) |
-| Projected Year 3 net | $62,200 profit |
-| Projected Year 5 net | $50,000 profit (single-instrument capacity) |
+| Variable cost per genome | $1,016 |
+| Gross margin per genome | $2,484 (71.0%) |
+| Monthly break-even volume | 29 genomes |
+| Projected Year 1 net | ($367,200) loss (ramp-up year) |
+| Projected Year 3 net | $871,480 profit |
+| Projected Year 5 net | $890,000 profit (single-instrument capacity) |
 
 ### Investment Ask
 
-We are seeking **$1.35 million in seed funding** to cover startup capital, 12 months of operational runway, and the open-source pipeline development sprint. This funds the NYC flagship through cash-flow positive operations.
+We are seeking **$1.25 million in seed funding** to cover startup capital, 12 months of operational runway, and the open-source pipeline development sprint. This funds the NYC flagship through cash-flow positive operations.
 
 ---
 
@@ -179,7 +179,7 @@ PrivDNA explicitly does not:
 
 - **Interpret results.** We do not provide medical advice, diagnoses, risk assessments, or health recommendations. We provide raw data.
 - **Retain data.** After delivery and witnessed destruction, no copy of the customer's genomic data exists on PrivDNA premises.
-- **Use cloud services.** No data leaves the air-gapped server via any network connection. There is no AWS, no Azure, no BaseSpace, no DNAnexus.
+- **Use cloud services.** No data leaves the air-gapped server via any network connection. There is no AWS, no Azure, no DNAnexus, no cloud platform of any kind.
 - **Sell or license data.** There is no database to monetize because there is no database.
 - **Communicate results to third parties.** The customer is the sole recipient. We do not report to insurers, employers, law enforcement, or researchers.
 
@@ -251,6 +251,8 @@ WGS reads the complete 3.2 billion base pairs of the human genome. This tier is 
 | Live technical representative | No | No | No | No | No | **Yes** |
 | FIPS 140-3 encrypted delivery | No | No | No | No | No | **Yes** |
 
+PrivDNA sequences on the **Element Biosciences AVITI**, which uses avidity sequencing (sequencing-by-binding) rather than Illumina's sequencing-by-synthesis. The output quality is comparable (>85% bases above Q30) and produces identical standard file formats (FASTQ, BAM, VCF), making it fully interchangeable for downstream analysis. Element's reagent price guarantee for the instrument's lifetime eliminates the single largest variable cost risk for the business.
+
 ### The Whitespace
 
 **No existing competitor offers a physical, in-person genomics experience.** The entire DTC genomics market operates via mail-order saliva kits. There is no "retail DNA testing storefront" in operation from any established player. This is distinct from WGS offered as a component of concierge medicine or executive health programs, where sequencing is typically outsourced to external labs and data is retained in the clinical record.
@@ -273,19 +275,22 @@ The top three policies that increase consumer willingness to share genetic data 
 
 ## 5.1 Sequencing Platform
 
-**Primary instrument: Illumina NextSeq 2000**
+**Primary instrument: Element Biosciences AVITI**
 
 | Specification | Value |
 |--------------|-------|
-| Chemistry | XLEAP-SBS |
-| Flow cell (primary) | P3 300-cycle (2x150 bp) |
-| Output per P3 run | ~330 Gb (sufficient for ~3 genomes at 30x) |
-| Quality | >90% bases above Q30 |
-| Run time (2x150 bp P3) | ~29-35 hours |
-| Dimensions | 60 x 65 x 66 cm |
-| Integrated compute | DRAGEN Bio-IT FPGA (on-instrument basecalling) |
+| Chemistry | Avidity sequencing (rolling circle amplification + sequencing-by-binding) |
+| Flow cell | Cloudbreak 300-cycle kit (2x150 bp) |
+| Output per run | ~300 Gb (sufficient for ~3 genomes at 30x) |
+| Quality | >85% bases above Q30 |
+| Run time (2x150 bp) | ~48 hours |
+| Instrument price | $289,000 |
+| Basecalling / demux | bases2fastq (Element Biosciences) -- produces standard FASTQ |
+| Company | Element Biosciences (founded 2017, San Diego; AVITI launched 2022) |
 
-The NextSeq 2000 is the optimal platform for PrivDNA's volume tier. It balances throughput, footprint, and cost-per-genome without the capital intensity of the NovaSeq X series ($985,000+). At 3 genomes per P3 run, ~35-hour run cycles, and realistic maintenance and library prep schedules, a single NextSeq 2000 can process approximately 4-5 runs per week, yielding 12-15 genomes per week or 50-65 genomes per month.
+The Element AVITI is the optimal platform for PrivDNA's volume tier. It delivers clinical-grade sequencing quality at a significantly lower reagent cost than competing platforms: the Cloudbreak 300-cycle kit costs $1,680 per run ($560 per genome at 3 genomes per run), and Element guarantees no reagent price increases for the instrument's lifetime -- eliminating the single largest variable cost risk. At ~48-hour run cycles and realistic maintenance and library prep schedules, a single AVITI can process approximately 3-4 runs per week, yielding 9-12 genomes per week or 40-52 genomes per month. With overlapping batches (starting next library prep while the current run is active), throughput of 50-65 genomes per month is achievable.
+
+The AVITI produces standard FASTQ output, making it fully compatible with the entire downstream open-source pipeline (BWA-MEM2, GATK, Parabricks). NVIDIA Clara Parabricks supports AVITI data as of v4.5 via standard FASTQ input.
 
 ### Supporting Laboratory Equipment
 
@@ -301,7 +306,7 @@ The NextSeq 2000 is the optimal platform for PrivDNA's volume tier. It balances 
 
 ## 5.2 Air-Gapped Compute Stack
 
-All bioinformatics processing occurs on a dedicated, air-gapped server that has no network interface capable of reaching the internet. The server communicates only with the Illumina sequencer via a physically isolated local network segment.
+All bioinformatics processing occurs on a dedicated, air-gapped server that has no network interface capable of reaching the internet. The server communicates only with the Element AVITI sequencer via a physically isolated local network segment.
 
 ### Server Specifications
 
@@ -310,11 +315,11 @@ All bioinformatics processing occurs on a dedicated, air-gapped server that has 
 | CPUs | 2x AMD EPYC 9654 (96-core/192-thread, 2.4/3.7 GHz, 384 MB L3) | 100-000000789 |
 | Chassis | Supermicro AS-2125HS-TNR (2U, 24x NVMe hot-swap) | AS-2125HS-TNR |
 | RAM | 1 TB DDR5-4800 ECC RDIMM (16x 64 GB Samsung) | M321R8GA0BB0-CQK |
-| Storage | 92 TB usable (24x Samsung PM9A3 7.68 TB NVMe, RAID-10) | MZQL27T6HBLA-00A07 |
-| GPU | NVIDIA A100 80 GB PCIe (Parabricks acceleration) | A100-PCIE-80GB |
+| Storage | 30 TB usable (8x Samsung PM9A3 7.68 TB NVMe, RAID-10) | MZQL27T6HBLA-00A07 |
+| GPU | NVIDIA L40S 48 GB PCIe (Parabricks acceleration) | L40S-48GB |
 | TPM | Supermicro TPM 2.0 (Infineon SLB9670) | AOM-TPM-9670V |
 
-The NVIDIA A100 GPU enables NVIDIA Clara Parabricks acceleration, reducing the full WGS pipeline (alignment through variant calling) from 8-16 hours on CPU alone to approximately 30-45 minutes on GPU-accelerated paths.
+The NVIDIA L40S GPU enables NVIDIA Clara Parabricks acceleration, reducing the full WGS pipeline (alignment through variant calling) from 8-16 hours on CPU alone to approximately 60-90 minutes on GPU-accelerated paths. NVIDIA recommends the L40S for Parabricks workloads; while processing time is longer than the A100 (60-90 min vs. 30-45 min), it is well within SLA requirements and reduces GPU CAPEX from $13,000 to $7,500.
 
 ### Network Isolation
 
@@ -329,14 +334,14 @@ The air gap is enforced at multiple layers:
 3. **BIOS-level:** USB boot and PXE boot are disabled. BIOS is password-protected. Secure Boot is enabled.
 4. **Port control:** Physical USB port blockers (SmartKeeper) on all unused ports. A single controlled transfer workstation handles data export to encrypted USB drives.
 
-### NextSeq 2000 Sequencer Isolation
+### AVITI Sequencer Isolation
 
-The Illumina NextSeq 2000 is configured for fully local operation:
+The Element Biosciences AVITI is configured for fully local operation:
 
-- **BaseSpace Sequence Hub integration disabled:** The instrument's cloud upload functionality is turned off at the instrument control software level. No run data is transmitted to Illumina's BaseSpace cloud platform.
+- **ELMS configured for local-only output:** The AVITI's management software (Element Laboratory Management System) is configured for local-only output with no cloud connectivity. No run data is transmitted to any external platform.
 - **Local output only:** Sequencer output is configured to write exclusively to a local SMB/NFS share on the isolated VLAN. The compute server mounts this share as the sole data destination.
-- **Firewall enforcement:** All outbound traffic from the sequencer's IP address is blocked at the Netgate firewall. No DNS resolution, no NTP synchronization to external servers, and no HTTPS connections to Illumina endpoints are permitted.
-- **Illumina field service confirmation:** Prior to deployment, Illumina field service engineering will confirm that the NextSeq 2000 operates in local-output-only mode without requiring internet check-ins for continued operation. Instrument software updates are applied offline via USB media during scheduled maintenance windows.
+- **Firewall enforcement:** All outbound traffic from the sequencer's IP address is blocked at the Netgate firewall. No DNS resolution, no NTP synchronization to external servers, and no HTTPS connections to external endpoints are permitted.
+- **Element field service confirmation:** Prior to deployment, Element Biosciences field service engineering will confirm that the AVITI operates in local-output-only mode without requiring internet check-ins for continued operation. Instrument software updates are applied offline via USB media during scheduled maintenance windows.
 
 ## 5.3 Open Source Bioinformatics Pipeline
 
@@ -346,7 +351,7 @@ The pipeline processes raw sequencer output into analysis-ready genomic data usi
 
 ```
 Stage 1: Basecalling & Demultiplexing
-  Illumina BCL files -> BCL Convert v4.4.6 -> FASTQ (R1 + R2 per sample)
+  AVITI run output -> bases2fastq (Element Biosciences) -> FASTQ (R1 + R2 per sample)
   -> FastQC v0.12.1 (per-sample quality control)
 
 Stage 2: Alignment
@@ -397,19 +402,19 @@ For air-gapped deployment, all dependencies are pre-staged as Singularity contai
 
 | Stage | Tool | Wall Time (CPU) | Wall Time (GPU-accelerated) |
 |-------|------|-----------------|---------------------------|
-| Basecalling | BCL Convert | 30-90 min | N/A |
+| Basecalling & demux | bases2fastq | 30-90 min | N/A |
 | QC | FastQC | 10-20 min | N/A |
-| Alignment | BWA-MEM2 | 2-4 hours | ~10 min (Parabricks) |
-| Sort + dedup | samtools + GATK | 1-2 hours | ~5 min (Parabricks) |
-| BQSR | GATK | 1-2 hours | ~5 min (Parabricks) |
-| Variant calling | HaplotypeCaller | 3-6 hours | ~10 min (Parabricks) |
-| **Total** | | **8-16 hours** | **~45 min** |
+| Alignment | BWA-MEM2 | 2-4 hours | ~15-20 min (Parabricks/L40S) |
+| Sort + dedup | samtools + GATK | 1-2 hours | ~8-10 min (Parabricks/L40S) |
+| BQSR | GATK | 1-2 hours | ~8-10 min (Parabricks/L40S) |
+| Variant calling | HaplotypeCaller | 3-6 hours | ~15-20 min (Parabricks/L40S) |
+| **Total** | | **8-16 hours** | **~60-90 min** |
 
 ### Storage Requirements Per Genome
 
 | Stage | Size | Retention |
 |-------|------|-----------|
-| Raw BCL (shared per run) | 200-400 GB per run | Deleted after FASTQ generation |
+| Raw sequencer output (shared per run) | 200-400 GB per run | Deleted after FASTQ generation |
 | FASTQ (compressed) | 60-90 GB | Deleted after BAM validation |
 | Analysis-ready BAM + index | 80-100 GB | Delivered to customer, then destroyed |
 | gVCF | 5-10 GB | Delivered to customer, then destroyed |
@@ -417,7 +422,7 @@ For air-gapped deployment, all dependencies are pre-staged as Singularity contai
 | QC reports | ~50 MB | Delivered to customer, then destroyed |
 | **Peak working storage** | **~400-500 GB** | During processing only |
 
-With 92 TB usable storage (RAID-10), the server can process approximately 15-20 genomes simultaneously with full intermediate files -- well above operational throughput requirements.
+With 30 TB usable storage (RAID-10), the server provides approximately 3x the peak working requirement for a single run (3 genomes at ~1.5 TB peak). This comfortably supports the operational throughput of one run at a time with full intermediate files, plus reference data and software (~100 GB). The right-sized storage array reduces CAPEX by ~$78,000 compared to a 24-drive configuration while maintaining ample headroom for concurrent processing.
 
 ## 5.4 Data Destruction Protocol
 
@@ -477,13 +482,13 @@ The customer enters the storefront and is greeted by the Genomic Concierge. The 
 A trained laboratory technician collects a saliva or buccal swab sample using a standard collection kit. The sample is labeled with a unique barcode in view of the customer.
 
 ### Step 3: DNA Extraction and Library Preparation (~2-4 hours)
-The technician extracts DNA, checks quality (Qubit quantification, TapeStation fragment analysis), and prepares a sequencing library using Illumina DNA Prep chemistry. This process is visible through the glass wall.
+The technician extracts DNA, checks quality (Qubit quantification, TapeStation fragment analysis), and prepares a sequencing library using NEBNext Ultra II FS DNA Library Prep chemistry. This process is visible through the glass wall.
 
-### Step 4: Sequencing (~29-35 hours)
-The library is loaded onto an Illumina NextSeq 2000 P3 flow cell. The sequencing run takes approximately 29-35 hours. The customer does not need to be present during this time and is notified when the run completes.
+### Step 4: Sequencing (~48 hours)
+The library is loaded onto an Element Biosciences AVITI Cloudbreak flow cell. The sequencing run takes approximately 48 hours. The customer does not need to be present during this time and is notified when the run completes.
 
 ### Step 5: Bioinformatics Processing (~1-16 hours)
-The air-gapped server processes raw sequencer data through the open-source pipeline. With GPU acceleration, this step completes in under an hour.
+The air-gapped server processes raw sequencer data through the open-source pipeline. With GPU acceleration (NVIDIA L40S), this step completes in approximately 60-90 minutes.
 
 ### Step 6: Data Delivery and Witnessed Destruction (~30 minutes)
 The customer returns to the storefront. The concierge walks them through the results package on their encrypted USB drive, verifying SHA-256 checksums. The customer then witnesses the data destruction process through the glass wall. They receive:
@@ -491,7 +496,7 @@ The customer returns to the storefront. The concierge walks them through the res
 - A printed Certificate of Destruction
 - A referral packet for partner genetic counseling services
 
-### Total Turnaround: 3-5 Business Days
+### Total Turnaround: 4-6 Business Days
 
 ## 6.4 The Genomic Concierge
 
@@ -625,9 +630,12 @@ The Genetic Information Nondiscrimination Act (GINA) prohibits discrimination by
 | Molecular Laboratory Technician | 1.0 | $95,000 | Operates sequencer, performs sample prep and QC |
 | Bioinformatics Engineer | 1.0 | $145,000 | Maintains air-gapped pipeline, handles data processing, manages open-source repos |
 | Genomic Concierge (Technical Rep) | 1.0 | $100,000 | Customer-facing: explains process, manages handoff, answers questions |
-| **Total payroll** | **3.25** | **$405,000** | Excludes benefits loading (~20-25%) |
+| Office Manager / QA Coordinator | 1.0 | $65,000 | Front desk, scheduling, consumables ordering, vendor coordination, invoice processing, HR administration, quality management documentation (SOPs, CAPA logs, competency records) under Lab Director oversight |
+| **Total base payroll** | **4.25** | **$470,000** | Excludes benefits loading |
 
-**With benefits loading (~22%):** Total annual payroll cost: ~$494,000
+**With benefits loading (22% on W-2 employees):** The four W-2 employees ($405,000) at 1.22x = $494,000, plus the $65,000 Lab Director contract = **$559,000 total annual payroll cost.**
+
+The Office Manager / QA Coordinator bridges two critical gaps: (1) front desk coverage and customer service continuity so the Genomic Concierge can focus on in-lab interactions, and (2) compliance/operations documentation that CLIA and CAP require but that would otherwise fall on technical staff.
 
 **Customer consent and withdrawal:** Customers may withdraw consent and request sample destruction at any time before delivery of final results. In such cases, all biological samples and any in-process data are destroyed under the standard NIST SP 800-88 protocol, and the customer receives a Certificate of Destruction. No charge applies if withdrawal occurs before sequencing begins; a partial fee may apply after sequencing has commenced.
 
@@ -636,21 +644,22 @@ The Genetic Information Nondiscrimination Act (GINA) prohibits discrimination by
 1. **Month -6 (pre-launch):** Bioinformatics Engineer (builds pipeline, sets up servers)
 2. **Month -3:** Laboratory Director (contract, begins CLIA/CLEP application oversight)
 3. **Month -1:** Molecular Lab Technician (equipment calibration, validation runs)
-4. **Month 0 (launch):** Genomic Concierge (opens doors to customers)
+4. **Month -1:** Office Manager / QA Coordinator (onboards onto quality systems, prepares SOPs, sets up vendor accounts)
+5. **Month 0 (launch):** Genomic Concierge (opens doors to customers)
 
 ## 8.2 Daily Operations
 
 ### Sample Processing Workflow
 
-A single NextSeq 2000 with P3 flow cells operates on a **batch cycle**:
+A single Element AVITI with Cloudbreak flow cells operates on a **batch cycle**:
 
 1. **Days 1-2:** Collect samples, extract DNA, prepare libraries (batch of up to 3 samples per flow cell)
-2. **Day 2-3:** Load flow cell and begin sequencing run (~35 hours)
-3. **Day 4:** Sequencing completes; bioinformatics pipeline begins (45 min with GPU, 8-16 hrs CPU)
-4. **Day 4-5:** QC review, data transfer to encrypted USB, customer notification
-5. **Day 5:** Customer pickup, witnessed destruction, certificate generation
+2. **Day 2-4:** Load flow cell and begin sequencing run (~48 hours)
+3. **Day 4-5:** Sequencing completes; bioinformatics pipeline begins (60-90 min with GPU, 8-16 hrs CPU)
+4. **Day 5:** QC review, data transfer to encrypted USB, customer notification
+5. **Day 5-6:** Customer pickup, witnessed destruction, certificate generation
 
-At steady state, with overlapping batches (new library prep begins while current run is active), throughput reaches 4-5 runs per week or approximately 12-15 genomes per week (50-65 per month).
+At steady state, with overlapping batches (new library prep begins while current run is active), throughput reaches 3-4 runs per week or approximately 9-12 genomes per week (40-52 per month). With optimized batch scheduling, 50-65 genomes per month is achievable.
 
 ### Equipment Maintenance
 
@@ -667,12 +676,12 @@ At steady state, with overlapping batches (new library prep begins while current
 ## 8.3 Quality Control Program
 
 ### Pre-Analytical QC
-- DNA concentration verification (Qubit): must meet minimum input requirement for Illumina DNA Prep
+- DNA concentration verification (Qubit): must meet minimum input requirement for NEBNext Ultra II FS DNA Library Prep
 - Fragment size distribution (TapeStation): confirms intact genomic DNA
 - Sample identity tracking: barcode scanned at every handoff point
 
 ### Analytical QC
-- Per-run quality metrics: %Q30 >90%, cluster density within Illumina specifications, %PF (passing filter) within range
+- Per-run quality metrics: %Q30 >85%, quality metrics within Element AVITI specifications
 - Per-sample coverage: minimum 30x mean coverage, <5% of genome below 10x
 - Contamination check: VerifyBamID or equivalent to confirm single-source sample
 
@@ -748,19 +757,17 @@ As the partner network matures, PrivDNA may explore a **marketplace model** wher
 
 | Item | Cost |
 |------|------|
-| Illumina NextSeq 2000 | $335,000* |
+| Element Biosciences AVITI | $289,000 |
 | Thermo Fisher Qubit 4 | $4,000 |
 | Agilent TapeStation 4150 | $16,000 |
 | Bio-Rad T100 Thermal Cycler | $3,500 |
 | Eppendorf 5810R Centrifuge | $6,000 |
 | Eppendorf 5424R Microcentrifuge | $3,500 |
 | Pipettes (Eppendorf Research Plus set) | $3,200 |
-| Vortex mixer | $500 |
+| Vortex mixer and miscellaneous | $500 |
 | Laboratory freezer (-20°C, reagent storage) | $5,000 |
 | Laboratory refrigerator (2-8°C, buffer storage) | $2,000 |
-| **Subtotal: Lab Equipment** | **$378,700** |
-
-*\*NextSeq 2000 list price is $335,000. Certified refurbished units are available in the $75,000-$150,000 range from authorized resellers. PrivDNA will evaluate both new and refurbished options during procurement, potentially reducing CAPEX by $150,000-$250,000. Financial projections use the list price as a conservative baseline.*
+| **Subtotal: Lab Equipment** | **$332,700** |
 
 ### Air-Gapped Compute Infrastructure
 
@@ -769,18 +776,20 @@ As the partner network matures, PrivDNA may explore a **marketplace model** wher
 | 2x AMD EPYC 9654 CPUs | $25,000 |
 | Supermicro AS-2125HS-TNR chassis | $5,000 |
 | 1 TB DDR5 ECC RAM (16x 64 GB Samsung) | $4,800 |
-| 24x Samsung PM9A3 7.68 TB NVMe (92 TB usable RAID-10) | $117,576 |
-| NVIDIA A100 80 GB PCIe GPU | $13,000 |
+| 8x Samsung PM9A3 7.68 TB NVMe (30 TB usable RAID-10) | $39,192 |
+| NVIDIA L40S 48 GB PCIe GPU | $7,500 |
 | Cisco Catalyst 1000 switch | $325 |
 | Netgate 6100 MAX firewall | $949 |
 | Cabling and accessories | $150 |
 | Eaton 9PX 3000VA UPS | $3,500 |
 | Eaton extended battery module | $1,500 |
-| Eaton SmartRack 42U rack | $1,800 |
+| Server rack | $1,800 |
 | Room cooling (mini-split) | $2,500 |
 | TPM 2.0 module | $50 |
 | Physical security (seals, port blockers) | $150 |
-| **Subtotal: Compute Infrastructure** | **$176,300** |
+| Transfer workstation | $500 |
+| KVM + monitor | $300 |
+| **Subtotal: Compute Infrastructure** | **$93,216** |
 
 ### Facility and Buildout
 
@@ -825,21 +834,21 @@ As the partner network matures, PrivDNA may explore a **marketplace model** wher
 | Item | Cost |
 |------|------|
 | Operational contingency reserve (first 90 days) | $30,000 |
-| Initial consumables inventory (~25 genomes) | $55,000 |
-| **Subtotal: Reserves** | **$85,000** |
+| Initial consumables inventory (~25 genomes at ~$1,016/genome) | $26,000 |
+| **Subtotal: Reserves** | **$56,000** |
 
 ### TOTAL CAPEX
 
 | Category | Cost |
 |----------|------|
-| Lab Equipment | $378,700 |
-| Compute Infrastructure | $176,300 |
+| Lab Equipment | $332,700 |
+| Compute Infrastructure | $93,216 |
 | Facility | $162,000 |
 | Software Development | $110,000 |
 | Regulatory/Legal | $35,000 |
 | Marketing | $50,000 |
-| Reserves | $85,000 |
-| **TOTAL STARTUP CAPITAL** | **$997,000** |
+| Reserves | $56,000 |
+| **TOTAL STARTUP CAPITAL** | **$838,916 (~$839,000)** |
 
 ## 10.2 Operating Expenses (OPEX) -- Annual
 
@@ -847,130 +856,121 @@ As the partner network matures, PrivDNA may explore a **marketplace model** wher
 
 | Item | Annual Cost |
 |------|------------|
-| Payroll (fully loaded) | $494,000 |
+| Payroll (fully loaded, including benefits) | $559,000 |
 | Rent (Manhattan, ~1,200 sq ft at ~$100/sq ft) | $120,000 |
 | Insurance (GL, PL, cyber, property, WC) | $40,000 |
 | Utilities (including server power at ~$1,600/yr) | $12,000 |
-| Ongoing marketing | $36,000 |
+| Marketing (fractional CMO at $5K/month) | $60,000 |
 | CLIA/CLEP/CAP renewals | $3,000 |
-| Legal and accounting | $15,000 |
-| IT and security maintenance | $8,000 |
-| **Total Annual Fixed Costs** | **$728,000** |
+| Legal and accounting | $40,000 |
+| IT and security maintenance | $20,000 |
+| PRN lab tech coverage | $10,000 |
+| **Total Annual Fixed Costs** | **$864,000** |
 
 **Note on insurance:** The $40,000 annual insurance budget covers professional liability, cyber liability (essential for a genomic data handler), general liability, workers' compensation, and property coverage appropriate for a CLIA high-complexity laboratory handling sensitive biological specimens and genomic data.
+
+**Note on increased budgets vs. earlier projections:**
+- **Marketing ($60K/year):** A fractional CMO at $5K/month is necessary to drive the customer acquisition volume needed for break-even at 29 genomes/month. This is a B2C business in NYC targeting affluent, privacy-conscious consumers -- a demographic that requires sophisticated, sustained outreach across digital, PR, and referral channels.
+- **Legal and accounting ($40K/year):** Operating a CLIA high-complexity laboratory in NYC that handles genomic data requires a healthcare law retainer and specialized accounting. This covers ongoing regulatory compliance, contract review for referral partnerships, privacy policy updates, and state/federal tax obligations.
+- **IT and security ($20K/year):** A managed service provider handles website hosting, business email, physical security monitoring (CCTV, access control), and ensures uptime for customer-facing systems. The air-gapped lab network is maintained separately by the Bioinformatics Engineer.
+- **PRN lab tech coverage ($10K/year):** A per-diem staffing agency relationship provides backup laboratory coverage for vacation, illness, and surge periods. Without this, a single lab technician absence halts all sequencing operations.
 
 ### Variable Costs Per Genome
 
 | Item | Cost Per Genome |
 |------|----------------|
-| P3 300-cycle reagent kit ($6,150 / 3 genomes) | $2,050 |
-| Library prep (Illumina DNA Prep + indexes) | $40 |
+| Cloudbreak 300-cycle kit ($1,680 / 3 genomes) | $560 |
+| Library prep (NEBNext Ultra II FS DNA Library Prep + indexes) | $28 |
 | QC consumables (Qubit assays, TapeStation screens) | $10 |
-| Encrypted USB drive (Kingston IronKey D500S 512 GB) | $390 |
+| Encrypted USB drive (Kingston IronKey D500S 512 GB, 10% bulk discount) | $351 |
 | Collection kit and extraction reagents | $25 |
 | Miscellaneous consumables (tips, tubes) | $10 |
-| Failure buffer (~5% re-run allowance on consumables excl. USB) | $106 |
-| **Total Variable Cost Per Genome** | **$2,631** |
+| Failure buffer (~5% re-run allowance on consumables excl. USB) | $32 |
+| **Total Variable Cost Per Genome** | **$1,016** |
 
-**Note on encrypted USB cost:** The IronKey D500S at $390 per unit is a significant per-genome cost. This is a deliberate choice: FIPS 140-3 Level 3 certification, PIN-based access (immune to keyloggers), and brute-force self-destruct are tangible, brandable privacy features that justify the price point to privacy-conscious customers. Alternative options (Apricorn Aegis 3NX at ~$179 for 128 GB) could reduce this cost but with lower certification levels.
+**Note on encrypted USB cost:** The IronKey D500S at $351 per unit (10% bulk discount) remains a significant per-genome cost. This is a deliberate choice: FIPS 140-3 Level 3 certification, PIN-based access (immune to keyloggers), and brute-force self-destruct are tangible, brandable privacy features that justify the price point to privacy-conscious customers.
+
+**Note on reagent price guarantee:** Element Biosciences guarantees no reagent price increases for the lifetime of the AVITI instrument. This eliminates the single largest variable cost risk in the financial model and provides long-term cost certainty that is unavailable from any other sequencing platform vendor.
 
 ## 10.3 Unit Economics
 
-### Primary Model: $3,500/genome + Volume Discounts
-
 | Metric | Value |
 |--------|-------|
 | Revenue per genome | $3,500 |
-| Variable cost per genome (with 15% reagent discount) | $2,340 |
-| Gross margin per genome | $1,160 |
-| Annual fixed costs | $728,000 |
-| Break-even volume | 628 genomes/year (53/month) |
+| Variable cost per genome | $1,016 |
+| Gross margin per genome | $2,484 (71.0%) |
+| Annual fixed costs | $864,000 |
+| Break-even volume | 348 genomes/year (29/month) |
 
 **Pricing rationale:** The target customer is a high-net-worth NYC individual who values privacy and transparency above all else. At $3,500, the service is positioned as a luxury privacy experience -- analogous to private banking or concierge medicine -- not as a commodity sequencing service competing with $249 mail-order tests. This is distinct from WGS offered as a component of concierge medicine or executive health programs, where sequencing is typically outsourced to external labs and data is retained in the clinical record.
 
-### Without Volume Discounts ($3,500/genome, list prices)
+The switch to the Element Biosciences AVITI platform dramatically improves unit economics: variable cost per genome drops from the $2,000+ range (typical for Illumina reagent kits) to $1,016, yielding a 71% gross margin. This transforms the break-even from a stretch target (53 genomes/month) to an achievable early milestone (29 genomes/month).
+
+## 10.4 Break-Even Analysis (at $3,500/genome)
 
 | Metric | Value |
 |--------|-------|
 | Revenue per genome | $3,500 |
-| Variable cost per genome | $2,631 |
-| Gross margin per genome | $868 |
-| Annual fixed costs | $728,000 |
-| Break-even volume | 839 genomes/year (70/month) |
-
-**Note:** At list consumable prices, unit economics remain positive at $3,500 but with thinner margins. The sensitivity analysis (Section 10.6) models results at various price points.
-
-### Why $1,950 Was Rejected
-
-Early analysis considered a $1,950 price point to position closer to existing WGS services. At list consumable prices, this produces a **negative gross margin of ($682) per genome**, making the business unviable at any volume. Even with aggressive volume discounts, a sub-$2,500 price point requires throughput exceeding single-instrument capacity to reach break-even. The $3,500 price point was selected as the minimum viable premium that supports sustainable operations.
-
-## 10.4 Break-Even Analysis (at $3,500/genome, with volume discounts)
-
-| Metric | Value |
-|--------|-------|
-| Revenue per genome | $3,500 |
-| Variable cost per genome | $2,340 |
-| Gross margin per genome | $1,160 |
-| Monthly fixed costs | $60,667 |
-| **Monthly break-even** | **53 genomes** |
-| **Annual break-even** | **628 genomes** |
+| Variable cost per genome | $1,016 |
+| Gross margin per genome | $2,484 |
+| Monthly fixed costs | $72,000 |
+| **Monthly break-even** | **29 genomes** |
+| **Annual break-even** | **348 genomes** |
 
 ## 10.5 Five-Year Profit and Loss Projection
 
-*Assumes $3,500/genome pricing, 15% reagent volume discounts beginning Year 2*
-
-**Note on volume discounts:** The 15% volume discount is assumed beginning Year 2 based on projected purchasing volume of approximately 160 P3 flow cells per year. This requires negotiation with Illumina and is not guaranteed for a startup with no prior purchasing history. The sensitivity analysis (Section 10.6) shows results at various price points to account for this uncertainty. Year 1 projections use list consumable prices.
+*Assumes $3,500/genome pricing, $1,016 variable cost per genome. Fixed costs escalate ~3% annually.*
 
 | | Year 1 | Year 2 | Year 3 | Year 4 | Year 5 |
 |---|--------|--------|--------|--------|--------|
 | **Genomes processed** | 200 | 480 | 720 | 750 | 750 |
 | **Revenue** | $700,000 | $1,680,000 | $2,520,000 | $2,625,000 | $2,625,000 |
-| Variable costs | $526,400 | $1,123,200 | $1,684,800 | $1,755,000 | $1,755,000 |
-| **Gross profit** | $173,600 | $556,800 | $835,200 | $870,000 | $870,000 |
-| Fixed costs | $728,000 | $750,000 | $773,000 | $796,000 | $820,000 |
-| **Net income (loss)** | **($554,400)** | **($193,200)** | **$62,200** | **$74,000** | **$50,000** |
-| Cumulative P&L | ($554,400) | ($747,600) | ($685,400) | ($611,400) | ($561,400) |
+| Variable costs | $203,200 | $487,680 | $731,520 | $762,000 | $762,000 |
+| **Gross profit** | $496,800 | $1,192,320 | $1,788,480 | $1,863,000 | $1,863,000 |
+| Fixed costs | $864,000 | $890,000 | $917,000 | $945,000 | $973,000 |
+| **Net income (loss)** | **($367,200)** | **$302,320** | **$871,480** | **$918,000** | **$890,000** |
+| Cumulative P&L | ($367,200) | ($64,880) | $806,600 | $1,724,600 | $2,614,600 |
 
 **Key milestones:**
-- **Month 30-32 (mid-Year 3):** Monthly operations reach profitability
-- **Year 4-5:** Profits are constrained by single-instrument capacity (~750 genomes/year). A second instrument (per Phase 2, Section 12.2) would approximately double capacity and significantly accelerate cumulative break-even.
+- **Month 15-16 (mid-Year 2):** Monthly operations reach profitability
+- **Month 25-26 (early Year 3):** Cumulative break-even achieved
+- **Year 3-5:** Strong profitability at single-instrument capacity (~750 genomes/year). A second instrument (per Phase 2, Section 12.2) would approximately double capacity and further accelerate returns.
 
-**Note:** Year 1 variable costs use list consumable prices ($2,631/genome). Years 2-5 assume 15% volume discounts ($2,340/genome). Fixed costs escalate ~3% annually.
+**Note:** Element Biosciences' reagent price guarantee means variable costs are not subject to supplier price increases for the instrument's lifetime, providing high confidence in these projections. Fixed costs escalate ~3% annually for inflation.
 
 ## 10.6 Sensitivity Analysis
 
-### Price Sensitivity
+### Price Sensitivity (at $1,016 variable cost, $864K annual fixed costs)
 
-| Price Point | Gross Margin | Annual Break-Even | Year 3 Net |
-|-------------|-------------|-------------------|------------|
-| $2,500 | $160 | 4,550 genomes (impossible on 1 machine) | N/A |
-| $3,000 | $660 | 1,103 genomes (exceeds single-instrument capacity) | ($297,800) |
-| $3,500 | $1,160 | 628 genomes | $62,200 |
-| $4,000 | $1,660 | 439 genomes | $422,200 |
-| $4,500 | $2,160 | 337 genomes | $782,200 |
+| Price Point | Gross Margin | Annual Break-Even | Year 3 Net (720 genomes) |
+|-------------|-------------|-------------------|--------------------------|
+| $2,500 | $1,484 | 582 | $151,480 |
+| $3,000 | $1,984 | 436 | $511,480 |
+| $3,500 | $2,484 | 348 | $871,480 |
+| $4,000 | $2,984 | 290 | $1,231,480 |
+| $4,500 | $3,484 | 248 | $1,591,480 |
 
 ### Volume Sensitivity (at $3,500/genome)
 
 | Genomes/Month | Annual Revenue | Annual Net |
 |---------------|---------------|------------|
-| 30 | $1,260,000 | ($310,400) |
-| 40 | $1,680,000 | ($171,200) |
-| 50 | $2,100,000 | ($32,000) |
-| 53 | $2,226,000 | ~$0 (break-even) |
-| 60 | $2,520,000 | $107,200 |
-| 65 | $2,730,000 | $176,800 |
+| 20 | $840,000 | ($267,840) |
+| 29 | $1,218,000 | $432 |
+| 35 | $1,470,000 | $179,280 |
+| 45 | $1,890,000 | $477,360 |
+| 55 | $2,310,000 | $775,440 |
 
 ## 10.7 Cash Flow Requirement
 
-Based on Year 1-2 projected losses:
+Based on Year 1 projected losses (the business reaches monthly profitability in Year 2):
 
-| Period | Net Loss | Cumulative Cash Need |
-|--------|----------|---------------------|
-| Startup CAPEX | ($997,000) | ($997,000) |
-| Year 1 operations | ($554,400) | ($1,551,400) |
-| Year 2 operations | ($193,200) | ($1,744,600) |
+| Period | Amount | Cumulative |
+|--------|--------|------------|
+| Startup CAPEX | ($839,000) | ($839,000) |
+| Year 1 operations | ($367,200) | ($1,206,200) |
+| **Total through profitability** | | **~$1.25M** |
 
-**Total funding required through profitability: ~$1.35 million** (startup capital of $997,000 plus ~$353,000 in operational runway to cover Year 1-2 losses, partially offset by Year 1-2 revenue).
+**Total funding required through profitability: ~$1.25 million** (startup capital of $839,000 plus ~$411,000 in operational runway to cover Year 1 losses, partially offset by Year 1 revenue). The business reaches monthly profitability in Month 15-16 and cumulative break-even in Month 25-26.
 
 ---
 
@@ -980,11 +980,17 @@ Based on Year 1-2 projected losses:
 
 | Risk | Probability | Impact | Mitigation |
 |------|------------|--------|------------|
-| Sequencer hardware failure | Medium | High (weeks of downtime for repair) | Illumina service contract with next-business-day response; maintain relationships with local Illumina field service engineers |
+| Sequencer hardware failure | Medium | High (weeks of downtime for repair) | Element Biosciences service contract with next-business-day response; maintain relationships with Element field service engineers |
 | NVMe drive failure in RAID array | Medium | Low (RAID-10 tolerates 1 failure per mirror) | Hot-spare drives on hand; daily SMART monitoring; automated alerts |
-| GPU failure | Low | Medium (pipeline reverts to CPU-only, 16-hour processing) | CPU fallback is always available; A100 replacement within 1-2 weeks |
+| GPU failure | Low | Medium (pipeline reverts to CPU-only, 16-hour processing) | CPU fallback is always available; L40S replacement within 1-2 weeks |
 | Pipeline software bug | Low | Medium | Extensive validation before launch; version-pinned containers; community code review via open source |
 | Power failure beyond UPS capacity | Low | Medium | UPS provides 15-30 minutes; generator backup negotiable with building management |
+
+**Sequencing platform supply chain risk:** Element Biosciences is a newer company (founded 2017, AVITI launched 2022) compared to Illumina, which introduces supply chain concentration risk. PrivDNA mitigates this by maintaining relationships with Illumina as a fallback platform -- the downstream pipeline (BWA-MEM2, GATK, Parabricks) is platform-agnostic and processes standard FASTQ from any sequencer. If Element were to face business disruption, PrivDNA could transition to an Illumina instrument with no pipeline changes.
+
+**Non-standard chemistry perception:** The AVITI uses avidity sequencing (sequencing-by-binding) rather than Illumina's industry-dominant sequencing-by-synthesis. Some customers, referral partners, or regulatory reviewers may perceive this as non-standard. PrivDNA mitigates this by emphasizing that the output (standard FASTQ, BAM, VCF files) is identical regardless of sequencing chemistry, and that AVITI data quality (>85% bases above Q30) is comparable to Illumina. The open-source pipeline further demonstrates that the same validated bioinformatics tools process data from either platform.
+
+**Reagent cost stability:** Element Biosciences guarantees no reagent price increases for the lifetime of the AVITI instrument, which significantly mitigates the risk of variable cost inflation -- historically the largest cost uncertainty for sequencing-based businesses.
 
 ## 11.2 Regulatory Risks
 
@@ -1011,7 +1017,7 @@ Based on Year 1-2 projected losses:
 | Key person dependency (Bioinformatics Engineer) | High | High | Document all processes; open-source pipeline means community can support; cross-train lab technician on basic pipeline operations |
 | Sample contamination during library prep | Medium | Low-Medium | Standard pre-PCR/post-PCR separation; contamination checks in pipeline (VerifyBamID); re-collection at no charge |
 | Physical security breach | Low | High | 24/7 CCTV; access control; tamper-evident seals; environmental monitoring; insurance coverage |
-| Data breach during 3-5 day processing window | Low | High (genomic data exists on server during processing) | Air-gapped network eliminates remote attack vectors; physical access controls (keycard, biometric); SED encryption on all NVMe drives (data at rest is always encrypted); 24/7 CCTV monitoring of server room; processing window minimized via GPU acceleration (~45 min vs. 8-16 hrs); data destroyed immediately upon delivery |
+| Data breach during 4-6 day processing window | Low | High (genomic data exists on server during processing) | Air-gapped network eliminates remote attack vectors; physical access controls (keycard, biometric); SED encryption on all NVMe drives (data at rest is always encrypted); 24/7 CCTV monitoring of server room; processing window minimized via GPU acceleration (~60-90 min vs. 8-16 hrs); data destroyed immediately upon delivery |
 
 ---
 
@@ -1027,14 +1033,18 @@ Based on Year 1-2 projected losses:
 - Publish open-source pipeline; build GitHub community
 - Generate press coverage leveraging the 23andMe/privacy narrative
 
+At $2,484 gross margin per genome, the business reaches monthly profitability in Month 15-16 and cumulative break-even in Month 25-26 -- a dramatically faster path to profitability than higher-reagent-cost alternatives.
+
 ## 12.2 Phase 2: Capacity Expansion (Months 18-36)
 
 **Objective:** Maximize NYC location throughput and explore adjacent revenue.
 
-- Upgrade to second NextSeq 2000 or NovaSeq X system as volume justifies
+- Add a second Element AVITI or upgrade to an Illumina NovaSeq X for higher throughput as volume justifies
 - Launch **PrivDNA for Families** (multi-genome packages at reduced per-unit pricing)
 - Explore **PrivDNA Corporate** (family offices, executive health programs, corporate wellness)
 - Begin planning for second location
+
+Element's reagent price guarantee protects against cost inflation as the business scales. A second AVITI would approximately double sequencing capacity to 1,300-1,500 genomes/year while maintaining the same $560/genome reagent cost.
 
 ## 12.3 Phase 3: Geographic Expansion (Months 36-60)
 
@@ -1062,30 +1072,30 @@ Each new location replicates the NYC model with identical equipment, pipeline, a
 
 ## 13.1 Total Raise
 
-**PrivDNA is seeking $1.35 million in seed funding.**
+**PrivDNA is seeking $1.25 million in seed funding.**
 
 ## 13.2 Use of Funds
 
 | Allocation | Amount | % of Raise |
 |------------|--------|------------|
-| Sequencing and lab equipment | $378,700 | 28.1% |
-| Air-gapped compute infrastructure | $176,300 | 13.1% |
-| Facility buildout (deposit, glass wall, MEP) | $162,000 | 12.0% |
-| Open-source software development | $110,000 | 8.1% |
-| Regulatory and legal | $35,000 | 2.6% |
-| Marketing and launch | $50,000 | 3.7% |
-| Reserves (consumables + contingency) | $85,000 | 6.3% |
-| **Operational runway (12 months)** | **$353,000** | **26.1%** |
-| **Total** | **$1,350,000** | **100%** |
+| Sequencing and lab equipment | $332,700 | 26.6% |
+| Air-gapped compute infrastructure | $93,216 | 7.5% |
+| Facility buildout (deposit, glass wall, MEP) | $162,000 | 13.0% |
+| Software development | $110,000 | 8.8% |
+| Regulatory and legal | $35,000 | 2.8% |
+| Marketing and launch | $50,000 | 4.0% |
+| Reserves (consumables + contingency) | $56,000 | 4.5% |
+| **Operational runway (12 months)** | **$411,084** | **32.9%** |
+| **Total** | **$1,250,000** | **100%** |
 
 ## 13.3 Milestones Tied to Funding
 
 | Milestone | Timeline | Funding Tranche |
 |-----------|----------|----------------|
-| Entity formation, lease execution, equipment orders | Month 0-2 | $425,000 |
-| Lab buildout, CLIA/CLEP applications, pipeline development | Month 2-6 | $375,000 |
-| Equipment installation, validation runs, staff hiring | Month 6-10 | $325,000 |
-| Launch, initial marketing push, first customer | Month 10-12 | $225,000 |
+| Entity formation, lease execution, equipment orders | Month 0-2 | $400,000 |
+| Lab buildout, CLIA/CLEP applications, pipeline development | Month 2-6 | $350,000 |
+| Equipment installation, validation runs, staff hiring | Month 6-10 | $300,000 |
+| Launch, initial marketing push, first customer | Month 10-12 | $200,000 |
 
 ## 13.4 Return Projections
 
@@ -1093,12 +1103,12 @@ Based on the five-year financial model (Section X):
 
 | Metric | Value |
 |--------|-------|
-| Total investment | $1,350,000 |
-| Cumulative net income through Year 5 (single instrument) | ($561,400) |
-| Projected Year 5 annual net income | $50,000 (capacity-constrained) |
+| Total investment | $1,250,000 |
+| Cumulative net income through Year 5 (single instrument) | $2,614,600 |
+| Projected Year 5 annual net income | $890,000 |
 | Projected Year 5 revenue | $2,625,000 |
-| Cash-flow positive (monthly) | Month ~30-32 |
-| Note | Second instrument (Phase 2) significantly improves Year 4-5 economics |
+| Cash-flow positive (monthly) | Month ~15-16 |
+| Cumulative break-even | Month ~25-26 |
 
 For investors seeking earlier liquidity, PrivDNA's brand, open-source community, established regulatory certifications, and proven model create acquisition value well beyond the sum of financial returns. A multi-location PrivDNA with demonstrated demand and a privacy-sovereign brand in a post-23andMe market is a strategic acquisition target for health systems, concierge medicine platforms, and privacy-focused technology companies.
 
@@ -1183,11 +1193,15 @@ For investors seeking earlier liquidity, PrivDNA's brand, open-source community,
 - Journal of Molecular Diagnostics, "Guide to CLEP Approval for NGS Assays," 2025
 
 ### Technology
-- Illumina, NextSeq 1000/2000 Product Specifications
+- Element Biosciences, AVITI System Product Specifications
+- Element Biosciences, Cloudbreak Chemistry Kit Documentation
+- Element Biosciences, bases2fastq Software Documentation
 - AMD, EPYC 9004 Series Processor Documentation
 - Samsung Semiconductor, PM9A3 NVMe Datasheet
 - NVIDIA, Clara Parabricks Genomics Acceleration Documentation
+- NVIDIA, L40S GPU Product Specifications
 - Kingston Technology, IronKey D500S Product Specifications
+- NEB (New England Biolabs), NEBNext Ultra II FS DNA Library Prep Kit Documentation
 
 ---
 
