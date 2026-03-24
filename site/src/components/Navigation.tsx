@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback, KeyboardEvent as ReactKeyboardEvent } from "react";
 import { gsap } from "gsap";
 
 const NAV_ITEMS = [
@@ -94,6 +94,18 @@ export default function Navigation() {
     [closeMenu]
   );
 
+  // Close menu on Escape key
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKeyDown = (e: globalThis.KeyboardEvent) => {
+      if (e.key === "Escape") {
+        closeMenu();
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [isOpen, closeMenu]);
+
   return (
     <>
       {/* Fixed nav bar */}
@@ -113,6 +125,8 @@ export default function Navigation() {
           onClick={() => (isOpen ? closeMenu() : openMenu())}
           className="relative z-[110] flex flex-col justify-center items-center w-10 h-10 gap-[6px]"
           aria-label={isOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isOpen}
+          aria-controls="nav-overlay"
         >
           <span
             className={`block w-6 h-[2px] bg-text-primary transition-all duration-300 origin-center ${
@@ -135,9 +149,13 @@ export default function Navigation() {
       {/* Full-screen overlay */}
       <div
         ref={overlayRef}
+        id="nav-overlay"
+        role="dialog"
+        aria-label="Site navigation"
+        aria-hidden={!isOpen}
         className="fixed inset-0 z-[105] bg-bg-primary/95 backdrop-blur-md flex items-center justify-center invisible opacity-0"
       >
-        <nav className="flex flex-col items-center gap-6">
+        <nav aria-label="Main navigation" className="flex flex-col items-center gap-6">
           {NAV_ITEMS.map((item, i) => (
             <a
               key={item.href}
