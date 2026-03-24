@@ -33,7 +33,7 @@ const pillars = [
   {
     title: "Cryptographic Verifiability",
     description:
-      "Our entire pipeline is open source on GitHub. Audit the code that touches your DNA.",
+      "Our entire pipeline is open source on GitHub.\nAudit the code that touches your DNA.",
     icon: (
       <svg
         width="64"
@@ -55,7 +55,7 @@ const pillars = [
   {
     title: "Zero Retention",
     description:
-      "Your data is created, handed to you, and destroyed. No copies. No cloud. No exceptions.",
+      "Your data is created, handed to you, and destroyed.\nNo copies. No cloud. No exceptions.",
     icon: (
       <svg
         width="64"
@@ -137,7 +137,7 @@ export default function ThePromise() {
             <h3 className="text-accent text-2xl md:text-3xl font-bold mb-4">
               {pillar.title}
             </h3>
-            <p className="text-text-secondary text-lg max-w-lg">
+            <p className="text-text-secondary text-lg max-w-lg whitespace-pre-line">
               {pillar.description}
             </p>
           </div>

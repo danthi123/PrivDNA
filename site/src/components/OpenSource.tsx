@@ -68,10 +68,8 @@ export default function OpenSource() {
         <h2 className="text-[clamp(2rem,4vw,4rem)] font-bold mb-6">
           Trust, but verify.
         </h2>
-        <p className="text-text-secondary text-lg mb-8 max-w-lg">
-          Every tool in our bioinformatics pipeline is open source and
-          independently auditable. No proprietary black boxes. No hidden network
-          calls. Just clean, verifiable code processing your most personal data.
+        <p className="text-text-secondary text-lg mb-8 max-w-lg whitespace-pre-line">
+          {"Every tool in our bioinformatics pipeline is open source and independently auditable.\nNo proprietary black boxes.\nNo hidden network calls.\nJust clean, verifiable code processing your most personal data."}
         </p>
         <div>
           <a

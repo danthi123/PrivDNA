@@ -93,20 +93,18 @@ export default function Hero() {
       <div className="relative z-10 max-w-3xl px-6 md:px-16 lg:px-24">
         <h1
           ref={headlineRef}
-          className="text-[clamp(2.5rem,6vw,7rem)] font-bold leading-[0.95] tracking-tight"
+          className="text-[clamp(2.5rem,6vw,7rem)] font-bold leading-[0.95] tracking-tight flex flex-col gap-[0.15em]"
         >
-          Your genome.
-          <br />
-          Your hands.
-          <br />
-          <span className="text-accent">No copies.</span>
+          <span className="whitespace-nowrap">Your genome.</span>
+          <span className="whitespace-nowrap">Your hands.</span>
+          <span className="whitespace-nowrap text-accent">No copies.</span>
         </h1>
 
         <p
           ref={subtextRef}
-          className="mt-6 text-text-secondary text-[clamp(1rem,1.5vw,1.5rem)] max-w-lg"
+          className="mt-6 text-text-secondary text-[clamp(1rem,1.5vw,1.5rem)] max-w-lg whitespace-pre-line"
         >
-          Air-gapped whole genome sequencing. Open source. Zero retention.
+          {"Air-gapped whole genome sequencing.\nOpen source.\nZero retention."}
         </p>
 
         <button
