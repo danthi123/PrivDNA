@@ -38,7 +38,7 @@ const pillars = [
       "Your data is created, handed to you, and destroyed.\nNo copies.\nNo cloud.\nNo exceptions.",
     icon: (
       <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent">
-        <path d="M12 16 L32 4 L52 16 L52 40 L32 52 L12 40 Z" />
+        <path d="M12 20 L32 8 L52 20 L52 44 L32 56 L12 44 Z" />
         <line x1="22" y1="22" x2="42" y2="42" />
         <line x1="42" y1="22" x2="22" y2="42" />
       </svg>
