@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -95,22 +95,33 @@ export default function HowItWorks() {
   const innerRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
   const mobileCardRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const [isMobile, setIsMobile] = useState(false);
+  useGSAP(() => {
+    ScrollTrigger.matchMedia({
+      // Desktop: horizontal scroll with pin
+      "(min-width: 768px)": function () {
+        const outer = outerRef.current;
+        const inner = innerRef.current;
+        const progress = progressRef.current;
+        if (!outer || !inner || !progress) return;
 
-  useEffect(() => {
-    const mql = window.matchMedia("(max-width: 767px)");
-    setIsMobile(mql.matches);
-    const handler = (e: MediaQueryListEvent) => {
-      setIsMobile(e.matches);
-      ScrollTrigger.refresh();
-    };
-    mql.addEventListener("change", handler);
-    return () => mql.removeEventListener("change", handler);
-  }, []);
+        gsap.to(inner, {
+          x: () => -(inner.scrollWidth - window.innerWidth),
+          ease: "none",
+          scrollTrigger: {
+            trigger: outer,
+            pin: true,
+            scrub: 1,
+            end: "+=300%",
+            invalidateOnRefresh: true,
+            onUpdate: (self) => {
+              gsap.set(progress, { scaleX: self.progress });
+            },
+          },
+        });
+      },
 
-  useGSAP(
-    () => {
-      if (isMobile) {
+      // Mobile: 2-column grid with fade-in
+      "(max-width: 767px)": function () {
         mobileCardRefs.current.forEach((el) => {
           if (!el) return;
           gsap.from(el, {
@@ -125,31 +136,9 @@ export default function HowItWorks() {
             },
           });
         });
-        return;
-      }
-
-      const outer = outerRef.current;
-      const inner = innerRef.current;
-      const progress = progressRef.current;
-      if (!outer || !inner || !progress) return;
-
-      gsap.to(inner, {
-        x: () => -(inner.scrollWidth - window.innerWidth),
-        ease: "none",
-        scrollTrigger: {
-          trigger: outer,
-          pin: true,
-          scrub: 1,
-          end: "+=300%",
-          invalidateOnRefresh: true,
-          onUpdate: (self) => {
-            gsap.set(progress, { scaleX: self.progress });
-          },
-        },
-      });
-    },
-    { dependencies: [isMobile] }
-  );
+      },
+    });
+  });
 
   return (
     <section id="how-it-works" aria-label="How It Works">

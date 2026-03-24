@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -13,73 +13,15 @@ export default function TheProblem() {
   const slide2Ref = useRef<HTMLDivElement>(null);
   const slide3Ref = useRef<HTMLDivElement>(null);
   const counterRef = useRef<HTMLSpanElement>(null);
-  const mobileRef = useRef<HTMLDivElement>(null);
   const mSlide1Ref = useRef<HTMLDivElement>(null);
   const mSlide2Ref = useRef<HTMLDivElement>(null);
   const mSlide3Ref = useRef<HTMLDivElement>(null);
   const mCounterRef = useRef<HTMLSpanElement>(null);
-  const [isMobile, setIsMobile] = useState(false);
 
-  useEffect(() => {
-    const mql = window.matchMedia("(max-width: 767px)");
-    setIsMobile(mql.matches);
-    const handler = (e: MediaQueryListEvent) => {
-      setIsMobile(e.matches);
-      ScrollTrigger.refresh();
-    };
-    mql.addEventListener("change", handler);
-    return () => mql.removeEventListener("change", handler);
-  }, []);
-
-  useGSAP(
-    () => {
-      // Kill existing triggers before recreating
-      ScrollTrigger.getAll().forEach((t) => {
-        if (t.vars.trigger === desktopRef.current || t.vars.trigger === mobileRef.current) {
-          t.kill();
-        }
-      });
-
-      if (isMobile) {
-        // Mobile: simple fade-in per block
-        [mSlide1Ref, mSlide2Ref, mSlide3Ref].forEach((ref) => {
-          const el = ref.current;
-          if (!el) return;
-          gsap.from(el, {
-            y: 40,
-            opacity: 0,
-            duration: 0.8,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: el,
-              start: "top 80%",
-              toggleActions: "play none none none",
-            },
-          });
-        });
-
-        // Counter
-        const counter = mCounterRef.current;
-        if (counter) {
-          ScrollTrigger.create({
-            trigger: mSlide1Ref.current,
-            start: "top 80%",
-            once: true,
-            onEnter: () => {
-              const obj = { val: 0 };
-              gsap.to(obj, {
-                val: 15000000,
-                duration: 2.5,
-                ease: "power2.out",
-                onUpdate: () => {
-                  counter.innerText = Math.round(obj.val).toLocaleString();
-                },
-              });
-            },
-          });
-        }
-      } else {
-        // Desktop: pinned timeline
+  useGSAP(() => {
+    ScrollTrigger.matchMedia({
+      // Desktop: pinned crossfade timeline
+      "(min-width: 768px)": function () {
         const container = desktopRef.current;
         const slide1 = slide1Ref.current;
         const slide2 = slide2Ref.current;
@@ -118,10 +60,48 @@ export default function TheProblem() {
             });
           },
         });
-      }
-    },
-    { dependencies: [isMobile] }
-  );
+      },
+
+      // Mobile: simple fade-in per block
+      "(max-width: 767px)": function () {
+        [mSlide1Ref, mSlide2Ref, mSlide3Ref].forEach((ref) => {
+          const el = ref.current;
+          if (!el) return;
+          gsap.from(el, {
+            y: 40,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: el,
+              start: "top 80%",
+              toggleActions: "play none none none",
+            },
+          });
+        });
+
+        const counter = mCounterRef.current;
+        if (counter) {
+          ScrollTrigger.create({
+            trigger: mSlide1Ref.current,
+            start: "top 80%",
+            once: true,
+            onEnter: () => {
+              const obj = { val: 0 };
+              gsap.to(obj, {
+                val: 15000000,
+                duration: 2.5,
+                ease: "power2.out",
+                onUpdate: () => {
+                  counter.innerText = Math.round(obj.val).toLocaleString();
+                },
+              });
+            },
+          });
+        }
+      },
+    });
+  });
 
   return (
     <section id="problem" aria-label="The Problem">
@@ -172,7 +152,7 @@ export default function TheProblem() {
       </div>
 
       {/* Mobile: vertical stack */}
-      <div ref={mobileRef} className="md:hidden">
+      <div className="md:hidden">
         <div ref={mSlide1Ref} className="min-h-[60vh] flex flex-col items-center justify-center px-6 text-center">
           <span
             ref={mCounterRef}
