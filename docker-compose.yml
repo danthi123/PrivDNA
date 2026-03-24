@@ -8,7 +8,7 @@ services:
     environment:
       - DATABASE_KEY=${DATABASE_KEY}
       - RYBBIT_SITE_ID=${RYBBIT_SITE_ID}
-      - RYBBIT_URL=http://rybbit-server:3002
+      - RYBBIT_URL=https://analytics.privdna.com
       - SMTP_HOST=${SMTP_HOST}
       - SMTP_PORT=${SMTP_PORT}
       - SMTP_USER=${SMTP_USER}
@@ -23,9 +23,9 @@ services:
     networks:
       - privdna-internal
 
-  rybbit-server:
-    image: ghcr.io/rybbit-io/rybbit:latest
-    container_name: rybbit-server
+  rybbit-backend:
+    image: ghcr.io/rybbit-io/rybbit-backend:latest
+    container_name: rybbit-backend
     restart: unless-stopped
     environment:
       - DATABASE_URL=postgresql://rybbit:${RYBBIT_DB_PASSWORD}@rybbit-postgres:5432/rybbit
@@ -36,6 +36,18 @@ services:
     depends_on:
       - rybbit-postgres
       - rybbit-clickhouse
+    networks:
+      - privdna-internal
+
+  rybbit-client:
+    image: ghcr.io/rybbit-io/rybbit-client:latest
+    container_name: rybbit-client
+    restart: unless-stopped
+    environment:
+      - BACKEND_URL=http://rybbit-backend:3001
+      - BASE_URL=https://analytics.privdna.com
+    depends_on:
+      - rybbit-backend
     networks:
       - privdna-internal
 
@@ -76,7 +88,7 @@ services:
       - privdna-internal
     depends_on:
       - privdna-web
-      - rybbit-server
+      - rybbit-client
 
 networks:
   privdna-internal:
