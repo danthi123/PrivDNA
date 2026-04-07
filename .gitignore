@@ -8,3 +8,5 @@ site/.env*.local
 audit-report-*.md
 *-review-*.md
 *-report-*.md
+docs/outreach/
+docs/content/

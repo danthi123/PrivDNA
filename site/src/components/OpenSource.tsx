@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 const terminalLines = [
   { text: "$ privdna pipeline --verify", delay: 0 },
   { text: "", delay: 0 },
-  { text: "\u2713 BCL Convert    v4.4.6   [Illumina]", accent: true },
+  { text: "\u2713 bases2fastq    v2.1     [Element Biosciences]", accent: true },
   { text: "\u2713 BWA-MEM2       v2.2.1   [MIT License]", accent: true },
   { text: "\u2713 GATK           v4.6.1   [BSD-3-Clause]", accent: true },
   { text: "\u2713 samtools       v1.23    [MIT License]", accent: true },

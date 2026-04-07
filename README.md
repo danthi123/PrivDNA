@@ -6,13 +6,13 @@ PrivDNA is designing a first-of-its-kind privacy-sovereign whole genome sequenci
 
 ## What Is PrivDNA?
 
-A physical genomics lab where your complete genome is sequenced at clinical-grade accuracy (30x coverage, >99.9% Q30), processed entirely on air-gapped servers that never touch the internet, delivered to you on a FIPS 140-3 certified encrypted USB drive, and destroyed on-premise under NIST SP 800-88 Rev. 2 standards -- witnessed by you through a glass-walled laboratory.
+A physical genomics lab where your complete genome is sequenced at clinical-grade accuracy (30x coverage, ≥90% bases above Q30), processed entirely on air-gapped servers that never touch the internet, delivered to you on a FIPS 140-3 certified encrypted USB drive, and destroyed on-premise under NIST SP 800-88 Rev. 2 standards -- witnessed by you through a glass-walled laboratory.
 
 **We deliver raw data (BAM, VCF, gVCF files). We do not provide medical interpretation.** Customers who want clinical analysis are referred to independent, pre-vetted genetic counselors who operate under their own licenses.
 
 ## Why This Exists
 
-In March 2025, 23andMe filed for bankruptcy and sold 15 million customers' genetic data for $305 million through a legal structure that bypassed re-consent requirements. A class-action lawsuit against Nebula Genomics alleges the "privacy-first" company shared genetic information with Meta, Google, and Microsoft via embedded tracking tools. Ancestry was acquired by Blackstone for $4.7 billion, with analysts noting the implied value of ~$250 per customer genome.
+In March 2025, 23andMe filed for bankruptcy and sold approximately 15 million customers' genetic data for $305 million through a bankruptcy process that critics argue circumvented meaningful re-consent requirements. A class-action lawsuit against Nebula Genomics alleges the "privacy-first" company shared genetic information with Meta, Google, and Microsoft via embedded tracking tools. Ancestry was acquired by Blackstone in 2020 for $4.7 billion, with analysts noting the implied enterprise value of roughly $261 per DNA customer.
 
 The pattern is consistent: companies that hold centralized genetic databases face irresistible economic pressure to monetize that data regardless of privacy commitments. PrivDNA eliminates this risk by never retaining data in the first place.
 
@@ -57,7 +57,7 @@ PrivDNA/
 │   │       ├── crypto.ts      # AES-256-GCM encryption + HMAC-SHA256 hashing
 │   │       ├── mailer.ts      # Nodemailer SMTP transport
 │   │       ├── emailTemplate.ts # Dark-themed HTML/text email templates
-│   │       └── rateLimit.ts   # In-memory rate limiter
+│   │       └── rateLimit.ts   # SQLite-backed persistent rate limiter
 │   ├── public/
 │   │   ├── storefront-concept.webp  # AI-generated lab concept render
 │   │   ├── apple-touch-icon.png     # Touch icon
@@ -71,26 +71,26 @@ PrivDNA/
 
 ## The Documents
 
-### [Whitepaper](whitepaper.md) (~9,700 words)
+### [Whitepaper](whitepaper.md) (~14,500 words)
 
 The full founding document covering:
 
 - **The Problem** -- 23andMe's collapse, the data monetization pattern, consumer trust at historic lows (70% concerned per Deloitte 2025)
 - **The Solution** -- Three pillars: physical transparency (glass-walled lab), cryptographic verifiability (open-source pipeline), zero data retention (NIST 800-88 destruction)
 - **Market Analysis** -- $2.12B WGS market (2024) growing at 22.2% CAGR. No existing competitor offers a physical storefront. Every DTC genomics company is mail-order only.
-- **Technical Architecture** -- Illumina NextSeq 2000, dual AMD EPYC 9654 air-gapped server, NVIDIA A100 GPU acceleration, 92TB NVMe RAID-10
-- **Financial Model** -- $981K startup capital, $3,500/genome pricing, $2,340 variable cost (with volume discounts), break-even at 50 genomes/month, profitability by Year 3
+- **Technical Architecture** -- Element Biosciences AVITI, dual AMD EPYC 9654 air-gapped server, NVIDIA L40S GPU acceleration, 30TB usable NVMe RAID-10
+- **Financial Model** -- $880K startup capital, $3,500/genome pricing, $1,016 variable cost, break-even at 29 genomes/month, profitability by Year 3
 - **Regulatory Framework** -- CLIA high-complexity certification, NYSDOH CLEP permit, CAP accreditation, HIPAA compliance
 - **$1.25M seed raise** covering equipment, buildout, 12 months operational runway
 
-### [Technical Manifest](technical-manifest.md) (~5,200 words)
+### [Technical Manifest](technical-manifest.md) (~6,100 words)
 
 Complete hardware and software specification:
 
-- **Hardware BOM** with part numbers and pricing ($555K in equipment -- sequencer, compute server, network, power, delivery media)
-- **Server architecture** -- 2x EPYC 9654 (192 cores), 1TB DDR5, 24x Samsung PM9A3 NVMe in RAID-10, NVIDIA A100 80GB
+- **Hardware BOM** with part numbers and pricing ($439K in equipment -- sequencer, compute server, network, power, delivery media)
+- **Server architecture** -- 2x EPYC 9654 (192 cores), 1TB DDR5, 8x Samsung PM9A3 7.68TB NVMe in RAID-10, NVIDIA L40S 48GB
 - **4-layer air-gap enforcement** -- physical (no cables), logical (no WAN/DNS/DHCP), BIOS (Secure Boot, USB disabled), controlled data transfer protocol
-- **Open-source pipeline** -- BCL Convert, BWA-MEM2, GATK 4.6.1, samtools, FastQC, MultiQC, orchestrated by Nextflow/nf-core sarek
+- **Open-source pipeline** -- bases2fastq (Element Biosciences), BWA-MEM2, GATK 4.6.1, samtools, FastQC, MultiQC, orchestrated by Nextflow/nf-core sarek
 - **Data destruction** -- NIST SP 800-88 Rev. 2 Purge via cryptographic erasure on self-encrypting NVMe drives. Under 5 seconds. Certificate of Destruction generated.
 - **Customer delivery** -- Kingston IronKey D500S (FIPS 140-3 Level 3, hardware-encrypted, PIN-based, brute-force self-destruct)
 
@@ -118,7 +118,7 @@ The waitlist signup is intentionally over-engineered for a mailing list because 
 4. **Random unsubscribe tokens** -- Each subscriber receives a cryptographically random 32-byte token stored in an indexed database column. Unsubscribe lookups are O(1) via index, not O(N) HMAC iteration. Tokens are validated against format (64 hex chars) before any database query.
 5. **Soft-delete unsubscribe** -- Unsubscribed emails are marked with a timestamp rather than deleted, for CAN-SPAM compliance. They are excluded from all active queries.
 6. **No cookies** -- Zero cookies set. No tracking pixels. No third-party scripts.
-7. **Rate limiting** -- In-memory per-IP rate limiting on both signup and unsubscribe endpoints.
+7. **Rate limiting** -- SQLite-backed persistent per-IP rate limiting on both signup and unsubscribe endpoints. Survives server restarts.
 8. **No exposed ports** -- The entire stack runs behind a Cloudflare Tunnel. The server has no open ports.
 9. **Secrets management** -- All keys (database encryption, email encryption, SMTP credentials) loaded from environment variables, never committed to the repository. Keys are validated at startup to ensure sufficient entropy.
 10. **Security headers** -- Content-Security-Policy, X-Frame-Options (DENY), Referrer-Policy, Permissions-Policy served on all responses. `X-Powered-By` header suppressed.

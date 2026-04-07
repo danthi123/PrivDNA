@@ -8,6 +8,8 @@
 
 **Tech Stack:** Next.js 16, React 19, Three.js + R3F, GSAP 3.14 (ScrollTrigger + SplitText), Lenis, Tailwind CSS 4, better-sqlite3-multiple-ciphers, Geist font, Rybbit analytics, Docker
 
+> **Note:** Following Webflow's acquisition of GSAP in late 2024, all GSAP plugins including SplitText are now free for commercial use under the standard license. No Business license is required.
+
 **Design Doc:** `docs/plans/2026-03-23-privdna-website-design.md`
 
 ---
@@ -189,7 +191,7 @@ git commit -m "feat: floating navigation with full-screen overlay and scroll-awa
 **Step 1: Build the crypto module**
 
 Create `site/src/lib/crypto.ts`. Three functions:
-- `encryptEmail(email: string)`: Uses Node crypto `createCipheriv` with aes-256-cbc. Key derived from DATABASE_KEY env var via SHA-256 hash (ensures 32 bytes). Generates random 16-byte IV per encryption. Returns `{ encrypted: string (hex), iv: string (hex) }`.
+- `encryptEmail(email: string)`: Uses Node crypto `createCipheriv` with aes-256-gcm. Key derived from EMAIL_ENCRYPTION_KEY env var via SHA-256 hash (ensures 32 bytes). Generates random 12-byte IV (96-bit, recommended for GCM). Returns `{ encrypted: string (hex), iv: string (hex), authTag: string (hex) }`.
 - `decryptEmail(encrypted: string, iv: string)`: Reverse of encrypt. Returns plaintext email.
 - `hashEmail(email: string)`: SHA-256 hash of lowercased, trimmed email. Returns hex string. Used for dedup without decrypting.
 
@@ -408,7 +410,7 @@ Right side: Styled terminal block with bg-bg-surface rounded-2xl p-6 font-mono. 
 ```
 $ privdna pipeline --verify
 
- BCL Convert    v4.4.6   [Illumina]
+ bases2fastq    v2.1     [Element Biosciences]
  BWA-MEM2       v2.2.1   [MIT License]
  GATK           v4.6.1   [BSD-3-Clause]
  samtools       v1.23    [MIT License]

@@ -129,7 +129,7 @@ Scroll-driven horizontal timeline with 6 steps connected by a teal progress line
 |------|-------|-------------|
 | 1 | Walk In | "Visit our NYC storefront. No mail-order kits." |
 | 2 | Sample | "Saliva collection in under 10 minutes." |
-| 3 | Sequence | "30x whole genome on Illumina NextSeq 2000." |
+| 3 | Sequence | "30x whole genome on Element Biosciences AVITI." |
 | 4 | Process | "Air-gapped servers. Open source pipeline." |
 | 5 | Deliver | "Encrypted USB drive. FIPS 140-3 certified." |
 | 6 | Destroy | "Witnessed data destruction. Certificate provided." |
@@ -180,7 +180,7 @@ Minimal. Left: (c) 2026 PrivDNA. Center: GitHub / Twitter / Email icons. Right: 
 
 | Layer | Technology |
 |-------|-----------|
-| Framework | Next.js 14 (App Router) |
+| Framework | Next.js 16 (App Router) |
 | 3D | Three.js (custom DNA helix geometry) |
 | Animation | GSAP (ScrollTrigger + SplitText) |
 | Smooth scroll | Lenis |
@@ -205,7 +205,7 @@ GET /api/waitlist/count
   -> Returns total signups (public counter, no PII)
 ```
 
-**Database:** SQLCipher (SQLite + AES-256-CBC). Entire database file encrypted at rest. Key from environment variable.
+**Database:** SQLCipher (SQLite + AES-256). Entire database file encrypted at rest (SQLCipher uses AES-256-CBC internally). Key from environment variable.
 
 **Schema:**
 ```sql
@@ -281,7 +281,7 @@ privdna.com/
 |-------|-----------|
 | Transport | Cloudflare Tunnel (TLS 1.3, no exposed ports) |
 | Application | Rate limiting, input validation, CSRF protection |
-| Data at rest | SQLCipher AES-256-CBC (entire DB encrypted) |
+| Data at rest | SQLCipher AES-256 (entire DB encrypted; CBC mode internally) |
 | Data in transit | HTTPS only (Cloudflare enforced) |
 | Email storage | AES-256 encrypted before write; SHA-256 hash for dedup |
 | Secrets | Env vars only; .env in .gitignore; .env.example documents shape |
