@@ -11,7 +11,7 @@ const pillars = [
   {
     title: "Physical Transparency",
     description:
-      "Watch your genome being sequenced through a glass wall.\nEvery step visible.\nNothing hidden.",
+      "Hand over your sample in person.\nWatch the destruction through a glass wall.\nEverything between is verifiable open source.\nNothing hidden.",
     icon: (
       <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent">
         <ellipse cx="32" cy="32" rx="28" ry="16" />
@@ -35,7 +35,7 @@ const pillars = [
   {
     title: "Zero Retention",
     description:
-      "Your data is created, handed to you, and destroyed.\nNo copies.\nNo cloud.\nNo exceptions.",
+      "Your sample is collected, your data is handed to you, and the on-premise copies are destroyed.\nNo copies.\nNo cloud.\nNo exceptions.",
     icon: (
       <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent">
         <path d="M12 20 L32 8 L52 20 L52 44 L32 56 L12 44 Z" />

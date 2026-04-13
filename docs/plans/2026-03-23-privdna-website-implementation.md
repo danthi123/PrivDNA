@@ -356,11 +356,11 @@ Timeline choreography: slide1 visible at 0, fades out at 0.3. slide2 fades in at
 
 Build as "use client" with useGSAP. Container with id="promise". Three pillar cards, each filling the viewport. GSAP timeline with ScrollTrigger pin and scrub, end "+=300%".
 
-Pillar 1 -- Physical Transparency: SVG icon (stylized eye or glass pane), headline, body text "Watch your genome being sequenced through a glass wall. Every step visible. Nothing hidden."
+Pillar 1 -- Physical Transparency: SVG icon (stylized eye or glass pane), headline, body text "Hand over your sample in person. Watch the destruction through a glass wall. Everything between is verifiable open source. Nothing hidden."
 
 Pillar 2 -- Cryptographic Verifiability: SVG icon (code brackets or shield-check), headline, body text "Our entire pipeline is open source on GitHub. Audit the code that touches your DNA."
 
-Pillar 3 -- Zero Retention: SVG icon (shredder or trash-with-lock), headline, body text "Your data is created, handed to you, and destroyed. No copies. No cloud. No exceptions."
+Pillar 3 -- Zero Retention: SVG icon (shredder or trash-with-lock), headline, body text "Your sample is collected, your data is handed to you, and the on-premise copies are destroyed. No copies. No cloud. No exceptions."
 
 Each pillar transitions with x-translation: current slides out left (x: -100%), next slides in from right (x: 100% -> 0). Each pillar has a large icon above, headline in text-accent below, then body text in text-secondary.
 

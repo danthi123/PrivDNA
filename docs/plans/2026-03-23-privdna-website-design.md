@@ -111,13 +111,13 @@ Three scroll-driven slides within a pinned viewport:
 Three pillar cards animate in sequentially, each filling the viewport:
 
 **Pillar 1 — Physical Transparency**
-Icon: glass wall / eye. "Watch your genome being sequenced through a glass wall. Every step visible. Nothing hidden."
+Icon: glass wall / eye. "Hand over your sample in person. Watch the destruction through a glass wall. Everything between is verifiable open source. Nothing hidden."
 
 **Pillar 2 — Cryptographic Verifiability**
 Icon: code brackets / GitHub mark. "Our entire pipeline is open source on GitHub. Audit the code that touches your DNA."
 
 **Pillar 3 — Zero Retention**
-Icon: shredder / eraser. "Your data is created, handed to you, and destroyed. No copies. No cloud. No exceptions."
+Icon: shredder / eraser. "Your sample is collected, your data is handed to you, and the on-premise copies are destroyed. No copies. No cloud. No exceptions."
 
 Each transitions with horizontal wipe (previous slides left, next enters from right).
 
@@ -127,12 +127,14 @@ Scroll-driven horizontal timeline with 6 steps connected by a teal progress line
 
 | Step | Title | Description |
 |------|-------|-------------|
-| 1 | Walk In | "Visit our NYC storefront. No mail-order kits." |
-| 2 | Sample | "Saliva collection in under 10 minutes." |
-| 3 | Sequence | "30x whole genome on Element Biosciences AVITI." |
-| 4 | Process | "Air-gapped servers. Open source pipeline." |
-| 5 | Deliver | "Encrypted USB drive. FIPS 140-3 certified." |
-| 6 | Destroy | "Witnessed data destruction. Certificate provided." |
+| 1 | Walk In | "Visit 1 (Day 1): ~15 min. Visit our NYC storefront. No mail-order kits." |
+| 2 | Sample | "~10 min. Saliva or buccal swab. You depart after collection." |
+| 3 | Sequence | "Between visits: ~38 hrs. 30x whole genome on Element Biosciences AVITI." |
+| 4 | Process | "~60-90 min on GPU. Air-gapped servers. Open source pipeline." |
+| 5 | Deliver | "Visit 2 (Day 5-6): ~30 min. Encrypted USB drive. FIPS 140-3 certified." |
+| 6 | Destroy | "Witnessed through the glass wall. On-premise data cryptographically erased. Certificate provided." |
+
+Visual grouping: steps 1-2 labeled as "Visit 1", steps 3-4 labeled as "Between Visits (4-6 business days)", steps 5-6 labeled as "Visit 2". The two-visit structure must be clear to prevent customers from expecting same-day service.
 
 Each step has a minimal line-art icon. Active step icon glows teal.
 

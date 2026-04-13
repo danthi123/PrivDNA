@@ -6,7 +6,7 @@ PrivDNA is designing a first-of-its-kind privacy-sovereign whole genome sequenci
 
 ## What Is PrivDNA?
 
-A physical genomics lab where your complete genome is sequenced at clinical-grade accuracy (30x coverage, ≥90% bases above Q30), processed entirely on air-gapped servers that never touch the internet, delivered to you on a FIPS 140-3 certified encrypted USB drive, and destroyed on-premise under NIST SP 800-88 Rev. 2 standards -- witnessed by you through a glass-walled laboratory.
+A physical genomics lab where your complete genome is sequenced at clinical-grade accuracy (30x coverage, ≥90% bases above Q30), processed entirely on air-gapped servers that never touch the internet, delivered to you on a FIPS 140-3 certified encrypted USB drive, and destroyed on-premise under NIST SP 800-88 Rev. 2 standards inside a glass-walled laboratory. The customer experience is two brief visits spanning 4-6 business days — ~25 minutes for intake and sample collection, then ~30 minutes for data delivery and witnessed destruction. The ~38-hour sequencing run and downstream bioinformatics happen between visits.
 
 **We deliver raw data (BAM, VCF, gVCF files). We do not provide medical interpretation.** Customers who want clinical analysis are referred to independent, pre-vetted genetic counselors who operate under their own licenses.
 

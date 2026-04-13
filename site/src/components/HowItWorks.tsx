@@ -11,7 +11,7 @@ const steps = [
   {
     num: "01",
     title: "Walk In",
-    description: "Visit our NYC storefront.\nNo mail-order kits.",
+    description: "Visit 1 (Day 1): ~15 min.\nVisit our NYC storefront.\nNo mail-order kits.",
     icon: (
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent">
         <rect x="8" y="12" width="32" height="28" rx="2" />
@@ -23,7 +23,7 @@ const steps = [
   {
     num: "02",
     title: "Sample",
-    description: "Saliva collection in under 10 minutes.",
+    description: "~10 min.\nSaliva or buccal swab.\nYou depart after collection.",
     icon: (
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent">
         <path d="M18 8h12v4l4 20a4 4 0 01-4 4H18a4 4 0 01-4-4l4-20V8z" />
@@ -35,7 +35,7 @@ const steps = [
   {
     num: "03",
     title: "Sequence",
-    description: "30x whole genome on Element AVITI.",
+    description: "Between visits: ~38 hrs.\n30x whole genome on Element AVITI.",
     icon: (
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent">
         <path d="M16 8c0 4 8 8 8 12s-8 8-8 12 8 8 8 12" />
@@ -49,7 +49,7 @@ const steps = [
   {
     num: "04",
     title: "Process",
-    description: "Air-gapped servers.\nOpen source pipeline.",
+    description: "~60-90 min on GPU.\nAir-gapped servers.\nOpen source pipeline.",
     icon: (
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent">
         <rect x="10" y="8" width="28" height="12" rx="2" />
@@ -63,7 +63,7 @@ const steps = [
   {
     num: "05",
     title: "Deliver",
-    description: "Encrypted USB drive.\nFIPS 140-3 certified.",
+    description: "Visit 2 (Day 5-6): ~30 min.\nEncrypted USB drive.\nFIPS 140-3 certified.",
     icon: (
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent">
         <rect x="12" y="16" width="24" height="20" rx="3" />
@@ -76,7 +76,7 @@ const steps = [
   {
     num: "06",
     title: "Destroy",
-    description: "Witnessed data destruction.\nCertificate provided.",
+    description: "Witnessed through the glass wall.\nOn-premise data cryptographically erased.\nCertificate provided.",
     icon: (
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent">
         <path d="M14 14h20l-2 26H16L14 14z" />
