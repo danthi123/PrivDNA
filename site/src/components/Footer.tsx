@@ -6,6 +6,10 @@ export default function Footer() {
         <div className="flex items-center gap-3 text-text-secondary text-sm">
           <span>&copy; 2026 PrivDNA</span>
           <span className="hidden md:inline">|</span>
+          <a href="/whitepaper" className="hover:text-accent transition-colors">
+            Whitepaper
+          </a>
+          <span className="hidden md:inline">|</span>
           <a href="/privacy" className="hover:text-accent transition-colors">
             Privacy Policy
           </a>

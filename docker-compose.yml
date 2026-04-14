@@ -1,8 +1,8 @@
 services:
   privdna-web:
     build:
-      context: ./site
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: site/Dockerfile
       args:
         - RYBBIT_SITE_ID=${RYBBIT_SITE_ID}
         - RYBBIT_URL=${RYBBIT_URL}

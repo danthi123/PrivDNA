@@ -74,3 +74,145 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-accent);
 }
+
+/* Whitepaper long-form prose
+ * Rendered from markdown; kept minimal to inherit the site's dark aesthetic. */
+.whitepaper-prose {
+  color: var(--color-text-primary);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.whitepaper-prose h1 {
+  font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 3.5rem 0 1.25rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-bg-elevated);
+}
+.whitepaper-prose h1:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+}
+
+.whitepaper-prose h2 {
+  font-size: clamp(1.35rem, 2.2vw, 1.7rem);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  margin: 2.75rem 0 1rem;
+  color: var(--color-text-primary);
+}
+
+.whitepaper-prose h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 2rem 0 0.75rem;
+  color: var(--color-text-primary);
+}
+
+.whitepaper-prose h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.5rem;
+  color: var(--color-text-primary);
+}
+
+.whitepaper-prose p {
+  margin: 0 0 1.1rem;
+  color: var(--color-text-secondary);
+}
+.whitepaper-prose p strong,
+.whitepaper-prose li strong {
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+.whitepaper-prose a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+.whitepaper-prose a:hover {
+  text-decoration-thickness: 2px;
+}
+
+.whitepaper-prose ul,
+.whitepaper-prose ol {
+  margin: 0 0 1.25rem;
+  padding-left: 1.5rem;
+  color: var(--color-text-secondary);
+}
+.whitepaper-prose ul { list-style: disc; }
+.whitepaper-prose ol { list-style: decimal; }
+.whitepaper-prose li { margin: 0.35rem 0; }
+.whitepaper-prose li::marker { color: var(--color-accent); }
+
+.whitepaper-prose blockquote {
+  border-left: 2px solid var(--color-accent);
+  padding: 0.25rem 0 0.25rem 1.25rem;
+  margin: 1.75rem 0;
+  color: var(--color-text-primary);
+  font-style: italic;
+}
+
+.whitepaper-prose code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: var(--color-bg-elevated);
+  padding: 0.15em 0.4em;
+  border-radius: 3px;
+  color: var(--color-text-primary);
+}
+
+.whitepaper-prose pre {
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-bg-surface);
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+.whitepaper-prose pre code {
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+}
+
+.whitepaper-prose hr {
+  border: none;
+  border-top: 1px solid var(--color-bg-elevated);
+  margin: 3rem 0;
+}
+
+.whitepaper-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.88rem;
+  display: block;
+  overflow-x: auto;
+}
+.whitepaper-prose thead { background: var(--color-bg-elevated); }
+.whitepaper-prose th,
+.whitepaper-prose td {
+  padding: 0.6rem 0.85rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-bg-elevated);
+  vertical-align: top;
+}
+.whitepaper-prose th {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+.whitepaper-prose td { color: var(--color-text-secondary); }
+.whitepaper-prose td strong { color: var(--color-text-primary); }
+
+.whitepaper-prose em {
+  color: var(--color-text-primary);
+}

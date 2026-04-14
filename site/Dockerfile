@@ -2,17 +2,23 @@
 FROM node:22-alpine AS base
 RUN apk add --no-cache python3 make g++ cmake
 
+# Build context is the repo root (see docker-compose.yml). Paths inside the
+# image are still /app/... — we just prefix source paths with site/.
+
 # Stage 2: Install dependencies
 FROM base AS deps
 WORKDIR /app
-COPY package.json package-lock.json ./
+COPY site/package.json site/package-lock.json ./
 RUN npm ci
 
 # Stage 3: Build the application
 FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
-COPY . .
+COPY site/ ./
+# whitepaper-public.md lives at the repo root; the prebuild script
+# (scripts/copy-whitepaper.js) picks it up from ./whitepaper-public.md.
+COPY whitepaper-public.md ./whitepaper-public.md
 ENV NEXT_TELEMETRY_DISABLED=1
 ARG RYBBIT_SITE_ID
 ARG RYBBIT_URL

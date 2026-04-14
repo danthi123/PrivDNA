@@ -10,3 +10,6 @@ audit-report-*.md
 *-report-*.md
 docs/outreach/
 docs/content/
+
+# Confidential investor-facing documents. Archived outside this repository.
+/whitepaper.md

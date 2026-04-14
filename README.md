@@ -2,7 +2,7 @@
 
 **Your genome. Your hands. No copies.**
 
-PrivDNA is designing a first-of-its-kind privacy-sovereign whole genome sequencing (WGS) service to operate from a physical storefront in New York City. This repository contains everything: the founding whitepaper, technical infrastructure manifest, and the open-source website and waitlist system for [privdna.com](https://privdna.com).
+PrivDNA is designing a first-of-its-kind privacy-sovereign whole genome sequencing (WGS) service to operate from a physical storefront in New York City. This repository contains the public technical whitepaper, infrastructure manifest, and the open-source website and waitlist system for [privdna.com](https://privdna.com).
 
 ## What Is PrivDNA?
 
@@ -31,7 +31,7 @@ Verify it yourself. That's the point.
 
 ```
 PrivDNA/
-├── whitepaper.md              # Full founding document and investment prospectus
+├── whitepaper-public.md       # Public technical whitepaper (rendered at privdna.com/whitepaper)
 ├── technical-manifest.md      # Hardware BOM, server architecture, pipeline specs
 ├── docker-compose.yml         # Production deployment (site + Rybbit + Cloudflare Tunnel)
 ├── .env.example               # Environment variable template (no secrets)
@@ -71,17 +71,19 @@ PrivDNA/
 
 ## The Documents
 
-### [Whitepaper](whitepaper.md) (~14,500 words)
+### [Whitepaper](whitepaper-public.md)
 
-The full founding document covering:
+The public technical whitepaper, also rendered at [privdna.com/whitepaper](https://privdna.com/whitepaper), covering:
 
 - **The Problem** -- 23andMe's collapse, the data monetization pattern, consumer trust at historic lows (70% concerned per Deloitte 2025)
 - **The Solution** -- Three pillars: physical transparency (glass-walled lab), cryptographic verifiability (open-source pipeline), zero data retention (NIST 800-88 destruction)
 - **Market Analysis** -- $2.12B WGS market (2024) growing at 22.2% CAGR. No existing competitor offers a physical storefront. Every DTC genomics company is mail-order only.
 - **Technical Architecture** -- Element Biosciences AVITI, dual AMD EPYC 9654 air-gapped server, NVIDIA L40S GPU acceleration, 30TB usable NVMe RAID-10
-- **Financial Model** -- $880K startup capital, $3,500/genome pricing, $1,016 variable cost, break-even at 29 genomes/month, profitability by Year 3
 - **Regulatory Framework** -- CLIA high-complexity certification, NYSDOH CLEP permit, CAP accreditation, HIPAA compliance
-- **$1.25M seed raise** covering equipment, buildout, 12 months operational runway
+- **Operational Playbook** -- staffing, batch workflow, QC program, failure protocols
+- **Referral Partnership Model** -- genetic counselor and clinical geneticist referral network, AKS-compliant structure
+
+Financial model, risk analysis, and investor materials are maintained separately and shared under NDA with qualified recipients.
 
 ### [Technical Manifest](technical-manifest.md) (~6,100 words)
 
@@ -206,6 +208,6 @@ We welcome contributions to the website and documentation. Please open an issue 
 
 ## License
 
-The website code in `site/` is [MIT licensed](LICENSE).
+The website code in `site/` is [MIT licensed](LICENSE). The public whitepaper and technical manifest are likewise published under MIT.
 
-The whitepaper and technical manifest are provided for informational purposes. See the legal disclaimer in the whitepaper for details.
+Nothing in this repository constitutes an offer to sell or a solicitation of an offer to buy any securities.
