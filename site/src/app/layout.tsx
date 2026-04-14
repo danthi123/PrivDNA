@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
@@ -15,12 +15,20 @@ const geistMono = Geist_Mono({
   preload: false,
 });
 
+export const viewport: Viewport = {
+  themeColor: "#111113",
+  colorScheme: "dark",
+  width: "device-width",
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
   title: "PrivDNA — Your Genome. Your Hands. No Copies.",
   description:
     "Air-gapped whole genome sequencing. Open source pipeline. Zero data retention. Manhattan, NYC.",
+  alternates: { canonical: "https://privdna.com" },
   icons: {
-    icon: "/favicon.ico",
+    icon: [{ url: "/icon-512.png", sizes: "512x512", type: "image/png" }],
     apple: "/apple-touch-icon.png",
   },
   openGraph: {

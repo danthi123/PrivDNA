@@ -76,8 +76,12 @@ export default function PrivacyPolicy() {
           </h3>
           <p>
             We use{" "}
-            <span className="text-text-primary">Rybbit</span>, a self-hosted,
-            open-source, cookieless analytics platform. It collects:
+            <span className="text-text-primary">Rybbit</span>, an open-source,
+            cookieless analytics platform. In production, PrivDNA self-hosts
+            this service where feasible; the fallback points to Rybbit&apos;s
+            own hosted endpoint (
+            <span className="text-text-primary">app.rybbit.io</span>) operated
+            by the Rybbit team. It collects:
           </p>
           <ul className="list-disc pl-6 mt-2 space-y-1">
             <li>Page views and navigation paths</li>
@@ -126,7 +130,7 @@ export default function PrivacyPolicy() {
             <li>No cookies (zero — not even analytics cookies)</li>
             <li>No advertising or tracking pixels</li>
             <li>No browser fingerprinting</li>
-            <li>No third-party scripts beyond our self-hosted analytics</li>
+            <li>The only external script is Rybbit analytics (cookieless, no personal data transmitted)</li>
             <li>No IP address storage</li>
             <li>No location tracking</li>
             <li>No cross-site tracking</li>

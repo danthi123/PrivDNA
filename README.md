@@ -90,7 +90,7 @@ PrivDNA/
 The public technical whitepaper, also rendered at [privdna.com/whitepaper](https://privdna.com/whitepaper), covering:
 
 - **The Problem** -- 23andMe's collapse, the data monetization pattern, consumer trust at historic lows (70% concerned per Deloitte 2025)
-- **The Solution** -- Three pillars: physical transparency (glass-walled lab), cryptographic verifiability (open-source pipeline), zero data retention (NIST 800-88 destruction)
+- **The Solution** -- Three pillars: physical transparency (glass-walled lab), cryptographic verifiability (open-source pipeline), zero data retention (NIST SP 800-88 Rev. 2 destruction)
 - **Market Analysis** -- $2.12B WGS market (2024) growing at 22.17% CAGR. No existing competitor offers a physical storefront. Every DTC genomics company is mail-order only.
 - **Technical Architecture** -- Element Biosciences AVITI, dual AMD EPYC 9654 air-gapped server, NVIDIA L40S GPU acceleration, 30TB usable NVMe RAID-10
 - **Regulatory Framework** -- CLIA high-complexity certification, NYSDOH CLEP permit, CAP accreditation, HIPAA compliance
@@ -104,7 +104,7 @@ Financial model, risk analysis, and investor materials are maintained separately
 Complete hardware and software specification:
 
 - **Hardware BOM** with part numbers and pricing ($439K in equipment -- sequencer, compute server, network, power, delivery media)
-- **Server architecture** -- 2x EPYC 9654 (192 cores), 1TB DDR5, 8x Samsung PM9A3 7.68TB NVMe in RAID-10, NVIDIA L40S 48GB
+- **Server architecture** -- 2x EPYC 9654 (96 cores / 192 threads each; 192C/384T total), 1TB DDR5, 8x Samsung PM9A3 7.68TB NVMe in RAID-10, NVIDIA L40S 48GB
 - **4-layer air-gap enforcement** -- physical (no cables), logical (no WAN/DNS/DHCP), BIOS (Secure Boot, USB disabled), controlled data transfer protocol
 - **Open-source pipeline** -- bases2fastq (Element Biosciences), BWA-MEM2, GATK 4.6.1, samtools, FastQC, MultiQC, orchestrated by Nextflow/nf-core sarek
 - **Data destruction** -- NIST SP 800-88 Rev. 2 Purge via cryptographic erasure on self-encrypting NVMe drives. Under 5 seconds per drive. NIST SP 800-88 Certificate of Destruction generated.

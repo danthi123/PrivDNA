@@ -24,6 +24,9 @@ export default function LockedDNAPage() {
       </Link>
 
       <header className="mb-14">
+        <p className="text-text-secondary text-sm tracking-wide mb-6">
+          Pre-launch &middot; Planned for NYC &middot; Genome #1 waitlist open
+        </p>
         <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
           Your DNA can be locked.
           <br />

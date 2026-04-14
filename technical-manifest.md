@@ -58,7 +58,7 @@
 | # | Item | Model / Part Number | Qty | Unit Cost | Total |
 |---|------|-------------------|-----|-----------|-------|
 | 16 | Managed Switch | [Cisco Catalyst 1000 (C1000-8T-2G-L)](https://www.cisco.com/c/en/us/products/collateral/switches/catalyst-1000-series-switches/nb-06-cat1k-ser-switch-ds-cte-en.html) | 1 | $325 | $325 |
-| 17 | Firewall | [Netgate 6100 MAX (pfSense+)](https://shop.netgate.com/products/6100-max-pfsense) | 1 | $949 | $949 |
+| 17 | Firewall | [Netgate 6100 MAX (pfSense+)](https://shop.netgate.com/products/6100-max-pfsense) | 1 | $999 | $999 |
 | 18 | Patch Cables | Cat6A Shielded (various lengths) | 10 | $15 | $150 |
 | 19 | USB Port Blockers | SmartKeeper USB-A Port Blocker (10-pack + key) | 2 | $25 | $50 |
 | 20 | USB Port Blockers | SmartKeeper USB-C Port Blocker (10-pack + key) | 1 | $25 | $25 |
@@ -67,7 +67,7 @@
 | 22a | Transfer Workstation | Thin client or hardened mini PC (e.g., Intel NUC or similar). Ubuntu Server minimal install, single USB-A port unblocked, all others physically blocked, no network interfaces enabled except VLAN 20. | 1 | $500 | $500 |
 | 22b | KVM Switch + Monitor | For server initial setup | 1 | $300 | $300 |
 | 22c | Quarantine Workstation | For USB scanning before air-gap transfer | 1 | $500 | $500 |
-| | | | | **Subtotal** | **$2,879** |
+| | | | | **Subtotal** | **$2,929** |
 
 ## 1.4 Power and Cooling
 
@@ -94,10 +94,10 @@
 |----------|-------|
 | Sequencing Equipment | $332,700 |
 | Compute Infrastructure | $81,542 |
-| Network and Security | $2,879 |
+| Network and Security | $2,929 |
 | Power and Cooling | $9,950 |
 | Delivery Media (initial) | $11,540 |
-| **GRAND TOTAL** | **$438,611** |
+| **GRAND TOTAL** | **$438,661** |
 
 ---
 

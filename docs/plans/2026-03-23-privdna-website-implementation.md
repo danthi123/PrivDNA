@@ -339,7 +339,7 @@ Build as "use client" with useGSAP hook from @gsap/react. Container div with id=
 
 Slide 1 (The Stat): Large counter span starting at "0", text-accent, clamp(3rem,10vw,10rem). Separate ScrollTrigger (once:true) on container enter triggers gsap.to counter with innerText snap to animate from 0 to 15000000 over 2s with toLocaleString formatting. Below: "genomes sold in bankruptcy court. March 2025." in text-secondary.
 
-Slide 2 (The Pattern): Three lines about 23andMe ($20/genome), Nebula (Meta/Google/Microsoft), Ancestry ($250/customer). Key figures in accent color. Fades in as slide 1 fades out.
+Slide 2 (The Pattern): Three lines about 23andMe (~$20/customer database sale), Nebula (alleged sharing with Meta/Google/Microsoft per class-action), Ancestry ($261/customer). Key figures in accent color. Fades in as slide 1 fades out.
 
 Slide 3 (The Question): "Who owns your DNA?" with "your DNA" in accent. Full viewport, massive text. Fades in as slide 2 fades out.
 
@@ -356,7 +356,7 @@ Timeline choreography: slide1 visible at 0, fades out at 0.3. slide2 fades in at
 
 Build as "use client" with useGSAP. Container with id="promise". Three pillar cards, each filling the viewport. GSAP timeline with ScrollTrigger pin and scrub, end "+=300%".
 
-Pillar 1 -- Physical Transparency: SVG icon (stylized eye or glass pane), headline, body text "Hand over your sample in person. Watch the destruction through a glass wall. Everything between is verifiable open source. Nothing hidden."
+Pillar 1 -- Physical Transparency: SVG icon (stylized eye or glass pane), headline, body text "Give your sample at the lab bench, in person. Watch the destruction through a glass wall. Every link in the chain is verifiable."
 
 Pillar 2 -- Cryptographic Verifiability: SVG icon (code brackets or shield-check), headline, body text "Our entire pipeline is open source on GitHub. Audit the code that touches your DNA."
 
@@ -375,7 +375,7 @@ Each pillar transitions with x-translation: current slides out left (x: -100%), 
 
 Build as "use client" with useGSAP. Container with id="how-it-works". Inner wrapper with flex-nowrap holding 6 step cards. GSAP ScrollTrigger pins the container and translates the inner wrapper horizontally on scrub (end "+=400%").
 
-6 steps: Walk In, Sample, Sequence, Process, Deliver, Destroy. Each step card: ~33vw wide, flex-shrink-0, centered content. SVG line-art icon at top (simple geometric icons: door, test tube, DNA strand, server, USB drive, shredder). Title in text-primary font-bold. Description in text-secondary. Active step detection based on scroll progress -- active step icon and title get text-accent color.
+5 steps: Visit 1 (intake + sample), Sequence, Process, Deliver, Destroy (Visit 2). Each step card: ~33vw wide, flex-shrink-0, centered content. SVG line-art icon at top (simple geometric icons: door, test tube, DNA strand, server, USB drive, shredder). Title in text-primary font-bold. Description in text-secondary. Active step detection based on scroll progress -- active step icon and title get text-accent color.
 
 A teal progress line spans the bottom of all cards. Its width is tied to scroll progress (scaleX from 0 to 1 via GSAP scrub).
 
@@ -390,7 +390,7 @@ A teal progress line spans the bottom of all cards. Its width is tied to scroll 
 
 Build as "use client". Full viewport section (h-screen). Background: layered CSS radial gradients creating an abstract architectural feel -- a large teal-tinted radial gradient (opacity ~0.15) centered slightly off-center, overlapping with a subtle purple radial gradient, on the bg-elevated base. This suggests the glass wall / lab space without requiring photography.
 
-Overlay text positioned bottom-left (bottom-8 left-8): "Manhattan, NYC" in text-primary font-bold text-lg, and "Opening 2027" in text-secondary text-sm tracking-widest uppercase. Both fade and slide up on scroll into view via GSAP ScrollTrigger.
+Overlay text positioned bottom-left (bottom-8 left-8): "Manhattan, NYC" in text-primary font-bold text-lg, and "Opening NYC" in text-secondary text-sm tracking-widest uppercase. Both fade and slide up on scroll into view via GSAP ScrollTrigger.
 
 **Commit:** `"feat: Glass Wall section with gradient placeholder and location overlay"`
 

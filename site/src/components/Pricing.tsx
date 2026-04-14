@@ -1,6 +1,6 @@
 const comparisons = [
   {
-    price: "$399 - $599",
+    price: "$99 - $229",
     label: "Consumer SNP genotyping (23andMe, Ancestry)",
     detail: "Tests ~0.02% of your genome. Database is the business model.",
   },

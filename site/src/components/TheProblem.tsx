@@ -138,7 +138,7 @@ export default function TheProblem() {
           </p>
           <p className="text-lg md:text-xl text-text-primary max-w-2xl">
             Ancestry valued each customer at{" "}
-            <span className="text-accent">$250</span>.
+            <span className="text-accent">$261</span>.
           </p>
         </div>
         <div
@@ -175,7 +175,7 @@ export default function TheProblem() {
           </p>
           <p className="text-lg text-text-primary max-w-2xl">
             Ancestry valued each customer at{" "}
-            <span className="text-accent">$250</span>.
+            <span className="text-accent">$261</span>.
           </p>
         </div>
         <div ref={mSlide3Ref} className="min-h-[50vh] flex items-center justify-center px-6 text-center">

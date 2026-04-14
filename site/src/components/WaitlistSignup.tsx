@@ -95,7 +95,7 @@ export default function WaitlistSignup() {
         </h2>
 
         <p className="text-text-secondary text-lg max-w-lg mx-auto mb-10 whitespace-pre-line">
-          {"Join the waitlist.\nYour email is encrypted at rest with AES-256.\nOur signup system is open source.\nAudit it."}
+          {"Join the waitlist.\nYour email is encrypted at rest with AES-256-GCM.\nOur signup system is open source.\nAudit it."}
         </p>
 
         {showForm ? (

@@ -51,7 +51,7 @@ const steps = [
   {
     num: "04",
     title: "Deliver",
-    description: "Visit 2 (4-6 business days later): ~30 min.\nEncrypted USB drive.\nFIPS 140-3 certified.",
+    description: "Visit 2 (4-6 business days later): ~30 min.\nEncrypted USB drive.\nFIPS 140-3 Level 3 certified.",
     icon: (
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent">
         <rect x="12" y="16" width="24" height="20" rx="3" />

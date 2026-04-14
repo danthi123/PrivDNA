@@ -13,6 +13,10 @@ export default function Footer() {
           <a href="/privacy" className="hover:text-accent transition-colors">
             Privacy Policy
           </a>
+          <span className="hidden md:inline">|</span>
+          <a href="/security-policy" className="hover:text-accent transition-colors">
+            Security Policy
+          </a>
         </div>
 
         {/* Center — Social icons */}

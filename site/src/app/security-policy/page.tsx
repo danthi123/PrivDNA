@@ -184,6 +184,7 @@ export default function SecurityPolicy() {
           <ul className="list-disc pl-6 mt-2 space-y-1">
             <li>TLS 1.3 in transit, enforced site-wide with HSTS preload</li>
             <li>AES-256-GCM encryption of waitlist email values at rest</li>
+            <li>scrypt key derivation for passphrase-to-key generation</li>
             <li>HMAC-SHA256 hashing for duplicate detection (irreversible)</li>
             <li>SQLCipher full-database encryption</li>
             <li>

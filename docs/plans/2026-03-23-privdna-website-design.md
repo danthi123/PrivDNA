@@ -100,9 +100,9 @@ Three scroll-driven slides within a pinned viewport:
 **Slide 1 — The Stat:** Animated counter to `15,000,000` with label "genomes sold in bankruptcy court. March 2025." Teal number, grey text.
 
 **Slide 2 — The Pattern:** Three lines reveal sequentially:
-- "23andMe sold your data for $20 per genome."
-- "Nebula shared it with Meta, Google, and Microsoft."
-- "Ancestry valued each customer at $250."
+- "23andMe's database was sold for ~$20 per customer."
+- "A class-action lawsuit alleges Nebula shared it with Meta, Google, and Microsoft."
+- "Ancestry valued each customer at $261."
 
 **Slide 3 — The Question:** Full-viewport headline: "Who owns your DNA?" Fades to accent teal.
 
@@ -111,7 +111,7 @@ Three scroll-driven slides within a pinned viewport:
 Three pillar cards animate in sequentially, each filling the viewport:
 
 **Pillar 1 — Physical Transparency**
-Icon: glass wall / eye. "Hand over your sample in person. Watch the destruction through a glass wall. Everything between is verifiable open source. Nothing hidden."
+Icon: glass wall / eye. "Give your sample at the lab bench, in person. Watch the destruction through a glass wall. Every link in the chain is verifiable."
 
 **Pillar 2 — Cryptographic Verifiability**
 Icon: code brackets / GitHub mark. "Our entire pipeline is open source on GitHub. Audit the code that touches your DNA."
@@ -127,11 +127,11 @@ Scroll-driven horizontal timeline with 6 steps connected by a teal progress line
 
 | Step | Title | Description |
 |------|-------|-------------|
-| 1 | Walk In | "Visit 1 (Day 1): ~15 min. Visit our NYC storefront. No mail-order kits." |
+| 1 | Arrive | "Visit 1 (~25 min total, intake + sample collection). Visit our NYC storefront. No mail-order kits." |
 | 2 | Sample | "~10 min. Saliva or buccal swab. You depart after collection." |
 | 3 | Sequence | "Between visits: ~38 hrs. 30x whole genome on Element Biosciences AVITI." |
 | 4 | Process | "~60-90 min on GPU. Air-gapped servers. Open source pipeline." |
-| 5 | Deliver | "Visit 2 (Day 5-6): ~30 min. Encrypted USB drive. FIPS 140-3 certified." |
+| 5 | Deliver | "Visit 2 (4-6 business days later, ~30 min). Encrypted USB drive. FIPS 140-3 Level 3 certified." |
 | 6 | Destroy | "Witnessed through the glass wall. On-premise data cryptographically erased. Certificate provided." |
 
 Visual grouping: steps 1-2 labeled as "Visit 1", steps 3-4 labeled as "Between Visits (4-6 business days)", steps 5-6 labeled as "Visit 2". The two-visit structure must be clear to prevent customers from expecting same-day service.
@@ -142,7 +142,7 @@ Each step has a minimal line-art icon. Active step icon glows teal.
 
 Full-bleed section with stylized concept visual of the storefront interior (glass wall, sequencer, server rack, customer area). Initially a gradient mesh/abstract architectural placeholder.
 
-Overlay text (bottom-left): "Manhattan, NYC" / "Opening 2027"
+Overlay text (bottom-left): "Manhattan, NYC" / "Opening NYC"
 
 ### 4.6 Open Source (~100vh)
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
+import Link from "next/link";
 import { gsap } from "gsap";
 
 const NAV_ITEMS = [
@@ -94,10 +95,10 @@ export default function Navigation() {
         }`}
       >
         {/* Logo */}
-        <a href="#" className="text-lg font-bold">
+        <Link href="/" className="text-lg font-bold">
           <span className="text-text-primary">Priv</span>
           <span className="text-accent">DNA</span>
-        </a>
+        </Link>
 
         {/* Hamburger */}
         <button

@@ -79,7 +79,7 @@ export function buildConfirmationEmail(unsubscribeUrl: string): { html: string; 
       <tr>
         <td style="padding: 16px 0; border-top: 1px solid rgba(255,255,255,0.06);">
           <p style="color: ${STYLES.textSecondary}; font-size: 13px; line-height: 1.6; margin: 0;">
-            Your email is encrypted at rest with AES-256.<br>
+            Your email is encrypted at rest with AES-256-GCM.<br>
             Our signup system is open source.<br>
             No spam. No data sharing.
           </p>
@@ -93,7 +93,7 @@ export function buildConfirmationEmail(unsubscribeUrl: string): { html: string; 
 
 We'll reach out when the glass wall goes up.
 
-Your email is encrypted at rest with AES-256.
+Your email is encrypted at rest with AES-256-GCM.
 Our signup system is open source.
 No spam. No data sharing.
 
