@@ -58,7 +58,7 @@ export default function GlassWall() {
       <div ref={contentRef} className="absolute bottom-0 left-0 p-6 md:p-8">
         <p className="text-text-primary font-bold text-lg">Manhattan, NYC</p>
         <p className="text-text-secondary text-sm tracking-widest uppercase">
-          Opening 2027
+          Opening soon
         </p>
       </div>
     </section>

@@ -11,7 +11,7 @@ const pillars = [
   {
     title: "Physical Transparency",
     description:
-      "Hand over your sample in person.\nWatch the destruction through a glass wall.\nEverything between is verifiable open source.\nNothing hidden.",
+      "Give your sample at the lab bench, in person.\nWatch the destruction through a glass wall.\nEvery link in the chain is verifiable.",
     icon: (
       <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent">
         <ellipse cx="32" cy="32" rx="28" ry="16" />
@@ -23,7 +23,7 @@ const pillars = [
   {
     title: "Cryptographic Verifiability",
     description:
-      "Our entire pipeline is open source on GitHub.\nAudit the code that touches your DNA.",
+      "Every custom tool in our pipeline will be open source.\nUpstream dependencies are already auditable.\nAudit the code that touches your DNA.",
     icon: (
       <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent">
         <polyline points="20,16 8,32 20,48" />
@@ -35,7 +35,7 @@ const pillars = [
   {
     title: "Zero Retention",
     description:
-      "Your sample is collected, your data is handed to you, and the on-premise copies are destroyed.\nNo copies.\nNo cloud.\nNo exceptions.",
+      "Your sample will be collected, your data handed to you, and the on-premise copies destroyed.\nNo copies.\nNo cloud.\nNo exceptions.",
     icon: (
       <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent">
         <path d="M12 20 L32 8 L52 20 L52 44 L32 56 L12 44 Z" />

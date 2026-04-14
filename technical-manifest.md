@@ -3,6 +3,8 @@
 **Air-Gapped Whole Genome Sequencing Infrastructure**
 **Version 1.0 | March 2026**
 
+> **Status: Pre-launch specification.** The infrastructure described in this document has not yet been built. This manifest is the planned architecture and serves as a reference for procurement, build-out, and audit. See [`whitepaper-public.md`](whitepaper-public.md) for operational model and Phase 0 status.
+
 ---
 
 ## TABLE OF CONTENTS

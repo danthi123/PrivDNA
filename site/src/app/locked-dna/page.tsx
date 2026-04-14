@@ -153,7 +153,7 @@ export default function LockedDNAPage() {
             </li>
           </ol>
           <p className="mt-4">
-            Anything short of all three is ownership in name only.
+            Anything short of all three leaves real ownership uncertain.
           </p>
         </section>
 
@@ -167,10 +167,11 @@ export default function LockedDNAPage() {
           </p>
           <ul className="list-disc pl-6 mt-3 space-y-2">
             <li>
-              <span className="text-text-primary">Visit 1.</span> You provide a
-              saliva sample at the lab bench. It is barcoded, logged into chain
-              of custody, and handed to the air-gapped sequencer in the same
-              room. Nothing leaves the building on a network cable.
+              <span className="text-text-primary">Visit 1.</span> You give a
+              saliva sample at the lab bench, collected there by a technician —
+              not brought in. It is barcoded, logged into chain of custody, and
+              handed to the air-gapped sequencer in the same room. Nothing
+              leaves the building on a network cable.
             </li>
             <li>
               <span className="text-text-primary">Between visits (4–6 business days).</span>{" "}

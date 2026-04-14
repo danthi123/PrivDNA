@@ -2,25 +2,39 @@
 
 **Your genome. Your hands. No copies.**
 
-PrivDNA is designing a first-of-its-kind privacy-sovereign whole genome sequencing (WGS) service to operate from a physical storefront in New York City. This repository contains the public technical whitepaper, infrastructure manifest, and the open-source website and waitlist system for [privdna.com](https://privdna.com).
+> **Status: Pre-launch (Phase 0).** No lab, no certifications, no customers yet. This README describes the planned service. The repository contains the live waitlist site code (see [`site/`](site/)) and architectural specifications.
+
+PrivDNA is designing a privacy-sovereign whole genome sequencing (WGS) service to operate from a physical storefront in New York City. This repository contains the public technical whitepaper, infrastructure manifest, and the open-source website and waitlist system for [privdna.com](https://privdna.com).
 
 ## What Is PrivDNA?
 
-A physical genomics lab where your complete genome is sequenced at clinical-grade accuracy (30x coverage, ≥90% bases above Q30), processed entirely on air-gapped servers that never touch the internet, delivered to you on a FIPS 140-3 certified encrypted USB drive, and destroyed on-premise under NIST SP 800-88 Rev. 2 standards inside a glass-walled laboratory. The customer experience is two brief visits spanning 4-6 business days — ~25 minutes for intake and sample collection, then ~30 minutes for data delivery and witnessed destruction. The ~38-hour sequencing run and downstream bioinformatics happen between visits.
+A physical genomics lab designed to sequence your complete genome at clinical-grade accuracy (30x coverage, ≥90% bases above Q30), process it entirely on air-gapped servers that never touch the internet, deliver it to you on a FIPS 140-3 certified encrypted USB drive, and destroy all on-premise copies under NIST SP 800-88 Rev. 2 standards inside a glass-walled laboratory. The customer experience is two brief visits spanning 4-6 business days — ~25 minutes for intake and sample collection, then ~30 minutes for data delivery and witnessed destruction. The ~38-hour sequencing run and downstream bioinformatics happen between visits.
 
-**We deliver raw data (BAM, VCF, gVCF files). We do not provide medical interpretation.** Customers who want clinical analysis are referred to independent, pre-vetted genetic counselors who operate under their own licenses.
+**By design, PrivDNA delivers only raw data (BAM, VCF, gVCF files) and does not provide medical interpretation.** Customers who want clinical analysis are referred to independent, pre-vetted genetic counselors who operate under their own licenses.
+
+By design, there is no recovery path if customers lose their decryption keys. PrivDNA retains no copy of your sequence and no copy of your keys.
+
+## Unit Economics
+
+- **$3,500 per whole genome** — one-time, no subscription
+- **~$2,484 contribution margin** (71% gross margin)
+- **Cash break-even at 29 genomes/month**
+- **$880K initial CAPEX** (equipment + lab buildout)
+- **$1.25M seed round** (equipment, regulatory, 18 months runway to break-even)
+
+No revenue is modeled from data sales, research partnerships, or pharma licensing. Sequencing fees are the entire business model. See [`whitepaper-public.md`](whitepaper-public.md) §IV.6 for detail.
 
 ## Why This Exists
 
 In March 2025, 23andMe filed for bankruptcy and sold approximately 15 million customers' genetic data for $305 million through a bankruptcy process that critics argue circumvented meaningful re-consent requirements. A class-action lawsuit against Nebula Genomics alleges the "privacy-first" company shared genetic information with Meta, Google, and Microsoft via embedded tracking tools. Ancestry was acquired by Blackstone in 2020 for $4.7 billion, with analysts noting the implied enterprise value of roughly $261 per DNA customer.
 
-The pattern is consistent: companies that hold centralized genetic databases face irresistible economic pressure to monetize that data regardless of privacy commitments. PrivDNA eliminates this risk by never retaining data in the first place.
+The pattern is consistent: companies that hold centralized genetic databases face irresistible economic pressure to monetize that data regardless of privacy commitments. PrivDNA is designed to eliminate this risk by never retaining data in the first place.
 
 ## Why Open Source?
 
 If we're asking you to trust us with your DNA, you should be able to verify exactly how we handle your data. This repository is fully auditable:
 
-- The **bioinformatics pipeline** (Nextflow/nf-core sarek + GATK + BWA-MEM2) that processes genomes is specified with exact versions and licenses in the [Technical Manifest](technical-manifest.md)
+- The **bioinformatics pipeline** (Nextflow/nf-core sarek + GATK + BWA-MEM2) that processes genomes is specified with exact versions and licenses in the [Technical Manifest](technical-manifest.md). The pipeline orchestration code itself will be published to this repository at launch; the upstream components (nf-core/sarek, BWA-MEM2, GATK, DeepVariant, samtools) are already public.
 - The **website and waitlist system** in `site/` is the actual code running at privdna.com
 - The **waitlist signup API** encrypts your email with AES-256-GCM (authenticated encryption) before it touches disk. The entire database is additionally encrypted via SQLCipher. Emails are HMAC-SHA256 hashed (keyed, not dictionary-attackable) for deduplication so we never need to decrypt existing records to check for duplicates.
 - There are **no hidden telemetry endpoints, no cloud sync calls, and no third-party tracking scripts**. Analytics are handled by self-hosted [Rybbit](https://github.com/rybbit-io/rybbit) (cookieless, no PII).
@@ -77,7 +91,7 @@ The public technical whitepaper, also rendered at [privdna.com/whitepaper](https
 
 - **The Problem** -- 23andMe's collapse, the data monetization pattern, consumer trust at historic lows (70% concerned per Deloitte 2025)
 - **The Solution** -- Three pillars: physical transparency (glass-walled lab), cryptographic verifiability (open-source pipeline), zero data retention (NIST 800-88 destruction)
-- **Market Analysis** -- $2.12B WGS market (2024) growing at 22.2% CAGR. No existing competitor offers a physical storefront. Every DTC genomics company is mail-order only.
+- **Market Analysis** -- $2.12B WGS market (2024) growing at 22.17% CAGR. No existing competitor offers a physical storefront. Every DTC genomics company is mail-order only.
 - **Technical Architecture** -- Element Biosciences AVITI, dual AMD EPYC 9654 air-gapped server, NVIDIA L40S GPU acceleration, 30TB usable NVMe RAID-10
 - **Regulatory Framework** -- CLIA high-complexity certification, NYSDOH CLEP permit, CAP accreditation, HIPAA compliance
 - **Operational Playbook** -- staffing, batch workflow, QC program, failure protocols
@@ -93,7 +107,7 @@ Complete hardware and software specification:
 - **Server architecture** -- 2x EPYC 9654 (192 cores), 1TB DDR5, 8x Samsung PM9A3 7.68TB NVMe in RAID-10, NVIDIA L40S 48GB
 - **4-layer air-gap enforcement** -- physical (no cables), logical (no WAN/DNS/DHCP), BIOS (Secure Boot, USB disabled), controlled data transfer protocol
 - **Open-source pipeline** -- bases2fastq (Element Biosciences), BWA-MEM2, GATK 4.6.1, samtools, FastQC, MultiQC, orchestrated by Nextflow/nf-core sarek
-- **Data destruction** -- NIST SP 800-88 Rev. 2 Purge via cryptographic erasure on self-encrypting NVMe drives. Under 5 seconds. Certificate of Destruction generated.
+- **Data destruction** -- NIST SP 800-88 Rev. 2 Purge via cryptographic erasure on self-encrypting NVMe drives. Under 5 seconds per drive. NIST SP 800-88 Certificate of Destruction generated.
 - **Customer delivery** -- Kingston IronKey D500S (FIPS 140-3 Level 3, hardware-encrypted, PIN-based, brute-force self-destruct)
 
 ## Website Tech Stack

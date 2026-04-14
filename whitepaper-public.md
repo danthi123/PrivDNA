@@ -179,7 +179,7 @@ This commitment serves dual purposes. First, it provides cryptographic assurance
 
 Publishing our pipeline eliminates the code itself as a competitive moat, deliberately. Our moat is the planned physical infrastructure, brand trust, regulatory certifications (once earned), and the NYC location -- assets that cannot be cloned from a GitHub repository. A competitor can fork the pipeline; they cannot fork a planned CLIA/CLEP-certified glass-walled laboratory with an established customer base and referral network.
 
-The upstream pipeline components are already public open-source projects (nf-core/sarek, BWA-MEM2, GATK, DeepVariant). PrivDNA's own orchestration, chain-of-custody, and destruction-verification code will be published to github.com/PrivDNA at launch.
+The upstream pipeline components are already public open-source projects (nf-core/sarek, BWA-MEM2, GATK, DeepVariant). PrivDNA's own orchestration, chain-of-custody, and destruction-verification code will be published to github.com/danthi123/PrivDNA at launch (the existing repository at that URL contains the live waitlist site code and architectural specifications).
 
 ## 3.5 Response to Legal Compulsion (Subpoenas, Warrants, Court Orders)
 

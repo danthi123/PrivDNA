@@ -121,7 +121,7 @@ export default function TheProblem() {
             0
           </span>
           <p className="text-text-secondary text-lg md:text-xl mt-4 max-w-md">
-            genomes sold in bankruptcy court. March 2025.
+            customer DNA records sold in bankruptcy court. March 2025.
           </p>
         </div>
         <div
@@ -129,11 +129,11 @@ export default function TheProblem() {
           className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center gap-6 opacity-0"
         >
           <p className="text-lg md:text-xl text-text-primary max-w-2xl">
-            23andMe sold your data for{" "}
-            <span className="text-accent">$20 per genome</span>.
+            23andMe&apos;s database was sold for{" "}
+            <span className="text-accent">~$20 per customer</span>.
           </p>
           <p className="text-lg md:text-xl text-text-primary max-w-2xl">
-            Nebula shared it with{" "}
+            A class-action lawsuit alleges Nebula shared it with{" "}
             <span className="text-accent">Meta, Google, and Microsoft</span>.
           </p>
           <p className="text-lg md:text-xl text-text-primary max-w-2xl">
@@ -161,16 +161,16 @@ export default function TheProblem() {
             0
           </span>
           <p className="text-text-secondary text-lg mt-4 max-w-md">
-            genomes sold in bankruptcy court. March 2025.
+            customer DNA records sold in bankruptcy court. March 2025.
           </p>
         </div>
         <div ref={mSlide2Ref} className="min-h-[50vh] flex flex-col items-center justify-center px-6 text-center gap-6">
           <p className="text-lg text-text-primary max-w-2xl">
-            23andMe sold your data for{" "}
-            <span className="text-accent">$20 per genome</span>.
+            23andMe&apos;s database was sold for{" "}
+            <span className="text-accent">~$20 per customer</span>.
           </p>
           <p className="text-lg text-text-primary max-w-2xl">
-            Nebula shared it with{" "}
+            A class-action lawsuit alleges Nebula shared it with{" "}
             <span className="text-accent">Meta, Google, and Microsoft</span>.
           </p>
           <p className="text-lg text-text-primary max-w-2xl">

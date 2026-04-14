@@ -119,6 +119,11 @@ export default function Hero() {
             Join the Waitlist
           </button>
         </div>
+
+        <p className="mt-6 text-sm text-text-secondary tracking-wide">
+          Pre-launch <span aria-hidden="true">·</span> Opening NYC{" "}
+          <span aria-hidden="true">·</span> $3,500 per genome
+        </p>
       </div>
 
       {/* Scroll indicator */}

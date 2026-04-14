@@ -10,17 +10,20 @@ gsap.registerPlugin(ScrollTrigger);
 const terminalLines = [
   { text: "$ privdna pipeline --verify", delay: 0 },
   { text: "", delay: 0 },
-  { text: "\u2713 bases2fastq    v2.1     [Element Biosciences]", accent: true },
+  { text: "# Open source (auditable)", accent: false },
   { text: "\u2713 BWA-MEM2       v2.2.1   [MIT License]", accent: true },
   { text: "\u2713 GATK           v4.6.1   [BSD-3-Clause]", accent: true },
   { text: "\u2713 samtools       v1.23    [MIT License]", accent: true },
   { text: "\u2713 MultiQC        v1.33    [GPL-v3]", accent: true },
   { text: "", delay: 0 },
+  { text: "# Vendor (proprietary, basecaller only)", accent: false },
+  { text: "\u25CB bases2fastq    v2.1     [Element Biosciences \u2014 proprietary]", accent: false },
+  { text: "", delay: 0 },
   { text: "Network interfaces: NONE", accent: true },
   { text: "Cloud endpoints:    NONE", accent: true },
   { text: "Telemetry:          NONE", accent: true },
   { text: "", delay: 0 },
-  { text: "All checksums verified. Pipeline clean.", accent: true },
+  { text: "Pipeline manifest published at launch.", accent: true },
 ];
 
 export default function OpenSource() {
@@ -69,7 +72,7 @@ export default function OpenSource() {
           Trust, but verify.
         </h2>
         <p className="text-text-secondary text-lg mb-8 max-w-lg whitespace-pre-line">
-          {"Every tool in our bioinformatics pipeline is open source and independently auditable.\nNo proprietary black boxes.\nNo hidden network calls.\nJust clean, verifiable code processing your most personal data."}
+          {"Every custom tool in our pipeline will be open source.\nEvery upstream dependency is independently auditable.\nNo hidden network calls.\nJust clean, verifiable code processing your most personal data."}
         </p>
         <div>
           <a

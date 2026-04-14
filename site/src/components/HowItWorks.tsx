@@ -10,8 +10,8 @@ gsap.registerPlugin(ScrollTrigger);
 const steps = [
   {
     num: "01",
-    title: "Walk In",
-    description: "Visit 1 (Day 1): ~15 min.\nVisit our NYC storefront.\nNo mail-order kits.",
+    title: "Visit 1 (~25 min)",
+    description: "Intake and sample collection at our NYC storefront.\nSaliva or buccal swab, taken at the lab bench.\nNo mail-order kits.",
     icon: (
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent">
         <rect x="8" y="12" width="32" height="28" rx="2" />
@@ -22,18 +22,6 @@ const steps = [
   },
   {
     num: "02",
-    title: "Sample",
-    description: "~10 min.\nSaliva or buccal swab.\nYou depart after collection.",
-    icon: (
-      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent">
-        <path d="M18 8h12v4l4 20a4 4 0 01-4 4H18a4 4 0 01-4-4l4-20V8z" />
-        <line x1="18" y1="8" x2="30" y2="8" />
-        <path d="M18 28h12" strokeDasharray="3 3" />
-      </svg>
-    ),
-  },
-  {
-    num: "03",
     title: "Sequence",
     description: "Between visits: ~38 hrs.\n30x whole genome on Element AVITI.",
     icon: (
@@ -47,7 +35,7 @@ const steps = [
     ),
   },
   {
-    num: "04",
+    num: "03",
     title: "Process",
     description: "~60-90 min on GPU.\nAir-gapped servers.\nOpen source pipeline.",
     icon: (
@@ -61,9 +49,9 @@ const steps = [
     ),
   },
   {
-    num: "05",
+    num: "04",
     title: "Deliver",
-    description: "Visit 2 (Day 5-6): ~30 min.\nEncrypted USB drive.\nFIPS 140-3 certified.",
+    description: "Visit 2 (4-6 business days later): ~30 min.\nEncrypted USB drive.\nFIPS 140-3 certified.",
     icon: (
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent">
         <rect x="12" y="16" width="24" height="20" rx="3" />
@@ -74,9 +62,9 @@ const steps = [
     ),
   },
   {
-    num: "06",
+    num: "05",
     title: "Destroy",
-    description: "Witnessed through the glass wall.\nOn-premise data cryptographically erased.\nCertificate provided.",
+    description: "Witnessed through the glass wall.\nEach working drive cryptographically erased in under 5 seconds.\nNIST SP 800-88 Certificate of Destruction signed and timestamped at handoff.",
     icon: (
       <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-accent">
         <path d="M14 14h20l-2 26H16L14 14z" />
@@ -142,6 +130,13 @@ export default function HowItWorks() {
 
   return (
     <section id="how-it-works" aria-label="How It Works">
+      {/* Phase 0 framing */}
+      <div className="px-6 md:px-16 lg:px-24 pt-16 md:pt-20 text-center">
+        <p className="text-text-secondary text-sm md:text-base tracking-wide max-w-2xl mx-auto">
+          The planned customer journey. NYC pre-launch — join the waitlist.
+        </p>
+      </div>
+
       {/* Desktop: horizontal scroll with pin */}
       <div ref={outerRef} className="hidden md:block h-screen overflow-hidden relative">
         <div ref={innerRef} className="flex flex-nowrap items-center h-full">

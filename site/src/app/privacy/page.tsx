@@ -28,12 +28,13 @@ export default function PrivacyPolicy() {
             Who we are
           </h2>
           <p>
-            PrivDNA operates a privacy-sovereign whole genome sequencing service
-            and this website (<span className="text-text-primary">privdna.com</span>).
-            Our mission is to give people access to their genomic data without
-            surrendering control of it. This privacy policy reflects that
-            mission — we collect as little as possible and protect what we do
-            collect.
+            PrivDNA is building a privacy-sovereign whole genome sequencing
+            service and operates this website (
+            <span className="text-text-primary">privdna.com</span>) during the
+            pre-launch phase. Our mission is to give people access to their
+            genomic data without surrendering control of it. This privacy
+            policy reflects that mission — we collect as little as possible
+            and protect what we do collect.
           </p>
         </section>
 
