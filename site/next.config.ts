@@ -16,11 +16,11 @@ const nextConfig: NextConfig = {
             key: "Content-Security-Policy",
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://analytics.dant123.com https://static.cloudflareinsights.com",
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data: blob:",
               "font-src 'self'",
-              "connect-src 'self' https://*.privdna.com",
+              "connect-src 'self' https://*.privdna.com https://analytics.dant123.com",
               "worker-src 'self' blob:",
               "frame-src 'none'",
               "object-src 'none'",

@@ -14,6 +14,7 @@ export default function Hero() {
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subtextRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLButtonElement>(null);
+  const openSourceRef = useRef<HTMLParagraphElement>(null);
   const scrollIndicatorRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
@@ -55,6 +56,12 @@ export default function Hero() {
         subtextRef.current,
         { y: 40, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.8, ease: "power2.out", delay: 0.8 }
+      );
+
+      gsap.fromTo(
+        openSourceRef.current,
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, ease: "power2.out", delay: 1.0 }
       );
 
       gsap.fromTo(
@@ -106,6 +113,7 @@ export default function Hero() {
         </p>
         <div className="mt-2 flex flex-col md:flex-row md:items-center gap-4 md:gap-4">
           <p
+            ref={openSourceRef}
             className="text-text-secondary text-[clamp(1rem,1.5vw,1.5rem)] whitespace-pre-line"
           >
             {"Open source.\nZero retention."}

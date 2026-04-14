@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
 import SmoothScroll from "@/components/SmoothScroll";
@@ -68,10 +67,11 @@ export default function RootLayout({
     >
       <head>
         {rybbitSiteId && (
-          <Script
+          <script
             src={`${rybbitUrl}/api/script.js`}
             data-site-id={rybbitSiteId}
-            strategy="afterInteractive"
+            async
+            defer
           />
         )}
       </head>
