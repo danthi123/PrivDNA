@@ -26,14 +26,14 @@
 
 | # | Item | Model / Part Number | Qty | Unit Cost | Total |
 |---|------|-------------------|-----|-----------|-------|
-| 1 | Sequencer | Element Biosciences AVITI | 1 | $289,000 | $289,000 |
-| 2 | Fluorometer | Thermo Fisher Qubit 4 (Q33226) | 1 | $4,000 | $4,000 |
-| 3 | Fragment Analyzer | Agilent TapeStation 4150 (G2992AA) | 1 | $16,000 | $16,000 |
-| 4 | Thermal Cycler | Bio-Rad T100 (1861096) | 1 | $3,500 | $3,500 |
-| 5 | Centrifuge | Eppendorf 5810R (with A-4-81 rotor) | 1 | $6,000 | $6,000 |
-| 6 | Microcentrifuge | Eppendorf 5424R (refrigerated) | 1 | $3,500 | $3,500 |
-| 7 | Pipettes (single-channel) | Eppendorf Research Plus (0.5-10, 10-100, 100-1000 uL) | 1 set | $1,700 | $1,700 |
-| 8 | Pipette (multichannel) | Eppendorf Research Plus 8-channel | 1 | $1,500 | $1,500 |
+| 1 | Sequencer | [Element Biosciences AVITI](https://www.elementbiosciences.com/products/aviti) | 1 | $289,000 | $289,000 |
+| 2 | Fluorometer | [Thermo Fisher Qubit 4 (Q33226)](https://www.thermofisher.com/order/catalog/product/Q33226) | 1 | $4,000 | $4,000 |
+| 3 | Fragment Analyzer | [Agilent TapeStation 4150 (G2992AA)](https://www.agilent.com/store/en_US/Prod-G2992AA/G2992AA) | 1 | $16,000 | $16,000 |
+| 4 | Thermal Cycler | [Bio-Rad T100 (1861096)](https://www.bio-rad.com/en-us/sku/1861096-t100-thermal-cycler?ID=1861096) | 1 | $3,500 | $3,500 |
+| 5 | Centrifuge | [Eppendorf 5810R](https://www.eppendorf.com/us-en/Products/Centrifugation/Multipurpose-Centrifuges/Centrifuge-5810-5810R-p-PF-240994) (with A-4-81 rotor) | 1 | $6,000 | $6,000 |
+| 6 | Microcentrifuge | [Eppendorf 5424R](https://www.eppendorf.com/us-en/Products/Centrifugation/Microcentrifuges/Centrifuges-5424-5424R-p-PF-9915) (refrigerated) | 1 | $3,500 | $3,500 |
+| 7 | Pipettes (single-channel) | [Eppendorf Research Plus](https://www.eppendorf.com/us-en/Products/Liquid-Handling/Manual-Pipettes/Research-plus-p-PF-10009) (0.5-10, 10-100, 100-1000 uL) | 1 set | $1,700 | $1,700 |
+| 8 | Pipette (multichannel) | [Eppendorf Research Plus 8-channel](https://www.eppendorf.com/us-en/Products/Liquid-Handling/Manual-Pipettes/Research-plus-p-PF-10009) | 1 | $1,500 | $1,500 |
 | 9 | Vortex Mixer | Scientific Industries Vortex-Genie 2 | 1 | $500 | $500 |
 | 9a | Laboratory Freezer (-20C) | For reagent storage | 1 | $5,000 | $5,000 |
 | 9b | Laboratory Refrigerator (2-8C) | For buffer cartridges | 1 | $2,000 | $2,000 |
@@ -43,20 +43,20 @@
 
 | # | Item | Model / Part Number | Qty | Unit Cost | Total |
 |---|------|-------------------|-----|-----------|-------|
-| 10 | CPU | AMD EPYC 9654 96C/192T (100-000000789) | 2 | $12,500 | $25,000 |
-| 11 | Server Chassis | Supermicro AS-2125HS-TNR (2U, 24x NVMe, dual SP5) | 1 | $5,000 | $5,000 |
-| 12 | RAM | Samsung 64GB DDR5-4800 ECC RDIMM (M321R8GA0BB0-CQK) | 16 | $300 | $4,800 |
-| 13 | NVMe Storage | Samsung PM9A3 7.68TB U.2 (MZQL27T6HBLA-00A07) | 8 | $4,899 | $39,192 |
-| 14 | GPU | NVIDIA L40S 48GB PCIe | 1 | $7,500 | $7,500 |
-| 15 | TPM Module | Supermicro TPM 2.0 Infineon (AOM-TPM-9670V) | 1 | $50 | $50 |
+| 10 | CPU | [AMD EPYC 9654 96C/192T (100-000000789)](https://www.amd.com/en/products/processors/server/epyc/4th-generation-9004-and-8004-series/amd-epyc-9654.html) | 2 | $12,500 | $25,000 |
+| 11 | Server Chassis | [Supermicro AS-2125HS-TNR](https://www.supermicro.com/en/products/system/hyper/2u/as%20-2125hs-tnr) (2U, 24x NVMe, dual SP5) | 1 | $5,000 | $5,000 |
+| 12 | RAM | [Samsung 64GB DDR5-4800 ECC RDIMM (M321R8GA0BB0-CQK)](https://semiconductor.samsung.com/dram/module/rdimm/m321r8ga0bb0-cqk/) | 16 | $300 | $4,800 |
+| 13 | NVMe Storage | [Samsung PM9A3 7.68TB U.2 (MZQL27T6HBLA-00A07)](https://semiconductor.samsung.com/ssd/datacenter-ssd/pm9a3/) | 8 | $4,899 | $39,192 |
+| 14 | GPU | [NVIDIA L40S 48GB PCIe](https://www.nvidia.com/en-us/data-center/l40s/) | 1 | $7,500 | $7,500 |
+| 15 | TPM Module | [Supermicro TPM 2.0 Infineon (AOM-TPM-9670V)](https://www.supermicro.com/en/products/accessories/addon/AOM-TPM-9670V-S_H-S.php) | 1 | $50 | $50 |
 | | | | | **Subtotal** | **$81,542** |
 
 ## 1.3 Network and Security
 
 | # | Item | Model / Part Number | Qty | Unit Cost | Total |
 |---|------|-------------------|-----|-----------|-------|
-| 16 | Managed Switch | Cisco Catalyst 1000 (C1000-8T-2G-L) | 1 | $325 | $325 |
-| 17 | Firewall | Netgate 6100 MAX (pfSense+) | 1 | $949 | $949 |
+| 16 | Managed Switch | [Cisco Catalyst 1000 (C1000-8T-2G-L)](https://www.cisco.com/c/en/us/products/collateral/switches/catalyst-1000-series-switches/nb-06-cat1k-ser-switch-ds-cte-en.html) | 1 | $325 | $325 |
+| 17 | Firewall | [Netgate 6100 MAX (pfSense+)](https://shop.netgate.com/products/6100-max-pfsense) | 1 | $949 | $949 |
 | 18 | Patch Cables | Cat6A Shielded (various lengths) | 10 | $15 | $150 |
 | 19 | USB Port Blockers | SmartKeeper USB-A Port Blocker (10-pack + key) | 2 | $25 | $50 |
 | 20 | USB Port Blockers | SmartKeeper USB-C Port Blocker (10-pack + key) | 1 | $25 | $25 |
@@ -75,14 +75,14 @@
 | 24 | Extended Battery | Eaton 9PXEBM72RT2U | 1 | $1,500 | $1,500 |
 | 25 | Server Rack | Eaton SmartRack 42U (SR42UB) | 1 | $1,800 | $1,800 |
 | 26 | Room Cooling | Mini-split AC (12,000-15,000 BTU) | 1 | $2,500 | $2,500 |
-| 27 | Environmental Monitor | APC NetBotz Rack Monitor 250A (NBRK0250A) (temp, humidity, intrusion) | 1 | $650 | $650 |
+| 27 | Environmental Monitor | [APC NetBotz Rack Monitor 250A (NBRK0250A)](https://www.se.com/us/en/product/NBRK0250A/rack-mount-security-and-environmental-appliance-netbotz-250a/) (temp, humidity, intrusion) | 1 | $650 | $650 |
 | | | | | **Subtotal** | **$9,950** |
 
 ## 1.5 Customer Delivery Media (Initial Inventory)
 
 | # | Item | Model / Part Number | Qty | Unit Cost | Total |
 |---|------|-------------------|-----|-----------|-------|
-| 28 | Encrypted USB (primary) | Kingston IronKey D500S 512GB (FIPS 140-3 L3) | 25 | $390 | $9,750 |
+| 28 | Encrypted USB (primary) | [Kingston IronKey D500S 512GB](https://www.kingston.com/en/usb-flash-drives/ironkey-d500s-encrypted) (FIPS 140-3 L3) | 25 | $390 | $9,750 |
 | 29 | Encrypted USB (alternative) | Apricorn Aegis Secure Key 3NX 128GB (FIPS 140-2 L3) | 10 | $179 | $1,790 |
 | | | | | **Subtotal** | **$11,540** |
 
@@ -355,7 +355,7 @@ nextflow run ./sarek-offline/workflow/ \
 
 | Tool | Version | License | Role |
 |------|---------|---------|------|
-| bases2fastq | latest | Element Biosciences (free) | Raw data to FASTQ conversion and demultiplexing |
+| [bases2fastq](https://docs.elembio.io/docs/bases2fastq/introduction/) | latest | Element Biosciences (free) | Raw data to FASTQ conversion and demultiplexing |
 | BWA-MEM2 | 2.2.1 | MIT | Short-read alignment to GRCh38 reference |
 | GATK | 4.6.1.0 | BSD 3-Clause / Apache 2.0 | Variant calling (HaplotypeCaller), BQSR, deduplication |
 | samtools | 1.23.1 | MIT/BSD | BAM sorting, indexing, statistics |
@@ -363,7 +363,7 @@ nextflow run ./sarek-offline/workflow/ \
 | htslib | 1.23.1 | MIT/BSD | C library for BAM/CRAM/VCF I/O |
 | FastQC | 0.12.1 | GPL v3 | Per-sample FASTQ quality control |
 | MultiQC | 1.33 | GPL v3 | Aggregate QC report generation |
-| NVIDIA Clara Parabricks | 4.x | Proprietary (free to use in production; paid enterprise support available via NVIDIA AI Enterprise subscription) | GPU-accelerated alignment and variant calling |
+| [NVIDIA Clara Parabricks](https://docs.nvidia.com/clara/parabricks/latest/index.html) | 4.x | Proprietary (free to use in production; paid enterprise support available via NVIDIA AI Enterprise subscription) | GPU-accelerated alignment and variant calling |
 | VerifyBamID2 | 2.0.1 | MIT | Sample contamination detection |
 
 **License note:** bases2fastq is free to use (provided by Element Biosciences). Clara Parabricks is free to use in production (paid enterprise support is available via NVIDIA AI Enterprise subscription). All other tools in the critical path (BWA-MEM2, GATK, samtools, bcftools) are fully open source. If Parabricks licensing becomes restrictive, the CPU-only pipeline (BWA-MEM2 + GATK) is fully functional with longer processing times (8-16 hours vs. ~60-90 minutes).
@@ -548,7 +548,7 @@ SAMPLE INTAKE
 
 # 6. DATA DESTRUCTION PROTOCOL
 
-## 6.1 Standard: NIST SP 800-88 Revision 2 (September 2025)
+## 6.1 Standard: [NIST SP 800-88 Revision 2 (September 2025)](https://csrc.nist.gov/pubs/sp/800/88/r2/final)
 
 PrivDNA follows the **Purge** sanitization level using **cryptographic erasure** on self-encrypting NVMe drives.
 

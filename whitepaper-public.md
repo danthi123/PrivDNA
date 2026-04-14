@@ -68,27 +68,27 @@ The trajectory of 23andMe illustrates the structural vulnerability of the centra
 
 **Timeline of Collapse:**
 
-- **2021:** 23andMe goes public via SPAC merger with VG Acquisition Corp. at a $3.5 billion deal valuation; shares briefly trade at an implied $6 billion market capitalization following listing. The company holds the genetic data of over 10 million customers (growing to approximately 15 million by the time of bankruptcy).
-- **April-October 2023:** Beginning in late April 2023, a credential-stuffing attack compromises over 14,000 accounts (later revised to over 18,000 by UK and Canadian regulators), through which approximately 6.9 million customer profiles are accessed via the DNA Relatives and Family Tree features -- including ethnicity estimates, geographic locations, and family tree connections. The breach is publicly disclosed in October 2023. The company is criticized for not requiring multi-factor authentication.
+- **2021:** 23andMe [goes public via SPAC merger](https://www.cnbc.com/2021/02/04/dna-testing-firm-23andme-to-go-public-through-branson-backed-spac.html) with VG Acquisition Corp. at a $3.5 billion deal valuation; shares briefly trade at an implied market capitalization in the multi-billion-dollar range following listing. The company holds the genetic data of over 10 million customers (growing to approximately 15 million by the time of bankruptcy).
+- **April-October 2023:** Beginning in late April 2023, a credential-stuffing attack compromises roughly 14,000 accounts, through which approximately 6.9 million customer profiles are accessed via the DNA Relatives and Family Tree features -- including ethnicity estimates, geographic locations, and family tree connections. The breach is publicly disclosed in October 2023; a [joint UK ICO / Canadian OPC investigation](https://www.priv.gc.ca/en/opc-actions-and-decisions/investigations/investigations-into-businesses/2025/pipeda-2025-001/) subsequently confirms the total at roughly 6.98 million affected individuals worldwide. The company is criticized for not requiring multi-factor authentication.
 - **September 2024:** All independent board members resign.
 - **November 2024:** The company lays off over 200 employees (~40% of its workforce).
-- **March 2025:** 23andMe files for Chapter 11 bankruptcy in the Eastern District of Missouri. CEO Anne Wojcicki resigns.
+- **March 2025:** 23andMe [files for Chapter 11 bankruptcy](https://www.cnbc.com/2025/03/24/23andme-files-for-bankruptcy-anne-wojcicki-steps-down-as-ceo.html) in the Eastern District of Missouri. CEO Anne Wojcicki resigns.
 - **March 2025:** A bankruptcy judge rules that 23andMe may sell customer genetic and ancestry data to bidders.
-- **May 2025:** Regeneron initially wins the bankruptcy auction at $256 million.
-- **June 2025:** In a reopened bidding process, TTAM Research Institute (a nonprofit founded by Wojcicki) prevails with a $305 million bid. The court approves the sale on June 27, using an "equity toggle" structure where data is placed in a subsidiary and then the subsidiary's equity is sold -- a mechanism the court ruled did not constitute a third-party "transfer" requiring explicit re-consent under state privacy statutes.
+- **May 2025:** [Regeneron initially wins](https://www.cnbc.com/2025/05/19/regeneron-pharmaceuticals-to-buy-23andme-for-256-million-including-data.html) the bankruptcy auction at $256 million.
+- **June 2025:** In a reopened bidding process, TTAM Research Institute (a nonprofit founded by Wojcicki) prevails with a $305 million bid. The court approves the sale on [June 30](https://foleyhoag.com/news-and-insights/publications/alerts-and-updates/2025/july/23andme-bankruptcy-update-how-the-proceedings-highlight-best-practices-for-handling-and-transferring/), using an "equity toggle" structure where data is placed in a subsidiary and then the subsidiary's equity is sold -- a mechanism the court ruled did not constitute a third-party "transfer" requiring explicit re-consent under state privacy statutes.
 - **July 2025:** The sale closes on July 14. TTAM acquires all 23andMe assets. The company is subsequently renamed ChromeCo, Inc.
 
 The collapse from a peak implied market capitalization of $6 billion to a $305 million asset sale is significant not only as a financial event but as a structural demonstration: when a company holds centralized genetic data, that data becomes an asset in liquidation proceedings, subject to sale without meaningful individual consent.
 
-Multiple state attorneys general urged consumers to delete their data before the sale closed. The incident prompted a 2025 article in *Science* examining the systemic fragility of consumer genetic privacy.
+Multiple state attorneys general urged consumers to delete their data before the sale closed. The incident prompted a [2025 article in *Science*](https://www.science.org/doi/10.1126/science.adz7229) examining the systemic fragility of consumer genetic privacy.
 
 ## 2.3 The Broader Pattern of Data Monetization
 
 23andMe was not an anomaly. The centralized genetics business model is built on data monetization:
 
-- 23andMe's $300 million equity investment and R&D partnership with GlaxoSmithKline (2018) granted the pharmaceutical company access to aggregated genetic data for drug target discovery.
-- Ancestry was acquired by Blackstone in 2020 for $4.7 billion. Industry analysts noted an implied enterprise value of roughly $261 per DNA customer, suggesting the database itself was a primary asset.
-- Nebula Genomics shut down its consumer service on February 5, 2025 (its parent company ProPhase Labs filed Chapter 11 for its COVID-19 testing laboratory subsidiaries in September 2025). Despite marketing itself as "privacy-first" with blockchain-based data ownership, Nebula faces a 2024 class-action lawsuit (Portillo v. Nebula Genomics) alleging the company shared genetic information with Meta, Google, and Microsoft through embedded web tracking tools (Facebook Pixel, Google Analytics, Microsoft Clarity). A federal court denied Nebula's motion to dismiss in March 2026.
+- 23andMe's [$300 million equity investment and R&D partnership with GlaxoSmithKline](https://www.gsk.com/en-gb/media/press-releases/gsk-and-23andme-sign-agreement-to-leverage-genetic-insights-for-the-development-of-novel-medicines/) (2018) granted the pharmaceutical company access to aggregated genetic data for drug target discovery.
+- Ancestry was [acquired by Blackstone in 2020 for $4.7 billion](https://www.blackstone.com/news/press/blackstone-completes-acquisition-of-ancestry-leading-online-family-history-business-for-4-7-billion/). Industry [analysts noted an implied enterprise value of roughly $261 per DNA customer](https://www.cbsnews.com/news/blackstone-private-equity-ancestry-com-dna/), suggesting the database itself was a primary asset.
+- Nebula Genomics shut down its consumer service on February 5, 2025 (its parent company ProPhase Labs [filed Chapter 11 for its COVID-19 testing laboratory subsidiaries](https://ir.prophaselabs.com/news-events/press-releases/detail/250/prophase-labs-inc-announces-completion-of-important-next) in September 2025). Despite marketing itself as "privacy-first" with blockchain-based data ownership, Nebula faces a [2024 class-action lawsuit (*Portillo v. Nebula Genomics*)](https://www.classaction.org/media/portillov-nebula-genomics-inc-et-al.pdf) alleging the company shared genetic information with Meta, Google, and Microsoft through embedded web tracking tools (Facebook Pixel, Google Analytics, Microsoft Clarity). A federal court denied Nebula's motion to dismiss in March 2026.
 
 The pattern is consistent: companies that hold centralized genetic databases face irresistible economic pressure to monetize that data, regardless of initial privacy commitments.
 
@@ -96,17 +96,17 @@ The pattern is consistent: companies that hold centralized genetic databases fac
 
 The erosion of trust is measurable:
 
-- **70%** of consumers express concern about data privacy and security when using digital services (Deloitte, 2025)
-- Only **48%** of respondents believe the benefits of online services outweigh privacy concerns -- the lowest level since Deloitte began tracking in 2019
-- **73%** of Americans feel they have very little or no control over what companies do with their personal data (Pew Research Center, 2023)
+- **70%** of consumers express concern about data privacy and security when using digital services ([Deloitte 2025 Connected Consumer](https://www.deloitte.com/us/en/insights/industry/telecommunications/connectivity-mobile-trends-survey.html))
+- Only **48%** of respondents believe the benefits of online services outweigh privacy concerns -- the lowest level since Deloitte began tracking in 2019 ([Deloitte press release](https://www2.deloitte.com/us/en/pages/about-deloitte/articles/press-releases/increasing-consumer-privacy-and-security-concerns-in-the-generative-ai-era.html))
+- **73%** of Americans feel they have very little or no control over what companies do with their personal data ([Pew Research Center, 2023](https://www.pewresearch.org/internet/2023/10/18/how-americans-view-data-privacy/))
 - Only **1 in 10** consumers are willing to share sensitive biometric data (Deloitte, 2025)
-- Only **48%** of Americans said it was acceptable for DNA testing companies to share data with law enforcement, while a third said it was unacceptable (Pew Research Center, 2020)
+- Only **48%** of Americans said it was acceptable for DNA testing companies to share data with law enforcement, while a third said it was unacceptable ([Pew Research Center, 2020](https://www.pewresearch.org/short-reads/2020/02/04/about-half-of-americans-are-ok-with-dna-testing-companies-sharing-user-data-with-law-enforcement/))
 
-The regulatory environment is responding. Multiple U.S. states enacted genetic privacy legislation in 2024-2025, including the Texas Genomic Act of 2025, South Dakota SB 49 (effective July 2026), and laws in Nebraska, Alabama, Montana, and Florida. Rhode Island, Vermont, and Utah have proposed additional legislation in early 2026.
+The regulatory environment is responding. Multiple U.S. states enacted genetic privacy legislation in 2024-2025, including the [Texas Genomic Act of 2025](https://statutes.capitol.texas.gov/Docs/HS/htm/HS.174.htm), [South Dakota SB 49](https://mylrc.sdlegislature.gov/api/Documents/305520.pdf) (effective July 2026), and laws in Nebraska, Alabama, Montana, and Florida. Rhode Island, Vermont, and Utah have proposed additional legislation in early 2026.
 
 ## 2.5 The Interpretation Gap
 
-Despite this distrust, demand for genomic information continues to grow. As of 2019, approximately 26 million people had undergone consumer genetic testing, primarily in the United States (MIT Technology Review), and the number has grown substantially since. The whole genome sequencing market was valued at $2.12 billion in 2024 and is projected to grow at a 22.2% CAGR, reaching $6.67 billion by 2030 (Grand View Research).
+Despite this distrust, demand for genomic information continues to grow. As of early 2019, [approximately 26 million people had undergone consumer genetic testing](https://www.technologyreview.com/2019/02/11/103446/more-than-26-million-people-have-taken-an-at-home-ancestry-test/), primarily in the United States (MIT Technology Review), and the number has grown substantially since. The whole genome sequencing market was valued at $2.12 billion in 2024 and is projected to grow at a 22.17% CAGR, reaching $6.67 billion by 2030 ([Grand View Research](https://www.grandviewresearch.com/industry-analysis/whole-genome-sequencing-market-report)).
 
 Consumers want access to their genomic data. They do not want the companies that generate it to keep copies.
 
@@ -177,19 +177,19 @@ Publishing our pipeline eliminates the code itself as a competitive moat, delibe
 
 ## 4.1 Total Addressable Market
 
-**Consumer Genomics (Global):** $2.51 billion (2024), projected to reach $8.17 billion by 2030 at a 21.73% CAGR (360iResearch).
+**Consumer Genomics (Global):** $2.51 billion (2024), projected to reach $8.17 billion by 2030 at a 21.73% CAGR ([360iResearch](https://www.360iresearch.com/library/intelligence/consumer-genomics) — cited figures from the 2025 edition; the live report is refreshed periodically).
 
-**Whole Genome Sequencing (Global):** $2.12 billion (2024), projected to reach $6.67 billion by 2030 at a 22.2% CAGR (Grand View Research).
+**Whole Genome Sequencing (Global):** $2.12 billion (2024), projected to reach $6.67 billion by 2030 at a 22.17% CAGR ([Grand View Research](https://www.grandviewresearch.com/industry-analysis/whole-genome-sequencing-market-report)).
 
-**Direct-to-Consumer Genetic Testing (Global):** $1.95 billion (2024), projected to reach $9.57 billion by 2034 at a 17.90% CAGR (Precedence Research).
+**Direct-to-Consumer Genetic Testing (Global):** the $1.95 billion (2024) → $9.57 billion (2034) at 17.9% CAGR figure originally cited from Precedence Research **[needs review]** — Precedence's current [consumer genomics page](https://www.precedenceresearch.com/consumer-genomics-market) shows different numbers; re-source before relying on this claim.
 
 ## 4.2 Serviceable Addressable Market
 
 PrivDNA's initial SAM is defined by:
 
-- **Geography:** New York City metropolitan area (population: ~20.1 million)
-- **Demographics:** Health-conscious adults aged 25-65 with household income >$150,000 (approximately 3.2 million in the NYC metro area)
-- **Privacy sensitivity:** The 60% of this demographic who express willingness to pay a premium for data protection (Statista, 2024) -- approximately 1.92 million individuals
+- **Geography:** New York City metropolitan area (~19.9M, [ACS 2024 1-year estimates](https://www.census.gov/programs-surveys/acs/data.html) for MSA 35620)
+- **Demographics:** Health-conscious adults aged 25-65 with household income >$150,000 (approximately 3.2 million in the NYC metro area, derived from ACS tables B01001 and B19001)
+- **Privacy sensitivity:** The 60% of this demographic who [express some willingness to pay a premium](https://www.statista.com/statistics/1469800/us-adults-willingness-to-pay-for-personal-data-protection/) for data protection (Statista / CivicScience, 2024) -- approximately 1.92 million individuals
 - **WGS interest:** Estimated 5-10% of privacy-sensitive high-income consumers who would consider WGS in a given year -- approximately 96,000-192,000 individuals
 
 ## 4.3 Serviceable Obtainable Market
@@ -225,7 +225,7 @@ PrivDNA's addressable market is defined by four primary customer personas, valid
 23andMe and Ancestry dominate this tier with SNP microarray tests at $99-$229. These tests examine 600,000-700,000 specific genetic markers -- less than 0.02% of the genome. They serve casual ancestry curiosity and basic trait analysis.
 
 **Tier 2: Whole Genome Sequencing (Full Resolution)**
-WGS reads the complete 3.2 billion base pairs of the human genome. This tier is served by Sequencing.com ($399), Nucleus Genomics ($399 + $39/year membership), and Dante Labs ($599, frequently discounted to ~$499). Nebula Genomics shut down its consumer service on February 5, 2025 and faces a federal class-action privacy lawsuit (Portillo v. Nebula Genomics) alleging it shared genetic data with Meta, Google, and Microsoft via embedded tracking tools; its parent company ProPhase Labs filed Chapter 11 for its COVID-19 testing laboratory subsidiaries in September 2025. Dante Labs was acquired by Bio Cell Tech FZCO (UAE-based) in February 2025. All active competitors operate via mail-order.
+WGS reads the complete 3.2 billion base pairs of the human genome. This tier is served by [Sequencing.com](https://sequencing.com) ($399), [Nucleus Genomics](https://mynucleus.com) ($399 + $39/year membership), and [Dante Labs](https://dantelabs.com) ($599, frequently discounted to ~$499). Nebula Genomics shut down its consumer service on February 5, 2025 and faces a federal class-action privacy lawsuit ([*Portillo v. Nebula Genomics*](https://www.classaction.org/media/portillov-nebula-genomics-inc-et-al.pdf)) alleging it shared genetic data with Meta, Google, and Microsoft via embedded tracking tools; its parent company [ProPhase Labs filed Chapter 11](https://ir.prophaselabs.com/news-events/press-releases/detail/250/prophase-labs-inc-announces-completion-of-important-next) for its COVID-19 testing laboratory subsidiaries in September 2025. Dante Labs' UAE subsidiary (Dante Labs Genomics FZE) was [acquired by Bio Cell Tech FZCO](https://www.clydeco.com/en/about/news/2024/12/advising-bio-cell-tech) in February 2025. All active competitors operate via mail-order.
 
 ### Competitive Comparison Matrix
 
@@ -246,15 +246,15 @@ WGS reads the complete 3.2 billion base pairs of the human genome. This tier is 
 
 The three active WGS competitors each present a distinct competitive profile -- and a distinct set of vulnerabilities.
 
-**Sequencing.com** ($399, founded 2014, $5M Series A) is the most polished DTC WGS platform, with 688 Trustpilot reviews, an app marketplace of 100+ analysis tools, and turnaround options ranging from 10 weeks to 2-3 weeks (ultra rapid). Its primary weakness is a critical privacy gap: the "SequencingAI" feature shares customer genetic data with third-party AI services including OpenAI, which "may retain some data for an indefinite period of time" per the company's AI Use Policy -- directly contradicting its "Privacy Forever" branding. Recurring customer complaints center on auto-enrollment in a $30/month subscription plan without clear consent at purchase.
+**Sequencing.com** ($399, founded 2014, [$5M Series A](https://www.genomeweb.com/sequencing/sequencingcom-raises-5m-private-funding)) is the most polished DTC WGS platform, with 688 Trustpilot reviews, an app marketplace of 100+ analysis tools, and turnaround options ranging from 10 weeks to 2-3 weeks (ultra rapid). Its primary weakness is a critical privacy gap: the "SequencingAI" feature shares customer genetic data with third-party AI services including OpenAI, which "may retain some data for an indefinite period of time" per the company's [AI Use Policy](https://sequencing.com/policies/ai-use-policy) -- directly contradicting its "Privacy Forever" branding. Recurring customer complaints center on auto-enrollment in a $30/month subscription plan without clear consent at purchase.
 
-**Nucleus Genomics** ($399 + $39/year, founded 2020, $32M raised including a $14M Series A in January 2025) reports aggressive 68% month-over-month revenue growth and has expanded into embryo selection ($5,999). However, the company faces serious credibility concerns: allegations of fabricating customer reviews, criticism from the American College of Medical Genetics and Genomics regarding its embryo product's evidence base, and a founder who has been compared to Elizabeth Holmes by critics. A 2024 Cornell study found polygenic scores -- central to the Nucleus Embryo product -- include significant statistical uncertainty and yield overconfident predictions. Physical DNA samples are destroyed within 60 days, but digital data retention periods are vaguely defined as "determined by business need."
+**Nucleus Genomics** ($399 + $39/year, founded 2020, $32M total raised including a [$14M Series A in January 2025](https://techcrunch.com/2025/01/30/controversial-genetics-testing-startup-nucleus-genomics-raises-14m-series-a/)) reports aggressive month-over-month revenue growth [founder-cited, not independently verified] and has expanded into embryo selection ($5,999). However, the company faces serious credibility concerns: allegations of fabricating customer reviews, [formal criticism from the American College of Medical Genetics and Genomics](https://www.gimjournal.org/article/S1098-3600(23)01068-7/fulltext) regarding polygenic-risk-score embryo products' evidence base, and a founder who has been compared to Elizabeth Holmes by critics. Independent research continues to find that polygenic scores -- central to the Nucleus Embryo product -- include significant statistical uncertainty and yield inconsistent predictions across methods ([Sun et al., *Nature Human Behaviour*, 2024](https://www.nature.com/articles/s41562-024-02019-y); see also [Turley et al., *NEJM*, 2021](https://www.nejm.org/doi/full/10.1056/NEJMsr2105065)). Physical DNA samples are destroyed within 60 days, but digital data retention periods are vaguely defined as "determined by business need."
 
-**Dante Labs** ($599, frequently discounted to ~$499, acquired by Bio Cell Tech FZCO of the UAE in February 2025) holds an **F rating from the Better Business Bureau** with 50+ complaints in the prior 12 months. Customer reports consistently describe delivery failures (6-10+ months, with some customers never receiving results), non-responsive customer service, and hidden charges for raw data downloads. Labs operate in Italy and Dubai, not domestically. The 10-year data retention policy post-account-deletion and new UAE ownership raise data sovereignty concerns.
+**Dante Labs** ($599, frequently discounted to ~$499; its UAE subsidiary Dante Labs Genomics FZE was [acquired by Bio Cell Tech FZCO](https://www.clydeco.com/en/about/news/2024/12/advising-bio-cell-tech) in February 2025) holds an [**F rating from the Better Business Bureau**](https://www.bbb.org/us/ny/new-york/profile/dna-testing/dante-labs-inc-0121-176749) with dozens of complaints logged in the prior 12 months (counts fluctuate). Customer reports consistently describe delivery failures (6-10+ months, with some customers never receiving results), non-responsive customer service, and hidden charges for raw data downloads. Labs operate in Italy and Dubai, not domestically. The 10-year data retention policy post-account-deletion and new UAE ownership raise data sovereignty concerns.
 
-**Lessons from failures.** The DTC genomics sector has produced a consistent failure pattern. Nebula Genomics (shut down February 2025) marketed itself as "privacy-first" with blockchain-based data ownership, but a federal class-action lawsuit alleges it shared genetic data with Meta, Google, and Microsoft via embedded tracking pixels -- the ultimate privacy theater. Veritas Genetics ceased US operations in December 2019 after Chinese investors triggered CFIUS scrutiny; it had sold only 5,000-10,000 genomes nationally across five years at $599, suggesting weak demand even at sub-$1,000 pricing. Every low-price DTC WGS model has either failed (Nebula, Veritas), gone bankrupt (23andMe, Invitae), or pivoted entirely to B2B (Helix, Color Health).
+**Lessons from failures.** The DTC genomics sector has produced a consistent failure pattern. Nebula Genomics (shut down February 2025) marketed itself as "privacy-first" with blockchain-based data ownership, but a [federal class-action lawsuit](https://www.classaction.org/media/portillov-nebula-genomics-inc-et-al.pdf) alleges it shared genetic data with Meta, Google, and Microsoft via embedded tracking pixels -- the ultimate privacy theater. [Veritas Genetics ceased US operations in December 2019](https://www.cnbc.com/2019/12/05/veritas-genetics-to-cease-us-operations-talks-with-buyers.html) after Chinese investors triggered CFIUS scrutiny; consumer volume remained low at $599 pricing, suggesting weak demand even at sub-$1,000 price points. Every low-price DTC WGS model has either failed (Nebula, Veritas), gone bankrupt (23andMe, Invitae), or pivoted entirely to B2B (Helix, Color Health).
 
-**Adjacent competition.** Concierge medicine and executive health programs (Fountain Life at $10,500-$21,500/year, Human Longevity Inc. at $8,000/year) offer WGS as a bundled component of comprehensive diagnostic packages. This data is retained indefinitely in the clinical record. PrivDNA's $3,500 standalone service is priced below every concierge WGS alternative while offering superior privacy guarantees -- positioning it as the affordable premium option for customers who want genomic data outside their medical record.
+**Adjacent competition.** Concierge medicine and executive health programs ([Fountain Life at $10,500-$21,500/year](https://www.fountainlife.com/membership), [Human Longevity Inc. at $8,000/year](https://www.humanlongevity.com/executive-health/)) offer WGS as a bundled component of comprehensive diagnostic packages. This data is retained indefinitely in the clinical record. PrivDNA's $3,500 standalone service is priced below every concierge WGS alternative while offering superior privacy guarantees -- positioning it as the affordable premium option for customers who want genomic data outside their medical record.
 
 PrivDNA sequences on the **Element Biosciences AVITI**, which uses avidity sequencing (sequencing-by-binding) rather than Illumina's sequencing-by-synthesis. The output quality is comparable (≥90% bases above Q30) and produces identical standard file formats (FASTQ, BAM, VCF), making it fully interchangeable for downstream analysis. Element's reagent price guarantee for the instrument's lifetime eliminates the single largest variable cost risk for the business.
 
@@ -268,9 +268,9 @@ PrivDNA occupies a category of one: a premium, physically transparent, cryptogra
 
 Quantitative evidence supports premium pricing for privacy:
 
-- 60% of U.S. adults express willingness to pay a premium for companies with strong data protection (Statista, 2024)
-- Consumers who view their tech providers as excelling in both innovation and data responsibility spend **62% more annually on tech devices** compared to consumers who rate providers as lagging on both dimensions (Deloitte, 2025)
-- In a PLOS ONE study (2020, n=2,020), 37.8% of respondents stated they would not provide genetic data at any price, and 50.6% would provide it only with financial compensation
+- 60% of U.S. adults [express some willingness to pay a premium](https://www.statista.com/statistics/1469800/us-adults-willingness-to-pay-for-personal-data-protection/) for companies with strong data protection (Statista / CivicScience, 2024)
+- Consumers who view their tech providers as excelling in both innovation and data responsibility spend **62% more annually on tech devices** compared to consumers who rate providers as lagging on both dimensions ([Deloitte, 2025](https://www.deloitte.com/us/en/insights/industry/telecommunications/connectivity-mobile-trends-survey.html))
+- In a [PLOS ONE study (Briscoe et al., 2020, n=2,020)](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0229044), 37.8% of respondents stated they would not provide genetic data at any price, and 50.6% would provide it only with financial compensation
 
 The top three policies that increase consumer willingness to share genetic data are: (1) ability to request data deletion, (2) assurance data would not be sold or shared, and (3) specific permissions required for reuse. PrivDNA's model satisfies all three by design.
 
@@ -292,7 +292,7 @@ The $3,500 price point is best understood not as a premium over commodity WGS, b
 
 ## 5.1 Sequencing Platform
 
-**Primary instrument: Element Biosciences AVITI**
+**Primary instrument: [Element Biosciences AVITI](https://www.elementbiosciences.com/products/aviti)**
 
 | Specification | Value |
 |--------------|-------|
@@ -402,7 +402,7 @@ Stage 7: Quality Aggregation
 
 ### Pipeline Orchestration
 
-The pipeline is orchestrated via **Nextflow** using the **nf-core/sarek** framework -- a production-validated, community-maintained WGS/WES analysis pipeline. Sarek is the most battle-tested open-source WGS pipeline available, with contributions from dozens of institutions worldwide.
+The pipeline is orchestrated via **[Nextflow](https://www.nextflow.io/)** using the **[nf-core/sarek](https://nf-co.re/sarek)** framework -- a production-validated, community-maintained WGS/WES analysis pipeline. Sarek is the most battle-tested open-source WGS pipeline available, with contributions from dozens of institutions worldwide.
 
 For air-gapped deployment, all dependencies are pre-staged as Singularity container images (.sif files) on an internet-connected staging machine, then transferred to the air-gapped server via encrypted physical media. The total software + reference data package is approximately 80-100 GB.
 
@@ -443,7 +443,7 @@ With 30 TB usable storage (RAID-10), the server provides approximately 3x the pe
 
 ## 5.4 Data Destruction Protocol
 
-PrivDNA follows NIST SP 800-88 Revision 2 (September 2025) -- the current authoritative standard for media sanitization, which supersedes the legacy DoD 5220.22-M standard.
+PrivDNA follows [NIST SP 800-88 Revision 2 (September 2025)](https://csrc.nist.gov/pubs/sp/800/88/r2/final) -- the current authoritative standard for media sanitization, which supersedes the legacy DoD 5220.22-M standard.
 
 ### Method: Cryptographic Erasure (Purge Level)
 
@@ -549,7 +549,7 @@ The Technical Representative ("Genomic Concierge") is the face of PrivDNA's priv
 
 ### CLIA Certification
 
-Clinical laboratory testing in the United States requires certification under the Clinical Laboratory Improvement Amendments (CLIA), administered by CMS. Whole genome sequencing is classified as **high-complexity** testing -- the highest CLIA category.
+Clinical laboratory testing in the United States requires certification under the [Clinical Laboratory Improvement Amendments (CLIA)](https://www.cms.gov/medicare/quality/clinical-laboratory-improvement-amendments/regulations-federal-register), administered by CMS under [42 CFR Part 493](https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-G/part-493). Whole genome sequencing is classified as **high-complexity** testing -- the highest CLIA category.
 
 **Process:**
 1. Submit CMS-116 application to the NYSDOH (state survey agency for New York)
@@ -582,7 +582,7 @@ PrivDNA's air-gapped, zero-retention model **exceeds** HIPAA requirements by des
 
 ### NYSDOH Clinical Laboratory Evaluation Program (CLEP)
 
-New York State requires any laboratory testing specimens originating in New York to hold a NYS clinical laboratory permit, administered by the Wadsworth Center. This is one of the most stringent state lab oversight programs in the United States and applies **in addition to** federal CLIA certification.
+New York State requires any laboratory testing specimens originating in New York to hold a NYS clinical laboratory permit, administered by the [Wadsworth Center's Clinical Laboratory Evaluation Program](https://www.wadsworth.org/regulatory/clep). This is one of the most stringent state lab oversight programs in the United States and applies **in addition to** federal CLIA certification. (For a practical walkthrough of the LDT validation and approval process for NGS assays, see [Sabnis et al., *J. Mol. Diagn.*, 2025](https://www.jmdjournal.org/article/S1525-1578(25)00067-4/fulltext).)
 
 **Key requirements:**
 - Appoint a NYS-certified laboratory director
@@ -595,11 +595,11 @@ New York State requires any laboratory testing specimens originating in New York
 
 **Timeline:** 6-12+ months from application to permit issuance. The LDT review process alone can take several months.
 
-**Regulatory basis:** NY Public Health Law Article 5, Title V; 10 NYCRR Part 58
+**Regulatory basis:** NY Public Health Law Article 5, Title V; [10 NYCRR Subpart 58-1](https://regs.health.ny.gov/content/subpart-58-1-clinical-laboratories)
 
 ### NYC Zoning
 
-NYC's "City of Yes for Economic Opportunity" zoning reform (adopted 2024-2025) significantly expanded where laboratories can operate:
+NYC's ["City of Yes for Economic Opportunity"](https://www.nyc.gov/assets/planning/downloads/pdf/our-work/plans/citywide/city-of-yes-economic-opportunity/zoning-text-modified-by-cpc.pdf) zoning reform (adopted by the City Council June 6, 2024) significantly expanded where laboratories can operate:
 
 - Laboratories are now classified in **Use Group VII** (same as offices)
 - **Permitted as-of-right** in all Commercial "C" zones except C3
@@ -639,7 +639,7 @@ PrivDNA's "raw data only" model significantly reduces medical liability exposure
 
 ### GINA Limitations Advisory
 
-The Genetic Information Nondiscrimination Act (GINA) prohibits discrimination by health insurers and employers based on genetic information. However, **GINA does not cover life insurance, disability insurance, or long-term care insurance.** Customers are advised to consult with an attorney before undergoing WGS if they have pending applications for these types of insurance. PrivDNA includes this advisory in its pre-sequencing consent documentation.
+The [Genetic Information Nondiscrimination Act (GINA)](https://www.eeoc.gov/statutes/genetic-information-nondiscrimination-act-2008) prohibits discrimination by health insurers and employers based on genetic information. However, per [NHGRI guidance](https://www.genome.gov/about-genomics/policy-issues/Genetic-Discrimination), **GINA does not cover life insurance, disability insurance, or long-term care insurance.** Customers are advised to consult with an attorney before undergoing WGS if they have pending applications for these types of insurance. PrivDNA includes this advisory in its pre-sequencing consent documentation.
 
 ---
 
@@ -800,48 +800,71 @@ Instead, the referral network creates value through:
 
 # APPENDIX C: REFERENCES AND SOURCES
 
+Every reference below is a live link to the primary source. A reference audit log is maintained internally; any entry flagged here as **[needs review]** is either (a) attributed to a source that no longer carries the exact figure at that URL, or (b) awaiting a cleaner primary source.
+
 ### Market Data
-- Precedence Research, "Consumer Genomics Market," 2025
-- 360iResearch, "Consumer Genomics Market," 2025
-- Grand View Research, "Whole Genome Sequencing Market Report," 2025
-- Grand View Research, "Predictive Genetic Testing and Consumer Wellness Genomics Market," 2025
+- Grand View Research, [*Whole Genome Sequencing Market Report*](https://www.grandviewresearch.com/industry-analysis/whole-genome-sequencing-market-report) (2025) — $2.12B (2024) → $6.67B (2030), 22.17% CAGR.
+- 360iResearch, [*Consumer Genomics Market*](https://www.360iresearch.com/library/intelligence/consumer-genomics) (2025 edition).
+- Grand View Research, [*Predictive Genetic Testing and Consumer Genomics Market*](https://www.grandviewresearch.com/industry-analysis/predictive-genetic-testing-consumer-wellness-genomics-market) (2025).
+- Direct-to-consumer genetic testing market sizing **[needs review]** — the $1.95B/$9.57B/17.9% figures previously attributed to Precedence Research do not match Precedence's current [consumer genomics page](https://www.precedenceresearch.com/consumer-genomics-market); re-source before relying on this claim.
+- U.S. Census Bureau, [American Community Survey](https://www.census.gov/programs-surveys/acs/data.html) 1-year estimates (2024) — NY-Newark-Jersey City MSA (35620); tables B01001 and B19001.
 
 ### Privacy and Consumer Sentiment
-- Pew Research Center, "How Americans View Data Privacy," 2023
-- Pew Research Center, "About Half of Americans Are OK With DNA Testing Companies Sharing User Data With Law Enforcement," 2020
-- Deloitte, "Consumer Privacy and Security Survey," 2025
-- Statista, "U.S. Adults Willingness to Pay for Data Protection," 2024
-- PLOS ONE, "Evolving Public Views on Genomic Database Governance," 2020
-- Taylor & Francis, "Public Concerns About DTC DNA Test Kits," 2025
+- Pew Research Center, [*How Americans View Data Privacy*](https://www.pewresearch.org/internet/2023/10/18/how-americans-view-data-privacy/) (October 18, 2023) — 73% little-or-no control over company data use.
+- Pew Research Center, [*About Half of Americans Are OK With DNA Testing Companies Sharing User Data With Law Enforcement*](https://www.pewresearch.org/short-reads/2020/02/04/about-half-of-americans-are-ok-with-dna-testing-companies-sharing-user-data-with-law-enforcement/) (February 4, 2020).
+- Deloitte, [*2025 Connected Consumer — Innovation with Trust*](https://www.deloitte.com/us/en/insights/industry/telecommunications/connectivity-mobile-trends-survey.html) and associated [press release](https://www2.deloitte.com/us/en/pages/about-deloitte/articles/press-releases/increasing-consumer-privacy-and-security-concerns-in-the-generative-ai-era.html) (2025).
+- Statista / CivicScience, [*U.S. Adults Willingness to Pay for Personal Data Protection*](https://www.statista.com/statistics/1469800/us-adults-willingness-to-pay-for-personal-data-protection/) (2024).
+- Briscoe F, Ajunwa I, Gaddis A, McCormick J, [*Evolving public views on the value of one's DNA and expectations for genomic database governance*](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0229044), *PLOS ONE* (2020), n=2,020.
+- [*Public concerns about direct-to-consumer DNA test kits: the evidence from survey and social media data*](https://www.tandfonline.com/doi/full/10.1080/14636778.2025.2456259), *New Genetics and Society* (Taylor & Francis, March 2025).
+- Kahneman D, Tversky A, [*Prospect Theory: An Analysis of Decision under Risk*](https://www.jstor.org/stable/1914185), *Econometrica* 47(2) (1979).
+- Ruggeri K, et al., [*Replicating Patterns of Prospect Theory for Decision under Risk*](https://www.nature.com/articles/s41562-020-0886-x), *Nature Human Behaviour* 4 (2020) — 19-country replication, n=4,099.
 
-### 23andMe
-- NPR, "23andMe Files for Bankruptcy," March 2025
-- CNBC, "Regeneron to Buy 23andMe for $256 Million," May 2025
-- Foley Hoag, "23andMe Bankruptcy Update," July 2025
-- Science, "The Precarious Future of Consumer Genetic Privacy," 2025
+### 23andMe Collapse and Aftermath
+- Farr C, [*DNA testing firm 23andMe to go public through Branson-backed SPAC*](https://www.cnbc.com/2021/02/04/dna-testing-firm-23andme-to-go-public-through-branson-backed-spac.html), CNBC (February 4, 2021).
+- Office of the Privacy Commissioner of Canada / UK Information Commissioner's Office, [*Joint investigation of 23andMe, Inc.*](https://www.priv.gc.ca/en/opc-actions-and-decisions/investigations/investigations-into-businesses/2025/pipeda-2025-001/) (2025).
+- Kimball S, [*23andMe files for bankruptcy, Anne Wojcicki steps down as CEO*](https://www.cnbc.com/2025/03/24/23andme-files-for-bankruptcy-anne-wojcicki-steps-down-as-ceo.html), CNBC (March 24, 2025).
+- Constantino A, [*Regeneron Pharmaceuticals to buy 23andMe for $256 million*](https://www.cnbc.com/2025/05/19/regeneron-pharmaceuticals-to-buy-23andme-for-256-million-including-data.html), CNBC (May 19, 2025).
+- Foley Hoag LLP, [*23andMe Bankruptcy Update: How the Proceedings Highlight Best Practices for Handling and Transferring Sensitive Consumer Data*](https://foleyhoag.com/news-and-insights/publications/alerts-and-updates/2025/july/23andme-bankruptcy-update-how-the-proceedings-highlight-best-practices-for-handling-and-transferring/) (July 2025) — $305M TTAM bid, court approval June 30, 2025, close July 14, 2025.
+- Ram N, Prince AER, Roberts JL, Fox DC, Spector-Bagdady K, [*The precarious future of consumer genetic privacy*](https://www.science.org/doi/10.1126/science.adz7229), *Science* 389, 1092–1094 (2025).
+- GSK, [*GSK and 23andMe sign agreement to leverage genetic insights for the development of novel medicines*](https://www.gsk.com/en-gb/media/press-releases/gsk-and-23andme-sign-agreement-to-leverage-genetic-insights-for-the-development-of-novel-medicines/) (July 25, 2018).
+- Blackstone, [*Blackstone Completes Acquisition of Ancestry for $4.7 Billion*](https://www.blackstone.com/news/press/blackstone-completes-acquisition-of-ancestry-leading-online-family-history-business-for-4-7-billion/) (December 2020); implied per-customer valuation framing per [CBS News](https://www.cbsnews.com/news/blackstone-private-equity-ancestry-com-dna/).
+- [*Portillo v. Nebula Genomics, Inc. et al.*](https://www.classaction.org/media/portillov-nebula-genomics-inc-et-al.pdf) — class-action complaint, N.D. Ill. 1:24-cv-09894 (filed October 10, 2024; motion to dismiss denied March 2026).
+- ProPhase Labs, [*ProPhase Labs, Inc. Announces Completion of Important Next Step*](https://ir.prophaselabs.com/news-events/press-releases/detail/250/prophase-labs-inc-announces-completion-of-important-next) — September 2025 Chapter 11 filings for COVID-19 testing-lab subsidiaries.
+- Clyde & Co, [*Advising Bio Cell Tech on its acquisition of Dante Labs Genomics FZE*](https://www.clydeco.com/en/about/news/2024/12/advising-bio-cell-tech) (announced December 2024, closed February 2025) — acquisition was of Dante's UAE subsidiary, not the full Dante Genomics group.
+- Coldewey D, [*Controversial genetics testing startup Nucleus Genomics raises $14M Series A*](https://techcrunch.com/2025/01/30/controversial-genetics-testing-startup-nucleus-genomics-raises-14m-series-a/), TechCrunch (January 30, 2025).
+- Sequencing.com, [*AI Use Policy*](https://sequencing.com/policies/ai-use-policy); funding history via [GenomeWeb](https://www.genomeweb.com/sequencing/sequencingcom-raises-5m-private-funding).
+- Better Business Bureau, [*Dante Labs, Inc. business profile*](https://www.bbb.org/us/ny/new-york/profile/dna-testing/dante-labs-inc-0121-176749) — F rating, pattern-of-complaints designation. Specific complaint count fluctuates; verify at publication time.
+- Farr C, [*Veritas Genetics to cease US operations*](https://www.cnbc.com/2019/12/05/veritas-genetics-to-cease-us-operations-talks-with-buyers.html), CNBC (December 5, 2019) — CFIUS context.
+- MIT Technology Review, [*More than 26 million people have taken an at-home ancestry test*](https://www.technologyreview.com/2019/02/11/103446/more-than-26-million-people-have-taken-an-at-home-ancestry-test/) (February 11, 2019).
+- Fountain Life, [*Membership*](https://www.fountainlife.com/membership) — CORE $10,500 / APEX $21,500 / EPIC $85,000.
+- Human Longevity Inc., [*Executive Health*](https://www.humanlongevity.com/executive-health/) — $8,000 entry-tier screening.
 
-### Regulatory
-- NIST SP 800-88 Revision 2, "Guidelines for Media Sanitization," September 2025
-- NYSDOH Wadsworth Center, CLEP Application Guidance
-- CMS, CLIA Certification Requirements (42 CFR Part 493)
-- NYC Department of City Planning, "City of Yes for Economic Opportunity," 2024-2025
-- Journal of Molecular Diagnostics, "Guide to CLEP Approval for NGS Assays," 2025
+### Polygenic Risk Scores and Embryo Selection
+- Grebe TA, et al., [*Clinical utility of polygenic risk scores for embryo selection: A points to consider statement of the American College of Medical Genetics and Genomics*](https://www.gimjournal.org/article/S1098-3600(23)01068-7/fulltext), *Genetics in Medicine* (February 2024).
+- "2024 Cornell study on polygenic scores" **[needs review]** — unable to identify a Cornell-authored 2024 paper matching the claim; closest candidates are [Turley et al., *NEJM* (2021)](https://www.nejm.org/doi/full/10.1056/NEJMsr2105065) and [Sun et al., *Nature Human Behaviour* (2024)](https://www.nature.com/articles/s41562-024-02019-y) — neither is Cornell-led. Re-attribute or replace.
 
-### Technology
-- Element Biosciences, AVITI System Product Specifications
-- Element Biosciences, Cloudbreak Chemistry Kit Documentation
-- Element Biosciences, bases2fastq Software Documentation
-- AMD, EPYC 9004 Series Processor Documentation
-- Samsung Semiconductor, PM9A3 NVMe Datasheet
-- NVIDIA, Clara Parabricks Genomics Acceleration Documentation
-- NVIDIA, L40S GPU Product Specifications
-- Kingston Technology, IronKey D500S Product Specifications
-- NEB (New England Biolabs), NEBNext Ultra II FS DNA Library Prep Kit Documentation
+### Regulatory and Standards
+- NIST, [*SP 800-88 Rev. 2 — Guidelines for Media Sanitization*](https://csrc.nist.gov/pubs/sp/800/88/r2/final) (September 26, 2025).
+- NYSDOH Wadsworth Center, [*Clinical Laboratory Evaluation Program (CLEP)*](https://www.wadsworth.org/regulatory/clep); [CLEP application guide (PDF)](https://www.wadsworth.org/sites/default/files/WebDoc/CLEP_Program_Guide.pdf).
+- CMS, [*CLIA Regulations and Federal Register Documents*](https://www.cms.gov/medicare/quality/clinical-laboratory-improvement-amendments/regulations-federal-register); full text at [42 CFR Part 493 (eCFR)](https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-G/part-493).
+- New York State, [*10 NYCRR Subpart 58-1 — Clinical Laboratories*](https://regs.health.ny.gov/content/subpart-58-1-clinical-laboratories); applicable Public Health Law citations indexed on the [Wadsworth CLEP laws & regulations](https://www.wadsworth.org/regulatory/clep/laws) page.
+- NYC Department of City Planning, [*City of Yes for Economic Opportunity — Zoning Text as Modified by the City Planning Commission*](https://www.nyc.gov/assets/planning/downloads/pdf/our-work/plans/citywide/city-of-yes-economic-opportunity/zoning-text-modified-by-cpc.pdf) (adopted by City Council June 6, 2024).
+- Sabnis et al., [*A Comprehensive Guide to Achieving New York State Clinical Laboratory Evaluation Program Approval for Next-Generation Sequencing Assays*](https://www.jmdjournal.org/article/S1525-1578(25)00067-4/fulltext), *Journal of Molecular Diagnostics* (March 2025).
+- EEOC, [*Genetic Information Nondiscrimination Act of 2008*](https://www.eeoc.gov/statutes/genetic-information-nondiscrimination-act-2008); NHGRI, [*Genetic Discrimination*](https://www.genome.gov/about-genomics/policy-issues/Genetic-Discrimination) — GINA scope excludes life, disability, and long-term-care insurance.
+- [*Texas Genomic Act of 2025*](https://statutes.capitol.texas.gov/Docs/HS/htm/HS.174.htm) — Texas Health & Safety Code Chapter 174 (HB 130, effective September 1, 2025).
+- [*South Dakota SB 49 / Genetic Data Privacy Act*](https://mylrc.sdlegislature.gov/api/Documents/305520.pdf) — 101st Legislative Session, effective July 1, 2026.
+
+### Technology — Sequencing and Bioinformatics
+- Element Biosciences, [*AVITI System*](https://www.elementbiosciences.com/products/aviti); [*Cloudbreak sequencing kits*](https://www.elementbiosciences.com/products/cloudbreak); [*Bases2Fastq documentation*](https://docs.elembio.io/docs/bases2fastq/introduction/).
+- AMD, [*EPYC 9654*](https://www.amd.com/en/products/processors/server/epyc/4th-generation-9004-and-8004-series/amd-epyc-9654.html) (part 100-000000789).
+- Samsung Semiconductor, [*PM9A3 NVMe datacenter SSD*](https://semiconductor.samsung.com/ssd/datacenter-ssd/pm9a3/); [*M321R8GA0BB0-CQK — 64 GB DDR5-4800 ECC RDIMM*](https://semiconductor.samsung.com/dram/module/rdimm/m321r8ga0bb0-cqk/).
+- NVIDIA, [*L40S GPU*](https://www.nvidia.com/en-us/data-center/l40s/); [*Clara Parabricks documentation*](https://docs.nvidia.com/clara/parabricks/latest/index.html).
+- Kingston, [*IronKey D500S — Encrypted USB 3.2 Gen 1 Flash Drive*](https://www.kingston.com/en/usb-flash-drives/ironkey-d500s-encrypted) (FIPS 140-3 Level 3).
+- New England Biolabs, [*NEBNext Ultra II FS DNA Library Prep Kit for Illumina* (E7805)](https://www.neb.com/en-us/products/e7805-nebnext-ultra-ii-fs-dna-library-prep-kit-for-illumina).
+- Open-source pipeline components: [Nextflow](https://www.nextflow.io/), [nf-core/sarek](https://nf-co.re/sarek), [BWA-MEM2](https://github.com/bwa-mem2/bwa-mem2), [GATK](https://gatk.broadinstitute.org/), [samtools](https://www.htslib.org/), [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/), [MultiQC](https://multiqc.info/).
 
 ---
 
 **END OF DOCUMENT**
 
 *PrivDNA | PrivDNA.com | New York, New York*
-
-<!-- deploy-test: 1776135562 -->
