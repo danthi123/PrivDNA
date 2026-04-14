@@ -15,6 +15,7 @@ export default function Hero() {
   const subtextRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLButtonElement>(null);
   const openSourceRef = useRef<HTMLParagraphElement>(null);
+  const phaseRef = useRef<HTMLParagraphElement>(null);
   const scrollIndicatorRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
@@ -68,6 +69,12 @@ export default function Hero() {
         ctaRef.current,
         { opacity: 0 },
         { opacity: 1, duration: 0.8, ease: "power2.out", delay: 1.1 }
+      );
+
+      gsap.fromTo(
+        phaseRef.current,
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, ease: "power2.out", delay: 1.3 }
       );
 
       gsap.fromTo(
@@ -128,7 +135,10 @@ export default function Hero() {
           </button>
         </div>
 
-        <p className="mt-6 text-sm text-text-secondary tracking-wide">
+        <p
+          ref={phaseRef}
+          className="mt-6 text-sm text-text-secondary tracking-wide"
+        >
           Pre-launch <span aria-hidden="true">·</span> Opening NYC{" "}
           <span aria-hidden="true">·</span> $3,500 per genome
         </p>
