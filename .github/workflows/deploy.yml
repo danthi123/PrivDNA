@@ -1,0 +1,29 @@
+name: Deploy
+
+# Mirrors the Gitea deploy webhook on pushes landing at the GitHub mirror.
+# Gitea remains the canonical trigger; this exists so a push that lands on
+# GitHub first (or only) still reaches the deployment pipeline.
+#
+# The workflow POSTs to the same n8n webhook as Gitea with the same bearer
+# token. The n8n workflow is idempotent (git reset --hard + docker compose
+# up --build) so a duplicate trigger from the other remote is a no-op.
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  trigger-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: POST deploy webhook
+        env:
+          DEPLOY_TOKEN: ${{ secrets.DEPLOY_WEBHOOK_TOKEN }}
+        run: |
+          curl -fsS -X POST https://n8n.dant123.com/webhook/privdna-deploy \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer ${DEPLOY_TOKEN}" \
+            -d "{\"ref\":\"${GITHUB_REF}\",\"after\":\"${GITHUB_SHA}\"}" \
+          | tee /tmp/response.json
+          echo
