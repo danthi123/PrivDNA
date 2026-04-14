@@ -34,9 +34,11 @@
 
 # I. EXECUTIVE SUMMARY
 
-PrivDNA is a first-of-its-kind privacy-sovereign whole genome sequencing (WGS) service operating from a physical storefront in New York City. We sequence customers' complete genomes at clinical-grade accuracy (≥90% of bases above Q30), process all data on air-gapped servers that never touch the internet, deliver results on FIPS 140-3 certified encrypted hardware, and destroy all on-premise copies under NIST SP 800-88 Rev. 2 standards. Customers visit the glass-walled laboratory twice -- once to hand over their sample, and again to receive their encrypted drive and witness the on-premise data being destroyed.
+> **Status: Pre-launch (Phase 0).** PrivDNA is in the design and capital-raise phase. No laboratory is operational, no certifications have been issued, and no customers have been sequenced. This whitepaper describes the planned architecture, business model, and regulatory path. All operational language below should be read as forward-looking.
 
-**The core promise: an unbroken chain of custody from your sample to your hands. Your genome is collected in person, processed on air-gapped hardware, handed to you on an encrypted drive, and destroyed on-site under your eyes. No copies. No cloud. No exceptions.**
+PrivDNA is a privacy-sovereign whole genome sequencing (WGS) service in development, planned to operate from a physical storefront in New York City. Once operational, PrivDNA will sequence customers' complete genomes at clinical-grade accuracy (≥90% of bases above Q30), process all data on air-gapped servers that never touch the internet, deliver results on FIPS 140-3 certified encrypted hardware, and destroy all on-premise copies under NIST SP 800-88 Rev. 2 standards. Customers will visit the glass-walled laboratory twice -- once to hand over their sample, and again to receive their encrypted drive and witness the on-premise data being destroyed.
+
+**The core promise: an unbroken chain of custody from your sample to your hands. Your genome will be collected in person, processed on air-gapped hardware, handed to you on an encrypted drive, and destroyed in your presence. No copies. No cloud. No exceptions.**
 
 ### Why Now
 
@@ -49,7 +51,7 @@ This confluence creates a market opening for a fundamentally different model -- 
 - **Service:** Clinical-grade 30x whole genome sequencing with raw data delivery (BAM, VCF, gVCF files)
 - **Price point:** $3,500 per genome (luxury privacy premium justified by physical transparency, air-gapped processing, certified data destruction, and FIPS 140-3 encrypted delivery)
 - **Model:** Raw data only -- no medical interpretation. Pre-vetted referral network for genetic counseling and clinical interpretation
-- **Differentiator:** Only WGS provider with a physical storefront, glass-walled lab, open-source pipeline, and witnessed data destruction
+- **Differentiator:** First announced consumer WGS provider with a physical storefront, glass-walled lab, open-source pipeline, and witnessed data destruction
 - **Open source commitment:** Entire bioinformatics pipeline published on GitHub under permissive licenses. Customers can audit the code that processes their DNA.
 
 ---
@@ -68,8 +70,8 @@ The trajectory of 23andMe illustrates the structural vulnerability of the centra
 
 **Timeline of Collapse:**
 
-- **2021:** 23andMe [goes public via SPAC merger](https://www.cnbc.com/2021/02/04/dna-testing-firm-23andme-to-go-public-through-branson-backed-spac.html) with VG Acquisition Corp. at a $3.5 billion deal valuation; shares briefly trade at an implied market capitalization in the multi-billion-dollar range following listing. The company holds the genetic data of over 10 million customers (growing to approximately 15 million by the time of bankruptcy).
-- **April-October 2023:** Beginning in late April 2023, a credential-stuffing attack compromises roughly 14,000 accounts, through which approximately 6.9 million customer profiles are accessed via the DNA Relatives and Family Tree features -- including ethnicity estimates, geographic locations, and family tree connections. The breach is publicly disclosed in October 2023; a [joint UK ICO / Canadian OPC investigation](https://www.priv.gc.ca/en/opc-actions-and-decisions/investigations/investigations-into-businesses/2025/pipeda-2025-001/) subsequently confirms the total at roughly 6.98 million affected individuals worldwide. The company is criticized for not requiring multi-factor authentication.
+- **2021:** 23andMe [goes public via SPAC merger](https://www.cnbc.com/2021/02/04/dna-testing-firm-23andme-to-go-public-through-branson-backed-spac.html) with VG Acquisition Corp. at a $3.5 billion deal valuation; shares briefly trade at an implied peak intraday market capitalization of approximately $6 billion following listing. The company holds the genetic data of over 10 million customers (growing to approximately 15 million by the time of bankruptcy).
+- **April-October 2023:** Beginning in late April 2023, a credential-stuffing attack compromises roughly 14,000 accounts (later revised to over 18,000 by the UK Information Commissioner's Office and Canadian Office of the Privacy Commissioner), through which approximately 6.9 million customer profiles are accessed via the DNA Relatives and Family Tree features -- including ethnicity estimates, geographic locations, and family tree connections. The breach is publicly disclosed in October 2023; the [joint UK ICO / Canadian OPC investigation](https://www.priv.gc.ca/en/opc-actions-and-decisions/investigations/investigations-into-businesses/2025/pipeda-2025-001/) subsequently confirms the total at roughly 6.98 million affected individuals worldwide. The company is criticized for not requiring multi-factor authentication.
 - **September 2024:** All independent board members resign.
 - **November 2024:** The company lays off over 200 employees (~40% of its workforce).
 - **March 2025:** 23andMe [files for Chapter 11 bankruptcy](https://www.cnbc.com/2025/03/24/23andme-files-for-bankruptcy-anne-wojcicki-steps-down-as-ceo.html) in the Eastern District of Missouri. CEO Anne Wojcicki resigns.
@@ -102,7 +104,7 @@ The erosion of trust is measurable:
 - Only **1 in 10** consumers are willing to share sensitive biometric data (Deloitte, 2025)
 - Only **48%** of Americans said it was acceptable for DNA testing companies to share data with law enforcement, while a third said it was unacceptable ([Pew Research Center, 2020](https://www.pewresearch.org/short-reads/2020/02/04/about-half-of-americans-are-ok-with-dna-testing-companies-sharing-user-data-with-law-enforcement/))
 
-The regulatory environment is responding. Multiple U.S. states enacted genetic privacy legislation in 2024-2025, including the [Texas Genomic Act of 2025](https://statutes.capitol.texas.gov/Docs/HS/htm/HS.174.htm), [South Dakota SB 49](https://mylrc.sdlegislature.gov/api/Documents/305520.pdf) (effective July 2026), and laws in Nebraska, Alabama, Montana, and Florida. Rhode Island, Vermont, and Utah have proposed additional legislation in early 2026.
+The regulatory environment is responding. Multiple U.S. states enacted genetic privacy legislation in 2024-2025, including the [Texas Genomic Act of 2025](https://statutes.capitol.texas.gov/Docs/HS/htm/HS.174.htm) and laws in Nebraska, Alabama, Montana, and Florida. In 2026 the pace accelerated: Utah HB 182 was signed into law on March 17, 2026 (effective January 1, 2028); South Dakota SB 49 was signed March 30, 2026 ($5,000 per violation, effective July 1, 2026); Wisconsin AB 673 was vetoed on March 27, 2026; and West Virginia HB 5034 was introduced. Rhode Island and Vermont also have bills in progress. At the federal level, the Don't Sell My DNA Act has bipartisan sponsorship in both chambers (Reps. Lofgren D-CA and Cline R-VA, Sens. Cornyn R-TX, Klobuchar D-MN, and Grassley R-IA).
 
 ## 2.5 The Interpretation Gap
 
@@ -129,7 +131,9 @@ The laboratory is visible through a floor-to-ceiling glass wall. At the intake v
 The entire bioinformatics pipeline is open source, published on GitHub under permissive licenses (MIT/BSD/Apache 2.0). Any customer, or any auditor acting on their behalf, can inspect the code to verify there are no telemetry endpoints, no cloud synchronization calls, and no data exfiltration channels. The pipeline is deterministic: given the same input, it produces the same output, verifiable via SHA-256 checksums.
 
 **3. Zero Data Retention**
-Upon delivery, all on-premise copies of the customer's data are destroyed under NIST SP 800-88 Rev. 2 Purge standards using cryptographic erasure on self-encrypting NVMe drives. The customer receives a Certificate of Destruction documenting the media serial numbers, sanitization method, timestamp, and technician identity. The customer witnesses the destruction process through the glass wall.
+Upon delivery, all on-premise copies of the customer's data will be destroyed under NIST SP 800-88 Rev. 2 Purge standards using cryptographic erasure on self-encrypting NVMe drives. The customer will receive a Certificate of Destruction documenting the media serial numbers, sanitization method, timestamp, and technician identity. The customer will witness the destruction process through the glass wall.
+
+**Zero retention starts at the waitlist.** Even at the pre-launch stage, PrivDNA applies its zero-data-retention discipline to the waitlist itself. Email addresses are encrypted at rest with AES-256-GCM, hashed with HMAC-SHA256 for duplicate detection, and stored in a SQLCipher-encrypted database (scrypt KDF) on infrastructure PrivDNA controls. No third-party email marketing platform receives the addresses. The waitlist source code will be published as part of the open-source codebase.
 
 ## 3.2 What the Customer Receives
 
@@ -147,6 +151,10 @@ Each customer receives a FIPS 140-3 Level 3 certified encrypted USB drive (Kings
 **Default deliverables:** BAM + VCF + gVCF are delivered by default. FASTQ files are not included in the standard delivery to conserve USB drive space, but can be regenerated from the BAM file if needed (using `samtools fastq`). Customers who specifically require FASTQ files may request them at the time of order.
 
 Total delivery size: approximately 100-120 GB per genome.
+
+### What happens if you lose your keys?
+
+By design, there is no recovery path. PrivDNA retains no copy of your sequence and no copy of your keys. Key loss is data loss. This is the cost of guaranteed non-retention -- and it is paid by anyone we cannot satisfy with any other architecture. Customers are encouraged to store the encrypted drive and key media in physically separate locations and to maintain their own offline backup if redundancy is desired.
 
 ## 3.3 What PrivDNA Does Not Do
 
@@ -169,7 +177,33 @@ All custom software developed for PrivDNA's operations is published as open sour
 
 This commitment serves dual purposes. First, it provides cryptographic assurance to customers -- they can verify that the code processing their DNA does exactly and only what it claims to do. Second, it builds community trust and positions PrivDNA as a public good contributor to the genomics ecosystem, a significant brand differentiator.
 
-Publishing our pipeline eliminates the code itself as a competitive moat, deliberately. Our moat is physical infrastructure, brand trust, regulatory certifications, and the NYC location -- assets that cannot be cloned from a GitHub repository. A competitor can fork the pipeline; they cannot fork a CLIA/CLEP-certified glass-walled laboratory with an established customer base and referral network.
+Publishing our pipeline eliminates the code itself as a competitive moat, deliberately. Our moat is the planned physical infrastructure, brand trust, regulatory certifications (once earned), and the NYC location -- assets that cannot be cloned from a GitHub repository. A competitor can fork the pipeline; they cannot fork a planned CLIA/CLEP-certified glass-walled laboratory with an established customer base and referral network.
+
+The upstream pipeline components are already public open-source projects (nf-core/sarek, BWA-MEM2, GATK, DeepVariant). PrivDNA's own orchestration, chain-of-custody, and destruction-verification code will be published to github.com/PrivDNA at launch.
+
+## 3.5 Response to Legal Compulsion (Subpoenas, Warrants, Court Orders)
+
+PrivDNA's architecture limits what can be compelled by limiting what exists. Customer DNA will exist on PrivDNA infrastructure only during the 4-6 business day processing window between Visit 1 and Visit 2. Outside that window, there is nothing to disclose because nothing is retained.
+
+Within the processing window, PrivDNA will:
+
+- Require a court-issued subpoena, warrant, or production order (administrative requests will be refused)
+- Notify the customer immediately unless legally prohibited from doing so
+- Comply with valid legal process while contesting overbroad or improperly issued requests
+- Maintain the witnessed-destruction ceremony at Visit 2 unless legally restrained from completing it
+
+The witnessed-destruction architecture means there is no historical archive to subpoena.
+
+## 3.6 Why the Destruction Ceremony is Verifiable, Not Just Promised
+
+The principal trust failure mode of any "we destroy your data" claim is the possibility of an undisclosed copy. PrivDNA addresses this with four overlapping mechanisms:
+
+1. **Open-source pipeline** -- every line of code that touches your sample will be publicly auditable. There is no proprietary path that could secretly write to a hidden destination.
+2. **Air-gapped infrastructure** -- the sequencing workstation has no network interface. There is no exfiltration channel a hidden process could use.
+3. **SHA-256 deliverable verification** -- the encrypted drives you receive are bit-for-bit reproducible from publicly documented inputs and pipeline versions, so there is no parallel "real" output retained elsewhere.
+4. **Witnessed destruction with NIST SP 800-88 certificate** -- the cryptographic erasure of working drives is observed by you in real time through a glass wall, and the certificate is signed and timestamped at Visit 2.
+
+No single mechanism is sufficient on its own. The combination is intentional: SHA-256 verifies deliverable integrity, while the air-gap plus open-source pipeline is what prevents exfiltration. These are distinct guarantees working in concert.
 
 ---
 
@@ -256,13 +290,13 @@ The three active WGS competitors each present a distinct competitive profile -- 
 
 **Adjacent competition.** Concierge medicine and executive health programs ([Fountain Life at $10,500-$21,500/year](https://www.fountainlife.com/membership), [Human Longevity Inc. at $8,000/year](https://www.humanlongevity.com/executive-health/)) offer WGS as a bundled component of comprehensive diagnostic packages. This data is retained indefinitely in the clinical record. PrivDNA's $3,500 standalone service is priced below every concierge WGS alternative while offering superior privacy guarantees -- positioning it as the affordable premium option for customers who want genomic data outside their medical record.
 
-PrivDNA sequences on the **Element Biosciences AVITI**, which uses avidity sequencing (sequencing-by-binding) rather than Illumina's sequencing-by-synthesis. The output quality is comparable (≥90% bases above Q30) and produces identical standard file formats (FASTQ, BAM, VCF), making it fully interchangeable for downstream analysis. Element's reagent price guarantee for the instrument's lifetime eliminates the single largest variable cost risk for the business.
+PrivDNA will sequence on the **Element Biosciences AVITI**, which uses avidity sequencing (sequencing-by-binding) rather than Illumina's sequencing-by-synthesis. The output quality is comparable (≥90% bases above Q30) and produces identical standard file formats (FASTQ, BAM, VCF), making it fully interchangeable for downstream analysis. Element's publicly advertised reagent price guarantee, if extended in the supply contract, would eliminate the single largest variable cost risk for the business.
 
 ### The Whitespace
 
 **No existing competitor offers a physical, in-person genomics experience.** The entire DTC genomics market operates via mail-order saliva kits. There is no "retail DNA testing storefront" in operation from any established player. This is distinct from WGS offered as a component of concierge medicine or executive health programs, where sequencing is typically outsourced to external labs and data is retained in the clinical record.
 
-PrivDNA occupies a category of one: a premium, physically transparent, cryptographically verifiable, zero-retention genomics service. The $3,500 price point is justified not by the sequencing itself (commodity) but by the infrastructure, trust architecture, and experience surrounding it.
+PrivDNA is positioning for a premium, physically transparent, cryptographically verifiable, zero-retention genomics service. The $3,500 price point is justified not by the sequencing itself (commodity) but by the infrastructure, trust architecture, and experience surrounding it.
 
 ## 4.5 The Privacy Premium
 
@@ -285,6 +319,14 @@ The $3,500 price point is best understood not as a premium over commodity WGS, b
 **Loss aversion.** Kahneman and Tversky's prospect theory establishes that losses are psychologically approximately twice as powerful as equivalent gains -- a finding replicated across 19 countries (Columbia University, 2020). Genomic data amplifies loss aversion through three properties: irreversibility (a compromised genome cannot be changed), familial scope (one person's data partially reveals the genomes of every biological relative), and temporal scope (future analytical capabilities will extract information from today's data that cannot currently be predicted). The loss of genomic privacy is permanent, generational, and expanding.
 
 **Pricing.** PrivDNA's price is $3,500 per genome, a single price across all individual customers. Family packages at $3,100-$3,250 per genome (two or more genomes purchased together) and B2B institutional pricing at $3,000-$3,200 per genome (for concierge practices, family offices, and corporate programs) provide structured volume pricing without tiered privacy guarantees -- the security architecture is identical regardless of price.
+
+## 4.6 Unit Economics and Capital Plan
+
+Each whole genome sequence is priced at $3,500. Per-genome contribution margin is approximately $2,484 (71% gross margin) after reagent, consumable, and direct labor costs. Cash break-even is reached at 29 genomes per month at full capacity utilization.
+
+Initial capital requirement is approximately $880,000 in equipment and laboratory buildout (Element AVITI sequencer, GPU compute server, storage infrastructure, cryptographic destruction equipment, and lab fit-out). PrivDNA is raising a $1.25M seed round to fund equipment, lease, regulatory certification (CLIA + NY CLEP), and 18 months of operating runway to reach break-even.
+
+No revenue is modeled from data sales, research partnerships, or pharma licensing. Sequencing fees are the entire business model.
 
 ---
 
@@ -323,7 +365,7 @@ The AVITI produces standard FASTQ output, making it fully compatible with the en
 
 ## 5.2 Air-Gapped Compute Stack
 
-All bioinformatics processing occurs on a dedicated, air-gapped server that has no network interface capable of reaching the internet. The server communicates only with the Element AVITI sequencer via a physically isolated local network segment.
+Once operational, all bioinformatics processing will occur on a dedicated, air-gapped server that has no network interface capable of reaching the internet. The server will communicate only with the Element AVITI sequencer via a physically isolated local network segment.
 
 ### Server Specifications
 
@@ -336,7 +378,7 @@ All bioinformatics processing occurs on a dedicated, air-gapped server that has 
 | GPU | NVIDIA L40S 48 GB PCIe (Parabricks acceleration) | L40S-48GB |
 | TPM | Supermicro TPM 2.0 (Infineon SLB9670) | AOM-TPM-9670V |
 
-The NVIDIA L40S GPU enables NVIDIA Clara Parabricks acceleration, reducing the full WGS pipeline (alignment through variant calling) from 8-16 hours on CPU alone to approximately 60-90 minutes on GPU-accelerated paths. NVIDIA recommends the L40S for Parabricks workloads; while processing time is longer than the A100 (60-90 min vs. 30-45 min), it is well within SLA requirements and reduces GPU CAPEX from $13,000 to $7,500.
+The NVIDIA L40S GPU enables NVIDIA Clara Parabricks acceleration, reducing the full WGS pipeline (alignment through variant calling) from 8-16 hours on CPU alone to approximately 60-90 minutes on GPU-accelerated paths (estimated based on Element Biosciences / NVIDIA published benchmarks; actual runtime to be validated on PrivDNA hardware once assembled). NVIDIA recommends the L40S for Parabricks workloads; while processing time is longer than the A100 (60-90 min vs. 30-45 min), it is well within SLA requirements and reduces GPU CAPEX from $13,000 to $7,500.
 
 ### Network Isolation
 
@@ -358,7 +400,7 @@ The Element Biosciences AVITI is configured for fully local operation:
 - **ELMS configured for local-only output:** The AVITI's management software (Element Laboratory Management System) is configured for local-only output with no cloud connectivity. No run data is transmitted to any external platform.
 - **Local output only:** Sequencer output is configured to write exclusively to a local SMB/NFS share on the isolated VLAN. The compute server mounts this share as the sole data destination.
 - **Firewall enforcement:** All outbound traffic from the sequencer's IP address is blocked at the Netgate firewall. No DNS resolution, no NTP synchronization to external servers, and no HTTPS connections to external endpoints are permitted.
-- **Element field service confirmation:** Prior to deployment, Element Biosciences field service engineering will confirm that the AVITI operates in local-output-only mode without requiring internet check-ins for continued operation. Instrument software updates are applied offline via USB media during scheduled maintenance windows.
+- **Element field service confirmation:** Prior to deployment, PrivDNA will request that Element Biosciences field service engineering confirm the AVITI can operate in local-output-only mode without requiring internet check-ins for continued operation. Instrument software updates will be applied offline via USB media during scheduled maintenance windows.
 
 ## 5.3 Open Source Bioinformatics Pipeline
 
@@ -439,15 +481,15 @@ For air-gapped deployment, all dependencies are pre-staged as Singularity contai
 | QC reports | ~50 MB | Delivered to customer, then destroyed |
 | **Peak working storage** | **~400-500 GB** | During processing only |
 
-With 30 TB usable storage (RAID-10), the server provides approximately 3x the peak working requirement for a single run (3 genomes at ~1.5 TB peak). This comfortably supports the operational throughput of one run at a time with full intermediate files, plus reference data and software (~100 GB). The right-sized storage array reduces CAPEX by ~$78,000 compared to a 24-drive configuration while maintaining ample headroom for concurrent processing.
+With 30 TB usable storage (RAID-10), the server provides approximately 20x the peak working requirement for a single run (3 genomes at ~1.5 TB peak) -- sized for roughly 3-5 concurrent or staggered runs plus reference data and software (~100 GB), with headroom for temporary pipeline intermediates. The right-sized storage array reduces CAPEX by ~$78,000 compared to a 24-drive configuration while maintaining ample margin for concurrent processing.
 
 ## 5.4 Data Destruction Protocol
 
-PrivDNA follows [NIST SP 800-88 Revision 2 (September 2025)](https://csrc.nist.gov/pubs/sp/800/88/r2/final) -- the current authoritative standard for media sanitization, which supersedes the legacy DoD 5220.22-M standard.
+PrivDNA will follow [NIST SP 800-88 Revision 2 (September 2025)](https://csrc.nist.gov/pubs/sp/800/88/r2/final) -- the current authoritative standard for media sanitization, which supersedes the legacy DoD 5220.22-M standard.
 
 ### Method: Cryptographic Erasure (Purge Level)
 
-All NVMe drives in the server array are **self-encrypting drives (SEDs)** with AES-256 encryption enabled from initial deployment. Data destruction proceeds as follows:
+All NVMe drives in the server array will be **self-encrypting drives (SEDs)** with AES-256 encryption enabled from initial deployment. Data destruction will proceed as follows:
 
 1. **Verification:** Confirm all deliverables have been transferred to the customer's encrypted USB drive and validated via SHA-256 checksums.
 2. **Cryptographic erasure:** The drive controller generates a new random Data Encryption Key (DEK), permanently discarding the old key. All previously written data becomes cryptographically irrecoverable.

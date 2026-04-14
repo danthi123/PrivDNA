@@ -85,9 +85,39 @@ export default function LockedDNAPage() {
             the auction.
           </p>
           <p className="mt-3">
-            This is the failure mode of every &ldquo;privacy-first&rdquo;
-            consumer genomics company that retains a copy. Not bad luck. The
+            This is the failure mode of most &ldquo;privacy-first&rdquo;
+            consumer genomics companies that retain a copy. Not bad luck. The
             business model.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-text-primary text-2xl font-semibold mb-4">
+            The discrimination risk US law does not cover
+          </h2>
+          <p>
+            The Genetic Information Nondiscrimination Act (GINA), passed in
+            2008, prevents employers and health insurers from using your
+            genetic data against you. It does not cover three categories of
+            insurance that most people carry:
+          </p>
+          <ul className="list-disc pl-6 mt-3 space-y-1">
+            <li>
+              <span className="text-text-primary">Life insurance</span>
+            </li>
+            <li>
+              <span className="text-text-primary">Disability insurance</span>
+            </li>
+            <li>
+              <span className="text-text-primary">Long-term care insurance</span>
+            </li>
+          </ul>
+          <p className="mt-3">
+            Underwriters in those three lines can keep your sequence in their
+            risk models indefinitely — even as the products you bought
+            protection for change shape, owner, or jurisdiction. A leaked
+            password is a 30-second problem. A leaked genome is an underwriting
+            input forever.
           </p>
         </section>
 
@@ -143,7 +173,7 @@ export default function LockedDNAPage() {
               room. Nothing leaves the building on a network cable.
             </li>
             <li>
-              <span className="text-text-primary">Between visits (4–6 days).</span>{" "}
+              <span className="text-text-primary">Between visits (4–6 business days).</span>{" "}
               Your sequence is processed on the air-gapped workstation. There
               is no external network connection. Output lives only on
               workstation drives until handoff.
@@ -173,7 +203,8 @@ export default function LockedDNAPage() {
             <li>A signed Certificate of Destruction</li>
             <li>
               An open-source pipeline so anyone — a researcher, a journalist, a
-              paranoid customer — can audit exactly what happened to your FASTQ
+              paranoid customer — can audit exactly what happened to your
+              sequence data (BAM, VCF, gVCF). Raw FASTQ is available on request.
             </li>
             <li>
               <span className="text-text-primary">No copy left behind.</span>{" "}
