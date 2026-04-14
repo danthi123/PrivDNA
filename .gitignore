@@ -11,5 +11,10 @@ audit-report-*.md
 docs/outreach/
 docs/content/
 
-# Confidential investor-facing documents. Archived outside this repository.
+# Internal / investor-facing material. Archived outside this repository
+# at E:/Documents/Projects/PrivDNA-private/ (local only, never pushed).
 /whitepaper.md
+/docs/research/
+/docs/plans/2026-03-23-privdna-whitepaper-design.md
+/docs/plans/2026-03-25-gtm-strategy-report.md
+/docs/privdna-phase0-april-2026.ics
