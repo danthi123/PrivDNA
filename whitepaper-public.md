@@ -181,7 +181,7 @@ Publishing our pipeline eliminates the code itself as a competitive moat, delibe
 
 **Whole Genome Sequencing (Global):** $2.12 billion (2024), projected to reach $6.67 billion by 2030 at a 22.17% CAGR ([Grand View Research](https://www.grandviewresearch.com/industry-analysis/whole-genome-sequencing-market-report)).
 
-**Direct-to-Consumer Genetic Testing (Global):** the $1.95 billion (2024) → $9.57 billion (2034) at 17.9% CAGR figure originally cited from Precedence Research **[needs review]** — Precedence's current [consumer genomics page](https://www.precedenceresearch.com/consumer-genomics-market) shows different numbers; re-source before relying on this claim.
+**Direct-to-Consumer Genetic Testing (Global):** $1.95 billion (2024), projected to reach $17.43 billion by 2034 at a 24.5% CAGR ([Zion Market Research](https://www.zionmarketresearch.com/report/direct-to-consumer-genetic-testing-market)).
 
 ## 4.2 Serviceable Addressable Market
 
@@ -800,13 +800,13 @@ Instead, the referral network creates value through:
 
 # APPENDIX C: REFERENCES AND SOURCES
 
-Every reference below is a live link to the primary source. A reference audit log is maintained internally; any entry flagged here as **[needs review]** is either (a) attributed to a source that no longer carries the exact figure at that URL, or (b) awaiting a cleaner primary source.
+Every reference below is a live link to the primary source. A reference audit log is maintained internally; corrections applied during the April 2026 audit are noted parenthetically with each affected entry.
 
 ### Market Data
 - Grand View Research, [*Whole Genome Sequencing Market Report*](https://www.grandviewresearch.com/industry-analysis/whole-genome-sequencing-market-report) (2025) — $2.12B (2024) → $6.67B (2030), 22.17% CAGR.
 - 360iResearch, [*Consumer Genomics Market*](https://www.360iresearch.com/library/intelligence/consumer-genomics) (2025 edition).
 - Grand View Research, [*Predictive Genetic Testing and Consumer Genomics Market*](https://www.grandviewresearch.com/industry-analysis/predictive-genetic-testing-consumer-wellness-genomics-market) (2025).
-- Direct-to-consumer genetic testing market sizing **[needs review]** — the $1.95B/$9.57B/17.9% figures previously attributed to Precedence Research do not match Precedence's current [consumer genomics page](https://www.precedenceresearch.com/consumer-genomics-market); re-source before relying on this claim.
+- Zion Market Research, [*Direct-To-Consumer (DTC) Genetic Testing Market Size, Share & Trends Report, 2034*](https://www.zionmarketresearch.com/report/direct-to-consumer-genetic-testing-market) — $1.95B (2024) → $17.43B (2034) @ 24.5% CAGR. (Correction: this was previously misattributed to Precedence Research with an incorrect $9.57B / 17.9% CAGR projection; Precedence's own [consumer genomics page](https://www.precedenceresearch.com/consumer-genomics-market) publishes different numbers for a related but distinct market.)
 - U.S. Census Bureau, [American Community Survey](https://www.census.gov/programs-surveys/acs/data.html) 1-year estimates (2024) — NY-Newark-Jersey City MSA (35620); tables B01001 and B19001.
 
 ### Privacy and Consumer Sentiment
@@ -841,7 +841,7 @@ Every reference below is a live link to the primary source. A reference audit lo
 
 ### Polygenic Risk Scores and Embryo Selection
 - Grebe TA, et al., [*Clinical utility of polygenic risk scores for embryo selection: A points to consider statement of the American College of Medical Genetics and Genomics*](https://www.gimjournal.org/article/S1098-3600(23)01068-7/fulltext), *Genetics in Medicine* (February 2024).
-- "2024 Cornell study on polygenic scores" **[needs review]** — unable to identify a Cornell-authored 2024 paper matching the claim; closest candidates are [Turley et al., *NEJM* (2021)](https://www.nejm.org/doi/full/10.1056/NEJMsr2105065) and [Sun et al., *Nature Human Behaviour* (2024)](https://www.nature.com/articles/s41562-024-02019-y) — neither is Cornell-led. Re-attribute or replace.
+- The original "2024 Cornell study on polygenic scores" attribution could not be matched to any published paper after a follow-up search on 2026-04-13. The relevant peer-reviewed critiques — now cited in the whitepaper body — are [Turley et al., *NEJM* (2021)](https://www.nejm.org/doi/full/10.1056/NEJMsr2105065) (Emory/USC/VU Amsterdam/Minnesota authors) and [Sun et al., *Nature Human Behaviour* (2024)](https://www.nature.com/articles/s41562-024-02019-y) (Feinstein Institutes / University of Tokyo). The ACMG "Clinical utility of polygenic risk scores for embryo selection" [points-to-consider statement](https://www.gimjournal.org/article/S1098-3600(23)01068-7/fulltext) (2024) is the canonical professional-society position.
 
 ### Regulatory and Standards
 - NIST, [*SP 800-88 Rev. 2 — Guidelines for Media Sanitization*](https://csrc.nist.gov/pubs/sp/800/88/r2/final) (September 26, 2025).
