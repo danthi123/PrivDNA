@@ -156,7 +156,27 @@ Total delivery size: approximately 100-120 GB per genome.
 
 By design, there is no recovery path. PrivDNA retains no copy of your sequence and no copy of your keys. Key loss is data loss. This is the cost of guaranteed non-retention -- and it is paid by anyone we cannot satisfy with any other architecture. Customers are encouraged to store the encrypted drive and key media in physically separate locations and to maintain their own offline backup if redundancy is desired.
 
+### 3.2.1 What we retain, briefly
+
+The customer's genome will be destroyed at Visit 2 under NIST SP 800-88 Rev. 2 (see §5.4 and §6.3). Operating a clinical laboratory, however, requires a small set of non-genomic operational records. To avoid ambiguity, those records are enumerated here.
+
+PrivDNA's Laboratory Information Management System (LIMS) will maintain, for each customer sample:
+
+- A unique sample barcode and its chain-of-custody entries (who handled the sample, when, and where)
+- Pre-analytical QC results (Qubit DNA concentration, TapeStation fragment profile)
+- Analytical QC results (percent Q30, mean coverage, contamination check per VerifyBamID or equivalent)
+- The pipeline manifest for the run (software versions, parameters, and SHA-256 checksums of the delivered files)
+- The signed Certificate of Destruction (media serial numbers, sanitization method, timestamp, technician ID, verification result)
+
+These records are generated during the 4-6 business day processing window and retained after the customer receives their data only for the duration required by CLIA and CLEP record-keeping rules, then purged per documented SOPs reviewed during CLEP inspection and CAP accreditation.
+
+Scheduling, billing, and customer contact information (name, email, appointment times) will live on a separate business system, encrypted at rest, and governed by the policy at [privdna.com/privacy](https://privdna.com/privacy). That system will never hold genomic data.
+
+None of the records retained above contain genomic sequence, variant calls, or any biological content derived from the customer's sample. They are the audit record that the sequence existed, was processed correctly, and was destroyed; they are not a copy of the sequence itself.
+
 ## 3.3 What PrivDNA Does Not Do
+
+See §3.2.1 for the small set of operational records PrivDNA does retain during processing.
 
 PrivDNA explicitly does not:
 
@@ -327,6 +347,37 @@ Each whole genome sequence is priced at $3,500. Per-genome contribution margin i
 Initial capital requirement is approximately $880,000 in equipment and laboratory buildout (Element AVITI sequencer, GPU compute server, storage infrastructure, cryptographic destruction equipment, and lab fit-out). PrivDNA is raising a $1.25M seed round to fund equipment, lease, regulatory certification (CLIA + NY CLEP), and 18 months of operating runway to reach break-even.
 
 No revenue is modeled from data sales, research partnerships, or pharma licensing. Sequencing fees are the entire business model.
+
+## 4.7 Who We Are, Who Funds Us, Who We Partner With
+
+**Founder and leadership.** PrivDNA was founded by a sole technical founder with approximately six years of systems administration and IT infrastructure experience in managed service provider and enterprise IT environments. That background is directly applicable to the air-gap, network-isolation, RAID, and physical-security architecture described in this whitepaper. PrivDNA will complement that expertise with hired clinical laboratory leadership at operational launch, per the staffing plan in §8.1: a board-certified CLIA/CLEP laboratory director (0.25 FTE contract), a molecular laboratory technician, a bioinformatics engineer, a genomic concierge, and an office manager / QA coordinator. This division reflects a deliberate choice to separate IT and infosec ownership (held in-house) from wet-lab and bioinformatics execution (hired into the roles where CLIA and CLEP regulation is non-negotiable).
+
+**Funding status.** At the time of publication, PrivDNA is self-funded and pre-seed. The company is raising a $1.25M seed round to cover equipment, commercial lease, CLIA and CLEP certification, and approximately 18 months of operating runway to reach cash break-even at 29 genomes per month (see §4.6). No outside capital has been accepted as of this writing, and no investors, advisors, or board members are currently disclosed. Parties who join the company in any of those capacities will be listed here in subsequent revisions of this whitepaper and on privdna.com.
+
+**Vendors.** PrivDNA's planned infrastructure relies on commercial products from the vendors listed below. Each is cited in the [technical manifest](https://github.com/danthi123/PrivDNA/blob/main/technical-manifest.md) alongside specific part numbers, datasheets, and pricing.
+
+| Category | Vendor | Role |
+|---|---|---|
+| Sequencing | [Element Biosciences](https://www.elementbiosciences.com/) | AVITI sequencer, Cloudbreak flow cells, bases2fastq basecaller |
+| Lab equipment | Thermo Fisher, Agilent, Bio-Rad, Eppendorf | DNA quantification, fragment analysis, thermal cycling, pipettes, centrifuges |
+| Library prep | New England Biolabs | NEBNext Ultra II FS DNA Library Prep |
+| Compute hardware | AMD, Supermicro, Samsung, NVIDIA | CPU (EPYC 9654), 2U chassis and TPM, DDR5 ECC RAM, U.2 NVMe storage (PM9A3), L40S GPU |
+| Bioinformatics software | NVIDIA (Clara Parabricks, free in production); all other pipeline tools open source | GPU-accelerated alignment and variant calling; Nextflow, nf-core/sarek, BWA-MEM2, GATK, samtools, FastQC, MultiQC |
+| Network isolation | Cisco, Netgate | Managed switch for VLAN isolation; pfSense+ firewall with no WAN |
+| Delivery hardware | Kingston | FIPS 140-3 Level 3 IronKey D500S encrypted USB drives |
+| Website and TLS | Cloudflare | DNS, edge caching, TLS 1.3 termination |
+| Analytics | Rybbit (open-source, cookieless) | Privacy-respecting site analytics |
+| Code hosting | GitHub | Open-source pipeline and waitlist site source code |
+
+No vendor in the list above has access to, receives, or processes customer genomic data. All genomic data handling will occur on air-gapped infrastructure PrivDNA controls, described in §V. Vendor relationships are limited to the purchase of commercial products and their associated support and maintenance contracts.
+
+**Financial conflicts of interest.** PrivDNA:
+
+- Holds no equity in any referral partner (genetic counselor, clinical geneticist, or interpretation service)
+- Does not charge partners for referrals and does not receive referral fees, commissions, or data-access rights from partners (see §9.2 "Compensation and Anti-Kickback Structure")
+- Has no revenue modeled from data sales, research licensing, pharmaceutical partnerships, or any downstream monetization of customer genomes (see §4.6)
+
+These structural choices are what make the zero-retention commitment economically coherent: there is no business pressure to retain data because there is no line of revenue that depends on it.
 
 ---
 
@@ -682,6 +733,29 @@ PrivDNA's "raw data only" model significantly reduces medical liability exposure
 ### GINA Limitations Advisory
 
 The [Genetic Information Nondiscrimination Act (GINA)](https://www.eeoc.gov/statutes/genetic-information-nondiscrimination-act-2008) prohibits discrimination by health insurers and employers based on genetic information. However, per [NHGRI guidance](https://www.genome.gov/about-genomics/policy-issues/Genetic-Discrimination), **GINA does not cover life insurance, disability insurance, or long-term care insurance.** Customers are advised to consult with an attorney before undergoing WGS if they have pending applications for these types of insurance. PrivDNA includes this advisory in its pre-sequencing consent documentation.
+
+## 7.5 Policy Registry
+
+This document, the [technical manifest](https://github.com/danthi123/PrivDNA/blob/main/technical-manifest.md), and the live privacy and security pages on privdna.com together constitute PrivDNA's written policy commitments. The table below is a single reference pointing to where each commitment lives and its current status. Customers, auditors, regulators, and journalists can use this table as a shortcut instead of searching the full whitepaper.
+
+| Topic | Status | Authoritative location |
+|---|---|---|
+| Waitlist data handling (pre-launch phase) | Live | [privdna.com/privacy](https://privdna.com/privacy) — covers waitlist email encryption (AES-256-GCM, HMAC-SHA256 duplicate hashing, SQLCipher-encrypted storage), Rybbit cookieless analytics, Cloudflare edge handling, GDPR and CCPA/CPRA and NY SHIELD Act compliance |
+| Vulnerability disclosure and security contact | Live | [privdna.com/security-policy](https://privdna.com/security-policy) plus [privdna.com/.well-known/security.txt](https://privdna.com/.well-known/security.txt) (RFC 9116) |
+| Open-source waitlist site | Live | [github.com/danthi123/PrivDNA](https://github.com/danthi123/PrivDNA) |
+| Open-source sequencing and chain-of-custody pipeline | Planned (at launch) | github.com/danthi123/PrivDNA — per §3.4 |
+| Companion open-source tool (`genomevault`): passphrase-based encryption wrapping GA4GH Crypt4GH | Live (standalone; not yet integrated into the PrivDNA customer-delivery workflow) | [github.com/danthi123/genomevault](https://github.com/danthi123/genomevault) · [pypi.org/project/genomevault/](https://pypi.org/project/genomevault/) |
+| Zero-retention data destruction method | In whitepaper | §5.4 (cryptographic erasure, NIST SP 800-88 Rev. 2 Purge level); §6.3 (Visit 2 customer-witnessed ceremony); detailed SOP in the technical manifest §6 |
+| Response to subpoenas, warrants, and court orders | In whitepaper | §3.5 |
+| Customer sequencing consent form (incorporates GINA advisory and key-loss disclosure) | Planned | Published in the customer portal before the first operational appointment; incorporates §7.4 GINA advisory and §3.2 key-loss disclosure |
+| Key-loss / no-recovery disclosure | In whitepaper | §3.2 |
+| GINA insurance-coverage limitations advisory | In whitepaper | §7.4 |
+| Anti-kickback and fee-splitting structure for referral partners | In whitepaper | §9.2 |
+| Customer consent withdrawal before delivery | In whitepaper | §8.1 |
+| Operational record retention (LIMS, QC, business systems) | In whitepaper | §3.2.1 |
+| Financial conflicts of interest | In whitepaper | §4.7 |
+
+**Versioning.** This whitepaper is dated in its front matter. Material changes to any of the policy commitments above will be reflected in an updated whitepaper revision and, where a separate live page exists (privacy, security), in a "Last updated" date on that page. PrivDNA does not make substantive policy changes silently.
 
 ---
 
