@@ -3,6 +3,12 @@
 .env*.local
 site/.env.local
 site/.env*.local
+cofounder-bot/node_modules/
+cofounder-bot/session.json
+cofounder-bot/anthropic-api-key
+cofounder-bot/decisions.jsonl
+cofounder-bot/package-lock.json
+docs/reference/
 .claude/
 .playwright-mcp/
 audit-report-*.md
