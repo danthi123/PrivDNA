@@ -9,6 +9,10 @@ cofounder-bot/anthropic-api-key
 cofounder-bot/decisions.jsonl
 cofounder-bot/package-lock.json
 docs/reference/
+# Raw/converted Firefox cookie exports — live auth tokens, never commit.
+assets/firefox-cookies.json
+assets/session.json
+assets/*-cookies.json
 .claude/
 .playwright-mcp/
 audit-report-*.md
