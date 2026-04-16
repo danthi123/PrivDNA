@@ -435,6 +435,76 @@ export default function PrivacyPolicy() {
 
         <section>
           <h2 className="text-text-primary text-xl font-semibold mb-3">
+            What records does PrivDNA actually retain?
+          </h2>
+          <p>
+            Your genome (BAM, VCF, gVCF files) and all intermediate processing
+            data are destroyed at your second visit under NIST SP 800-88
+            cryptographic erasure. The drives are watched being erased. That is
+            the &ldquo;zero retention&rdquo; promise and it is unchanged.
+          </p>
+          <p className="mt-4">
+            However, PrivDNA plans to operate as a CLIA-certified clinical
+            laboratory in New York State (pending certification). CLIA (42 CFR
+            493.1105) and NY CLEP (10 NYCRR Part 58) require clinical
+            laboratories to retain non-genomic operational records for defined
+            periods. Those records are:
+          </p>
+          <ul className="list-disc list-inside mt-4 space-y-2">
+            <li>
+              <span className="text-text-primary">
+                Test requisition and demographic identifiers
+              </span>{" "}
+              (your name, email, order date). Required by CLIA for
+              test-to-person traceability. Retained for the CLIA-mandated
+              minimum period, then destroyed per written SOP.
+            </li>
+            <li>
+              <span className="text-text-primary">
+                Quality-control logs and sequencing run metrics
+              </span>{" "}
+              (per-run alignment statistics, coverage uniformity, contamination
+              checks). Required to document that your test met quality
+              standards.
+            </li>
+            <li>
+              <span className="text-text-primary">Pipeline manifest</span>{" "}
+              (exact software versions, parameters, and SHA-256 checksums of
+              each processing step). Proves the code that processed your DNA
+              and lets you verify reproducibility if you ever need to.
+            </li>
+            <li>
+              <span className="text-text-primary">
+                Certificate of Destruction
+              </span>{" "}
+              (media serial numbers, erasure method, timestamp, technician
+              identity). Your proof that destruction happened.
+            </li>
+          </ul>
+          <p className="mt-4">
+            <span className="text-text-primary">
+              None of these records contain your genetic sequence, variant
+              calls, biological data, or anything that could reconstruct your
+              genome.
+            </span>{" "}
+            They document that a test was performed, was quality-controlled,
+            and was destroyed. After the CLIA/CLEP retention period expires,
+            these records are destroyed per SOP.
+          </p>
+          <p className="mt-4">
+            If this matters for your use case, see Section 3.2.1 of the{" "}
+            <a
+              href="/whitepaper"
+              className="text-accent hover:underline"
+            >
+              PrivDNA Whitepaper
+            </a>{" "}
+            for the full record schedule and the destruction protocol.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-text-primary text-xl font-semibold mb-3">
             Contact
           </h2>
           <p>
