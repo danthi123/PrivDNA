@@ -44,7 +44,7 @@ export default function GlassWall() {
       <div className="relative w-full aspect-video md:h-screen md:aspect-auto">
         <Image
           src="/storefront-concept.webp"
-          alt="PrivDNA storefront concept — a glass-walled genomics lab in Manhattan with a reception area, lab technician, and server rack visible through the partition"
+          alt="PrivDNA storefront concept: a glass-walled genomics lab in Manhattan with a reception area, lab technician, and server rack visible through the partition"
           fill
           className="object-cover"
           sizes="100vw"

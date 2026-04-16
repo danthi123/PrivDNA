@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Security Policy — PrivDNA",
+  title: "Security Policy | PrivDNA",
   description:
     "How to report a security vulnerability to PrivDNA, what to expect from us, and our safe harbor commitment to researchers.",
   robots: { index: true, follow: true },
@@ -73,16 +73,16 @@ export default function SecurityPolicy() {
           </h2>
           <ul className="list-disc pl-6 mt-2 space-y-2">
             <li>
-              <span className="text-text-primary">Within 72 hours</span> — we
+              <span className="text-text-primary">Within 72 hours</span>: we
               will acknowledge receipt of your report.
             </li>
             <li>
-              <span className="text-text-primary">Within 7 days</span> — we will
+              <span className="text-text-primary">Within 7 days</span>: we will
               provide an initial assessment and confirm whether the issue is
               valid.
             </li>
             <li>
-              <span className="text-text-primary">Within 30 days</span> — we
+              <span className="text-text-primary">Within 30 days</span>: we
               aim to have a fix deployed for confirmed vulnerabilities.
             </li>
           </ul>
@@ -121,7 +121,7 @@ export default function SecurityPolicy() {
             <li>Denial of service (DoS or DDoS) attacks</li>
             <li>
               Vulnerabilities in third-party services we depend on (Cloudflare,
-              Vercel, our email provider, etc.) — please report those upstream
+              Vercel, our email provider, etc.); please report those upstream
             </li>
             <li>Issues that require physical access to PrivDNA infrastructure</li>
             <li>

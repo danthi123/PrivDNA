@@ -231,7 +231,7 @@ No single mechanism is sufficient on its own. The combination is intentional: SH
 
 ## 4.1 Total Addressable Market
 
-**Consumer Genomics (Global):** $2.51 billion (2024), projected to reach $8.17 billion by 2030 at a 21.73% CAGR ([360iResearch](https://www.360iresearch.com/library/intelligence/consumer-genomics) — cited figures from the 2025 edition; the live report is refreshed periodically).
+**Consumer Genomics (Global):** $3.02 billion (2025), projected to reach $12.56 billion by 2032 at a 22.54% CAGR ([360iResearch](https://www.360iresearch.com/library/intelligence/consumer-genomics); cited figures from the 2025 edition, the live report is refreshed periodically).
 
 **Whole Genome Sequencing (Global):** $2.12 billion (2024), projected to reach $6.67 billion by 2030 at a 22.17% CAGR ([Grand View Research](https://www.grandviewresearch.com/industry-analysis/whole-genome-sequencing-market-report)).
 
@@ -279,7 +279,7 @@ PrivDNA's addressable market is defined by four primary customer personas, valid
 23andMe and Ancestry dominate this tier with SNP microarray tests at $99-$229. These tests examine 600,000-700,000 specific genetic markers -- less than 0.02% of the genome. They serve casual ancestry curiosity and basic trait analysis.
 
 **Tier 2: Whole Genome Sequencing (Full Resolution)**
-WGS reads the complete 3.2 billion base pairs of the human genome. This tier is served by [Sequencing.com](https://sequencing.com) ($399), [Nucleus Genomics](https://mynucleus.com) ($399 + $39/year membership), and [Dante Labs](https://dantelabs.com) ($599, frequently discounted to ~$499). Nebula Genomics shut down its consumer service on February 5, 2025 and faces a federal class-action privacy lawsuit ([*Portillo v. Nebula Genomics*](https://www.classaction.org/media/portillov-nebula-genomics-inc-et-al.pdf)) alleging it shared genetic data with Meta, Google, and Microsoft via embedded tracking tools; its parent company [ProPhase Labs filed Chapter 11](https://ir.prophaselabs.com/news-events/press-releases/detail/250/prophase-labs-inc-announces-completion-of-important-next) for its COVID-19 testing laboratory subsidiaries in September 2025. Dante Labs' UAE subsidiary (Dante Labs Genomics FZE) was [acquired by Bio Cell Tech FZCO](https://www.clydeco.com/en/about/news/2024/12/advising-bio-cell-tech) in February 2025. All active competitors operate via mail-order.
+WGS reads the complete 3.2 billion base pairs of the human genome. This tier is served by [Sequencing.com](https://sequencing.com) ($399), [Nucleus Genomics](https://mynucleus.com) ($399 + $39/year membership), and [Dante Labs](https://dantelabs.com) ($599, frequently discounted to ~$499). Nebula Genomics shut down its consumer service on February 5, 2025 and faces a federal class-action privacy lawsuit ([*Portillo v. Nebula Genomics*](https://www.classaction.org/media/portillov-nebula-genomics-inc-et-al.pdf)) alleging it shared genetic data with Meta, Google, and Microsoft via embedded tracking tools; its parent company [ProPhase Labs filed Chapter 11](https://ir.prophaselabs.com/news-events/press-releases/detail/250/prophase-labs-inc-announces-completion-of-important-next) for its COVID-19 testing laboratory subsidiaries in September 2025. Dante Labs' UAE subsidiary (Dante Labs Genomics FZE) was reportedly acquired by Bio Cell Tech FZCO in February 2025. All active competitors operate via mail-order.
 
 ### Competitive Comparison Matrix
 
@@ -304,11 +304,11 @@ The three active WGS competitors each present a distinct competitive profile -- 
 
 **Nucleus Genomics** ($399 + $39/year, founded 2020, $32M total raised including a [$14M Series A in January 2025](https://techcrunch.com/2025/01/30/controversial-genetics-testing-startup-nucleus-genomics-raises-14m-series-a/)) reports aggressive month-over-month revenue growth [founder-cited, not independently verified] and has expanded into embryo selection ($5,999). However, the company faces serious credibility concerns: allegations of fabricating customer reviews, [formal criticism from the American College of Medical Genetics and Genomics](https://www.gimjournal.org/article/S1098-3600(23)01068-7/fulltext) regarding polygenic-risk-score embryo products' evidence base, and a founder who has been compared to Elizabeth Holmes by critics. Independent research continues to find that polygenic scores -- central to the Nucleus Embryo product -- include significant statistical uncertainty and yield inconsistent predictions across methods ([Namba et al., *Nature Human Behaviour*, 2024](https://www.nature.com/articles/s41562-024-02019-y); see also [Turley et al., *NEJM*, 2021](https://www.nejm.org/doi/full/10.1056/NEJMsr2105065)). Physical DNA samples are destroyed within 60 days, but digital data retention periods are vaguely defined as "determined by business need."
 
-**Dante Labs** ($599, frequently discounted to ~$499; its UAE subsidiary Dante Labs Genomics FZE was [acquired by Bio Cell Tech FZCO](https://www.clydeco.com/en/about/news/2024/12/advising-bio-cell-tech) in February 2025) holds an [**F rating from the Better Business Bureau**](https://www.bbb.org/us/ny/new-york/profile/dna-testing/dante-labs-inc-0121-176749) with dozens of complaints logged in the prior 12 months (counts fluctuate). Customer reports consistently describe delivery failures (6-10+ months, with some customers never receiving results), non-responsive customer service, and hidden charges for raw data downloads. Labs operate in Italy and Dubai, not domestically. The 10-year data retention policy post-account-deletion and new UAE ownership raise data sovereignty concerns.
+**Dante Labs** ($599, frequently discounted to ~$499; its UAE subsidiary Dante Labs Genomics FZE was reportedly acquired by Bio Cell Tech FZCO in February 2025) holds an [**F rating from the Better Business Bureau**](https://www.bbb.org/us/ny/new-york/profile/dna-testing/dante-labs-inc-0121-176749) with dozens of complaints logged in the prior 12 months (counts fluctuate). Customer reports consistently describe delivery failures (6-10+ months, with some customers never receiving results), non-responsive customer service, and hidden charges for raw data downloads. Labs operate in Italy and Dubai, not domestically. The 10-year data retention policy post-account-deletion and new UAE ownership raise data sovereignty concerns.
 
 **Lessons from failures.** The DTC genomics sector has produced a consistent failure pattern. Nebula Genomics (shut down February 2025) marketed itself as "privacy-first" with blockchain-based data ownership, but a [federal class-action lawsuit](https://www.classaction.org/media/portillov-nebula-genomics-inc-et-al.pdf) alleges it shared genetic data with Meta, Google, and Microsoft via embedded tracking pixels -- the ultimate privacy theater. [Veritas Genetics ceased US operations in December 2019](https://www.cnbc.com/2019/12/05/veritas-genetics-to-cease-us-operations-talks-with-buyers.html) after Chinese investors triggered CFIUS scrutiny; consumer volume remained low at $599 pricing, suggesting weak demand even at sub-$1,000 price points. Every low-price DTC WGS model has either failed (Nebula, Veritas), gone bankrupt (23andMe, Invitae), or pivoted entirely to B2B (Helix, Color Health).
 
-**Adjacent competition.** Concierge medicine and executive health programs ([Fountain Life at $10,500-$21,500/year](https://www.fountainlife.com/membership), [Human Longevity Inc. at $8,000/year](https://www.humanlongevity.com/executive-health/)) offer WGS as a bundled component of comprehensive diagnostic packages. This data is retained indefinitely in the clinical record. PrivDNA's $3,500 standalone service is priced below every concierge WGS alternative while offering superior privacy guarantees -- positioning it as the affordable premium option for customers who want genomic data outside their medical record.
+**Adjacent competition.** Concierge medicine and executive health programs ([Fountain Life at $10,500-$21,500/year](https://www.fountainlife.com/membership), [Human Longevity Inc. at $8,000 per assessment (recommended annually)](https://www.humanlongevity.com/executive-health/)) offer WGS as a bundled component of comprehensive diagnostic packages. This data is retained indefinitely in the clinical record. PrivDNA's $3,500 standalone service is priced below every concierge WGS alternative while offering superior privacy guarantees, positioning it as the affordable premium option for customers who want genomic data outside their medical record.
 
 PrivDNA will sequence on the **Element Biosciences AVITI**, which uses avidity sequencing (sequencing-by-binding) rather than Illumina's sequencing-by-synthesis. The output quality is comparable (≥90% bases above Q30) and produces identical standard file formats (FASTQ, BAM, VCF), making it fully interchangeable for downstream analysis. Element's publicly advertised reagent price guarantee, if extended in the supply contract, would eliminate the single largest variable cost risk for the business.
 
@@ -332,13 +332,13 @@ The top three policies that increase consumer willingness to share genetic data 
 
 The $3,500 price point is best understood not as a premium over commodity WGS, but as the lowest-cost entry in the premium health services category over any meaningful time horizon.
 
-**Price anchoring.** Executive physicals at major academic medical centers cost $5,000-$11,000 annually (Mayo Clinic, Cleveland Clinic). Concierge medicine retainers average $2,500-$3,000 per year, with premium practices charging $10,000-$50,000 per year. Fountain Life's longevity membership costs $10,500-$21,500 annually; Human Longevity Inc.'s executive health program starts at $8,000 per year. Unlike every service in this comparison set, PrivDNA is a single, non-recurring expenditure that produces a lifetime dataset. Over two or more years, $3,500 is the cheapest option in a premium health portfolio.
+**Price anchoring.** Executive physicals at major academic medical centers cost $5,000-$11,000 annually (Mayo Clinic, Cleveland Clinic). Concierge medicine retainers average $2,500-$3,000 per year, with premium practices charging $10,000-$50,000 per year. Fountain Life's longevity membership costs $10,500-$21,500 annually; Human Longevity Inc.'s executive health program starts at $8,000 per assessment (recommended annually). Unlike every service in this comparison set, PrivDNA is a single, non-recurring expenditure that produces a lifetime dataset. Over two or more years, $3,500 is the cheapest option in a premium health portfolio.
 
-**The $399 vs. $3,500 reframing.** These are not different prices for the same product -- they are different products. At $399, a customer receives whole genome sequencing data that lives indefinitely on a company's servers, accessible to AI partners (Sequencing.com shares data with OpenAI per its AI Use Policy), third-party app developers, and future acquirers in bankruptcy proceedings. At $3,500, a customer receives the same sequencing data on an encrypted drive they physically possess -- processed on an air-gapped server, delivered through a witnessed chain of custody, and destroyed on-premise under NIST SP 800-88 standards. The $3,100 difference is the cost of ensuring that the most sensitive data a person will ever generate exists in exactly one place: their hands.
+**The $399 vs. $3,500 reframing.** These are not different prices for the same product; they are different products. At $399, a customer receives whole genome sequencing data that lives indefinitely on a company's servers, accessible to AI partners (Sequencing.com shares data with OpenAI per its AI Use Policy), third-party app developers, and future acquirers in bankruptcy proceedings. At $3,500, a customer receives the same sequencing data on an encrypted drive they physically possess, processed on an air-gapped server, delivered through a witnessed chain of custody, and destroyed on-premise under NIST SP 800-88 standards. The $3,100 difference is the cost of ensuring that the most sensitive data a person will ever generate exists in exactly one place: their hands.
 
-**Loss aversion.** Kahneman and Tversky's prospect theory establishes that losses are psychologically approximately twice as powerful as equivalent gains -- a finding replicated across 19 countries (Columbia University, 2020). Genomic data amplifies loss aversion through three properties: irreversibility (a compromised genome cannot be changed), familial scope (one person's data partially reveals the genomes of every biological relative), and temporal scope (future analytical capabilities will extract information from today's data that cannot currently be predicted). The loss of genomic privacy is permanent, generational, and expanding.
+**Loss aversion.** Kahneman and Tversky's prospect theory establishes that losses are psychologically approximately twice as powerful as equivalent gains, a finding replicated across 19 countries (Columbia University, 2020). Genomic data amplifies loss aversion through three properties: irreversibility (a compromised genome cannot be changed), familial scope (one person's data partially reveals the genomes of every biological relative), and temporal scope (future analytical capabilities will extract information from today's data that cannot currently be predicted). The loss of genomic privacy is permanent, generational, and expanding.
 
-**Pricing.** PrivDNA's price is $3,500 per genome, a single price across all individual customers. Family packages at $3,100-$3,250 per genome (two or more genomes purchased together) and B2B institutional pricing at $3,000-$3,200 per genome (for concierge practices, family offices, and corporate programs) provide structured volume pricing without tiered privacy guarantees -- the security architecture is identical regardless of price.
+**Pricing.** PrivDNA's price is $3,500 per genome, a single price across all individual customers. Family packages at $3,100-$3,250 per genome (two or more genomes purchased together) and B2B institutional pricing at $3,000-$3,200 per genome (for concierge practices, family offices, and corporate programs) provide structured volume pricing without tiered privacy guarantees; the security architecture is identical regardless of price.
 
 ## 4.6 Unit Economics and Capital Plan
 
@@ -395,10 +395,10 @@ These structural choices are what make the zero-retention commitment economicall
 | Quality | ≥90% bases above Q30 |
 | Run time (2x150 bp) | ~38 hours |
 | Instrument price | $289,000 |
-| Basecalling / demux | bases2fastq (Element Biosciences) -- produces standard FASTQ |
+| Basecalling / demux | bases2fastq (Element Biosciences), produces standard FASTQ |
 | Company | Element Biosciences (founded 2017, San Diego; AVITI launched 2022) |
 
-The Element AVITI is the optimal platform for PrivDNA's volume tier. It delivers clinical-grade sequencing quality at a significantly lower reagent cost than competing platforms: the Cloudbreak 300-cycle kit costs $1,680 per run ($560 per genome at 3 genomes per run), and Element guarantees no reagent price increases for the instrument's lifetime -- eliminating the single largest variable cost risk. At ~38-hour run cycles and realistic maintenance and library prep schedules, a single AVITI can process approximately 3-4 runs per week, yielding 9-12 genomes per week or 40-52 genomes per month. With overlapping batches (starting next library prep while the current run is active), throughput of 50-65 genomes per month is achievable.
+The Element AVITI is the optimal platform for PrivDNA's volume tier. It delivers clinical-grade sequencing quality at a significantly lower reagent cost than competing platforms: the Cloudbreak 300-cycle kit costs $1,680 per run ($560 per genome at 3 genomes per run), and Element guarantees no reagent price increases for the instrument's lifetime, eliminating the single largest variable cost risk. At ~38-hour run cycles and realistic maintenance and library prep schedules, a single AVITI can process approximately 3-4 runs per week, yielding 9-12 genomes per week or 40-52 genomes per month. With overlapping batches (starting next library prep while the current run is active), throughput of 50-65 genomes per month is achievable.
 
 The AVITI produces standard FASTQ output, making it fully compatible with the entire downstream open-source pipeline (BWA-MEM2, GATK, Parabricks). NVIDIA Clara Parabricks supports AVITI data as of v4.5 via standard FASTQ input.
 
@@ -495,7 +495,7 @@ Stage 7: Quality Aggregation
 
 ### Pipeline Orchestration
 
-The pipeline is orchestrated via **[Nextflow](https://www.nextflow.io/)** using the **[nf-core/sarek](https://nf-co.re/sarek)** framework -- a production-validated, community-maintained WGS/WES analysis pipeline. Sarek is the most battle-tested open-source WGS pipeline available, with contributions from dozens of institutions worldwide.
+The pipeline is orchestrated via **[Nextflow](https://www.nextflow.io/)** using the **[nf-core/sarek](https://nf-co.re/sarek)** framework, a production-validated, community-maintained WGS/WES analysis pipeline. Sarek is the most battle-tested open-source WGS pipeline available, with contributions from dozens of institutions worldwide.
 
 For air-gapped deployment, all dependencies are pre-staged as Singularity container images (.sif files) on an internet-connected staging machine, then transferred to the air-gapped server via encrypted physical media. The total software + reference data package is approximately 80-100 GB.
 
@@ -532,11 +532,11 @@ For air-gapped deployment, all dependencies are pre-staged as Singularity contai
 | QC reports | ~50 MB | Delivered to customer, then destroyed |
 | **Peak working storage** | **~400-500 GB** | During processing only |
 
-With 30 TB usable storage (RAID-10), the server provides approximately 20x the peak working requirement for a single run (3 genomes at ~1.5 TB peak) -- sized for roughly 3-5 concurrent or staggered runs plus reference data and software (~100 GB), with headroom for temporary pipeline intermediates. The right-sized storage array reduces CAPEX by ~$78,000 compared to a 24-drive configuration while maintaining ample margin for concurrent processing.
+With 30 TB usable storage (RAID-10), the server provides approximately 20x the peak working requirement for a single run (3 genomes at ~1.5 TB peak), sized for roughly 3-5 concurrent or staggered runs plus reference data and software (~100 GB), with headroom for temporary pipeline intermediates. The right-sized storage array reduces CAPEX by ~$78,000 compared to a 24-drive configuration while maintaining ample margin for concurrent processing.
 
 ## 5.4 Data Destruction Protocol
 
-PrivDNA will follow [NIST SP 800-88 Revision 2 (September 2025)](https://csrc.nist.gov/pubs/sp/800/88/r2/final) -- the current authoritative standard for media sanitization, which supersedes the legacy DoD 5220.22-M standard.
+PrivDNA will follow [NIST SP 800-88 Revision 2 (September 2025)](https://csrc.nist.gov/pubs/sp/800/88/r2/final), the current authoritative standard for media sanitization, which supersedes the legacy DoD 5220.22-M standard.
 
 ### Method: Cryptographic Erasure (Purge Level)
 
@@ -580,12 +580,12 @@ The defining physical feature of PrivDNA is a **floor-to-ceiling tempered glass 
 - **Estimated cost:** $18,000-$25,000 installed (NYC union labor rates)
 
 The glass wall serves a dual purpose:
-1. **Trust architecture:** Customers see their sample being collected and barcoded at intake, and watch their data being destroyed in real time at the delivery visit. The intervening sequencing and bioinformatics happen on equipment visible through the glass -- but at a timescale (hours to days) that is verified through the open-source pipeline rather than watched live.
-2. **Marketing:** The visible laboratory creates an experiential retail environment unlike any other genomics service -- a "theater of science" that generates organic social media attention and word-of-mouth.
+1. **Trust architecture:** Customers see their sample being collected and barcoded at intake, and watch their data being destroyed in real time at the delivery visit. The intervening sequencing and bioinformatics happen on equipment visible through the glass, but at a timescale (hours to days) that is verified through the open-source pipeline rather than watched live.
+2. **Marketing:** The visible laboratory creates an experiential retail environment unlike any other genomics service, a "theater of science" that generates organic social media attention and word-of-mouth.
 
 ## 6.3 Customer Journey
 
-**The customer experience is two brief visits spanning 4-6 business days. Visit 1 (~25 minutes total) covers intake and sample collection. The customer then departs. Between visits, the lab completes DNA extraction, library preparation, a ~38-hour sequencing run, and ~60-90 minutes of bioinformatics processing -- all visible through the glass wall to anyone physically in the lobby, but not watched live by the customer. Visit 2 (~30 minutes) covers data delivery and witnessed destruction.**
+**The customer experience is two brief visits spanning 4-6 business days. Visit 1 (~25 minutes total) covers intake and sample collection. The customer then departs. Between visits, the lab completes DNA extraction, library preparation, a ~38-hour sequencing run, and ~60-90 minutes of bioinformatics processing, all visible through the glass wall to anyone physically in the lobby, but not watched live by the customer. Visit 2 (~30 minutes) covers data delivery and witnessed destruction.**
 
 ### Visit 1: Intake and Sample Collection (~25 minutes total)
 
@@ -623,7 +623,7 @@ The Technical Representative ("Genomic Concierge") is the face of PrivDNA's priv
 **Required Profile:**
 - B.S. or M.S. in Molecular Biology, Genetics, Genomics, or related life science field
 - Minimum 2 years of customer-facing experience (former lab tech, science educator, genetic counseling assistant)
-- Strong communication skills -- ability to translate complex genomics and cybersecurity concepts into accessible language
+- Strong communication skills: ability to translate complex genomics and cybersecurity concepts into accessible language
 - Comfort with public-facing role (this is a retail position, not a back-office role)
 
 **Responsibilities:**
@@ -642,7 +642,7 @@ The Technical Representative ("Genomic Concierge") is the face of PrivDNA's priv
 
 ### CLIA Certification
 
-Clinical laboratory testing in the United States requires certification under the [Clinical Laboratory Improvement Amendments (CLIA)](https://www.cms.gov/medicare/quality/clinical-laboratory-improvement-amendments/regulations-federal-register), administered by CMS under [42 CFR Part 493](https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-G/part-493). Whole genome sequencing is classified as **high-complexity** testing -- the highest CLIA category.
+Clinical laboratory testing in the United States requires certification under the [Clinical Laboratory Improvement Amendments (CLIA)](https://www.cms.gov/medicare/quality/clinical-laboratory-improvement-amendments/regulations-federal-register), administered by CMS under [42 CFR Part 493](https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-G/part-493). Whole genome sequencing is classified as **high-complexity** testing, the highest CLIA category.
 
 **Process:**
 1. Submit CMS-116 application to the NYSDOH (state survey agency for New York)
@@ -661,7 +661,7 @@ The lab director for a high-complexity CLIA lab must hold either:
 
 ### HIPAA
 
-PrivDNA's cash-pay, no-insurance-billing model may place it outside HIPAA's mandatory scope. Covered entity status under 45 CFR 160.103 depends on whether the entity conducts standard electronic transactions (claims, eligibility inquiries, etc.) -- not on whether it processes health-related data. Because PrivDNA does not bill insurance, does not submit claims, and does not conduct any HIPAA-defined standard transactions, it may not meet the formal covered entity threshold.
+PrivDNA's cash-pay, no-insurance-billing model may place it outside HIPAA's mandatory scope. Covered entity status under 45 CFR 160.103 depends on whether the entity conducts standard electronic transactions (claims, eligibility inquiries, etc.), not on whether it processes health-related data. Because PrivDNA does not bill insurance, does not submit claims, and does not conduct any HIPAA-defined standard transactions, it may not meet the formal covered entity threshold.
 
 **Regardless of formal classification, PrivDNA will voluntarily implement HIPAA-equivalent controls as a matter of policy and brand integrity.** PrivDNA holds itself to a higher standard than the regulatory minimum:
 
@@ -675,12 +675,12 @@ PrivDNA's air-gapped, zero-retention model **exceeds** HIPAA requirements by des
 
 ### NYSDOH Clinical Laboratory Evaluation Program (CLEP)
 
-New York State requires any laboratory testing specimens originating in New York to hold a NYS clinical laboratory permit, administered by the [Wadsworth Center's Clinical Laboratory Evaluation Program](https://www.wadsworth.org/regulatory/clep). This is one of the most stringent state lab oversight programs in the United States and applies **in addition to** federal CLIA certification. (For a practical walkthrough of the LDT validation and approval process for NGS assays, see [Sabnis et al., *J. Mol. Diagn.*, 2025](https://www.jmdjournal.org/article/S1525-1578(25)00067-4/fulltext).)
+New York State requires any laboratory testing specimens originating in New York to hold a NYS clinical laboratory permit, administered by the [Wadsworth Center's Clinical Laboratory Evaluation Program](https://www.wadsworth.org/regulatory/clep). This is one of the most stringent state lab oversight programs in the United States and applies **in addition to** federal CLIA certification. (For a practical walkthrough of the LDT validation and approval process for NGS assays, see [Galbo et al., *J. Mol. Diagn.*, 2025](https://www.jmdjournal.org/article/S1525-1578(25)00067-4/fulltext).)
 
 **Key requirements:**
 - Appoint a NYS-certified laboratory director
 - Submit standard operating procedures (SOPs) and validation data for all laboratory-developed tests (LDTs)
-- NYS considers any non-FDA-approved test method an LDT requiring CLEP review -- this includes WGS, even when producing only raw data
+- NYS considers any non-FDA-approved test method an LDT requiring CLEP review; this includes WGS, even when producing only raw data
 - Pass an on-site inspection by CLEP surveyors before testing begins
 - Enroll in proficiency testing (PT) with a CMS-approved provider
 
@@ -697,12 +697,12 @@ NYC's ["City of Yes for Economic Opportunity"](https://www.nyc.gov/assets/planni
 - Laboratories are now classified in **Use Group VII** (same as offices)
 - **Permitted as-of-right** in all Commercial "C" zones except C3
 - A BSL-1 sequencing lab (no significant hazardous chemicals, no fire/explosion risk) fits the permitted definition
-- Chelsea, Flatiron, Tribeca, Upper West Side, and Williamsburg all contain qualifying C-district zones
+- Chelsea, Flatiron, Tribeca, and the Upper West Side contain qualifying C-district zones; parts of Williamsburg qualify in C2 overlays, though C1 overlays outside Manhattan are excluded from laboratory use under the Council-adopted City of Yes modification.
 - A Certificate of Occupancy amendment reflecting laboratory use will be required from the NYC Department of Buildings
 
 ### NYC Business Registration
 
-- NYS Certificate of Authority (sales tax registration) -- no fee, apply 20 days before operations begin
+- NYS Certificate of Authority (sales tax registration): no fee, apply 20 days before operations begin
 - Federal EIN from IRS
 - NYC employer registration with Department of Finance
 - **Sales tax consideration:** NYC combined rate is 8.875%. However, WGS data generated individually for a specific customer likely qualifies as "personal or individual information," which is exempt from NY sales tax. Tax counsel will confirm this determination.
@@ -719,7 +719,7 @@ CAP accreditation is voluntary but functions as CLIA-deemed accreditation status
 
 **Timeline:** 6-12 months to initial accreditation.
 
-**Note:** CAP accreditation does not replace CLEP in New York -- both are required.
+**Note:** CAP accreditation does not replace CLEP in New York; both are required.
 
 ## 7.4 Liability Structure
 
@@ -740,10 +740,10 @@ This document, the [technical manifest](https://github.com/danthi123/PrivDNA/blo
 
 | Topic | Status | Authoritative location |
 |---|---|---|
-| Waitlist data handling (pre-launch phase) | Live | [privdna.com/privacy](https://privdna.com/privacy) — covers waitlist email encryption (AES-256-GCM, HMAC-SHA256 duplicate hashing, SQLCipher-encrypted storage), Rybbit cookieless analytics, Cloudflare edge handling, GDPR and CCPA/CPRA and NY SHIELD Act compliance |
+| Waitlist data handling (pre-launch phase) | Live | [privdna.com/privacy](https://privdna.com/privacy); covers waitlist email encryption (AES-256-GCM, HMAC-SHA256 duplicate hashing, SQLCipher-encrypted storage), Rybbit cookieless analytics, Cloudflare edge handling, GDPR and CCPA/CPRA and NY SHIELD Act compliance |
 | Vulnerability disclosure and security contact | Live | [privdna.com/security-policy](https://privdna.com/security-policy) plus [privdna.com/.well-known/security.txt](https://privdna.com/.well-known/security.txt) (RFC 9116) |
 | Open-source waitlist site | Live | [github.com/danthi123/PrivDNA](https://github.com/danthi123/PrivDNA) |
-| Open-source sequencing and chain-of-custody pipeline | Planned (at launch) | github.com/danthi123/PrivDNA — per §3.4 |
+| Open-source sequencing and chain-of-custody pipeline | Planned (at launch) | github.com/danthi123/PrivDNA, per §3.4 |
 | Companion open-source tool (`genomevault`): passphrase-based encryption wrapping GA4GH Crypt4GH | Live (standalone; not yet integrated into the PrivDNA customer-delivery workflow) | [github.com/danthi123/genomevault](https://github.com/danthi123/genomevault) · [pypi.org/project/genomevault/](https://pypi.org/project/genomevault/) |
 | Zero-retention data destruction method | In whitepaper | §5.4 (cryptographic erasure, NIST SP 800-88 Rev. 2 Purge level); §6.3 (Visit 2 customer-witnessed ceremony); detailed SOP in the technical manifest §6 |
 | Response to subpoenas, warrants, and court orders | In whitepaper | §3.5 |
@@ -765,11 +765,11 @@ This document, the [technical manifest](https://github.com/danthi123/PrivDNA/blo
 
 PrivDNA operates with a lean team designed to fit a single-location, single-instrument throughput of roughly 750 genomes per year:
 
-- **Laboratory Director** (0.25 FTE, contract) — required for CLIA/CLEP certification. Board-certified lab directors can serve up to five labs under CMS rules.
-- **Molecular Laboratory Technician** (1.0 FTE) — operates the sequencer, performs sample preparation and QC.
-- **Bioinformatics Engineer** (1.0 FTE) — maintains the air-gapped pipeline, handles data processing, manages open-source repositories.
-- **Genomic Concierge / Technical Representative** (1.0 FTE) — customer-facing: explains the process, manages handoff, answers questions.
-- **Office Manager / QA Coordinator** (1.0 FTE) — front desk, scheduling, consumables ordering, vendor coordination, HR administration, and quality-management documentation (SOPs, CAPA logs, competency records) under Lab Director oversight.
+- **Laboratory Director** (0.25 FTE, contract): required for CLIA/CLEP certification. Board-certified lab directors can serve up to five labs under CMS rules.
+- **Molecular Laboratory Technician** (1.0 FTE): operates the sequencer, performs sample preparation and QC.
+- **Bioinformatics Engineer** (1.0 FTE): maintains the air-gapped pipeline, handles data processing, manages open-source repositories.
+- **Genomic Concierge / Technical Representative** (1.0 FTE): customer-facing, explains the process, manages handoff, answers questions.
+- **Office Manager / QA Coordinator** (1.0 FTE): front desk, scheduling, consumables ordering, vendor coordination, HR administration, and quality-management documentation (SOPs, CAPA logs, competency records) under Lab Director oversight.
 
 The Office Manager / QA Coordinator bridges two critical gaps: (1) front desk coverage so the Genomic Concierge can focus on in-lab interactions, and (2) compliance/operations documentation that CLIA and CAP require but that would otherwise fall on technical staff.
 
@@ -853,11 +853,11 @@ PrivDNA maintains a pre-vetted directory of independent genetic counselors, clin
 
 ### Compensation and Anti-Kickback Structure
 
-PrivDNA does not charge partners for referrals and does not receive referral fees from partners. This preserves the independence of the referral relationship and avoids potential regulatory complications under the federal Anti-Kickback Statute (AKS) and applicable New York State anti-kickback and fee-splitting statutes (NY Education Law Section 6509-a; NY Public Health Law Section 238-a). Because PrivDNA does not bill any federal health care program (Medicare, Medicaid, TRICARE, etc.), the federal AKS may not apply directly, but PrivDNA structures its referral relationships to comply regardless. Referral partners are responsible for their own AKS compliance with respect to their practices.
+PrivDNA does not charge partners for referrals and does not receive referral fees from partners. This preserves the independence of the referral relationship and avoids potential regulatory complications under the federal Anti-Kickback Statute (AKS) and applicable New York fee-splitting and self-referral statutes, including NY Education Law §6530(19) for physicians, §6509-a for other licensed professions, and NY Public Health Law §238-a for clinical laboratory services. Because PrivDNA does not bill any federal health care program (Medicare, Medicaid, TRICARE, etc.), the federal AKS may not apply directly, but PrivDNA structures its referral relationships to comply regardless. Referral partners are responsible for their own AKS compliance with respect to their practices.
 
 Instead, the referral network creates value through:
 
-1. **Customer acquisition:** Genetic counselors and clinical geneticists refer patients who want sequencing to PrivDNA
+1. **Customer acquisition:** Genetic counselors and clinical geneticists refer individuals who want sequencing to PrivDNA
 2. **Customer satisfaction:** Customers who can easily access interpretation are more satisfied and more likely to recommend PrivDNA
 3. **Brand positioning:** Association with licensed clinical professionals reinforces PrivDNA's credibility despite not offering interpretation directly
 
@@ -875,23 +875,23 @@ Instead, the referral network creates value through:
 
 | Term | Definition |
 |------|-----------|
-| **WGS** | Whole Genome Sequencing -- reading the complete 3.2 billion base pairs of the human genome |
+| **WGS** | Whole Genome Sequencing: reading the complete 3.2 billion base pairs of the human genome |
 | **30x coverage** | Each position in the genome is read an average of 30 times, ensuring high accuracy |
-| **BAM** | Binary Alignment Map -- a file format storing sequencing reads aligned to a reference genome |
-| **VCF** | Variant Call Format -- a file listing genetic variants (differences from the reference genome) |
-| **gVCF** | Genomic VCF -- a comprehensive VCF that includes non-variant positions for completeness |
+| **BAM** | Binary Alignment Map: a file format storing sequencing reads aligned to a reference genome |
+| **VCF** | Variant Call Format: a file listing genetic variants (differences from the reference genome) |
+| **gVCF** | Genomic VCF: a comprehensive VCF that includes non-variant positions for completeness |
 | **FASTQ** | A text-based format for storing raw sequencing reads with quality scores |
 | **GRCh38/hg38** | The current human reference genome assembly (Genome Reference Consortium, build 38) |
 | **Air gap** | A physical separation between a computer network and any external network, including the internet |
-| **SED** | Self-Encrypting Drive -- a storage device that automatically encrypts all data at the hardware level |
+| **SED** | Self-Encrypting Drive: a storage device that automatically encrypts all data at the hardware level |
 | **FIPS 140-3** | Federal Information Processing Standard for cryptographic module security (Level 3 = highest practical for portable devices) |
-| **CLIA** | Clinical Laboratory Improvement Amendments -- federal laboratory certification program |
-| **CLEP** | Clinical Laboratory Evaluation Program -- New York State's laboratory oversight program |
-| **CAP** | College of American Pathologists -- voluntary laboratory accreditation program |
-| **LDT** | Laboratory-Developed Test -- a test designed, manufactured, and used within a single laboratory |
-| **HIPAA** | Health Insurance Portability and Accountability Act -- federal health data privacy law |
+| **CLIA** | Clinical Laboratory Improvement Amendments: federal laboratory certification program |
+| **CLEP** | Clinical Laboratory Evaluation Program: New York State's laboratory oversight program |
+| **CAP** | College of American Pathologists: voluntary laboratory accreditation program |
+| **LDT** | Laboratory-Developed Test: a test designed, manufactured, and used within a single laboratory |
+| **HIPAA** | Health Insurance Portability and Accountability Act: federal health data privacy law |
 | **NIST SP 800-88** | National Institute of Standards and Technology Special Publication on media sanitization |
-| **BSL-1** | Biosafety Level 1 -- the basic level of containment for work with well-characterized agents not known to cause disease in healthy adults |
+| **BSL-1** | Biosafety Level 1: the basic level of containment for work with well-characterized agents not known to cause disease in healthy adults |
 
 ---
 
@@ -899,18 +899,25 @@ Instead, the referral network creates value through:
 
 | Month | Action |
 |-------|--------|
-| 0 | Begin CLEP pre-application consultation with Wadsworth Center |
-| 1 | Submit CLIA CMS-116 application |
-| 1 | Submit CLEP initial application ($1,100) |
-| 2 | Execute commercial lease |
-| 2-4 | Lab buildout (MEP, glass wall, equipment installation) |
-| 3-6 | CLEP LDT validation data development and submission |
-| 4 | Receive CLIA Certificate of Registration |
-| 5-8 | CLEP on-site survey |
-| 6-10 | CLEP permit issuance |
-| 8 | Submit CAP accreditation application |
-| 10-12 | CAP initial on-site inspection |
-| 10 | **Operational launch** (pending CLIA + CLEP approval) |
+| 0 | Entity formation: NJ LLC filed April 15, 2026 |
+| 0 | Strategic commitment to in-house operation under full CLIA + NY CLEP (April 16, 2026) |
+| 1 | CLEP pre-application scheduling call with Wadsworth Center; identify lab director candidate |
+| 1-2 | Formal CLEP pre-application consultation (LDT scope, validation framework, CQ category) |
+| 2-3 | Submit Certificate of Qualification (CQ) application for lab director |
+| 3 | Submit CLIA CMS-116 application |
+| 3 | Submit CLEP initial permit application ($1,100) |
+| 3-8 | CLEP LDT validation data development (six-phase framework per Galbo et al. 2025) |
+| 3-4 | Execute commercial lease (NYC C-zone) |
+| 4-8 | Lab buildout (MEP, glass wall, equipment installation) |
+| 6 | Receive CLIA Certificate of Registration |
+| 8-12 | CLEP on-site survey |
+| 8-12 | CLEP LDT validation review |
+| 10-18 | CLEP permit issuance (first-time NGS applicant; variable) |
+| 10-12 | Submit CAP accreditation application |
+| 12-16 | CAP initial on-site inspection |
+| 12-18+ | **Operational launch** (pending CLIA Certificate of Compliance + CLEP permit) |
+
+*Timeline assumes qualified lab director identified within 60-90 days of seed close. CLEP LDT review for first-time NGS applicants can extend the schedule; PrivDNA plans for a 12-18 month path to operational launch and communicates that range externally.*
 
 ---
 
@@ -946,7 +953,7 @@ Every reference below is a live link to the primary source. A reference audit lo
 - Blackstone, [*Blackstone Completes Acquisition of Ancestry for $4.7 Billion*](https://www.blackstone.com/news/press/blackstone-completes-acquisition-of-ancestry-leading-online-family-history-business-for-4-7-billion/) (December 2020); implied per-customer valuation framing per [CBS News](https://www.cbsnews.com/news/blackstone-private-equity-ancestry-com-dna/).
 - [*Portillo v. Nebula Genomics, Inc. et al.*](https://www.classaction.org/media/portillov-nebula-genomics-inc-et-al.pdf) — class-action complaint, No. 1:25-cv-12288 (D. Mass.) (originally filed Oct. 10, 2024 as No. 1:24-cv-09894 (N.D. Ill.); transferred July 25, 2025; motion to dismiss denied March 12, 2026).
 - ProPhase Labs, [*ProPhase Labs, Inc. Announces Completion of Important Next Step*](https://ir.prophaselabs.com/news-events/press-releases/detail/250/prophase-labs-inc-announces-completion-of-important-next) — September 2025 Chapter 11 filings for COVID-19 testing-lab subsidiaries.
-- Clyde & Co, [*Advising Bio Cell Tech on its acquisition of Dante Labs Genomics FZE*](https://www.clydeco.com/en/about/news/2024/12/advising-bio-cell-tech) (announced December 2024, closed February 2025) — acquisition was of Dante's UAE subsidiary, not the full Dante Genomics group.
+- Bio Cell Tech FZCO reportedly acquired Dante Labs' UAE subsidiary (Dante Labs Genomics FZE) in February 2025 (announcement originally covered by Clyde & Co in December 2024; primary-source URL subsequently went 404). The acquisition was of Dante's UAE subsidiary, not the full Dante Genomics group.
 - Coldewey D, [*Controversial genetics testing startup Nucleus Genomics raises $14M Series A*](https://techcrunch.com/2025/01/30/controversial-genetics-testing-startup-nucleus-genomics-raises-14m-series-a/), TechCrunch (January 30, 2025).
 - Sequencing.com, [*AI Use Policy*](https://sequencing.com/policies/ai-use-policy); funding history via [GenomeWeb](https://www.genomeweb.com/sequencing/sequencingcom-raises-5m-private-funding).
 - Better Business Bureau, [*Dante Labs, Inc. business profile*](https://www.bbb.org/us/ny/new-york/profile/dna-testing/dante-labs-inc-0121-176749) — F rating, pattern-of-complaints designation. Specific complaint count fluctuates; verify at publication time.
@@ -965,7 +972,7 @@ Every reference below is a live link to the primary source. A reference audit lo
 - CMS, [*CLIA Regulations and Federal Register Documents*](https://www.cms.gov/medicare/quality/clinical-laboratory-improvement-amendments/regulations-federal-register); full text at [42 CFR Part 493 (eCFR)](https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-G/part-493).
 - New York State, [*10 NYCRR Subpart 58-1 — Clinical Laboratories*](https://regs.health.ny.gov/content/subpart-58-1-clinical-laboratories); applicable Public Health Law citations indexed on the [Wadsworth CLEP laws & regulations](https://www.wadsworth.org/regulatory/clep/laws) page.
 - NYC Department of City Planning, [*City of Yes for Economic Opportunity — Zoning Text as Modified by the City Planning Commission*](https://www.nyc.gov/assets/planning/downloads/pdf/our-work/plans/citywide/city-of-yes-economic-opportunity/zoning-text-modified-by-cpc.pdf) (adopted by City Council June 6, 2024).
-- Sabnis et al., [*A Comprehensive Guide to Achieving New York State Clinical Laboratory Evaluation Program Approval for Next-Generation Sequencing Assays*](https://www.jmdjournal.org/article/S1525-1578(25)00067-4/fulltext), *Journal of Molecular Diagnostics* (March 2025).
+- Galbo et al., [*A Comprehensive Guide to Achieving New York State Clinical Laboratory Evaluation Program Approval for Next-Generation Sequencing Assays*](https://www.jmdjournal.org/article/S1525-1578(25)00067-4/fulltext), *Journal of Molecular Diagnostics* 27(6):485-501 (June 2025), PMID 40158885.
 - EEOC, [*Genetic Information Nondiscrimination Act of 2008*](https://www.eeoc.gov/statutes/genetic-information-nondiscrimination-act-2008); NHGRI, [*Genetic Discrimination*](https://www.genome.gov/about-genomics/policy-issues/Genetic-Discrimination) — GINA scope excludes life, disability, and long-term-care insurance.
 - [*Texas Genomic Act of 2025*](https://statutes.capitol.texas.gov/Docs/HS/htm/HS.174.htm) — Texas Health & Safety Code Chapter 174 (HB 130, effective September 1, 2025).
 - [*South Dakota SB 49 / Genetic Data Privacy Act*](https://mylrc.sdlegislature.gov/api/Documents/305520.pdf) — 101st Legislative Session, effective July 1, 2026.

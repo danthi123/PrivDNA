@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — PrivDNA",
+  title: "Privacy Policy | PrivDNA",
   description: "How PrivDNA handles your data. Minimal collection, zero tracking cookies, full encryption.",
   robots: { index: true, follow: true },
 };
@@ -33,7 +33,7 @@ export default function PrivacyPolicy() {
             <span className="text-text-primary">privdna.com</span>) during the
             pre-launch phase. Our mission is to give people access to their
             genomic data without surrendering control of it. This privacy
-            policy reflects that mission — we collect as little as possible
+            policy reflects that mission: we collect as little as possible
             and protect what we do collect.
           </p>
         </section>
@@ -90,13 +90,13 @@ export default function PrivacyPolicy() {
             <li>Language preference</li>
             <li>Geographic location (city-level, derived from IP at the edge)</li>
             <li>Session duration and engagement metrics</li>
-            <li>Custom events (e.g., waitlist signup — event name only, no email or PII)</li>
+            <li>Custom events (e.g., waitlist signup: event name only, no email or PII)</li>
             <li>Page performance metrics (Core Web Vitals)</li>
           </ul>
           <p className="mt-2">
             Rybbit does not use cookies, does not fingerprint browsers, and does
             not assign persistent identifiers. Every visitor is anonymous by
-            default — there is no way to link analytics data back to a specific
+            default: there is no way to link analytics data back to a specific
             individual. IP addresses are used transiently for geolocation but
             are not stored in our analytics database.
           </p>
@@ -127,7 +127,7 @@ export default function PrivacyPolicy() {
             What we do not collect
           </h2>
           <ul className="list-disc pl-6 space-y-1">
-            <li>No cookies (zero — not even analytics cookies)</li>
+            <li>No cookies (zero, not even analytics cookies)</li>
             <li>No advertising or tracking pixels</li>
             <li>No browser fingerprinting</li>
             <li>The only external script is Rybbit analytics (cookieless, no personal data transmitted)</li>
@@ -177,12 +177,12 @@ export default function PrivacyPolicy() {
           </p>
           <ul className="list-disc pl-6 mt-2 space-y-1">
             <li>
-              <span className="text-text-primary">Unsubscribe link</span> —
+              <span className="text-text-primary">Unsubscribe link</span>:
               every email we send includes an unsubscribe link that immediately
               removes your data
             </li>
             <li>
-              <span className="text-text-primary">Email us</span> —
+              <span className="text-text-primary">Email us</span>:
               contact{" "}
               <a
                 href="mailto:contact@privdna.com"
@@ -217,7 +217,7 @@ export default function PrivacyPolicy() {
               All data at rest is encrypted with AES-256-GCM (email field) and
               SQLCipher (entire database)
             </li>
-            <li>HSTS with preload enabled — browsers will only connect via HTTPS</li>
+            <li>HSTS with preload enabled: browsers will only connect via HTTPS</li>
             <li>
               Our waitlist system is{" "}
               <a
@@ -228,7 +228,7 @@ export default function PrivacyPolicy() {
               >
                 open source
               </a>{" "}
-              — you can audit exactly how your data is handled
+              , so you can audit exactly how your data is handled
             </li>
           </ul>
         </section>
@@ -240,31 +240,31 @@ export default function PrivacyPolicy() {
           <p>Regardless of where you are located, you have the right to:</p>
           <ul className="list-disc pl-6 mt-2 space-y-1">
             <li>
-              <span className="text-text-primary">Access</span> — know what
+              <span className="text-text-primary">Access</span>: know what
               data we hold about you
             </li>
             <li>
-              <span className="text-text-primary">Rectification</span> — correct
+              <span className="text-text-primary">Rectification</span>: correct
               inaccurate data
             </li>
             <li>
-              <span className="text-text-primary">Deletion</span> — request
+              <span className="text-text-primary">Deletion</span>: request
               that we delete your data
             </li>
             <li>
-              <span className="text-text-primary">Portability</span> — receive
+              <span className="text-text-primary">Portability</span>: receive
               your data in a standard format
             </li>
             <li>
-              <span className="text-text-primary">Restriction</span> — limit
+              <span className="text-text-primary">Restriction</span>: limit
               how we process your data
             </li>
             <li>
-              <span className="text-text-primary">Objection</span> — opt out of
+              <span className="text-text-primary">Objection</span>: opt out of
               any communications at any time
             </li>
             <li>
-              <span className="text-text-primary">Withdraw consent</span> — at
+              <span className="text-text-primary">Withdraw consent</span>: at
               any time, without affecting the lawfulness of processing before
               withdrawal
             </li>
@@ -358,7 +358,7 @@ export default function PrivacyPolicy() {
             </li>
             <li>
               <span className="text-text-primary">Right to opt out:</span> Not
-              applicable — we do not sell or share personal information.
+              applicable; we do not sell or share personal information.
             </li>
             <li>
               <span className="text-text-primary">Non-discrimination:</span> We

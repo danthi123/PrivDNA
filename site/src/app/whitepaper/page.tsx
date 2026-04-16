@@ -6,11 +6,11 @@ import { marked } from "marked";
 import DOMPurify from "isomorphic-dompurify";
 
 export const metadata: Metadata = {
-  title: "Technical Whitepaper — PrivDNA",
+  title: "Technical Whitepaper | PrivDNA",
   description:
     "PrivDNA's public technical whitepaper: air-gapped whole genome sequencing, open-source pipeline, zero data retention, witnessed NIST SP 800-88 destruction.",
   openGraph: {
-    title: "Technical Whitepaper — PrivDNA",
+    title: "Technical Whitepaper | PrivDNA",
     description:
       "Air-gapped whole genome sequencing. Open source pipeline. Zero data retention.",
     url: "https://privdna.com/whitepaper",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Technical Whitepaper — PrivDNA",
+    title: "Technical Whitepaper | PrivDNA",
     description:
       "Air-gapped whole genome sequencing. Open source pipeline. Zero data retention.",
   },

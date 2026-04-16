@@ -133,7 +133,7 @@ export default function HowItWorks() {
       {/* Phase 0 framing */}
       <div className="px-6 md:px-16 lg:px-24 pt-16 md:pt-20 text-center">
         <p className="text-text-secondary text-sm md:text-base tracking-wide max-w-2xl mx-auto">
-          The planned customer journey. NYC pre-launch — join the waitlist.
+          The planned customer journey. NYC pre-launch. Join the waitlist.
         </p>
       </div>
 

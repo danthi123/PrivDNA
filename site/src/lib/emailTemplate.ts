@@ -100,7 +100,7 @@ No spam. No data sharing.
 Unsubscribe: ${unsubscribeUrl}
 
 ---
-PrivDNA — Privacy is not a feature. It's the architecture.`;
+PrivDNA. Privacy is not a feature. It's the architecture.`;
 
   return { html, text };
 }
@@ -126,7 +126,7 @@ Your email has been unsubscribed from the PrivDNA waitlist.
 If this was a mistake, you can sign up again at any time.
 
 ---
-PrivDNA — Privacy is not a feature. It's the architecture.`;
+PrivDNA. Privacy is not a feature. It's the architecture.`;
 
   return { html, text };
 }

@@ -23,7 +23,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "PrivDNA — Your Genome. Your Hands. No Copies.",
+  title: "PrivDNA: Your Genome. Your Hands. No Copies.",
   description:
     "Air-gapped whole genome sequencing. Open source pipeline. Zero data retention. Manhattan, NYC.",
   alternates: { canonical: "https://privdna.com" },
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "PrivDNA — Your Genome. Your Hands. No Copies.",
+    title: "PrivDNA: Your Genome. Your Hands. No Copies.",
     description:
       "Air-gapped whole genome sequencing. Open source pipeline. Zero data retention.",
     url: "https://privdna.com",
@@ -43,13 +43,13 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "PrivDNA — Your genome. Your hands. No copies.",
+        alt: "PrivDNA: Your genome. Your hands. No copies.",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "PrivDNA — Your Genome. Your Hands. No Copies.",
+    title: "PrivDNA: Your Genome. Your Hands. No Copies.",
     description:
       "Air-gapped whole genome sequencing. Open source pipeline. Zero data retention.",
     images: ["/og-image.png"],

@@ -17,7 +17,7 @@ const terminalLines = [
   { text: "\u2713 MultiQC        v1.33    [GPL-v3]", accent: true },
   { text: "", delay: 0 },
   { text: "# Vendor (proprietary, basecaller only)", accent: false },
-  { text: "\u25CB bases2fastq    v2.1     [Element Biosciences \u2014 proprietary]", accent: false },
+  { text: "\u25CB bases2fastq    v2.1     [Element Biosciences, proprietary]", accent: false },
   { text: "", delay: 0 },
   { text: "Network interfaces: NONE", accent: true },
   { text: "Cloud endpoints:    NONE", accent: true },
@@ -86,7 +86,7 @@ export default function OpenSource() {
         </div>
       </div>
 
-      {/* Right column — Terminal */}
+      {/* Right column: Terminal */}
       <div className="bg-bg-surface rounded-2xl p-6 font-mono text-xs md:text-sm overflow-x-auto">
         {/* Terminal header dots */}
         <div className="flex gap-2 mb-4">

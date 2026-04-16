@@ -23,6 +23,14 @@ docs/content/
 docs/plans/privdna-llc-operating-agreement-template.md
 assets/cover-candidates/
 
+# Internal working directories. Never commit to public repo.
+cofounder-bot/
+docs/cofounder-matching-rubric.md
+docs/call-prep/
+docs/site-drafts/
+docs/wiki-drafts/
+n8n/
+
 # Internal / investor-facing material. Archived outside this repository
 # at E:/Documents/Projects/PrivDNA-private/ (local only, never pushed).
 /whitepaper.md

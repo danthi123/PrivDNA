@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Locked DNA — What It Means to Actually Own Your Genome | PrivDNA",
+  title: "Locked DNA: What It Means to Actually Own Your Genome | PrivDNA",
   description:
-    "Your password can be changed in 30 seconds. Your genome cannot be changed, ever. Here's what locking your DNA actually requires — and why most providers can't do it.",
+    "Your password can be changed in 30 seconds. Your genome cannot be changed, ever. Here's what locking your DNA actually requires, and why most providers can't do it.",
   openGraph: {
-    title: "Locked DNA — What It Means to Actually Own Your Genome",
+    title: "Locked DNA: What It Means to Actually Own Your Genome",
     description:
       "A leaked password is a 30-second problem. A leaked genome is permanent. PrivDNA exists for the difference.",
   },
@@ -57,8 +57,8 @@ export default function LockedDNAPage() {
             </span>
           </p>
           <p className="mt-4">
-            Every other piece of data you have ever shared — email, SSN, credit
-            card, phone number, address — can be rotated, reissued, replaced.
+            Every other piece of data you have ever shared (email, SSN, credit
+            card, phone number, address) can be rotated, reissued, replaced.
             Your genome is the only credential that is literally you.
           </p>
         </section>
@@ -71,7 +71,7 @@ export default function LockedDNAPage() {
             Deletion is a promise. Irrevocability is physics. Once your sequence
             has been copied into research partner handoffs, insurance
             underwriting models, backup systems, and whatever database the
-            bankruptcy buyer eventually inherits — the delete button at the
+            bankruptcy buyer eventually inherits, the delete button at the
             front-end provider doesn&apos;t reach any of it.
           </p>
           <p className="mt-3">
@@ -117,7 +117,7 @@ export default function LockedDNAPage() {
           </ul>
           <p className="mt-3">
             Underwriters in those three lines can keep your sequence in their
-            risk models indefinitely — even as the products you bought
+            risk models indefinitely, even as the products you bought
             protection for change shape, owner, or jurisdiction. A leaked
             password is a 30-second problem. A leaked genome is an underwriting
             input forever.
@@ -129,8 +129,8 @@ export default function LockedDNAPage() {
             What &ldquo;locked&rdquo; actually requires
           </h2>
           <p>
-            For DNA to be genuinely locked — not just claimed-locked in a
-            privacy policy — three things have to be true at the same time:
+            For DNA to be genuinely locked, not just claimed-locked in a
+            privacy policy, three things have to be true at the same time:
           </p>
           <ol className="list-decimal pl-6 mt-3 space-y-2">
             <li>
@@ -144,7 +144,7 @@ export default function LockedDNAPage() {
               <span className="text-text-primary">
                 You can verify the absence of copies.
               </span>{" "}
-              Not because someone wrote a sentence in a PDF — because you
+              Not because someone wrote a sentence in a PDF, but because you
               watched the working drives be cryptographically destroyed.
             </li>
             <li>
@@ -171,13 +171,13 @@ export default function LockedDNAPage() {
           <ul className="list-disc pl-6 mt-3 space-y-2">
             <li>
               <span className="text-text-primary">Visit 1.</span> You give a
-              saliva sample at the lab bench, collected there by a technician —
+              saliva sample at the lab bench, collected there by a technician,
               not brought in. It is barcoded, logged into chain of custody, and
               handed to the air-gapped sequencer in the same room. Nothing
               leaves the building on a network cable.
             </li>
             <li>
-              <span className="text-text-primary">Between visits (4–6 business days).</span>{" "}
+              <span className="text-text-primary">Between visits (4-6 business days).</span>{" "}
               Your sequence is processed on the air-gapped workstation. There
               is no external network connection. Output lives only on
               workstation drives until handoff.
@@ -206,8 +206,8 @@ export default function LockedDNAPage() {
             <li>The decryption keys, in your hands, on separate media</li>
             <li>A signed Certificate of Destruction</li>
             <li>
-              An open-source pipeline so anyone — a researcher, a journalist, a
-              paranoid customer — can audit exactly what happened to your
+              An open-source pipeline so anyone (a researcher, a journalist, a
+              paranoid customer) can audit exactly what happened to your
               sequence data (BAM, VCF, gVCF). Raw FASTQ is available on request.
             </li>
             <li>
@@ -223,7 +223,7 @@ export default function LockedDNAPage() {
           </h2>
           <p>
             We publish the technical detail because we have to. Privacy claims
-            you can&apos;t verify are not privacy claims — they are marketing.
+            you can&apos;t verify are not privacy claims. They are marketing.
           </p>
           <p className="mt-3">
             <Link
