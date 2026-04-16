@@ -42,9 +42,9 @@ PrivDNA is a privacy-sovereign whole genome sequencing (WGS) service in developm
 
 ### Why Now
 
-The consumer genomics industry is in crisis. In March 2025, 23andMe filed for Chapter 11 bankruptcy and its approximately 15 million customers' genetic data was acquired by a third party for $305 million through a legal structure that bypassed re-consent requirements. A Nebula Genomics class-action lawsuit alleges the now-defunct "privacy-first" company shared genetic data with Meta, Google, and Microsoft via embedded tracking tools (ProPhase Labs, Nebula's parent, filed Chapter 11 for its lab subsidiaries in September 2025). Consumer trust in genetic testing services has collapsed at the exact moment when whole genome sequencing costs have fallen below $250 per genome at the laboratory level.
+The consumer genomics industry is in crisis. On March 23, 2025, 23andMe filed for Chapter 11 bankruptcy; on July 14, 2025, its approximately 15 million customers' genetic data was acquired by TTAM Research Institute for $305 million through a legal structure that bypassed re-consent requirements. A Nebula Genomics class-action lawsuit alleges the now-defunct "privacy-first" company shared genetic data with Meta, Google, and Microsoft via embedded tracking tools (ProPhase Labs, Nebula's parent, filed Chapter 11 for its lab subsidiaries in September 2025). Consumer trust in genetic testing services has collapsed at the exact moment when whole genome sequencing costs have fallen below $250 per genome at the laboratory level.
 
-This confluence creates a market opening for a fundamentally different model -- one built on physical transparency, cryptographic verifiability, and zero data retention.
+This confluence creates a market opening for a fundamentally different model -- one built on physical transparency, cryptographic verifiability, and zero retention of genomic data (operational records retained per CLIA 42 CFR 493.1105).
 
 ### The Business
 

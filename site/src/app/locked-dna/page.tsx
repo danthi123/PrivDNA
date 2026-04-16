@@ -162,11 +162,13 @@ export default function LockedDNAPage() {
 
         <section>
           <h2 className="text-text-primary text-2xl font-semibold mb-4">
-            How PrivDNA does it
+            How PrivDNA will do it
           </h2>
           <p>
-            Two visits to a physical location. Roughly 55 minutes of your time,
-            split across them.
+            The NYC storefront is pre-launch (pre-lease, pre-buildout). Once
+            operational, the customer experience will be two visits to a
+            physical location, roughly 55 minutes of your time, split across
+            them.
           </p>
           <ul className="list-disc pl-6 mt-3 space-y-2">
             <li>
